@@ -1,0 +1,29 @@
+# LaTeX build files
+*.aux
+*.log
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.bbl
+*.blg
+*.lof
+*.lot
+*.dvi
+*.nav
+*.snm
+*.vrb
+
+# Editors
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Keep the PDF if you want, or ignore it if you use Actions to build releases
+# Uncomment the next line to ignore local PDFs
+# *.pdf

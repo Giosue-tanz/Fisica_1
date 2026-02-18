@@ -1,0 +1,70 @@
+
+\subsubsection{Dinamica del Moto sul Piano Inclinato}
+Analizziamo ora cosa succede quando il corpo è effettivamente in movimento, superato il limite dell'attrito statico.
+Distinguiamo le forze in gioco:
+\begin{itemize}
+    \item $\vec{F}_s$ agisce finché il corpo è fermo.
+    \item $\vec{F}_d$ agisce quando il corpo si muove.
+\end{itemize}
+
+Scriviamo l'equazione vettoriale del moto:
+\begin{align}
+    \text{Stato di QUIETE:} \quad & \vec{P} + \vec{N} + \vec{F}_s = 0 \\
+    \text{Stato di MOTO:} \quad & \vec{P} + \vec{N} + \vec{F}_d = m\vec{a}
+\end{align}
+
+Proiettiamo le forze sugli assi cartesiani (con asse $x$ parallelo al piano e verso il basso):
+\begin{equation}
+\begin{cases}
+    \text{Asse } y: & N - mg \cos\theta = 0 \implies N = mg \cos\theta \quad (\forall t) \\
+    \text{Asse } x \text{ (Fermo)}: & mg \sin\theta - F_s = 0 \\
+    \text{Asse } x \text{ (Moto)}: & mg \sin\theta \mp F_d = ma
+\end{cases}
+\end{equation}
+
+Il segno dell'attrito dinamico $\vec{F}_d$ dipende dal verso del moto:
+\begin{itemize}
+    \item Se il corpo \textbf{scende} ($v > 0$): $\vec{F}_d$ è diretta verso l'alto ($-F_d$).
+    \item Se il corpo \textbf{sale} ($v < 0$): $\vec{F}_d$ è diretta verso il basso ($+F_d$), concordemente alla componente del peso.
+\end{itemize}
+
+\paragraph{Caso: Corpo in Discesa (Scivolamento)}
+Consideriamo il caso classico di un corpo che scende lungo il piano. L'equazione del moto lungo $x$ diventa:
+\[ mg \sin\theta - F_d = ma \]
+Sostituendo l'espressione dell'attrito dinamico $F_d = \mu_d N = \mu_d mg \cos\theta$:
+\[ mg \sin\theta - \mu_d mg \cos\theta = ma \]
+
+Semplificando la massa $m$ (che dunque non influenza l'accelerazione di scivolamento), otteniamo:
+\begin{equation}
+    a = g (\sin\theta - \mu_d \cos\theta)
+\end{equation}
+
+Da questa relazione notiamo che:
+\begin{itemize}
+    \item Se $\sin\theta = \mu_d \cos\theta \implies \tan\theta = \mu_d \implies a=0$ (Moto Rettilineo Uniforme).
+    \item Se $\sin\theta > \mu_d \cos\theta \implies a > 0$ (Il corpo accelera verso il basso).
+    \item Se $\sin\theta < \mu_d \cos\theta \implies a < 0$ (Il corpo rallenta).
+\end{itemize}
+
+\paragraph{Cinematica della Discesa}
+Supponiamo che il corpo parta da fermo ($v_0 = 0$) dalla cima del piano ($x_0 = 0$) e percorra un tratto di lunghezza $L$.
+Si tratta di un \textbf{Moto Rettilineo Uniformemente Accelerato} (MRUA):
+
+\begin{equation}
+\begin{cases}
+    v(t) = a t = g t (\sin\theta - \mu_d \cos\theta) \\
+    x(t) = \frac{1}{2} a t^2 = \frac{1}{2} g t^2 (\sin\theta - \mu_d \cos\theta)
+\end{cases}
+\end{equation}
+
+Possiamo calcolare il tempo $t^*$ impiegato per percorrere l'intera lunghezza $L$ ponendo $x(t^*) = L$:
+\[ L = \frac{1}{2} g (t^*)^2 (\sin\theta - \mu_d \cos\theta) \]
+\begin{equation}
+    t^* = \sqrt{\frac{2L}{g(\sin\theta - \mu_d \cos\theta)}}
+\end{equation}
+
+E sostituendo $t^*$ nell'equazione della velocità, otteniamo la velocità finale $v(t^*)$ alla base del piano:
+\[ v(t^*) = a t^* = \sqrt{\frac{2L \cdot a^2}{a}} = \sqrt{2 a L} \]
+\begin{equation}
+    v_{finale} = \sqrt{2 L g (\sin\theta - \mu_d \cos\theta)}
+\end{equation}
