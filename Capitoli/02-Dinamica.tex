@@ -129,114 +129,73 @@ La condizione $\vec{F}_{tot} = 0$ si verifica in due casi esclusivi:
     \item Il corpo è soggetto a più forze la cui somma vettoriale è nulla ($\sum \vec{F} = 0$).
 \end{enumerate}
 
-\subsubsection{Il Paradosso Sperimentale e l'Esperimento Ideale}
-A livello concreto, è impossibile osservare il principio di inerzia in forma pura sulla Terra, poiché non otteniamo mai una reale prova sperimentale dell'assenza completa di forze. Infatti, le forze dissipative (come l'attrito dell'aria o del piano) sono sempre presenti. Inoltre, le stesse "fasi di transizione" (mettere in moto un oggetto o fermarlo) implicano l'applicazione di una forza.
+\begin{esercizio}{Il Paradosso Sperimentale e l'Esperimento Ideale di Galileo}
+A livello concreto, è impossibile osservare il principio di inerzia in forma pura sulla Terra, poiché non otteniamo mai una reale prova sperimentale dell'assenza completa di forze. Infatti, le forze dissipative (come l'attrito dell'aria o del piano) sono sempre presenti.
 
 Per risolvere questo paradosso, Galileo ideò un celebre \textbf{Esperimento Intellettuale} (\textit{Gedankenexperiment}):
 
-\begin{figure}[ht]
-    \centering
-    % Rimosso ">=Stealth" per usare le frecce standard e garantire che si vedano
+    \begin{center}
     \begin{tikzpicture}[scale=0.85, transform shape] 
-        
-        % --- RIGA SUPERIORE ---
-        
         % --- Caso A: Simmetrico Ripido ---
         \begin{scope}[xshift=-4cm, yshift=2.5cm]
-            % Definisco le coordinate dei vertici
             \coordinate (TopLeft) at (-2, 2);
             \coordinate (Bottom) at (0, 0);
             \coordinate (TopRight) at (2, 2);
-            
-            % Pista con raccordo automatico (rounded corners)
             \draw[thick, rounded corners=15pt] (TopLeft) -- (Bottom) -- (TopRight);
-            % Linea tratteggiata altezza
             \draw[dashed, gray] (TopLeft) -- (TopRight);
-            % Base (chiusura triangoli per estetica)
             \draw[thick] (-2,0) -- (2,0);
             \draw[thick] (-2,2) -- (-2,0);
             \draw[thick] (2,2) -- (2,0);
-            
-            % Etichette
             \node[left] at (-2.2, 1) {\textbf{A}};
             \node[right, gray] at (TopRight) {$h$};
-            
-            % --- Pallina Discesa (Sinistra) ---
-            % Angolo: -45 gradi
             \coordinate (BallDown) at (-1.2, 1.2);
             \filldraw[fill=gray!30, draw=black] (BallDown) circle (0.18);
-            % Freccia: parte dal centro, angolo -45, lunghezza 0.8. L'opzione -> assicura la punta.
             \draw[->, thick] (BallDown) -- ++(-45:0.8);
-            
-            % --- Pallina Risalita (Destra) ---
-            % Angolo: +45 gradi
             \coordinate (BallUp) at (1.2, 1.2);
             \filldraw[fill=gray!30, draw=black] (BallUp) circle (0.18);
             \draw[->, thick] (BallUp) -- ++(45:0.8);
         \end{scope}
         
-        % --- Caso B: Simmetrico Largo (Pendenza minore) ---
+        % --- Caso B: Simmetrico Largo ---
         \begin{scope}[xshift=4cm, yshift=2.5cm]
-            % Coordinate
             \coordinate (TopLeftB) at (-3.5, 2);
             \coordinate (BottomB) at (0, 0);
             \coordinate (TopRightB) at (3.5, 2);
-            
-            % Calcolo angolo pendenza: atan(2 / 3.5) = ~29.74 gradi
-            % Pista con raccordo smussato
             \draw[thick, rounded corners=20pt] (TopLeftB) -- (BottomB) -- (TopRightB);
-            
-            % Struttura esterna
             \draw[dashed, gray] (TopLeftB) -- (TopRightB);
-            \draw[thick] (-3.5,0) -- (3.5,0); % Base
+            \draw[thick] (-3.5,0) -- (3.5,0);
             \draw[thick] (-3.5,2) -- (-3.5,0);
             \draw[thick] (3.5,2) -- (3.5,0);
-            
-            % Etichette
             \node[left] at (-3.7, 1) {\textbf{B}};
             \node[right, gray] at (TopRightB) {$h$};
-            
-            % --- Pallina Discesa ---
             \coordinate (BallDownB) at (-2, 1.14);
             \filldraw[fill=gray!30, draw=black] (BallDownB) circle (0.18);
-            % Uso l'angolo calcolato (-29.7)
             \draw[->, thick] (BallDownB) -- ++(-29.7:0.8);
-            
-            % --- Pallina Risalita ---
             \coordinate (BallUpB) at (2, 1.14);
             \filldraw[fill=gray!30, draw=black] (BallUpB) circle (0.18);
             \draw[->, thick] (BallUpB) -- ++(29.7:0.8);
         \end{scope}
         
-        % --- RIGA INFERIORE: C ---
-        
         % --- Caso C: Piano Orizzontale ---
         \begin{scope}[xshift=0cm, yshift=-1.5cm]
-            % Piano
             \draw[thick] (-4, 0) -- (4, 0);
-            \draw[->, thick, dashed] (4, 0) -- (5.5, 0); % Infinito con punta
-            
-            % Etichetta C
+            \draw[->, thick, dashed] (4, 0) -- (5.5, 0); 
             \node[left] at (-4.2, 0.5) {\textbf{C}};
-            
-            % Pallina MRU
-            % La solleviamo di 0.18 (raggio) per farla toccare la linea
             \filldraw[fill=gray!30, draw=black] (0, 0.18) circle (0.18);
             \draw[->, thick, red] (0.3, 0.18) -- (1.8, 0.18) node[above] {$\vec{v} = \text{cost}$};
             \node[below, red] at (1.5, -0.2) {MRU};
         \end{scope}
-        
     \end{tikzpicture}
-    \caption{Esperimento dei piani inclinati di Galileo. (A) Piani simmetrici ripidi. (B) Piani simmetrici a minore pendenza. (C) Piano orizzontale: il moto prosegue all'infinito.}
-    \label{fig:galileo_planes_fixed}
-\end{figure}
+    \captionof{figure}{Esperimento dei piani inclinati di Galileo.}
+    \end{center}
 
 Immaginando di avere due piani inclinati contrapposti:
 \begin{enumerate}
-    \item Il corpo scivola sul primo piano \textbf{accelerando} e risale sul secondo \textbf{decelerando} fino a tornare alla quota iniziale $h$ (per la conservazione dell'energia, in assenza di attrito).
-    \item Riducendo l'inclinazione del secondo piano, il corpo deve percorrere un tratto più lungo per recuperare la stessa quota.
-    \item Accelerazione e decelerazione dipendono dall'inclinazione. Se l'inclinazione del secondo piano diventa \textbf{nulla} (piano orizzontale), il corpo non potrà mai risalire alla quota originale e continuerà a muoversi indefinitamente a velocità costante (\textbf{MRU}).
+    \item Il corpo scivola sul primo piano \textbf{accelerando} e risale sul secondo \textbf{decelerando} fino a tornare alla quota iniziale $h$.
+    \item Riducendo l'inclinazione del secondo piano, il corpo percorre un tratto più lungo.
+    \item Se l'inclinazione del secondo piano diventa \textbf{nulla} (piano orizzontale), il corpo continuerà a muoversi indefinitamente a velocità costante (\textbf{MRU}).
 \end{enumerate}
+\end{esercizio}
 
 \subsection{Sistemi di Riferimento Inerziali}
 Un altro fatto fondamentale è legato alla relatività del moto.
@@ -258,107 +217,179 @@ Si definisce \textbf{Inerziale} un sistema di riferimento in cui vale il Primo P
     \item \textbf{Relatività di Galileo}: Le leggi della meccanica sono le stesse in \textbf{tutti} i sistemi di riferimento inerziali. Non esiste un sistema inerziale privilegiato.
 \end{enumerate}
 
-\begin{tcolorbox}[colback=red!5, colframe=red!75!black, title=La Terra è un sistema inerziale?]
-Rigorosamente \textbf{NO}, a causa dei moti di rotazione (accelerazione centripeta $\approx 10^{-2} \, m/s^2$) e rivoluzione ($\approx 10^{-3} \, m/s^2$). Tuttavia, per la maggior parte delle applicazioni ingegneristiche e fisiche locali, può essere approssimata come tale poiché queste accelerazioni sono trascurabili rispetto a $g$.
-\end{tcolorbox}
+\begin{osservazione}{La Terra è un sistema inerziale?}
+Rigorosamente \textbf{NO}, a causa dei moti di rotazione e rivoluzione. Tuttavia, per la maggior parte delle applicazioni locali, può essere approssimata come tale poiché queste accelerazioni sono trascurabili rispetto a $g$.
+\end{osservazione}
 Tuttavia, può essere considerata \textbf{approssimativamente inerziale} per la maggior parte degli esperimenti di laboratorio, poiché tali accelerazioni sono molto piccole rispetto alla gravità:
 \[ a_{rot} \approx 2.5 \cdot 10^{-3} g, \quad a_{riv} \approx 10^{-4} g \]
 Questi effetti diventano rilevanti solo per moti su grande scala (es. correnti atmosferiche) o misure di altissima precisione.
 
 \section{Secondo Principio: Legge Fondamentale (Legge di Newton)}
 
+% ---------------------------------------------------------------
 \subsection{Prima Formulazione (Massa Costante)}
-In un sistema di riferimento \textbf{inerziale}, la forza risultante agente su un corpo è direttamente proporzionale all'accelerazione che esso acquisisce.
-La costante di proporzionalità è la \textbf{massa inerziale} $m$ del corpo, che rappresenta la "resistenza" del corpo a variare la propria velocità.
+% ---------------------------------------------------------------
 
-\begin{equation}
-    \sum \vec{F} = m \cdot \vec{a}
+\noindent
+\begin{minipage}[t]{0.52\textwidth}
+\vspace{0pt}
+dove $\sum\vec{F}$ è la somma delle forze applicate
+ad un corpo, avente la stessa direzione dell'accelerazione
+$\vec{a}$; la costante di proporzionalità è la massa $m$:
+\begin{equation}\label{eq:2nd_law}
+    \boxed{\sum \vec{F} = m \cdot \vec{a}}
 \end{equation}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.44\textwidth}
+\vspace{4pt}
+\begin{osservazione}{Unità di misura della Forza}
+Nel Sistema Internazionale, la forza si misura in \textbf{Newton} [N]:
+\[ 1 \, N = 1 \, kg \cdot m/s^2 \]
+\end{osservazione}
+\end{minipage}
 
-Dove:
-\begin{itemize}
-    \item $\sum \vec{F}$ è la risultante vettoriale di tutte le forze applicate: $\vec{R} = \sum \vec{F}_i$.
-    \item $m$ è la massa inerziale (scalare, sempre $>0$).
-    \item $\vec{a}$ è l'accelerazione (vettore parallelo a $\vec{R}$).
-\end{itemize}
+\medskip
+\begin{osservazione}{Relazione tra i Principi}
+Affinché valga il 2° principio è necessario definire un sistema di riferimento inerziale tramite il 1° principio. In sistemi non inerziali compaiono forze apparenti che invalidano la forma $\sum \vec{F} = m\vec{a}$ se non corrette.
+\end{osservazione}
 
-\paragraph{Equazioni Scalari:}
-Essendo un'equazione vettoriale, essa equivale a tre equazioni scalari (una per asse cartesiano):
+\begin{definizione}{Secondo Principio della Dinamica}
+In un sistema di riferimento \textbf{inerziale}, l'accelerazione di
+un punto materiale è \emph{direttamente proporzionale} alla forza
+risultante e \emph{inversamente proporzionale} alla sua massa:
+\[
+    \vec{a} = \vec{R} \;\Longrightarrow\;
+    \vec{a} = \frac{\sum\vec{F}}{m} \;\Longrightarrow\;
+    \underbrace{\frac{\sum\vec{F}(\vec{r},\dot{\vec{r}})}{m}
+               = \ddot{\vec{r}}}_{\text{equazione del moto}}
+\]
+\end{definizione}
+
+\paragraph{Equazioni Scalari.}
+Essendo un'equazione vettoriale, equivale a tre equazioni scalari:
 \[
 \begin{cases}
-    \sum F_x = m a_x \\
-    \sum F_y = m a_y \\
-    \sum F_z = m a_z
+    \sum F_x = m\, a_x \\
+    \sum F_y = m\, a_y \\
+    \sum F_z = m\, a_z
 \end{cases}
-\quad \text{con } a_x = \frac{d^2x}{dt^2}, \dots
+\qquad\text{con }\; a_i = \dfrac{d^2 x_i}{dt^2}
 \]
 
-\paragraph{Problemi della Dinamica:}
+\paragraph{Problemi della Dinamica.}
 \begin{itemize}
-    \item \textbf{Problema Diretto}: Note le forze e le condizioni iniziali ($\vec{r}_0, \vec{v}_0$), determinare il moto $\vec{r}(t)$.
-    \item \textbf{Problema Inverso}: Noto il moto $\vec{r}(t)$ (e quindi $\vec{a}$), determinare le forze agenti.
+    \item \textbf{Diretto}: note forze e c.i.\ ($\vec{r}_0,\vec{v}_0$)
+          $\;\ \to\;$ trovare $\vec{r}(t)$.
+    \item \textbf{Inverso}: noto $\vec{r}(t)$ (e quindi $\vec{a}$)
+          $\;\ \to\;$ trovare le forze.
 \end{itemize}
 
-\subsection{Formulazione Generale (Quantità di Moto)}
-\begin{teorema}{Secondo Principio della Dinamica}
-In un sistema inerziale, l'accelerazione di un punto materiale è direttamente proporzionale alla forza risultante agente su di esso e inversamente proporzionale alla sua massa:
-\begin{equation}
-    \sum \vec{F} = m \vec{a} = \frac{d\vec{p}}{dt}
-\end{equation}
-dove $\vec{p} = m\vec{v}$ è la \textbf{quantità di moto}.
-\end{teorema}
-Questa formulazione è più potente poiché:
-\begin{enumerate}
-    \item Se $m = \text{cost}$, si ritrova $\vec{F} = m \frac{d\vec{v}}{dt} = m\vec{a}$.
-    \item È valida anche per sistemi a \textbf{massa variabile} (es. un razzo che consuma carburante).
-    \item È la base per la conservazione della quantità di moto (se $\sum \vec{F} = 0 \Rightarrow \vec{p} = \text{cost}$).
-\end{enumerate}
+% ---------------------------------------------------------------
+\subsection{Formulazione Generale di Newton (Quantità di Moto)}
+% ---------------------------------------------------------------
+Newton fornì una definizione più generale introducendo la
+\textbf{quantità di moto} $\vec{p} = m\vec{v}$.
+Per $m = \text{costante}$:
+\[
+    \sum \vec{F} = \frac{d\vec{p}}{dt}
+    \qquad\text{poiché}\qquad
+    \frac{d\vec{p}}{dt} = m\frac{d\vec{v}}{dt} = m\vec{a}
+\]
 
+\begin{teorema}{Secondo Principio — Forma Generale}
+In un sistema inerziale, per un punto materiale con
+$\vec{p} = m\vec{v}$:
+\begin{equation}\label{eq:2nd_general}
+    \sum \vec{F} = \frac{d\vec{p}}{dt}
+\end{equation}
+Questa forma è valida anche per sistemi a \textbf{massa variabile}
+(es.\ un razzo che espelle carburante).
+\end{teorema}
+
+\smallskip
+Sfruttare $\vec{p}$ risulta efficace in: studio di sistemi multi-corpo,
+moto rapidi (urti fra particelle), sistemi a massa variabile.
+
+% ---------------------------------------------------------------
 \subsection{Teorema dell'Impulso}
+% ---------------------------------------------------------------
 \begin{teorema}{Teorema dell'Impulso}
-L'impulso di una forza costante o media in un intervallo $\Delta t$ è pari alla variazione della quantità di moto:
-\begin{equation}
-    \vec{I} = \int_{t_1}^{t_2} \sum \vec{F} dt = \Delta \vec{p}
-\end{equation}
+L'impulso della forza/sistema di forze è uguale alla variazione della
+quantità di moto del corpo su cui agisce.
+Integrando $\sum\vec{F}$ tra $t_1$ e $t_2$:
+\begin{align*}
+    \vec{I}_{t_1 \to t_2}
+        &= \int_{t_1}^{t_2}\sum\vec{F}\,dt
+         = \int_{t_1}^{t_2}\frac{d\vec{p}}{dt}\,dt
+         = \int_{t_1}^{t_2}d\vec{p} 
+        = \bigl[\vec{p}\bigr]_{t_1}^{t_2}
+         = \vec{p}(t_2)-\vec{p}(t_1)
+         = \Delta\vec{p}
+\end{align*}
 \end{teorema}
 
+% ---------------------------------------------------------------
 \subsubsection{Forze Impulsive}
-Nei fenomeni d'urto, agiscono forze molto intense per tempi brevissimi ($\Delta t \to 0$).
-Si definisce la \textbf{Forza Media} $\langle \vec{F} \rangle$ tale che:
-\[ \langle \vec{F} \rangle \Delta t = \Delta \vec{p} \]
+% ---------------------------------------------------------------
+\noindent
+Le forze ``impulsive'' (es.\ urto) sono \textbf{molto intense} e
+agiscono per un \textbf{breve intervallo} $\Delta t\approx 1\,\mathrm{ms}$.\medskip
 
-Anche se l'istante esatto dell'urto è complesso, analizziamo gli stati immediatamente prima ($t=0^-$) e dopo ($t=0^+$):
+\noindent
+Sfruttando il teorema dell'impulso, la \textbf{forza impulsiva media}
+è definita come:
+\begin{align*}
+    \int_{0^-}^{0^+}\vec{F}\,dt
+        &= \langle\vec{F}\rangle_{\Delta t}\cdot\Delta t
+         = \vec{p}(0^+)-\vec{p}(0^-)
+    \Longrightarrow\quad
+    \boxed{\langle\vec{F}\rangle_{\Delta t} = \frac{\Delta\vec{p}}{\Delta t}}
+    \qquad\text{(media integrale)}
+\end{align*}
+
+\noindent
+Analizziamo gli stati immediatamente prima ($t=0^-$) e dopo ($t=0^+$) dell'urto:
 
 \begin{figure}[ht]
     \centering
-    \begin{tikzpicture}[scale=1, >=stealth]
-        % Muro verticale
-        \draw[line width=3pt, color=darkgray] (0,-1.5) -- (0,1.5);
-        \fill[pattern=north east lines, pattern color=gray] (-0.3,-1.5) rectangle (0,1.5);
-        \node[above, color=darkgray] at (0, 1.5) {Parete Rigida};
-        
+    \begin{tikzpicture}[scale=1.05, >=stealth]
+        % Muro verticale con tratteggio
+        \draw[line width=3pt, color=darkgray] (0,-1.8) -- (0,1.8);
+        \fill[pattern=north east lines, pattern color=gray!70]
+            (-0.35,-1.8) rectangle (0,1.8);
+        \node[above, color=darkgray, font=\small\itshape] at (0,1.85)
+            {Parete Rigida};
+
         % --- PRIMA DELL'URTO (t = 0-) ---
-        \begin{scope}[yshift=0.8cm]
-            \node[circle, draw=gray, dashed, minimum size=1cm, thick] (ball_in) at (1.8, 0) {};
-            \node[gray, font=\small] at (1.8, 0) {$m$};
-            \draw[->, thick, gray, dashed] (ball_in.west) -- ++(-1.0, 0) node[midway, above] {$\vec{v}_{in}$};
-            \node[right, gray, font=\footnotesize] at (2.4, 0) {$t=0^-$};
+        \begin{scope}[yshift=0.9cm]
+            \node[circle, draw=gray!70, dashed, minimum size=1.1cm,
+                  thick, fill=gray!8] (ball_in) at (2.2, 0) {};
+            \node[gray, font=\small] at (2.2, 0) {$m$};
+            \draw[->, thick, gray] (ball_in.west) -- ++(-1.2,0)
+                node[midway, above, font=\small] {$\vec{v}_{in}$};
+            \node[right, gray!80, font=\footnotesize] at (2.9,0) {$t=0^-$};
         \end{scope}
 
-        % --- DURANTE L'URTO (t = 0) ---
-        \fill[red] (0,0) circle (2pt);
-        \draw[->, ultra thick, red] (0, 0) -- (1.5, 0) node[midway, below] {$\vec{F}_{imp}$};
+        % --- DURANTE L'URTO (t = 0): forza impulsiva ---
+        \fill[red!80] (0,0) circle (2.5pt);
+        \draw[->, ultra thick, red!80] (0,0) -- (1.8,0)
+            node[midway, below, font=\small] {$\vec{F}_{imp}$};
+        \node[left, red!80, font=\footnotesize] at (-0.05,0) {$t=0$};
 
         % --- DOPO L'URTO (t = 0+) ---
-        \begin{scope}[yshift=-0.8cm]
-            \node[circle, draw=black, fill=white, minimum size=1cm, thick] (ball_out) at (1.8, 0) {};
-            \node[font=\small] at (1.8, 0) {$m$};
-            \draw[->, thick, black] (ball_out.east) -- ++(1.0, 0) node[midway, above] {$\vec{v}_{out}$};
-            \node[right, black, font=\footnotesize] at (2.4, -0.4) {$t=0^+$};
+        \begin{scope}[yshift=-0.9cm]
+            \node[circle, draw=black, fill=white, minimum size=1.1cm,
+                  thick] (ball_out) at (2.2, 0) {};
+            \node[font=\small] at (2.2, 0) {$m$};
+            \draw[->, thick, black] (ball_out.east) -- ++(1.2,0)
+                node[midway, above, font=\small] {$\vec{v}_{out}$};
+            \node[right, black, font=\footnotesize] at (2.9,-0.4) {$t=0^+$};
         \end{scope}
-        
     \end{tikzpicture}
-    \caption{Urto elastico contro una parete. La forza impulsiva $\vec{F}_{imp}$ agisce verso destra, causando una brusca variazione di quantità di moto $\Delta \vec{p}$.}
+    \caption{Urto elastico contro una parete rigida. La forza impulsiva
+        $\vec{F}_{imp}$ agisce per $\Delta t\to 0$, causando la variazione
+        di quantità di moto $\Delta\vec{p} = \vec{p}(0^+)-\vec{p}(0^-)$.}
     \label{fig:impulso}
 \end{figure}
 
@@ -468,10 +499,10 @@ Sebbene concettualmente diverse (\textbf{$m_i$}: resistenza al moto; \textbf{$m_
 \[ m_i = m_g = m \]
 \end{teorema}
 
-\begin{tcolorbox}[colback=green!5!white,colframe=green!50!black,title=\textbf{Principio di Equivalenza Debole}]
+\begin{osservazione}{Principio di Equivalenza Debole}
 Pertanto si può costatare l'uguaglianza numerica tra le due grandezze:
 \[ m_i = m_g = m \]
-\end{tcolorbox}
+\end{osservazione}
 
 \subsection{La Forza Peso}
 La \textbf{Forza Peso} è la forza esercitata dalla Terra su un corpo.
@@ -529,80 +560,55 @@ La misurazione precisa di $\vec{g}$ avviene attraverso particolari pendoli con u
     \label{fig:diff_massa_peso}
 \end{figure}
 
-\subsection{Esperimento dell'Ascensore (Peso Apparente)}
-Un'applicazione classica per comprendere la differenza tra massa e peso è l'\textbf{esperimento dell'ascensore}. Un corpo di massa $m$, posto su una bilancia all'interno di un ascensore, è soggetto alla forza peso $\vec{P} = m\vec{g}$ e alla reazione vincolare $\vec{N}$ della bilancia.
-La bilancia non misura $\vec{P}$, bensì la reazione vincolare $\vec{N}$ (il "peso apparente" che noi percepiamo sulle gambe).
+\begin{esercizio}{L'Ascensore e il Peso Apparente}
+Un corpo di massa $m$, posto su una bilancia all'interno di un ascensore, è soggetto alla forza peso $\vec{P} = m\vec{g}$ e alla reazione vincolare $\vec{N}$ della bilancia. La bilancia misura la reazione vincolare $\vec{N}$ (il "peso apparente").
 
-Scriviamo la seconda legge della dinamica lungo l'asse verticale $y$ (positivo verso l'alto):
-\[ \sum F_y = m a_y \implies N - P = m a \implies N = m(g + a) \]
-
-Analizziamo i casi principali:
+Dalla seconda legge della dinamica: $N = m(g + a)$. Analizziamo i casi:
 \begin{enumerate}
-    \item \textbf{Ascensore fermo o in moto uniforme ($a=0$)}:
-    \[ N = mg \]
-    Il peso apparente coincide con il peso reale.
-    
-    \item \textbf{Ascensore accelera verso l'alto ($a > 0$)}:
-    \[ N = m(g + a) > mg \]
-    Ci sentiamo "più pesanti" (schiacciati verso il basso).
-    
-    \item \textbf{Ascensore accelera verso il basso ($a < 0$)}:
-    \[ N = m(g - |a|) < mg \]
-    Ci sentiamo "più leggeri".
-    
-    \item \textbf{Caduta Libera ($a = -g$)}:
-    Se si rompe il cavo, l'ascensore cade con accelerazione $g$.
-    \begin{teorema}{Imponderabilità}
-    In caduta libera, la reazione vincolare si annulla:
-    \[ N = m(g - g) = 0 \]
-    Si sperimenta l'\textbf{assenza di peso} (imponderabilità). Un osservatore solidale con l'ascensore non percepisce attrazione verso il pavimento.
-    \end{teorema}
+    \item \textbf{Ascensore fermo ($a=0$)}: $N = mg$. Peso reale.
+    \item \textbf{Ascensore accelera verso l'alto ($a > 0$)}: $N = m(g + a) > mg$. Ci sentiamo più pesanti.
+    \item \textbf{Ascensore accelera verso il basso ($a < 0$)}: $N = m(g - |a|) < mg$. Ci sentiamo più leggeri.
+    \item \textbf{Caduta Libera ($a = -g$)}: $N = 0$. \textbf{Imponderabilità} (assenza di peso).
 \end{enumerate}
 
-\begin{figure}[h!]
-    \centering
-    \begin{tikzpicture}[scale=0.9, >=stealth]
-        
-        % Definizione stile
-        \tikzstyle{lift}=[draw, thick, fill=gray!5, minimum width=2cm, minimum height=2.5cm]
-        \tikzstyle{person}=[circle, fill=blue!50, minimum size=0.5cm]
-        
-        % --- CASO 1: a=0 ---
+    \begin{center}
+    \begin{tikzpicture}[scale=1.0, >=stealth]
+        \tikzset{
+            cabin/.style={draw=black!70, thick, rounded corners=3pt, fill=gray!6, minimum width=3.2cm, minimum height=3.8cm},
+            person/.style={circle, draw=blue!60, fill=blue!25, minimum size=0.7cm, thick},
+            fvec/.style={->, line width=1.6pt},
+            avec/.style={->, line width=2.2pt, violet}
+        }
+        % Caso a=0
         \begin{scope}[xshift=0cm]
-            \node[lift] (L1) at (0,1.25) {};
-            \node[person] (P1) at (0, 0.5) {};
-            \draw[->, thick, red] (P1) -- (0, -0.5) node[right, font=\scriptsize] {$\vec{P}$};
-            \draw[->, thick, blue] (P1) -- (0, 1.5) node[right, font=\scriptsize] {$\vec{N}$};
-            \node[below] at (0, -0.8) {$a=0$};
-            \node[below, font=\scriptsize] at (0, -1.2) {$N=P$};
+            \node[cabin] at (0, 1.9) {};
+            \node[person] (Hd1) at (0, 1.9) {\scriptsize $m$};
+            \draw[fvec, red!80] (Hd1.south) -- ++(0,-1.1) node[right=3pt] {$\vec{P}$};
+            \draw[fvec, blue!80] (Hd1.north) -- ++(0,+0.85) node[right=3pt] {$\vec{N}$};
+            \node[below=6pt] at (0,0) {\textbf{$a=0$}};
         \end{scope}
-        
-        % --- CASO 2: a>0 (Su) ---
-        \begin{scope}[xshift=4cm]
-            \node[lift] (L2) at (0,1.25) {};
-            \node[person] (P2) at (0, 0.5) {};
-            \draw[->, thick, red] (P2) -- (0, -0.5) node[right, font=\scriptsize] {$\vec{P}$};
-            \draw[->, ultra thick, blue] (P2) -- (0, 1.9) node[right, font=\scriptsize] {$\vec{N}$}; % N più grande
-            \draw[->, thick, violet, double] (-1.2, 0.5) -- (-1.2, 1.5) node[above] {$\vec{a}$};
-            \node[below] at (0, -0.8) {$a > 0$};
-            \node[below, font=\scriptsize] at (0, -1.2) {$N > P$};
+        % Caso a > 0
+        \begin{scope}[xshift=5.5cm]
+            \node[cabin] at (0, 1.9) {};
+            \node[person] (Hd2) at (0, 1.9) {\scriptsize $m$};
+            \draw[fvec, red!80]  (Hd2.south) -- ++(0,-1.1) node[right=3pt] {$\vec{P}$};
+            \draw[fvec, line width=2.4pt, blue!80] (Hd2.north) -- ++(0,+1.55) node[right=3pt] {$\vec{N}$};
+            \draw[avec] (-2.2, 1.2) -- (-2.2, 2.8) node[above, violet] {$\vec{a}$};
+            \node[below=6pt] at (0,0) {\textbf{$a > 0$}};
         \end{scope}
-        
-        % --- CASO 3: a<0 (Giù) ---
-        \begin{scope}[xshift=8cm]
-            \node[lift] (L3) at (0,1.25) {};
-            \node[person] (P3) at (0, 0.5) {};
-            \draw[->, thick, red] (P3) -- (0, -0.5) node[right, font=\scriptsize] {$\vec{P}$};
-            \draw[->, thick, blue] (P3) -- (0, 0.9) node[right, font=\scriptsize] {$\vec{N}$}; % N più piccolo
-            \draw[->, thick, violet, double] (-1.2, 2.0) -- (-1.2, 1.0) node[below] {$\vec{a}$};
-            \node[below] at (0, -0.8) {$a < 0$};
-            \node[below, font=\scriptsize] at (0, -1.2) {$N < P$};
+        % Caso a < 0
+        \begin{scope}[xshift=11cm]
+            \node[cabin] at (0, 1.9) {};
+            \node[person] (Hd3) at (0, 1.9) {\scriptsize $m$};
+            \draw[fvec, red!80]  (Hd3.south) -- ++(0,-1.1) node[right=3pt] {$\vec{P}$};
+            \draw[fvec, blue!80] (Hd3.north) -- ++(0,+0.45) node[right=3pt] {$\vec{N}$};
+            \draw[avec] (-2.2, 2.8) -- (-2.2, 1.2) node[below, violet] {$\vec{a}$};
+            \node[below=6pt] at (0,0) {\textbf{$a < 0$}};
         \end{scope}
-        
     \end{tikzpicture}
-    \caption{Variazione della reazione vincolare (peso apparente) in ascensore accelerato.}
-    \label{fig:ascensore}
-\end{figure}
+    \captionof{figure}{Variazione del peso apparente $\vec{N}$ nell'ascensore.}
+    \end{center}
+\end{esercizio}
 
 \section{Forze di Contatto}
 \label{sec:forze_contatto}
@@ -673,13 +679,11 @@ Un vincolo impone delle condizioni geometriche alle coordinate del corpo. Ecco i
     \label{fig:vincoli_rappresentazione}
 \end{figure}
 
-\begin{tcolorbox}[colback=yellow!10!white,colframe=orange!60!black,title=\textbf{Nota Bene: La Reazione Vincolare}]
-Il fatto che sul piano orizzontale statico risulti $\vec{N} + \vec{P} = 0$ (ovvero $\vec{N} = -\vec{P}$) è \textbf{del tutto casuale}.
-Infatti $|\vec{N}|$ non corrisponde a $|-\vec{P}|$ in un \textbf{piano inclinato}, né in un \textbf{ascensore accelerato}.
+\begin{osservazione}{La Reazione Vincolare}
+Il fatto che sul piano orizzontale statico risulti $\vec{N} + \vec{P} = 0$ (ovvero $\vec{N} = -\vec{P}$) è \textbf{del tutto casuale}. Infatti $|\vec{N}|$ non corrisponde a $|-\vec{P}|$ in un piano inclinato, né in un ascensore accelerato.
 
-$\vec{P} = m\vec{g}$ esiste anche se non ci fosse la $\vec{N}$ del tavolo. Questo perché il $3^{\circ}$ principio non si applica al sistema corpo-tavolo, ma al sistema \textbf{Corpo-Terra}.
-Poiché $\vec{P}$ è per definizione ``la forza esercitata dalla Terra su un corpo'', il \textbf{tavolo} è solo il vincolo che impedisce il naturale moto dei gravi verso la Terra.
-\end{tcolorbox}
+$\vec{P} = m\vec{g}$ esiste anche se non ci fosse la $\vec{N}$ del tavolo. Questo perché il $3^{\circ}$ principio non si applica al sistema corpo-tavolo, ma al sistema \textbf{Corpo-Terra}. Il tavolo è solo il vincolo che impedisce il naturale moto dei gravi verso la Terra.
+\end{osservazione}
 
 \subsection{Tipologie di Vincoli}
 
@@ -966,134 +970,57 @@ Dopo lo stacco, se vogliamo mantenere il corpo a velocità costante ($a=0$), dov
 \[ F_{motrice} = F_d = \mu_d m g \]
 Essendo solitamente $\mu_d < \mu_s$, la forza necessaria per mantenere il moto uniforme è minore di quella necessaria per avviarlo (forza di primo distacco).
 
-\subsubsection{Dinamica del Moto sul Piano Inclinato (Con Attrito)}
+\begin{esercizio}{Dinamica del Moto sul Piano Inclinato con Attrito}
+Analizziamo il moto di un corpo di massa $m$ su un piano inclinato di un angolo $\theta$.
 
-\noindent
-\begin{minipage}{0.35\textwidth}
-    \centering
-    \begin{tikzpicture}[scale=1, >=stealth]
+    \begin{center}
+    \begin{tikzpicture}[scale=1.2, >=stealth]
         % Piano Inclinato
-        \draw[thick] (0,0) -- (3,0) -- (3,1.73) -- cycle; % 30 deg approx
-        \draw (0.6,0) arc (0:30:0.6);
-        \node at (0.8, 0.2) {\tiny $\theta$};
+        \draw[thick] (0,0) -- (4,0) -- (4,2.3) -- cycle;
+        \draw (0.8,0) arc (0:30:0.8);
+        \node at (1.1, 0.25) {$\theta$};
         
         % Assi ruotati
-        \begin{scope}[rotate=30, shift={(1.8, 0.4)}]
-             \draw[->, gray] (0,0) -- (1.2,0) node[below] {\tiny $\hat{x}$};
-             \draw[->, gray] (0,0) -- (0,1.2) node[left] {\tiny $\hat{y}$};
+        \begin{scope}[rotate=30, shift={(2.5, 0.5)}]
+             \draw[->, gray] (0,0) -- (1.5,0) node[below] {$x$};
+             \draw[->, gray] (0,0) -- (0,1.5) node[left] {$y$};
              
              % Corpo
-             \draw[thick, fill=gray!10] (-0.3,0) rectangle (0.3,0.4);
-             \coordinate (C) at (0,0.2);
+             \draw[thick, fill=gray!10] (-0.4,0) rectangle (0.4,0.6);
+             \coordinate (C) at (0,0.3);
              
              % Forze
-             \draw[->, thick, violet] (C) -- (0, 1.0) node[above] {\tiny $\vec{N}$};
-             \draw[->, thick, magenta] (C) -- (-1.0, 0) node[left] {\tiny $\vec{F}_{Att}$};
+             \draw[->, thick, blue] (C) -- (0, 1.2) node[above] {$\vec{N}$};
+             \draw[->, thick, violet] (C) -- (-1.2, 0) node[left] {$\vec{F}_{att}$};
              
-             % Peso (Verde)
-             \draw[->, thick, green!60!black] (C) -- (0.6, 0.2) node[right, font=\tiny] {$\vec{P}_{\parallel}$};
-             \draw[->, thick, green!60!black] (C) -- (0, -1.0) node[below, font=\tiny] {$\vec{P}_{\perp}$};
+             % Peso
+             \draw[->, thick, red] (C) -- ++(0.5, -0.866) node[below right] {$\vec{P} = m\vec{g}$};
              
-             \draw[dashed, green!60!black] (0.6, 0.2) -- (0.6, -1.2); % proiezione
+             % Scomposizione Peso
+             \draw[->, dashed, red!60] (C) -- (0.5, 0.3) node[right] {$P_{\parallel}$};
+             \draw[->, dashed, red!60] (C) -- (0, -0.866) node[left] {$P_{\perp}$};
         \end{scope}
     \end{tikzpicture}
-\end{minipage}%
-\begin{minipage}{0.65\textwidth}
-    \small
-    \textcolor{brown}{$\vec{F}_s$} finché è fermo, \textcolor{magenta}{$\vec{F}_D$} quando si muove.\\
-    Scriviamo l'\textbf{EQUAZIONE del moto}:
-    \begin{itemize}
-        \item \textcolor{green!60!black}{$m\vec{g}$} + \textcolor{violet}{$\vec{N}$} + \textcolor{brown}{$\vec{F}_s$} = 0 \quad (se è FERMO)
-        \item \textcolor{green!60!black}{$m\vec{g}$} + \textcolor{violet}{$\vec{N}$} + \textcolor{magenta}{$\vec{F}_D$} = $m\vec{a}$ \quad (se SI MUOVE)
-    \end{itemize}
-\end{minipage}
+    \end{center}
 
-\vspace{0.3cm}
-Proiettiamo sugli assi $\hat{x}$ (parallelo) e $\hat{y}$ (normale):
-\begin{equation}
-\begin{cases}
-    \hat{y}: \quad \textcolor{violet}{N} - \textcolor{green!60!black}{mg \cos\theta} = 0 \implies \textcolor{violet}{N} = \textcolor{green!60!black}{mg \cos\theta} \quad (y(t)=0 \, \forall t) \\
-    \hat{x}_s: \quad \textcolor{green!60!black}{mg \sin\theta} - \textcolor{brown}{F_s} = 0 \quad (\text{Fermo}) \\
-    \hat{x}_D: \quad \textcolor{green!60!black}{mg \sin\theta} \mp \textcolor{magenta}{F_D} = ma \quad (\text{Si muove})
-\end{cases}
-\end{equation}
+\textbf{Equazioni del moto}:
+Proiettando le forze sugli assi $x$ (parallelo al piano) e $y$ (normale):
+\begin{itemize}
+    \item \textbf{Asse $y$}: $N - mg \cos\theta = 0 \implies N = mg \cos\theta$
+    \item \textbf{Asse $x$ (Corpo fermo)}: $mg \sin\theta - F_s = 0 \implies F_s = mg \sin\theta$
+    \item \textbf{Asse $x$ (Corpo in moto)}: $mg \sin\theta \mp F_D = ma$
+\end{itemize}
 
-\vspace{0.3cm}
-\hrule
-\vspace{0.3cm}
-
-\paragraph{CASO CORPO FERMO ($\textcolor{brown}{F_s}$)}
-\[
-\begin{cases}
-    \textcolor{violet}{N} = \textcolor{green!60!black}{mg \cos\theta} \\
-    \textcolor{brown}{F_s} = \textcolor{green!60!black}{mg \sin\theta}
-\end{cases}
-\implies \text{possiamo calcolare } \theta_{max} = \arctan(\mu_s) \text{ o } \mu_s = \tan(\theta_{max})
-\]
-
-\paragraph{CASO CORPO SI MUOVE ($\textcolor{magenta}{F_D}$)}
-\[
-\begin{cases}
-    \textcolor{violet}{N} = \textcolor{green!60!black}{mg \cos\theta} \\
-    \textcolor{green!60!black}{mg \sin\theta} \mp \textcolor{magenta}{F_D} = ma 
-\end{cases}
-\]
-Se è $-\textcolor{magenta}{F_D}$, il corpo \textbf{SCENDE}. Se è $+\textcolor{magenta}{F_D}$, il corpo \textbf{SALE}.
-\[
-    \textcolor{green!60!black}{\cancel{m}g \sin\theta} \mp \mu_D (\textcolor{green!60!black}{\cancel{m}g \cos\theta}) = \cancel{m}a
-    \implies \boxed{a = g(\sin\theta \mp \mu_D \cos\theta)}
-\]
-\begin{footnotesize}
-(Note: $\sin\theta = \mu_D \cos\theta \to a=0$; $\sin\theta < \mu_D \cos\theta \to \text{decelera}$)
-\end{footnotesize}
-
-\paragraph{CASO CORPO IN DISCESA ($-\textcolor{magenta}{F_D}$)}
+\textbf{Accelerazione in discesa}:
 \[ a = g(\sin\theta - \mu_D \cos\theta) \]
-Considerando che il corpo parte dalla cima ($v_0 = 0$ e $x_0 = 0$), è un MRUA:
+Velocità finale dopo aver percorso una distanza $L$ partendo da fermo:
+\[ v_f = \sqrt{2 L g (\sin\theta - \mu_D \cos\theta)} \]
 
-\begin{minipage}{0.55\textwidth}
-    \[
-    \begin{cases}
-        v(t) = g t (\sin\theta - \mu_D \cos\theta) \\
-        x(t) = \frac{1}{2} g t^2 (\sin\theta - \mu_D \cos\theta)
-    \end{cases}
-    \]
-\end{minipage}%
-\begin{minipage}{0.4\textwidth}
-    Prendo ora $x_f = L$ \\
-    $t^* = \text{tempo per cui } x(t^*) = L$
-\end{minipage}
-
-\[
-    \Rightarrow x(t^*) = L = \frac{1}{2} a (t^*)^2 \implies t^* = \sqrt{\frac{2L}{a}} = \sqrt{\frac{2L}{g(\sin\theta - \mu_D \cos\theta)}}
-\]
-
-Sostituendo in $v(t^*)$:
-\begin{tcolorbox}[colframe=black, boxrule=1pt, width=8cm, nobeforeafter, center]
-\[ v(t^*) = \sqrt{2 L g (\sin\theta - \mu_D \cos\theta)} \]
-\end{tcolorbox}
-\paragraph{CASO CORPO IN SALITA ($+\textcolor{magenta}{F_D}$)}
+\textbf{Accelerazione in salita}:
 \[ a = g(\sin\theta + \mu_D \cos\theta) \]
-Consideriamo ora il caso in cui il corpo parte dal fondo del piano ($x_0 = L$) con una velocità iniziale $v_0 \neq 0$ diretta verso l'alto.
-
-\begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!50!black]
-    \textbf{Nota sullo spazio percorso:}
-    Sia $S$ lo spazio percorso lungo il piano prima che il corpo si fermi. La distanza dalla cima al punto di arresto sarà $L - S$. Lo spazio $S$ è lo stesso che il corpo dovrà percorrere per tornare alla base.
-\end{tcolorbox}
-
-Il corpo si ferma quando $v(t^{**}) = 0$. Usando la formula di Torricelli:
-\[ 0^2 - v_0^2 = -2a S \implies S = \frac{v_0^2}{2a} = \frac{v_0^2}{2g(\sin\theta + \mu_D \cos\theta)} \]
-
-In questo momento il corpo si trova ad una distanza $L-S$ dalla cima. Affinché il corpo ricominci a scendere, deve essere soddisfatta la condizione di distacco:
-\[ \tan\theta > \mu_S \]
-Se questa condizione è verificata, il corpo scende con un'accelerazione $a_{discesa} = g(\sin\theta - \mu_D \cos\theta)$.
-La velocità al ritorno alla base ($v_{rit}$) sarà:
-\[ v_{rit} = \sqrt{2 a_{discesa} S} = \sqrt{2 g (\sin\theta - \mu_D \cos\theta) \frac{v_0^2}{2g(\sin\theta + \mu_D \cos\theta)}} \]
-Semplificando, otteniamo la relazione tra velocità iniziale e finale:
-\begin{equation}
-    v_{rit} = v_0 \sqrt{\frac{\sin\theta - \mu_D \cos\theta}{\sin\theta + \mu_D \cos\theta}}
-\end{equation}
-Notiamo che $v_{rit} < v_0$ sempre, a causa del lavoro dissipato dall'attrito dinamico in entrambe le fasi del moto.
+Se lanciato con velocità $v_0$, lo spazio $S$ percorso prima di fermarsi è:
+\[ S = \frac{v_0^2}{2g(\sin\theta + \mu_D \cos\theta)} \]
+\end{esercizio}
 
 \section{Sistemi con Forze di Tensione}
 Le forze di tensione si manifestano in presenza di fili o funi tese. Esiste una differenza sostanziale tra \textbf{funi} (con massa non trascurabile) e \textbf{fili} (ideali, con massa trascurabile).
@@ -1237,7 +1164,7 @@ Il corpo percorre una distanza finita prima di fermarsi idealmente (per $t \to \
 \begin{equation}
     \Delta x_{total} = v_0 \tau = \frac{m v_0}{\alpha}
 \end{equation}
-\subsection{Analisi per Tempi Brevi ($t \ll \tau$)}
+\subsection{Analisi per Tempi Brevi (\texorpdfstring{$t \ll \tau$}{t << tau})}
 Per tempi molto piccoli rispetto alla costante di tempo, possiamo approssimare l'esponenziale con lo sviluppo di Taylor al primo ordine: $e^{-t/\tau} \approx 1 - \frac{t}{\tau}$.
 Sostituendo nella legge oraria della velocità:
 \[ v(t) = \frac{F}{\alpha} + \left( v_0 - \frac{F}{\alpha} \right) \left( 1 - \frac{t}{\tau} \right) = \frac{F}{\alpha} + v_0 - \frac{F}{\alpha} - v_0\frac{t}{\tau} + \frac{F}{\alpha}\frac{t}{\tau} \]
@@ -1509,15 +1436,10 @@ L'unione dell'energia cinetica $K$ e potenziale $U$ definisce l'\textbf{Energia 
 
 Dato che in presenza di sole forze conservative ($F_{con}$) l'energia non viene persa, mentre in presenza di forze non conservative ($F_{diss}$) sì, capiamo che la variazione $\Delta E_{mecc}$ è dovuta esclusivamente alle forze dissipative.
 
-\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title=\textbf{Teorema delle Forze Vive (Versione Completa)}]
-Il lavoro totale è la somma del lavoro delle forze conservative e dissipative:
-\[ L_{tot} = L_{con} + L_{diss} \]
-Dalle definizioni sappiamo che $\Delta U = -L_{con}$ e $\Delta K = L_{tot}$. Sostituendo:
-\begin{equation}
-    \Delta K = L_{con} + L_{diss} = -\Delta U + L_{diss} \implies \Delta K + \Delta U = L_{diss}
-\end{equation}
-Quindi: $\boxed{\Delta E_{mecc} = L_{diss}}$.
-\end{tcolorbox}
+\begin{teorema}{Teorema delle Forze Vive (Energia Meccanica)}
+Il lavoro totale è la somma del lavoro delle forze conservative e dissipative. $\Delta K + \Delta U = L_{diss}$, ovvero:
+\[ \Delta E_{mecc} = L_{diss} \]
+\end{teorema}
 
 \subsection{Principio di Conservazione dell'Energia}
 "L'energia non si crea né si distrugge, ma si trasforma da una forma all'altra":

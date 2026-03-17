@@ -1,7 +1,7 @@
-APPUNTI DI FISICA 1 (Scienze Fisiche e Informatiche)
+TEORIA DI FISICA 1 
 
 DESCRIZIONE
-Questo progetto raccoglie una sintesi completa e formalizzata del corso di Fisica I, con un particolare focus sulla meccanica classica e la termodinamica. Il documento e' scritto interamente in LaTeX, utilizzando lo stile ClassicThesis per un'estetica curata e accademica.
+Questo libro raccoglie gli appunti delle lezioni di Fisica 1 dell’anno accademico 2023/2024, corso A del Dipartimento di Fisica dell’Università di Pisa. Gli argomenti trattati comprendono: le basi della meccanica classica, i fondamenti della relatività ristretta e termodinamica.
 
 PANORAMICA DEL PROGETTO
 Gli appunti coprono diversi ambiti fondamentali, tra cui:
@@ -11,8 +11,6 @@ Gli appunti coprono diversi ambiti fondamentali, tra cui:
 - Corpo Rigido: Rotazioni, momenti d'inerzia e oscillazioni.
 - Termodinamica (in corso di integrazione).
 
-I diagrammi sono realizzati tramite TikZ per garantire alta qualita' vettoriale.
-
 STRUTTURA DELLA REPOSITORY
 La cartella e' organizzata nei seguenti moduli:
 
@@ -20,16 +18,16 @@ La cartella e' organizzata nei seguenti moduli:
 /Figure          Asset grafici e immagini utilizzate nel documento.
 /Frontespizio    Configurazione della pagina del titolo.
 /Appunti_Originali  Materiale di riferimento e scansioni originali.
-Appunti_di_Fisica_1.tex  Il file principale da compilare.
+Teoria_di_Fisica_1.tex  Il file principale da compilare.
 
 REQUISITI E COMPILAZIONE
 Per generare il PDF e' necessaria una distribuzione LaTeX (es. TeX Live o MiKTeX).
 
 1. Clona la repository:
-   git clone https://github.com/Giosue-tanz/Appunti-di-Fisica-1---Universit-di-Pisa
+   git clone https://github.com/Giosue-tanz/Teoria_di_Fisica_1.git
 
 2. Compila il file principale (sono necessarie almeno due passate):
-   pdflatex Appunti_di_Fisica_1.tex
+   pdflatex Teoria_di_Fisica_1.tex
 
 Librerie consigliate: ClassicThesis, TikZ, TColorBox.
 

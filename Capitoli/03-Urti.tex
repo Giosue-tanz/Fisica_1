@@ -6,40 +6,46 @@ In fisica, un \textbf{Urto} è un'interazione fra corpi (generalmente due) che s
 \subsection{Forze Impulsive}
 Lo scambio di $K$ e $\vec{P}$ è dovuto all'azione di forze estremamente intense che agiscono per un tempo limitato, chiamate \textbf{Forze Impulsive}. L'effetto di tale forza è descritto dall'impulso $\vec{I}$:
 
-\begin{center}
-\begin{tikzpicture}[scale=0.8]
-    % Boxes
-    \draw[thick] (-3,0.5) rectangle (-1,2) node[midway, rotate=90] {\footnotesize PRIMA};
-    \draw[thick] (1,0.5) rectangle (3,2) node[midway, rotate=90] {\footnotesize DOPO};
-    
-    % Wave interaction
-    \draw[decoration={zigzag,amplitude=3pt,segment length=5pt},decorate] (-0.5,1.25) -- (0.5,1.25);
-    \node[below] at (0,1) {\footnotesize urto};
-    
-    % Kinetic/Momentum labels
-    \node[left] at (-3,1.7) {$K_i$};
-    \node[left] at (-3,0.8) {$\vec{P}_i$};
-    \node[right] at (3,1.7) {$K_f$};
-    \node[right] at (3,0.8) {$\vec{P}_f$};
-    
-    % Note box
-    \node[draw, fill=green!10, text width=2.5cm, font=\tiny, anchor=west] at (4,1.25) {$\Delta U \approx \text{cost}$ In un urto repulsivo spontaneo};
-\end{tikzpicture}
-\end{center}
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}[scale=0.8]
+        % Boxes
+        \draw[thick] (-3,0.5) rectangle (-1,2) node[midway, rotate=90] {\footnotesize PRIMA};
+        \draw[thick] (1,0.5) rectangle (3,2) node[midway, rotate=90] {\footnotesize DOPO};
+        
+        % Wave interaction
+        \draw[decoration={zigzag,amplitude=3pt,segment length=5pt},decorate] (-0.5,1.25) -- (0.5,1.25);
+        \node[below] at (0,1) {\footnotesize urto};
+        
+        % Kinetic/Momentum labels
+        \node[left] at (-3,1.7) {$K_i$};
+        \node[left] at (-3,0.8) {$\vec{P}_i$};
+        \node[right] at (3,1.7) {$K_f$};
+        \node[right] at (3,0.8) {$\vec{P}_f$};
+        
+        % Note box
+        \node[draw, fill=green!10, text width=2.5cm, font=\tiny, anchor=west] at (4,1.25) {$\Delta U \approx \text{cost}$ In un urto repulsivo spontaneo};
+    \end{tikzpicture}
+    \caption{Schema concettuale di un urto: transizione tra lo stato iniziale (PRIMA) e lo stato finale (DOPO).}
+    \label{fig:schema_urto}
+\end{figure}
 
 \begin{equation}
     \vec{I} = \int_{0^-}^{0^+} \vec{F} dt = \vec{P}_f - \vec{P}_i
 \end{equation}
 
-\begin{center}
-\begin{tikzpicture}[scale=0.9]
-    \draw[->] (0,0) -- (4,0) node[right] {$t$};
-    \draw[->] (0,0) -- (0,3) node[above] {$F(t)$};
-    \draw[ultra thick, red, domain=0.5:3.5, samples=100] plot (\x, {2.5*exp(-10*(\x-2)^2)});
-    \node[red] at (2.5,2.5) {Forza Impulsiva};
-    \node at (2,-0.3) {$\Delta t \to 0$};
-\end{tikzpicture}
-\end{center}
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}[scale=0.9]
+        \draw[->] (0,0) -- (4,0) node[right] {$t$};
+        \draw[->] (0,0) -- (0,3) node[above] {$F(t)$};
+        \draw[ultra thick, red, domain=0.5:3.5, samples=100] plot (\x, {2.5*exp(-10*(\x-2)^2)});
+        \node[red] at (2.5,2.5) {Forza Impulsiva};
+        \node at (2,-0.3) {$\Delta t \to 0$};
+    \end{tikzpicture}
+    \caption{Andamento temporale di una forza impulsiva durante l'intervallo di tempo dell'urto.}
+    \label{fig:forza_impulsiva}
+\end{figure}
 
 \begin{teorema}{Teorema delle Forze Vive (Sistemi)}
 La variazione di energia cinetica totale di un sistema materiale è pari al lavoro compiuto da tutte le forze agenti: interne,sterne ed eventualmente apparenti.
@@ -99,10 +105,10 @@ Valori di $e$:
     \item $0 < e < 1$: Urto \textbf{Parzialmente Anelastico} ($K_{f}' < K_{i}'$).
 \end{itemize}
 
-\begin{tcolorbox}[colback=green!5!white,colframe=green!75!black,title=\textbf{Frazione di Energia Persa}]
+\begin{osservazione}{Frazione di Energia Persa}
 Poiché $K_{CM}$ resta costante, la variazione di energia cinetica totale dipende solo da $K'$:
 \[ \frac{\Delta K}{K_i'} = \frac{K_f' - K_i'}{K_i'} = e^2 - 1 \]
-\end{tcolorbox}
+\end{osservazione}
 
 \section{Urto Elastico ($e=1$)}
 In un urto elastico, i corpi si scontrano e tornano separati conservando sia $\vec{P}$ che $K$.
@@ -129,20 +135,23 @@ Abbiamo 4 equazioni e 6 incognite (le tre componenti di $\vec{v}_{Af}$ e $\vec{v
 \end{equation}
 In questo caso abbiamo 3 equazioni e 4 incognite. Anche qui si applica lo \textbf{scattering} per determinare la traiettoria finale.
 
-\begin{center}
-\begin{tikzpicture}[scale=1]
-    % Target
-    \filldraw[gray!30, draw=black] (0,0) circle (0.2) node[below=0.2cm] {$m_B$};
-    % Projectile arriving
-    \draw[->, thick] (-3,0.5) -- (-0.3,0.1) node[midway, above] {$\vec{v}_{Ai}$};
-    \filldraw[blue!50] (-3,0.5) circle (0.15) node[left] {$m_A$};
-    
-    % After collision
-    \draw[->, thick, dashed] (0,0) -- (2,1) node[right] {$\vec{v}_{Af}, \theta_A$};
-    \draw[->, thick, dashed] (0,0) -- (2,-1) node[right] {$\vec{v}_{Bf}, \theta_B$};
-    \draw[gray, thin] (0,0) -- (2.5,0);
-\end{tikzpicture}
-\end{center}
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}[scale=1]
+        % Target
+        \filldraw[gray!30, draw=black] (0,0) circle (0.2) node[below=0.2cm] {$m_B$};
+        % Projectile arriving
+        \draw[->, thick] (-3,0.5) -- (-0.3,0.1) node[midway, above] {$\vec{v}_{Ai}$};
+        \filldraw[blue!50] (-3,0.5) circle (0.15) node[left] {$m_A$};
+        
+        % After collision
+        \draw[->, thick, dashed] (0,0) -- (2,1) node[right] {$\vec{v}_{Af}, \theta_A$};
+        \draw[->, thick, dashed] (0,0) -- (2,-1) node[right] {$\vec{v}_{Bf}, \theta_B$};
+        \draw[gray, thin] (0,0) -- (2.5,0);
+    \end{tikzpicture}
+    \caption{Rappresentazione dello scattering in due dimensioni nel sistema del laboratorio.}
+    \label{fig:scattering_2d}
+\end{figure}
 
 \subsection{Sistema di Laboratorio - 1 Dimensione}
 In una dimensione abbiamo 2 equazioni e 2 incognite:
@@ -193,18 +202,21 @@ L'unica soluzione non banale è:
 \end{equation}
 Nel sistema del CM, l'urto elastico 1D consiste semplicemente nell'\textbf{inversione delle velocità}.
 
-\begin{center}
-\begin{tikzpicture}[scale=0.8]
-    % CM origin
-    \filldraw (0,0) circle (2pt) node[below] {CM};
-    % Initial velocities
-    \draw[->, blue, thick] (-2,0.5) -- (-0.5,0.5) node[midway, above] {$\vec{v}_{Ai}'$};
-    \draw[->, red, thick] (2,0.5) -- (0.5,0.5) node[midway, above] {$\vec{v}_{Bi}'$};
-    % Final velocities (dashed)
-    \draw[->, blue, thick, dashed] (-0.5,-0.5) -- (-2.5,-0.5) node[midway, below] {$\vec{v}_{Af}' = -\vec{v}_{Ai}'$};
-    \draw[->, red, thick, dashed] (0.5,-0.5) -- (2.5,-0.5) node[midway, below] {$\vec{v}_{Bf}' = -\vec{v}_{Bi}'$};
-\end{tikzpicture}
-\end{center}
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}[scale=0.8]
+        % CM origin
+        \filldraw (0,0) circle (2pt) node[below] {CM};
+        % Initial velocities
+        \draw[->, blue, thick] (-2,0.5) -- (-0.5,0.5) node[midway, above] {$\vec{v}_{Ai}'$};
+        \draw[->, red, thick] (2,0.5) -- (0.5,0.5) node[midway, above] {$\vec{v}_{Bi}'$};
+        % Final velocities (dashed)
+        \draw[->, blue, thick, dashed] (-0.5,-0.5) -- (-2.5,-0.5) node[midway, below] {$\vec{v}_{Af}' = -\vec{v}_{Ai}'$};
+        \draw[->, red, thick, dashed] (0.5,-0.5) -- (2.5,-0.5) node[midway, below] {$\vec{v}_{Bf}' = -\vec{v}_{Bi}'$};
+    \end{tikzpicture}
+    \caption{Inversione delle velocità nel sistema del CM per un urto elastico unidimensionale.}
+    \label{fig:inversione_velocita_cm}
+\end{figure}
 
 \subsection{Passaggio dal CM al Laboratorio}
 Per ottenere le velocità finali nel sistema del laboratorio, usiamo la legge di trasformazione:
@@ -247,27 +259,16 @@ I corpi si separano ma parte dell'energia cinetica interna viene persa. Le veloc
     v_{Af} = \frac{(m_A - e m_B)v_{Ai} + m_B(1+e)v_{Bi}}{m_A + m_B}
 \end{equation}
 
-\section{Analisi Energetica via Teorema di Koenig}
-Riprendiamo l'urto fra due masse uguali ($m_A = m_B = m$) mobili. 
-Dal teorema di Koenig: $K = K_{CM} + K' \implies K' = K - K_{CM}$.
-\begin{equation}
-    K_i' = \frac{1}{2}m (v_{Ai}'^2 + v_{Bi}'^2) = \frac{1}{4} m [ (2v_{Ai}^2 + 2v_{Bi}^2) - (v_{Ai} + v_{Bi})^2 ]
-\end{equation}
-Sviluppando il quadrato del binomio:
-\begin{equation}
-    K_i' = \frac{m}{4} (2v_{Ai}^2 + 2v_{Bi}^2 - v_{Ai}^2 - v_{Bi}^2 - 2v_{Ai}v_{Bi}) = \frac{m}{4} (v_{Ai} - v_{Bi})^2 = \frac{m}{4} v_{ri}^2
-\end{equation}
-Analogamente per lo stato finale: $\boxed{K_f' = \frac{m}{4} v_{rf}^2}$.
-Il coefficiente di restituzione risulta:
-\begin{equation}
-    e^2 = \frac{K_f'}{K_i'} = \frac{v_{rf}^2}{v_{ri}^2} \implies e = \frac{v_{rf}}{v_{ri}}
-\end{equation}
+\begin{esercizio}{Analisi Energetica via Teorema di Koenig}
+Il Teorema di Koenig ($K = K_{CM} + K'$) permette di distinguere tra l'energia legata al moto traslatorio del sistema ($K_{CM}$, che si conserva sempre) e l'energia interna ($K'$, l'unica dissipabile).
 
-Nel caso di corpi con massa differente e bersaglio fermo ($v_{Bi} = 0$):
-\begin{equation}
-    K_{CM} = \frac{1}{2} M V_{CM}^2 = \frac{1}{2} M \left( \frac{m_A v_{Ai}}{M} \right)^2 = \frac{1}{2} \frac{m_A^2 v_{Ai}^2}{M}
-\end{equation}
-\begin{equation}
-    K_i' = K_i - K_{CM} = \frac{1}{2} m_A v_{Ai}^2 \left( 1 - \frac{m_A}{M} \right) = \frac{1}{2} \frac{m_A m_B}{M} v_{Ai}^2 = \frac{1}{2} \mu v_{ri}^2
-\end{equation}
-Che conferma il legame generale fra energia cinetica nel CM e massa ridotta.
+\textbf{Caso 1: Masse Entrambe Mobili ($m_A = m_B = m$)}
+Dalla scomposizione di Koenig: $K' = K - K_{CM}$.
+\[ K_i' = \frac{1}{2}m (v_{Ai}'^2 + v_{Bi}'^2) = \frac{m}{4} (v_{Ai} - v_{Bi})^2 = \frac{m}{4} v_{ri}^2 \]
+Lo stesso vale per lo stato finale: $\boxed{K_f' = \frac{m}{4} v_{rf}^2}$.
+Il coefficiente di restituzione è: $e^2 = \frac{K_f'}{K_i'} \implies e = \frac{v_{rf}}{v_{ri}}$.
+
+\textbf{Caso 2: Proiettile e Bersaglio Fermo ($v_{Bi} = 0$)}
+\[ K_{CM} = \frac{1}{2} \frac{m_A^2 v_{Ai}^2}{M}, \quad K_i' = \frac{1}{2} \mu v_{ri}^2 = \frac{1}{2} \frac{m_A m_B}{M} v_{Ai}^2 \]
+\textbf{Evidenza Fisica}: In un urto contro un bersaglio fermo, una parte dell'energia ($K_{CM}$) \textbf{non può mai essere dissipata} per conservare $\vec{P}$. L'energia massima dissipabile è $K_i'$.
+\end{esercizio}

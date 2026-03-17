@@ -1,0 +1,912 @@
+\chapter{Dinamica delle Rotazioni}
+
+\section{Introduzione}
+In questo capitolo studieremo il comportamento dei sistemi in rotazione, introducendo le grandezze vettoriali fondamentali: il momento di un vettore, il momento di una forza e il momento angolare.
+
+Per analizzare correttamente la dinamica rotazionale, è fondamentale definire un punto geometrico di riferimento rispetto al quale calcolare i momenti, in modo da avere un ancoraggio per misurare gli angoli e le distanze.
+
+\begin{definizione}{Polo della Rotazione}
+Sia $O$ il \textbf{polo della rotazione}. Per comodità e coerenza nella descrizione del moto, esso viene generalmente scelto in modo da coincidere con l'origine del sistema di riferimento cartesiano ortogonale utilizzato.
+\end{definizione}
+
+\section{Momento di un Vettore}
+Per quantificare l'attitudine di una grandezza vettoriale a generare una rotazione attorno a un punto, definiamo il suo momento. Il momento di un generico vettore $\vec{B}$, il cui punto di applicazione si trova in posizione $A$, rispetto a un polo $O$ è calcolato attraverso il prodotto vettoriale tra il raggio vettore $\vec{r} = \vec{OA}$ e il vettore $\vec{B}$ stesso:
+\begin{equation}
+    \vec{M}_B = \vec{OA} \times \vec{B}
+\end{equation}
+
+Il vettore $\vec{B}$ giace su una retta ideale che prende il nome di \textbf{retta d'azione}. Una proprietà notevole del momento è la sua dipendenza esclusiva dalla retta d'azione e non dallo specifico punto di applicazione lungo di essa: questo significa che possiamo far scorrere il vettore lungo la sua retta d'azione senza produrre alcun cambiamento nel suo effetto rotazionale sul sistema.
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}[x={(-0.6cm, -0.4cm)}, y={(1cm, 0cm)}, z={(0cm, 1cm)}, >=latex, scale=1.2, font=\small]
+        % --- ASSI CARTESIANI E ORIGINE ---
+        \coordinate (O) at (0,0,0);
+        
+        % Piano xy (per dare il senso di profondità)
+        \fill[mypen, opacity=0.06] (-1,-3,0) -- (3.5,-3,0) -- (3.5,4.5,0) -- (-1,4.5,0) -- cycle;
+
+        \draw[->, gray!80, thick] (0,0,0) -- (3.5,0,0) node[anchor=north east] {$x$};
+        \draw[->, gray!80, thick] (0,0,0) -- (0,4.5,0) node[anchor=north west] {$y$};
+        \draw[->, gray!80, thick] (0,0,0) -- (0,0,4.5) node[anchor=south] {$z$};
+
+        % Highlighting unit vectors style
+        \draw[ultra thick, mygreen] (O) -- (0.6,0,0);
+        \draw[ultra thick, mygreen] (O) -- (0,0.6,0);
+        \draw[ultra thick, mygreen] (O) -- (0,0,0.6);
+        \node[above left, xshift=-2pt, yshift=2pt] at (O) {$O$};
+
+        % --- PUNTI E PARAMETRI ---
+        \coordinate (A)  at (2, -2.2, 0); 
+        \coordinate (H)  at (2, 0, 0);
+        \coordinate (Ap) at (2, 2.3, 0);
+        
+        \def\Blen{1.8}
+        \coordinate (Bvec) at (0, \Blen, 0); 
+
+        % Momento M = r x B = 2 * 1.8 = 3.6 z
+        \coordinate (M)  at (0, 0, 3.6);  
+
+        % --- RETTA D'AZIONE E BRACCIO ---
+        \draw[dashed, thick, gray!80!black] (2, -3, 0) -- (2, 5, 0) node[above right, black] {Retta d'azione};
+        
+        \draw[thick, orange] (O) -- (H) node[midway, below left=1pt] {$b$};
+        \fill (H) circle (1.5pt) node[below right] {$H$};
+        \draw[thin, black] (1.8, 0, 0) -- (1.8, 0.2, 0) -- (2.0, 0.2, 0); % ortogonalità in H
+
+        % --- VETTORI POSIZIONE ---
+        \draw[->, thick, mygreen] (O) -- (A) node[midway, above left=1pt] {$\vec{r}$};
+        \draw[->, thick, mygreen!70!black, dashed] (O) -- (Ap) node[midway, below] {$\vec{r}'$};
+
+        % --- VETTORI B ---
+        \fill (A) circle (1.5pt) node[below left] {$A$};
+        \fill (Ap) circle (1.5pt) node[below right] {$A'$};
+
+        \draw[->, ultra thick, mypen] (A) -- ($(A) + (Bvec)$) node[midway, below] {$\vec{B}$};
+        \draw[->, thick, mypen!50!white, dashed] (Ap) -- ($(Ap) + (Bvec)$) node[midway, below] {$\vec{B}$};
+
+        % --- VETTORE MOMENTO ---
+        \draw[->, ultra thick, red] (O) -- (M) node[right] {$\vec{M}_B = \vec{r} \times \vec{B}$};
+        
+        % Ortogonalità in O (piano xy - asse z)
+        \draw[thin, black] (0, 0, 0.3) -- (0.4, 0, 0.3) -- (0.4, 0, 0);
+        \draw[thin, black] (0, 0, 0.3) -- (0, 0.4, 0.3) -- (0, 0.4, 0);
+
+    \end{tikzpicture}
+    \caption{Rappresentazione vettoriale del momento di un vettore $\vec{B}$ rispetto al polo $O$. Sulla retta d'azione sono evidenziati i punti arbitrarî $A$ e $A'$ ed il braccio $b$.}
+    \label{fig:momento_vettore}
+\end{figure}
+
+\begin{osservazione}{Indipendenza dal punto di applicazione sulla retta d'azione}
+Il momento $\vec{M}_B$ rimane inalterato se si sceglie come punto di applicazione un qualsiasi altro punto $A'$ giacente sulla medesima retta d'azione di $\vec{B}$. 
+Questa caratteristica non è solo intuitiva, ma si dimostra rigorosamente calcolando il momento $\vec{M}_B'$ e scegliendo il nuovo raggio vettore $\vec{OA'}$:
+\begin{equation}
+    \vec{M}_B' = \vec{OA}' \times \vec{B} = (\vec{OA} + \vec{AA}') \times \vec{B} = \vec{OA} \times \vec{B} + \vec{AA}' \times \vec{B}
+\end{equation}
+Essendo i punti $A$ e $A'$ sulla stessa retta d'azione del vettore $\vec{B}$, il vettore spostamento $\vec{AA}'$ risulta parallelo a $\vec{B}$. La definizione di prodotto vettoriale implica che tra due vettori paralleli l'angolo compreso sia nullo e conseguentemente il sen dell'angolo sia zero ($\sin(0)=0$). Pertanto, il termine $\vec{AA}' \times \vec{B}$ si annulla, e l'espressione restituirà il momento originale:
+\begin{equation}
+    \vec{M}_B' = \vec{OA} \times \vec{B} = \vec{M}_B
+\end{equation}
+\end{osservazione}
+
+\section{Grandezze della Dinamica Rotazionale}
+
+\begin{definizione}{Momento di una Forza}
+Nel caso specifico in cui il vettore considerato sia una forza $\vec{F}$, definiamo il \textbf{momento della forza} (simbolo $\vec{M}_F$ o più comunemente $\vec{\tau}$) rispetto al polo $O$ come:
+\begin{equation}
+    \vec{\tau} = \vec{OA} \times \vec{F} = \vec{r} \times (m\vec{a})
+\end{equation}
+dove $\vec{r}$ è il raggio vettore della posizione in cui viene applicata la forza. 
+In termini pratici, se si valuta il modulo di $\vec{\tau}$ e si considera la forza perpendicolarmente al raggio vettore per massimizzare il momento flettente, il modulo è diretto e vale:
+\begin{equation*}
+    \tau = m r a \sin\Big(\frac{\pi}{2}\Big) = m r a
+\end{equation*}
+\end{definizione}
+
+\begin{definizione}{Momento Angolare}
+Considerando un punto materiale dotato di una propria quantità di moto definita come $\vec{p} = m\vec{v}$, il suo momento rispetto al polo originante $O$ prende il nome di \textbf{momento angolare} (simbolo $\vec{M}_p$ o $\vec{L}$):
+\begin{equation}
+    \vec{L} = \vec{OA} \times \vec{p} = \vec{r} \times (m\vec{v})
+\end{equation}
+\end{definizione}
+
+Come effetto intrinseco derivante dall'utilizzo del prodotto vettoriale, vi è una solida costruzione geometrica implicita nella definizione: i vettori $\vec{r}$ e $\vec{v}$ costituiscono i fondamenti di un piano che si definisce \textbf{piano istantaneo della traiettoria}, e il momento angolare generato $\vec{L}$ risulta necessariamente perpendicolare (ovvero ortogonale) all'intero piano così formato.
+Da questa geometria ne deriva una condizione chiave per lo studio del moto: nel momento in cui la direzione e il verso di $\vec{L}$ risultano costanti per effetto di un particolare equilibrio o assenza di forze torsionali, anche l'orientamento del piano di base tra $\vec{r}$ e $\vec{v}$ si manterrà cristallizzato, producendo come logica implicazione una \textbf{traiettoria puramente planare}.
+
+\subsection{Significato Fisico del Momento Angolare}
+Per estrapolare un chiaro legame analitico tra il momento angolare e lo stadio rotatorio di un corpo, si compie l'operazione di parametrizzazione dei vettori impiegando le coordinate polari, composte dai versori orientati $\hat{r}$ (versore radialmente direzionato) e $\hat{\phi}$ (versore trasversalmente rotante).
+Procediamo delineando anzitutto i due vettori in tale forma:
+\begin{itemize}
+    \item Il raggio vettore ha sempre unicamente componente radiale concorde al suo verso: $\vec{r} = r \hat{r}$
+    \item Il vettore velocità, essendo derivata per il tempo, conterrà le alterazioni continue di variazione della posizione radiale ed evoluzione angolare: $\vec{v} = \dot{\vec{r}} = \dot{r} \hat{r} + r \dot{\phi} \hat{\phi}$
+\end{itemize}
+
+Sostituendo ordinatamente queste descrizioni vettoriali nella definizione base del vettore momento angolare, se ne distribuiscono i termini come a seguire:
+\begin{equation}
+    \vec{L} = \vec{r} \times m\vec{v} = m \left[ r\hat{r} \times \big(\dot{r}\hat{r} + r\dot{\phi}\hat{\phi}\big) \right] = m \left( r\dot{r}(\hat{r} \times \hat{r}) + r^2 \dot{\phi} (\hat{r} \times \hat{\phi}) \right)
+\end{equation}
+Data l'impossibilità nel prodotto vettoriale di dar risultato non nullo tra versori complanari e disposti sulla parallela linea d'azione intrinseca ($\hat{r} \times \hat{r} = 0$), il primo contributo si annulla. Risolvendo infine $\hat{r} \times \hat{\phi} = \hat{z}$ come versore uscente dal piano ed indicando come $\omega = \dot{\phi}$ l'identità della velocità angolare, il formalismo si semplifica sino a definire:
+\begin{equation}
+    \vec{L} = m r^2 \dot{\phi} \hat{z}
+\end{equation}
+
+Tale risoluzione analitica comporta una riprova sul vero significato del momento generato: esso ammetterà valore nullo ($\vec{L} = 0$) unicamente nei casi in cui $\dot{\phi} = \omega = 0$. Il momento angolare è dunque una dinamica \textbf{associata in maniera dipendente al moto di rotazione}, la cui ampiezza dipende dalla velocità angolare stessa.
+
+Più in generale si può evidenziare che le variabili uniche da cui dipende di base il vettore analizzato per un punto concentrato siano il raggio $r$ e la velocità $\dot{\phi}$. 
+Trattando casistiche note, provando ad impedire una modificazione radiale con un raggio fissato all'origine per cui $\dot{r} = 0$, ci troveremo rigorosamente di fronte ad un moto circolare puro:
+\begin{itemize}
+    \item Laddove l'accelerazione imposta all'angolo esista e sia tangibile, comportando variazioni repentine di $\dot{\phi}$ ($a_\phi \neq 0$), l'osservatore accerterà la condizione fluida di un \textbf{moto circolare vario}.
+    \item Laddove si provveda a inibirla ($a_\phi = 0$) rendendo costanti le tempistiche del giro, insorgerà la definita stabilità di un \textbf{moto circolare uniforme}.
+\end{itemize}
+
+\section{Moto non Planare rispetto a O}
+Non tutti i moti riescono però a limitarsi al quieto piano ortogonale di base descritto tramite l'asse di rotazione puro del raggio vettore all'origine $O$. Nelle contingenze in cui lo svolgersi del moto differisce nel caso non coincidente sul piano del polo O ($\vec{r}, \vec{v}) \not\equiv (X,Y)$, occorre scomporre strategicamente il corpo e le sue referenze analitiche.
+Per farlo la metodologia si poggia sull'evidenza geometrica che proietti la traslazione del raggio in due segmenti principali: un corrispettivo radiale compreso nel cerchio effettivo superiore associato al nuovo polo proiettato, ed una estensione d'altezza distanziante dal polo $O$ all'ausiliario. 
+
+\begin{figure}[ht]
+    \centering
+    \tdplotsetmaincoords{70}{120}
+    \begin{tikzpicture}[tdplot_main_coords, scale=1.5, >=stealth, line cap=round, line join=round]
+
+        % Parametri del disegno
+        \def\R{1.5}      % Raggio della circonferenza
+        \def\H{2.5}      % Altezza della circonferenza (asse z)
+        \def\phiano{45}  % Angolo del punto P
+
+        % --- ASSI CARTESIANI E ORIGINE ---
+        \draw[->, thick] (0,0,0) -- (2.5,0,0) node[anchor=north east]{$x$};
+        \draw[->, thick] (0,0,0) -- (0,2.5,0) node[anchor=north west]{$y$};
+        \draw[->, thick] (0,0,0) -- (0,0,\H+1.5) node[anchor=south]{$z$};
+
+        \node[anchor=north east] at (0,0,0) {$O$};
+
+        % --- EVIDENZIAZIONI VERDI SUGLI ASSI ---
+        \draw[ultra thick, mygreen] (0,0,0) -- (0.5,0,0);
+        \draw[ultra thick, mygreen] (0,0,0) -- (0,0.5,0);
+        \draw[ultra thick, mygreen] (0,0,0) -- (0,0,0.5);
+
+        % --- CIRCONFERENZA E CENTRO O' ---
+        \coordinate (Oprime) at (0,0,\H);
+        \node[anchor=north east] at (Oprime) {$O'$};
+        \draw[thick] plot[domain=0:360, samples=60, smooth] ({\R*cos(\x)}, {\R*sin(\x)}, \H);
+
+        % --- PUNTO P ---
+        \coordinate (P) at ({\R*cos(\phiano)}, {\R*sin(\phiano)}, \H);
+        \fill (P) circle (1.5pt) node[anchor=south west] {$P$};
+
+        % --- VETTORI r, R, v ---
+        % Vettore posizione r (evidenziato in verde)
+        \draw[->, thick, mygreen] (0,0,0) -- (P) node[midway, right, text=black] {$\vec{r}$};
+        
+        % Vettore raggio R
+        \draw[->, thick] (Oprime) -- (P) node[midway, above] {$\vec{R}$};
+
+        % Vettore velocità tangenziale v
+        \coordinate (V) at ({\R*cos(\phiano) - 1.2*sin(\phiano)}, {\R*sin(\phiano) + 1.2*cos(\phiano)}, \H);
+        \draw[->, thick] (P) -- (V) node[anchor=west] {$\vec{v}$};
+
+        % --- ANGOLI E ROTAZIONI ---
+        % Angolo theta
+        \draw[thick] plot[domain=0:atan(\R/\H), samples=20, smooth] 
+            ({0.8*sin(\x)*cos(\phiano)}, {0.8*sin(\x)*sin(\phiano)}, {0.8*cos(\x)});
+        \node at ({1.0*sin(atan(\R/\H)/2)*cos(\phiano)}, {1.0*sin(atan(\R/\H)/2)*sin(\phiano)}, {1.0*cos(atan(\R/\H)/2)}) {$\theta$};
+
+        % Velocità angolare omega (freccia curva in alto)
+        \draw[->, thick] plot[domain=150:-30, samples=30, smooth] 
+            ({0.4*cos(\x)}, {0.4*sin(\x)}, {\H+0.8});
+        \node at (0.5, 0.4, {\H+0.8}) {$\omega$};
+
+        % --- VERSORI (a sinistra della circonferenza) ---
+        \def\phiLeft{170} % Posizione sul lato sinistro
+        \coordinate (LeftPt) at ({\R*cos(\phiLeft)}, {\R*sin(\phiLeft)}, \H);
+        
+        % Versore radiale \hat{\rho}
+        \coordinate (Rho) at ({(\R+0.8)*cos(\phiLeft)}, {(\R+0.8)*sin(\phiLeft)}, \H);
+        % Versore tangenziale \hat{\phi}
+        \coordinate (Phi) at ({\R*cos(\phiLeft) - 0.8*sin(\phiLeft)}, {\R*sin(\phiLeft) + 0.8*cos(\phiLeft)}, \H);
+
+        \draw[->, thick, mygreen] (LeftPt) -- (Rho) node[anchor=north east, text=black] {$\hat{\rho}$};
+        \draw[->, thick, mygreen] (LeftPt) -- (Phi) node[anchor=north west, text=black] {$\hat{\phi}$};
+
+    \end{tikzpicture}
+    \caption{Scomposizione vettoriale per il calcolo del momento angolare di una particella in moto rotatorio non planare rispetto all'origine $O$.}
+    \label{fig:moto_non_planare}
+\end{figure}
+
+Posto di far corrispondere la nuova distesa circolare elevandola tramite l'asse di rotazione perpendicolare col suo versore $\hat{z}$, viene a formarsi il nuovo centro rotante $O'$ e la nuova quota distanziante $z$. 
+
+\begin{osservazione}{Versori direzionali ed Equazioni Parametriche}
+Tutte le equazioni di studio richiederanno i versori di direzione, per cui andremo a considerare i versori $\hat{\rho}$ (indicative al di fuori dal polso di tangenza verso radialità esterna) e $\hat{\phi}$ assunti come formali coordinate intrinseche. 
+Per la raggiera che unisce dal nuovo polo superiore alla massa perimetrale si evidenzia il parallelismo direzionato del nuovo vettore $\vec{R}$ col suddetto versore di riferimento in modo che $\vec{R} // \hat{\rho}$ (tante volte semplificato didatticamente impiegando in omonimia il corsivo unitario equivalente $\hat{R} \parallel \hat{\rho}$).
+\end{osservazione}
+
+Si procede determinando la somma della distaccata struttura per pervenire alla reale diagonale raggio del vettorialmente espresso $\vec{r} = \vec{R} + \vec{OO}'$:
+\begin{equation}
+    \vec{r} = R\hat{\rho} + z\hat{z} 
+\end{equation}
+In modo solidale a questa logica, la sua tangenziale velocità orbitale risiederà solo nell'inquadratura descritta e non avrà componenti aggiuntive risultando nel vettoriale semplificato $\vec{v} = R\omega\hat{\phi}$.
+Lo step cruciale di deduzione diviene eseguire la distribuzione algebrica del calcolo del momento con questi dati sostitutivi:
+\begin{align}
+    \vec{L}_O &= m \vec{r} \times \vec{v} = m (R \hat{\rho} + z \hat{z}) \times (R \omega \hat{\phi}) \\
+    \vec{L}_O &= m \big[ R \hat{\rho} \times R \omega \hat{\phi} + z \hat{z} \times R \omega \hat{\phi} \big] \\
+    \vec{L}_O &= m \big[ R^2 \omega (\hat{\rho} \times \hat{\phi}) + R \omega z (\hat{z} \times \hat{\phi}) \big]
+\end{align}
+
+Appoggiandoci sulle risolute matrici dei prodotti normalizzati per cui i versi rotazionali impongono formalmente $\hat{\rho} \times \hat{\phi} = \hat{z}$ come colonna verticale entrante di reazione, e specularmente il risultato ribaltato sul piano trasversale per decrescenza indotta tra norma e tangente per cui $\hat{z} \times \hat{\phi} = -\hat{\rho}$, perveniamo estrapolando definitivamente alla composizione:
+\begin{align}
+    \vec{L}_O &= m R^2 \omega \hat{z} + m R \omega z (-\hat{\rho}) = m R^2 \omega \hat{z} - m R \omega z \hat{\rho}
+\end{align}
+
+Esaminando a fondo, i fattori aggregati spiegano che l'intero risultato scaturisce da due apporti distinti ma convivibili: una aliquota portante formata da $\vec{L}_{O'} = m R^2 \omega \hat{z}$ che traccia esattamente l'andamento puro di se non ci fosse sbalzo di origine, assommata poi all'aliquota vettoriale $m R \omega z (-\hat{\rho})$, che volgendosi prepotentemente indietro verso il centro, sbilancia radialmente e in torsione il vettore complessivo proprio in virtù dello stare distanziato di un dislivello quantificabile proporzionalmente con la sua altezza trasversale intersecata in tale dinamica orbitale.
+
+\section{Forze Centrali}
+In meccanica, si definiscono \textbf{forze centrali} quelle forze dirette lungo la direzione del raggio vettore $\vec{r}$ che congiunge la particella a un punto fisso $O$, detto \textbf{centro di forza}.
+
+\begin{definizione}{Forza Centrale}
+Una forza si dice centrale se la sua retta d'azione passa in ogni istante dal centro di forza $O$, potendo esprimerla analiticamente come:
+\begin{equation}
+    \vec{F}_c = \vec{F}(r) = F(r)\hat{r}
+\end{equation}
+dove $F(r)$ è una funzione scalare dipendente unicamente dalla coordinata radiale $r$.
+\end{definizione}
+
+In natura, ci sono fondamentali forze che si manifestano come attrattive o repulsive centrali. Esempi notevoli sono la forza \textbf{gravitazionale}, la forza \textbf{coulombiana} (elettrostatica) e la forza \textbf{elastica} isotropa.
+
+\subsection{Proprietà Fondamentali}
+
+Questi campi di forze possiedono due importanti proprietà generali.  
+
+\begin{enumerate}
+    \item \textbf{Sono forze conservative.} Il lavoro compiuto da una forza centrale dipende unicamente dalla posizione iniziale e da quella finale del corpo. Calcolando il lavoro elementare, e scomponendo il differenziale dello spostamento $d\vec{l}$ in una componente radiale $d\vec{r}$ e una trasversale $d\vec{s}$ (lungo il versore $\hat{t}$):
+    \begin{equation}
+        d\mathcal{L}_{F_c} = \vec{F}_c \cdot d\vec{l} = (F(r)\hat{r}) \cdot (dr\,\hat{r} + ds\,\hat{t}) = F(r)\,dr 
+    \end{equation}
+    poiché il prodotto scalare si annulla sulla componente trasversale in quanto ortogonale, $\hat{r} \cdot \hat{t} = 0$.
+    Integrando tra due posizioni identificate dai punti $\vec{x}_1$ e $\vec{x}_2$:
+    \begin{equation}
+        \mathcal{L}_{F_c} = \int_{\vec{x}_1}^{\vec{x}_2} \vec{F}_c \cdot d\vec{l} = \int_{r_1}^{r_2} F(r) \, dr = g(\vec{x}_1, \vec{x}_2)
+    \end{equation}
+    In questo modo il lavoro compiuto dalla forza centrale nel tragitto è puramente una funzione dipendente in via esclusiva dalle posizioni radiali, e ne costituisce una validazione in quanto forza conservativa.
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}[>=latex, scale=1.4, font=\small]
+        % --- COORDINATE ---
+        \coordinate (O) at (0,0);
+        \coordinate (P) at (2.5, 2);
+        
+        % Traiettoria
+        \draw[thick, gray!60, dashed] (0.8, 0.5) to[out=30, in=240] (P) to[out=60, in=190] (4.5, 3.5);
+        \node[gray!80, right] at (4.5, 3.5) {traiettoria};
+
+        % Linee di riferimento radiale
+        \draw[dashed, thin, gray!80] (O) -- (P) -- (4, 3.2);
+        
+        % Vettore Forza Centrale (diretta verso O)
+        \draw[->, ultra thick, mypen] (P) -- ($(P)!0.6!(O)$) node[midway, above left] {$\vec{F}_c$};
+        
+        % Punti chiave
+        \fill (O) circle (1.5pt) node[below left] {$O$};
+        \fill (P) circle (1.5pt) node[below right] {$P$};
+
+        % Scomposizione dl
+        \coordinate (dl_vec) at (0.8, 0.8); % direzione tangenziale spostamento
+        \coordinate (P_next) at ($(P) + (dl_vec)$);
+        
+        \coordinate (dr_dir) at (1.5, 1.2); % direzione radiale
+        \coordinate (dr_vec) at ($(P) + (0.8, 0.64)$); % proiezione di dl su direzione radiale
+        \coordinate (ds_vec) at ($(P_next) - (dr_vec) + (P)$); % componente trasversale
+
+        % Vettori scomposizione
+        \draw[->, thick, red] (P) -- (P_next) node[midway, above left] {$d\vec{l}$};
+        \draw[->, thick, mygreen] (P) -- (dr_vec) node[below right] {$d\vec{r}$};
+        \draw[->, thick, blue!70!black] (dr_vec) -- (P_next) node[midway, right] {$d\vec{s}$};
+        
+        % Tratteggio rettangolo scomposizione
+        \draw[dashed, thin, gray] (dr_vec) -- (P_next);
+        \draw[dashed, thin, gray] (P) -- ($(P_next)-(dr_vec)+(P)$);
+        
+    \end{tikzpicture}
+    \caption{Scomposizione dello spostamento elementare $d\vec{l}$ in componente radiale ($d\vec{r}$) e trasversale ($d\vec{s}$) per una forza centrale $\vec{F}_c$.}
+    \label{fig:lavoro_forza_centrale}
+\end{figure}
+
+    \item \textbf{Il momento della forza è nullo rispetto ad $O$.} Scegliendo come polo di rotazione $O$ il centro di forza stesso, si verifica esplicitamente dalla definizione del momento che:
+    \begin{equation}
+        \vec{\tau}_O = \vec{r} \times \vec{F}_c = (r \hat{r}) \times (F(r) \hat{r}) = r F(r) (\hat{r} \times \hat{r}) = \vec{0}
+    \end{equation}
+\end{enumerate}
+
+Una diretta conseguenza del momento applicato $\vec{\tau}$ costantemente nullo, è che per una particella a cui è applicata soltanto la forza $\vec{F}_c$ si evidenziano $2$ importanti \textbf{costanti del moto}:
+\begin{itemize}
+    \item L'\textbf{Energia Totale} (sfruttando le proprietà conservative del campo testé dimostrate).
+    \item Il \textbf{Momento Angolare} relativo al polo che coincide col centro di forza:
+    \begin{equation}
+        \frac{d\vec{L}}{dt} = \vec{\tau} = \vec{0} \quad \Rightarrow \quad \vec{L} = \text{costante se } O \equiv \text{centro di forza}
+    \end{equation}
+\end{itemize}
+
+\subsection{Significato Geometrico del Momento Angolare}
+
+Nel procedere in rotazione, il raggio vettore orbitante spazza nel tempo specifici angoli di circonferenza in un'ottica perimetrale.
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}[>=latex, scale=1.8, font=\small]
+        % --- COORDINATE ---
+        \coordinate (O) at (0,0);
+        \coordinate (P1) at (20:3);
+        \coordinate (P2) at (50:3.2);
+        
+        % Settore circolare (area dA)
+        \fill[yellow!15, opacity=0.8] (O) -- (P1) to[bend right=10] (P2) -- cycle;
+        
+        % Traiettoria (trasc.)
+        \draw[thick, gray!60, dashed] (5:2.8) to[out=100, in=260] (P1) to[out=80, in=230] (P2) to[out=50, in=200] (65:3.5);
+        \node[gray!80, right] at (65:3.5) {traiettoria (trasc.)};
+
+        % Vettori posizione
+        \draw[->, ultra thick, mygreen] (O) -- (P1) node[midway, below right] {$\vec{r}(t)$};
+        \draw[->, ultra thick, mygreen] (O) -- (P2) node[midway, above left] {$\vec{r}(t+dt)$};
+        
+        % Spostamento dr
+        \draw[->, thick, red] (P1) -- (P2) node[midway, right, xshift=2pt] {$d\vec{r}$};
+
+        % Angolo dphi
+        \draw[thick] (20:0.8) arc (20:50:0.8);
+        \node at (35:1.05) {$d\varphi$};
+
+        % Etichette punti
+        \fill (P1) circle (1.5pt) node[right, xshift=2pt] {$P(t)$};
+        \fill (P2) circle (1.5pt) node[above, yshift=2pt] {$P(t+dt)$};
+        \fill (O) circle (1.5pt) node[below left] {$O$};
+        
+        % Etichetta area
+        \node[mypen, font=\large\bfseries] at (35:1.8) {$dA$};
+        
+        % Scritta "Triangolo curvilineo"
+        \node[align=center, below, gray!80] at (1.5, -0.2) {Triangolo curvilineo \\ \relax [settore circolare]};
+        \draw[->, gray!60, thin] (1.5, 0.1) -- (1.5, 0.6);
+
+    \end{tikzpicture}
+    \caption{Significato geometrico della velocità areolare: il raggio vettore spazza l'area infinitesima $dA$ nell'intervallo $dt$.}
+    \label{fig:velocita_areolare}
+\end{figure}
+
+Considerando questo triangolo mistilineo per uno spostamento curvilineo infinitesimo $d\varphi$, l'area del settore circolare descritto nel tempuscolo descrittivo varrà quantitativamente:
+\begin{equation}
+    dA = \frac{r^2 \, d\varphi}{2}
+\end{equation}
+
+Dividendo ambo i membri per l'intervallo temporale, si manifesta la formulazione per l'equiparabile \textbf{velocità areolare} o \textit{areale}:
+\begin{equation}
+    \frac{dA}{dt} = \frac{r^2}{2} \frac{d\varphi}{dt} = \frac{r^2 \dot{\varphi}}{2} \frac{m}{m} = \frac{|\vec{L}_O|}{2m} = \text{costante}
+\end{equation}
+derivando dalla presenza di un momento angolare assodato di modulo fisso $|\vec{L}_O| = m r^2 \dot{\varphi}$.
+
+Tale uguaglianza stabilisce la validità stringente della cosiddetta \textbf{Legge delle Aree} (che costituisce la rinomata Seconda Legge planetaria di Keplero):
+\begin{osservazione}{Legge delle Aree}
+    Il raggio vettore $\vec{r}$ spazza aree uguali in tempi uguali.
+\end{osservazione}
+
+Questa regolarità analitico-geometrica consente di constatare, sapendo che $r^2 \dot{\varphi}$ rimane costante:
+\begin{equation}
+    r^2 \dot{\varphi} = \text{costante} = (r \dot{\varphi}) r = v_{tang} \cdot r \quad \Rightarrow \quad v_{tang} \propto \frac{1}{r}
+\end{equation}
+Dalla quale deduciamo che all'aumentare o espandersi in distanza del raggio vettore la componente tangenziale del moto andrà a deperire in modalità proporzionalmente inversa.
+
+Avendo dimostrato che tale superficie viene percorsa ed accresciuta a ratei di costanza indissoluta, la formulazione lega la referenza ciclica indicando interamente il \textbf{Periodo} intero per l'Area estesa del circuito dell'orbita:
+\begin{equation}
+    A_{orb} = \int_0^T \frac{dA}{dt} \, dt = \frac{dA}{dt} \int_0^T dt = \frac{|\vec{L}_O|}{2m} \cdot T \quad \Rightarrow \quad T = \frac{2A_{orb} \, m}{|\vec{L}_O|}
+\end{equation}
+
+\subsection{Energia Potenziale di una forza $\vec{F}_c \propto r^{-2}$}
+Consideriamo l'approfondimento della specificità in cui l'intensità della forza descriva campi conservativi e decada tramite limite dimensionale speculare al raggio quadratico invertito. Includiamo per $r_0$ un riferimento a nostra deduzione:
+\begin{equation}
+    F(r) = \frac{\alpha}{r^2}
+\end{equation}
+
+Andiamo a ricalcarne l'evoluzione integrativa per isolare il posizionamento di \textbf{Energia Potenziale}:
+\begin{equation}
+    U(r) - U(r_0) = -\mathcal{L}_{r_0 \to r} = - \int_{r_0}^{r} \frac{\alpha}{r'^2} \, dr' = \int_{r_0}^{r} \left(-\frac{\alpha}{r'^2}\right) \, dr' = \left[ \frac{\alpha}{r'} \right]_{r_0}^{r} = \frac{\alpha}{r} - \frac{\alpha}{r_0}
+\end{equation}
+
+Se consideriamo convenzionalmente una lunghezza o stacco di distanza dalla scala molto immensa ($r \to +\infty$) i campi tendono fisicamente all'estinzione dell'influenza ed avremo che contemporaneamente le forze decadono $F, U \to 0$. Quindi si proietta e si sceglie di conseguenza il riferimento annullato $r_0 \to +\infty$ in modo tale che esso decada dalla equazione di disavanzo come $\frac{\alpha}{\infty} = 0$, portando a una formula elementare limitata per la singola referenza $U(r)$:
+\begin{equation}
+    U(r) - U(+\infty) = \frac{\alpha}{r} \quad \Rightarrow \quad U(r) = \frac{\alpha}{r}
+\end{equation}
+
+\section{Seconda Equazione Cardinale}
+La \textbf{Seconda Equazione Cardinale} è un'equazione vettoriale fondamentale che governa la dinamica rotazionale dei corpi e regola l'evoluzione temporale del momento angolare.
+La analizziamo in 4 casi distinti, a seconda che si parli di un riferimento con \textit{polo fisso} o \textit{polo mobile}, e valutando l'applicazione ad un singolo \textit{punto materiale} oppure ad un \textit{sistema materiale}.
+
+\subsection{Polo Fisso identico al Polo Originario per Punto Materiale}
+Nel primo caso consideriamo un polo $O$ fisso coincidente con il polo valutato $O'$ fisso, per un singolo punto materiale.
+Partendo dalle definizioni dei momenti sul singolo polo, calcoliamo la derivata temporale:
+\begin{align}
+    \left. \frac{d\vec{L}_O}{dt} \right|_{O} &= \left. \frac{d\vec{L}_O}{dt} \right|_{O'} = \frac{d}{dt}\left(\vec{r} \times m\vec{v}\right) \\
+    &= m \frac{d\vec{r}}{dt} \times \vec{v} + m\vec{r} \times \frac{d\vec{v}}{dt} \\
+    &= m(\vec{v} \times \vec{v}) + m(\vec{r} \times \vec{a})
+\end{align}
+Poiché il prodotto vettoriale di un vettore con sé stesso è nullo, proseguiamo la catena di uguaglianze, notando che $m\vec{a}$ esprime per l'appunto la Forza $\vec{F}$:
+\begin{equation*}
+    = 0 + \vec{r} \times m\vec{a} = \vec{r} \times \vec{F} = \vec{\tau}_O
+\end{equation*}
+Giungiamo per cui a definire la \textbf{forma differenziale}:
+\begin{equation}
+    \frac{d\vec{L}_O}{dt} = \vec{\tau}_O
+\end{equation}
+
+Dalla quale discende agilmente, tramite integrazione tra un istante iniziale $t_0$ ed uno finale $t_1$, la \textbf{forma integrale}:
+\begin{equation}
+    I_{\vec{\tau}_O} = \int_{t_0}^{t_1} \vec{\tau}_O(t') \, dt' = \int_{t_0}^{t_1} \frac{d\vec{L}_O}{dt'} \, dt' = \vec{L}_O(t_1) - \vec{L}_O(t_0) = \Delta\vec{L}_O\Big|_{t_0 \to t_1}
+\end{equation}
+\begin{equation}
+    I_{\vec{\tau}_O} = \Delta\vec{L}_O
+\end{equation}
+
+\subsection{Polo Mobile per Punto Materiale}
+Valutiamo ora la situazione in cui $O$ è fisso ma $O'$ è \textbf{mobile} nel caso di punto materiale. È utile tener presente che, per la derivata del vettore posizionale del polo mobile, vale la relazione differenziale $\vec{v}_{O'} = \frac{d\vec{OO'}}{dt} = -\frac{d\vec{O'O}}{dt}$. 
+Procedendo quindi al calcolo analogamente:
+\begin{align}
+    \left. \frac{d\vec{L}_{O'}}{dt} \right|_{O'} &= \frac{d}{dt}\left( \vec{L}_O + \vec{O'O} \times m\vec{v} \right) \\
+    &= \frac{d\vec{L}_O}{dt} + \frac{d(\vec{O'O})}{dt} \times m\vec{v} + \vec{O'O} \times m\frac{d\vec{v}}{dt} \\
+    &= \vec{\tau}_O + (-\vec{v}_{O'}) \times m\vec{v} + \vec{O'O} \times m\vec{a}
+\end{align}
+Riorganizzando i termini che compongono i bracci e sapendo che la posizione della particella $P$ genera un raggio d'azione con la proprietà geometrica di scissione vettoriale $\vec{\tau}_O = \vec{OP} \times \vec{F}$:
+\begin{align}
+    \left. \frac{d\vec{L}_{O'}}{dt} \right|_{O'} &= (\vec{OP} \times \vec{F} + \vec{O'O} \times \vec{F}) - \vec{v}_{O'} \times m\vec{v} \\
+    &= (\vec{O'O} + \vec{OP}) \times \vec{F} - \vec{v}_{O'} \times m\vec{v} \\
+    &= \vec{O'P} \times \vec{F} - \vec{v}_{O'} \times m\vec{v} \\
+    &= \vec{\tau}_{O'} - \vec{v}_{O'} \times m\vec{v}
+\end{align}
+Possiamo quindi raccogliere la sua formulazione per le trasmissioni dal polo mobile e racchiuderne il formalismo:
+\begin{equation}
+    \frac{d\vec{L}_{O'}}{dt} + \vec{v}_{O'} \times m\vec{v} = \vec{\tau}_{O'}
+\end{equation}
+
+\subsection{Polo Fisso identico al Polo Originario per Sistema Materiale}
+Consideriamo adesso analiticamente l'intero compendio del $3^\circ$ caso per l'unione in sistemi materiali a gran numero di enti, appoggiandoci all'intesa di un $O \equiv O'$ ancora tenuto fisso.
+Dalla derivata temporale estesa per il momento angolare totale $\vec{L}_O^{tot} = \sum_i \vec{r}_i \times m_i \vec{v}_i$:
+\begin{align}
+    \left. \frac{d\vec{L}_O^{tot}}{dt} \right|_{O} &= \left. \frac{d\vec{L}_O^{tot}}{dt} \right|_{O'} = \frac{d}{dt}\left( \sum_i \vec{r}_i \times m_i \vec{v}_i \right) \\
+    &= \sum_i \frac{d(\vec{r}_i \times m_i \vec{v}_i)}{dt} = \sum_i \frac{d\vec{L}_{Oi}}{dt} \\
+    &= \sum_i \vec{\tau}_{Oi} = \sum_i \vec{\tau}_{Oi}^{INT} + \sum_i \vec{\tau}_{Oi}^{EXT}
+\end{align}
+È noto però che la sommatoria su tutto il sistema dei momenti di tutte le forze interne si annulla, per cui $\sum_i \vec{\tau}_{Oi}^{INT} = 0$. Ne concludiamo l'affermazione dell'uguaglianza sulla \textbf{forma differenziale}:
+\begin{equation}
+    \frac{d\vec{L}_O^{tot}}{dt} = \sum_i \vec{\tau}_{Oi}^{EXT}
+\end{equation}
+
+Passando per l'integrale temporale perveniamo alla rispettiva \textbf{forma integrale} della cardinale per i sistemi:
+\begin{align}
+    I_{\vec{\tau}_O^{EXT}}^{tot} &= \int_{t_0}^{t_1} \sum_i \vec{\tau}_{Oi}^{EXT}(t') \, dt' = \int_{t_0}^{t_1} \frac{d\vec{L}_O^{tot}}{dt'} \, dt' \\ 
+    &= \vec{L}_O^{tot}(t_1) - \vec{L}_O^{tot}(t_0) = \Delta\vec{L}_O^{tot}\Big|_{t_0 \to t_1}
+\end{align}
+\begin{equation}
+    I_{\vec{\tau}_O^{EXT}}^{tot} = \Delta\vec{L}_O^{tot}
+\end{equation}
+
+\subsection{Polo Mobile per Sistema Materiale}
+In fine, il quarto tassello riassume tutte le possibilità per un calcolo su intero sistema materiale rispetto a un polo $O'$ \textbf{mobile}.
+Deduciamo il passaggio prendendo come assioma per ogni singola $i$-esima particella la regola trovata ($\vec{\tau}_{O'i} = \frac{d\vec{L}_{O'i}}{dt} + \vec{v}_{O'} \times m_i\vec{v}_i$) e assommandola sulle masse:
+\begin{equation}
+    \sum_i \vec{\tau}_{O'i}^{EXT} = \frac{d\vec{L}_{O'}^{tot}}{dt} + \sum_i \vec{v}_{O'} \times m_i \vec{v}_i
+\end{equation}
+Giungendo all'espressione conclusiva:
+\begin{equation}
+    \frac{d\vec{L}_{O'}^{tot}}{dt} + \sum_i \vec{v}_{O'} \times m_i \vec{v}_i = \sum_i \vec{\tau}_{O'i}^{EXT}
+\end{equation}
+
+\subsection{Conservazione del Momento Angolare}
+
+Sulla scorta delle conclusioni analitiche raggiunte emergono due importantissime deduzioni in merito ai casi di sistemi isolati per cui ci troviamo a far fronte.
+
+\begin{osservazione}{Costante del Moto}
+    Se il sistema meccanico studiato fosse dinamicamente \textbf{isolato} o comunque valesse l'assunto per il quale la risultante dei momenti delle forze esterne è approssimabile allo zero (ovvero $\sum_i \vec{\tau}_{Oi}^{EXT} \approx 0$, nulla o trascurabile), allora consegue in automatico che $\Delta\vec{L}_O^{tot} = 0$.
+    Ovvero ricaviamo l'essenza per la quale la grandezza rimane inviolata in istanti differenti $\vec{L}_O^{tot}(t_1) = \vec{L}_O^{tot}(t_0)$, prefigurando che $\vec{L}_O^{tot}$ non fa altro che \textbf{conservarsi} e divenire strutturalmente una rigorosa \textbf{Costante del Moto}.
+\end{osservazione}
+
+\begin{osservazione}{Identità del Doppio Prodotto Vettoriale}
+    Qualora nei vari calcoli differenziali appaia lo sviluppo a strati di multipli operatori prodotto vettoriale, torna utile richiamare in questo compendio l'identità fondamentale per i tripli prodotti vettoriali, calcolabile anche attraverso uno svolgimento tramite determinanti diretti:
+    \begin{equation*}
+        \vec{A} \times (\vec{B} \times \vec{C}) = -(\vec{A} \cdot \vec{B})\vec{C} + (\vec{A} \cdot \vec{C})\vec{B}
+    \end{equation*}
+\end{osservazione}
+
+\section{Teorema di Koenig per il Momento Angolare}
+Consideriamo le posizioni e le velocità delle particelle in un sistema di riferimento del centro di massa (CM), indicando con l'apice l'appartenenza al CM. Scomponendo avremo:
+\begin{equation}
+    \vec{r}_i = \vec{r}_i' + \vec{R}_{CM} \quad \text{e} \quad \vec{v}_i = \vec{v}_i' + \vec{V}_{CM}
+\end{equation}
+Calcoliamo il momento angolare totale $\vec{L}_O$ rispetto al polo originario $O$:
+\begin{align}
+    \vec{L}_O &= \sum_i \vec{r}_i \times m_i \vec{v}_i = \sum_i m_i (\vec{r}_i \times \vec{v}_i) \\
+    &= \sum_i m_i \left[ (\vec{r}_i' + \vec{R}_{CM}) \times (\vec{v}_i' + \vec{V}_{CM}) \right] \\
+    &= \sum_i m_i \left( \vec{r}_i' \times \vec{v}_i' + \vec{r}_i' \times \vec{V}_{CM} + \vec{R}_{CM} \times \vec{v}_i' + \vec{R}_{CM} \times \vec{V}_{CM} \right)
+\end{align}
+Ricordando la definizione stessa di Centro di Massa, sappiamo che applicata al baricentro i termini si annullano, per cui la massa dislocata per la distanza ad esso rende a 0: $\sum_i m_i \vec{r}_i' = 0$. Analogamente per la velocità $\frac{d}{dt}\sum_i m_i \vec{r}_i' = \sum_i m_i \vec{v}_i' = 0$.
+Di conseguenza, i termini misti subiscono l'annullamento algebrico:
+\begin{align}
+    \sum_i m_i (\vec{r}_i' \times \vec{V}_{CM}) &= \left(\sum_i m_i \vec{r}_i'\right) \times \vec{V}_{CM} = 0 \times \vec{V}_{CM} = 0 \\
+    \sum_i m_i (\vec{R}_{CM} \times \vec{v}_i') &= \vec{R}_{CM} \times \left(\sum_i m_i \vec{v}_i'\right) = \vec{R}_{CM} \times 0 = 0
+\end{align}
+In conclusione, il momento angolare totale si scinde nella somma di due termini indipendenti che si compongono:
+\begin{align}
+    \vec{L}_O &= \sum_i \vec{r}_i' \times m_i \vec{v}_i' + \sum_i m_i (\vec{R}_{CM} \times \vec{V}_{CM}) \\
+    &= \vec{L}_{O'} + \vec{L}_{CM}
+\end{align}
+Racchiudiamo l'enunciato ricavato nel celebre \textbf{Teorema di Koenig per il Momento Angolare}:
+\begin{equation}
+    \vec{L}_O = \vec{L}_{O'} + \vec{L}_{CM}
+\end{equation}
+dove le grandezze vettoriali denotano:
+\begin{itemize}
+    \item $\vec{L}_O$: momento angolare totale della particella $i$ rispetto al polo fisso $O$.
+    \item $\vec{L}_{O'}$: momento angolare baricentrico (o relativo) di $i$ rispetto a $O' \equiv CM$.
+    \item $\vec{L}_{CM}$: momento angolare orbitale intrinseco del solo Centro di Massa ($CM \equiv O'$) calcolato verso $O$.
+\end{itemize}
+
+\subsection{Caso del Sistema a 2 Punti Materiali}
+Prendiamo in esame l'applicazione pratica del teorema in un sistema isolato limitato a 2 punti materiali.
+Indichiamo le coordinate del baricentro originario, e definiamo un raggio vettore traslazionale ed una velocità di transizione \textbf{relativi} che colleghino i due punti:
+\begin{equation}
+    \vec{R}_{CM} = \frac{m_1 \vec{r}_1 + m_2 \vec{r}_2}{m_1 + m_2} \,; \qquad 
+    \begin{cases}
+        \vec{r}_r = \vec{r}_2 - \vec{r}_1 \\
+        \vec{v}_r = \vec{v}_2 - \vec{v}_1
+    \end{cases}
+\end{equation}
+Scomponendo e raccogliendo passiamo per un trucco algebrico limitrofo per isolare i vettori di singola posizione in funzione delle variabili differenziate:
+\begin{equation}
+    \begin{cases}
+        \vec{r}_1 = \vec{R}_{CM} - \vec{r}_r \frac{m_2}{m_1 + m_2} \\
+        \vec{r}_2 = \vec{R}_{CM} + \vec{r}_r \frac{m_1}{m_1 + m_2}
+    \end{cases}
+\end{equation}
+Passando ad estrapolare i primati del sistema solidale sapremo $\vec{r}_i' = \vec{r}_i - \vec{R}_{CM}$. Distaccando con i vettori velocità differenziandole temporalmente:
+\begin{equation}
+    \begin{cases}
+        \vec{r}_1' = - \vec{r}_r \frac{m_2}{m_1 + m_2} \\
+        \vec{r}_2' = \vec{r}_r \frac{m_1}{m_1 + m_2}
+    \end{cases}
+    \qquad \Rightarrow \qquad
+    \begin{cases}
+        \vec{v}_1' = - \vec{v}_r \frac{m_2}{m_1 + m_2} \\
+        \vec{v}_2' = \vec{v}_r \frac{m_1}{m_1 + m_2}
+    \end{cases}
+\end{equation}
+
+Procediamo a rielaborare l'espressione per il momento angolare proprio $\vec{L}_{O'}$ appoggiandoci interamente a queste relazioni:
+\begin{align}
+    \vec{L}_{O'} &= m_1 (\vec{r}_1' \times \vec{v}_1') + m_2 (\vec{r}_2' \times \vec{v}_2') \\
+                 &= m_1 \left(- \frac{m_2}{m_1+m_2} \right)^2 (\vec{r}_r \times \vec{v}_r) + m_2 \left( \frac{m_1}{m_1+m_2} \right)^2 (\vec{r}_r \times \vec{v}_r) \\
+                 &= \frac{m_1 m_2^2}{(m_1+m_2)^2} (\vec{r}_r \times \vec{v}_r) + \frac{m_2 m_1^2}{(m_1+m_2)^2} (\vec{r}_r \times \vec{v}_r) \\
+                 &= \left( \frac{m_1 m_2^2 + m_2 m_1^2}{(m_1+m_2)^2} \right) (\vec{r}_r \times \vec{v}_r) \\
+                 &= \frac{m_1 m_2 (m_2 + m_1)}{(m_1+m_2)^2} (\vec{r}_r \times \vec{v}_r) = \frac{m_1 m_2}{m_1+m_2} (\vec{r}_r \times \vec{v}_r) 
+\end{align}
+In fluidodinamica e per meccanica classica, introduciamo il termine scalare concentrato ribattezzandolo come \textbf{massa ridotta} e asserito da $\mu$:
+\begin{equation}
+    \mu = \frac{m_1 m_2}{m_1+m_2}
+\end{equation}
+Grazie alla quale il momento angolare intrinseco si riduce ad un espressione vettoriale straordinaria:
+\begin{equation}
+    \vec{L}_{O'} = \mu (\vec{r}_r \times \vec{v}_r)
+\end{equation}
+Ciò si esplica e garantisce che la rotazione tra le due parti che colludono si modella e converte perfettamente ed interamente in una \textbf{Particella Equivalente} che unifica i valori formati: $(\mu, \vec{r}_r, \vec{v}_r)$.
+
+\subsection{Analisi Differenziale ed Equivalenza del Sistema}
+Una conferma dell'equivalenza si deduce calcolando da prima generalità lo scontro dei differenziali applicato:
+\begin{align}
+    \frac{d\vec{L}_O^{TOT}}{dt} &= \sum_i \vec{\tau}_{Oi}^{EXT} = \sum_i (\vec{r}_i \times \vec{F}_i^{EXT}) = \sum_i (\vec{r}_i' + \vec{R}_{CM}) \times \vec{F}_i^{EXT} \\
+    &= \sum_i (\vec{r}_i' \times \vec{F}_i^{EXT}) + \sum_i (\vec{R}_{CM} \times \vec{F}_i^{EXT}) \\
+    &= \sum_i \vec{\tau}_{O'i}^{EXT} + \vec{R}_{CM} \times \vec{F}_{TOT}^{EXT}
+\end{align}
+Equazione che riscontra fedelmente il caso generale e traduce all'affermazione: $\frac{d\vec{L}_O^{TOT}}{dt} = \frac{d\vec{L}_{O'}^{TOT}}{dt} + \vec{R}_{CM} \times \frac{d\vec{P}^{TOT}}{dt}$.
+
+Dipingendo da zero il derivato termico del termine intrapreso sui poli di scala $\frac{d\vec{L}_{O'}}{dt}$:
+\begin{align}
+    \frac{d\vec{L}_{O'}}{dt} &= \frac{d}{dt}\left( m_1 (\vec{r}_1' \times \vec{v}_1') + m_2 (\vec{r}_2' \times \vec{v}_2') \right) \\
+    &= m_1 \frac{d}{dt} (\vec{r}_1' \times \vec{v}_1') + m_2 \frac{d}{dt} (\vec{r}_2' \times \vec{v}_2') 
+\end{align}
+Esplicitando e ricordando il nesso tra velocità reale ed istantanea su cui $\vec{v}_i' = \vec{v}_i - \vec{V}_{CM}$:
+\begin{align}
+    &= m_1 \vec{r}_1' \times \frac{d(\vec{v}_1 - \vec{V}_{CM})}{dt} + m_2 \vec{r}_2' \times \frac{d(\vec{v}_2 - \vec{V}_{CM})}{dt} \\
+    &= m_1 \left( \vec{r}_1' \times \frac{d\vec{v}_1}{dt} \right) + m_2 \left( \vec{r}_2' \times \frac{d\vec{v}_2}{dt} \right) - (m_1 \vec{r}_1' + m_2 \vec{r}_2') \times \frac{d\vec{V}_{CM}}{dt} 
+\end{align}
+Esponendo al centro un termine noto ai capoversi precedenti essente $(m_1 \vec{r}_1' + m_2 \vec{r}_2') = 0$ per def. di applicabilità nel $CM$, cade azzerando il terzo termine. Traducendo i vettori d'accelerazione in componenti Forzanti:
+\begin{align}
+    &= \vec{r}_1' \times \vec{F}_1 + \vec{r}_2' \times \vec{F}_2 \\
+    &= \vec{r}_1' \times (\vec{F}_1^{EXT} + \vec{F}_{21}) + \vec{r}_2' \times (\vec{F}_2^{EXT} + \vec{F}_{12})
+\end{align}
+L'esatto vincolo del Terzo Principio di Azione-Reazione preme su $\vec{F}_{12} = -\vec{F}_{21}$, unificando:
+\begin{align}
+    &= \vec{r}_1' \times \vec{F}_1^{EXT} + \vec{r}_1' \times \vec{F}_{21} + \vec{r}_2' \times \vec{F}_2^{EXT} - \vec{r}_2' \times \vec{F}_{21} \\
+    &= (\vec{r}_1' \times \vec{F}_1^{EXT} + \vec{r}_2' \times \vec{F}_2^{EXT}) + (\vec{r}_1' - \vec{r}_2') \times \vec{F}_{21} \\
+    &= \vec{\tau}_{O'1,2}^{EXT} + (\vec{r}_1' - \vec{r}_2') \times \vec{F}_{21} 
+\end{align}
+
+Concentrandosi su quel disavanzo finale della reazione differenziale lo esplicitiamo rispetto a variabili vere svincolate dal centro, rintracciando dal polo relativo $\vec{r}_r$:
+\begin{equation*}
+    \vec{r}_1' - \vec{r}_2' = (\vec{r}_1 - \vec{R}_{CM}) - (\vec{r}_2 - \vec{R}_{CM}) = \vec{r}_1 - \vec{r}_2 = -(\vec{r}_2 - \vec{r}_1) = -\vec{r}_r
+\end{equation*}
+Inserendo nel blocco si valuta $-\vec{r}_r \times \vec{F}_{21}$. Sappiamo che in presenza di distanze connesse da 2 punti vige una stretta rigidità di attrazione sulle centrali lungo essa. 
+Siccome gli assi collimano per lo stesso vettore, si riscontrano identità di strato che formano un parallelismo $\vec{r}_r \parallel \vec{F}_{21}$.
+
+Si dimostra la sparizione della componente residua in forza vettoriale nulla:
+\begin{equation}
+    -\vec{r}_r \times \vec{F}_{21} = 0
+\end{equation}
+
+Tutto si condensa ad un precetto universale e cruciale per i sistemi meccanici doppi:
+\begin{quote}
+    \centering
+    \textit{Un sistema di corpi isolato equivale in tutto e per tutto a una singola Particella Equivalente ($\mu$, $\vec{r}_r$, $\vec{v}_r$) posta in soggezione ad una Forza Centrale agente e retta lungo la congiungente $\vec{r}_r$.}
+\end{quote}
+
+\section{Energia e Potenziale Efficace}
+Analizziamo ora l'energia del sistema dal punto di vista della particella equivalente. Il momento angolare intrinseco, come visto, si scrive:
+\begin{equation}
+    \vec{L}_{O'} = \mu (\vec{r}_r \times \vec{v}_r) = \mu (r_r \hat{r} \times (\dot{r}_r \hat{r} + r_r \dot{\phi} \hat{\phi})) = \mu r_r^2 \omega \hat{z} = \vec{L}_{cost}
+\end{equation}
+L'energia totale del sistema è data dalla somma dell'energia cinetica e dell'energia potenziale:
+\begin{align}
+    E_{tot} &= K + U = \frac{1}{2} \mu \vec{v}_r^2 + U(r) \\
+    &= \frac{1}{2} \mu (\dot{r}_r^2 + r_r^2 \dot{\phi}^2) + U(r)
+\end{align}
+Sfruttando la conservazione del modulo del momento angolare $L = \mu r_r^2 \dot{\phi}$, possiamo esprimere la velocità angolare come $\dot{\phi} = \frac{L}{\mu r_r^2}$. Sostituendo nell'espressione dell'energia:
+\begin{equation}
+    E_{tot} = \frac{1}{2} \mu \dot{r}_r^2 + \frac{1}{2} \frac{L^2}{\mu r_r^2} + U(r)
+\end{equation}
+
+\subsection{Definizione di Potenziale Efficace}
+Possiamo raggruppare i termini che dipendono esclusivamente dalla coordinata radiale $r$ definendo il \textbf{Potenziale Efficace}:
+\begin{equation}
+    E_{tot} = \underbrace{\frac{1}{2} \mu \dot{r}_r^2}_{K_{rad}} + \underbrace{\frac{1}{2} \frac{L^2}{\mu r_r^2} + U(r)}_{U_{eff}(r)}
+\end{equation}
+Dove identifichiamo:
+\begin{itemize}
+    \item $\frac{1}{2} \mu \dot{r}_r^2$: Energia cinetica radiale.
+    \item $\frac{1}{2} \frac{L^{2}}{\mu r_{r}^{2}}$: \textbf{Potenziale Centrifugo}, derivante dal moto rotatorio.
+    \item $U(r)$: Potenziale dell'interazione centrale.
+\end{itemize}
+
+L'espressione del potenziale efficace è dunque:
+\begin{equation}
+    U_{eff}(r) = U(r) + \frac{L^2}{2\mu r^2}
+\end{equation}
+
+\subsection{Condizione di Esistenza del Moto}
+Affinché il moto sia fisicamente realizzabile, è necessario che l'energia cinetica radiale sia non negativa ($K_{rad} \geq 0$). Analiticamente questo impone un vincolo sull'energia totale del sistema rispetto al potenziale efficace:
+\begin{equation}
+    \frac{1}{2} \mu \dot{r}^2 \geq 0 \quad \Rightarrow \quad E - U_{eff}(r) \geq 0 \quad \Rightarrow \quad E \geq U_{eff}(r)
+\end{equation}
+Questa condizione delimita le regioni dello spazio (i valori di $r$) in cui la particella può muoversi per una data energia $E$.
+
+\subsection{Regioni Accessibili e Punti di Inversione}
+Esisteranno quindi delle \textbf{regioni accessibili} al moto e delle regioni non accessibili. Essendo imposto il vincolo dell'energia cinetica radiale $K_{rad} \geq 0$, il moto può avvenire se e solo se $E \geq U_{eff}(r)$.
+
+Nello studio della velocità radiale $\dot{r}$:
+\begin{itemize}
+    \item Se $\dot{r} > 0$, la particella si sta allontanando: vi è un \textbf{allontanamento dal centro di forza}.
+    \item Se $\dot{r} < 0$, la particella si sta avvicinando: vi è un \textbf{avvicinamento al centro di forza}.
+    \item Se $\dot{r} = 0$, la particella ha esaurito l'energia per il moto radiale ed è costretta a invertire la tendenza: si definisce \textbf{Punto di Inversione} o \textbf{Punto Nodale}. 
+\end{itemize}
+
+Nei punti di inversione, dato che $\dot{r} = 0$, la velocità vettoriale è puramente tangenziale all'orbita:
+\begin{equation}
+    \vec{v} = \dot{r}\hat{r} + r\dot{\phi}\hat{\phi} = 0 + r\omega\hat{\phi} = \vec{v}_{tang}
+\end{equation}
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}[x=1.5cm, y=1.2cm, >=latex]
+        % Assi
+        \draw[->, thick] (0, -2.5) -- (0, 3.5) node[above] {$U_{eff}(r)$};
+        \draw[->, thick] (-0.2, 0) -- (6, 0) node[right] {$r$};
+        
+        % Curva del potenziale efficace
+        \draw[ultra thick, black, smooth, tension=0.7] plot coordinates {
+            (0.35, 3.2)
+            (0.6, 1)
+            (1.5, -1.8)  % Minimo in r4=1.5
+            (2.8, 0.8)   % Massimo in r7=2.8
+            (4.5, 0.2)
+            (5.5, 0.05)
+        };
+        
+        % Livelli di energia
+        % E1
+        \draw[dashed, blue] (0, 2.5) node[left] {$E_1$} -- (5.5, 2.5);
+        \fill[blue] (0.42, 2.5) circle (2pt) node[above right] {$r_0$};
+        
+        % E2
+        \draw[dashed, orange] (0, 0.8) node[left] {$E_2$} -- (5.5, 0.8);
+        \fill[orange] (0.65, 0.8) circle (2pt) node[below left] {$r_1$};
+        \fill[orange] (2.8, 0.8) circle (2pt) node[above] {$r_7$};
+        
+        % E3
+        \draw[dashed, green!60!black] (0, -0.5) node[left] {$E_3$} -- (5.5, -0.5);
+        \fill[green!60!black] (0.9, -0.5) circle (2pt) node[below left] {$r_2$};
+        \fill[green!60!black] (2.13, -0.5) circle (2pt) node[below right] {$r_6$};
+        \fill[green!60!black] (3.8, -0.5) circle (2pt) node[above right] {$r_8$};
+        
+        % E4
+        \draw[dashed, magenta] (0, -1.2) node[left] {$E_4$} -- (3.5, -1.2);
+        \fill[magenta] (1.1, -1.2) circle (2pt) node[below left] {$r_3$};
+        \fill[magenta] (1.85, -1.2) circle (2pt) node[below right] {$r_5$};
+        
+        % E5
+        \draw[dashed, red] (0, -1.8) node[left] {$E_5$} -- (2.5, -1.8);
+        \fill[red] (1.5, -1.8) circle (2pt) node[below] {$r_4$};
+        
+    \end{tikzpicture}
+    \caption{Grafico qualitativo del Potenziale Efficace con vari livelli di Energia $E_0$, che mostra le radici (punti di inversione $r_i$) e delimita le regioni accessibili al moto.}
+    \label{fig:potenziale_efficace}
+\end{figure}
+
+Tutto dipende dalle \textit{condizioni iniziali} radunate nel momento angolare limitante ($L_0$) e dall'energia totale $E_0$ posseduta:
+\begin{itemize}
+    \item $\mathbf{E_0 = E_1}$: Moto accessibile per $r \geq r_0$. La particella ha un \textbf{moto aperto} (o infinitamente illimitato) deviando per riallontanarsi.
+    \item $\mathbf{E_0 = E_2}$: Moto accessibile per $r \geq r_1$. Oltre al volo di avvicinamento e scatter infinito, in $r=r_7$ esiste un'orbita che configura un \textbf{moto limitato e chiuso, ma instabile} date le proprietà di massimo relativo della curva.
+    \item $\mathbf{E_0 = E_3}$: La curva presenta una tasca per cui il moto è accessibile nella zona $r_2 \leq r \leq r_6$ (intrappolamento nella buca) o singolarmente per $r \geq r_8$ (al di fuori del sistema). Lo scenario prevede tratti detti \textbf{parzialmente aperti e limitati}.
+    \item $\mathbf{E_0 = E_4}$: Moto accessibile per $r_3 \leq r \leq r_5$. La particella rimbalza confinata tra due absidi radendo l'interno di una buca, il \textbf{moto è limitato} e può configurarsi chiuso.
+    \item $\mathbf{E_0 = E_5}$: Moto radiale nullo per assenza di residui ($K_{rad}=0$), unica opzione il punto di tangenza in $r = r_4$. Orbitando al minimo assoluto d'energia possibile per il sistema circolare, il \textbf{moto è limitato, chiuso e del tutto stabile}.
+    \item $\mathbf{E_0 < E_5}$: L'area è un \textbf{moto non accessibile} (per cui avremmo $K_{rad} < 0$, impossibile) pertanto varrà un \textit{moto nullo}.
+\end{itemize}
+
+\subsection{Orbite Circolari nei Sistemi a Due Corpi}
+
+Dalla casistica del minimo d'energia notiamo la formazione di \textbf{Orbite Circolari}.
+Nel caso di una singola particella la rotazione corrisponde all'insorgere della distanza radicale fissata: $r = cost$.
+
+Riproposto nel \textbf{sistema a 2 corpi isolato}, analogamente si postula che la \textit{distanza relativa} fra i protagonisti in volo ne risulti incatenata a sua volta:
+\begin{equation}
+    r_r = |\vec{r}_2 - \vec{r}_1| = |\vec{r}_2' - \vec{r}_1'| = cost
+\end{equation}
+
+Richiamando la dislocazione delle particelle dal Centro di Massa esaminate da Koenig in precedenza:
+\begin{equation}
+    \begin{cases}
+        \vec{r}_1' = -\vec{r}_r \frac{m_2}{m_1+m_2} \\[0.5em]
+        \vec{r}_2' = +\vec{r}_r \frac{m_1}{m_1+m_2}
+    \end{cases}
+\end{equation}
+
+Poiché $|\vec{r}_r| = cost$, si assicura geometricamente che pure i vettori di alloggiamento radiale rispetto al loro baricentro maturino costanza intoccabile ($|\vec{r}_1'| = cost$ e $|\vec{r}_2'| = cost$). Da queste evidenze si inquadra il sistema in tre forti verità:
+\begin{enumerate}
+    \item \textbf{Fanno entrambi un'orbita circolare} attorno al perno d'equilibrio geometrico virtuale originato nel $CM$.
+    \item La loro \textbf{velocità angolare è costante} unicamente dovuta a $r' = cost$.
+    \item \textbf{Il centro di forza di un punto rotante è l'altro punto rotante}, e non il centro di massa attorno al quale effettivamente gravitano e tracciano visivamente l'orbita.
+\end{enumerate}
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}[>=latex, scale=1.5]
+        % Coordinate centrali
+        \coordinate (CM) at (0,0);
+        
+        % Assi di riferimento cartesiani tenui originando dal CM
+        \draw[gray!50, thin] (-3,0) -- (3,0);
+        \draw[gray!50, thin] (0,-3) -- (0,3);
+
+        \fill (CM) circle (1.5pt) node[below right, yshift=-2pt] {$CM$};
+        
+        % Raggi
+        \def\rA{1.2} % raggio interno (particella 2)
+        \def\rB{2.5} % raggio esterno (particella 1)
+        
+        % Angoli (t un tempo base, t' tempo evoluto)
+        \def\angT{90} % Allineamento verticale per il tempo t1, t2 -> 90 gradi e 270 gradi
+        \def\angTP{50} % Rotazione al tempo evoluto t1', t2' -> 50 gradi e 230 gradi
+        
+        % Orbite
+        \draw[dashed, gray, thick] (CM) circle (\rA);
+        \draw[dashed, gray, thick] (CM) circle (\rB);
+        
+        % Frecce orbitanti che mostrano il verso di rotazione
+        \draw[->, gray, thick] ({\rB*cos(150)}, {\rB*sin(150)}) arc (150:180:\rB);
+        \draw[->, gray, thick] ({\rA*cos(120)}, {\rA*sin(120)}) arc (120:90:\rA);
+        \draw[->, gray, thick] ({\rB*cos(70)}, {\rB*sin(70)}) arc (70:40:\rB);
+
+        % --- SITUAZIONE AL TEMPO t ---
+        \coordinate (M1_t) at ({\rB*cos(\angT)}, {\rB*sin(\angT)});
+        \coordinate (M2_t) at ({\rA*cos(180+\angT)}, {\rA*sin(180+\angT)});
+        
+        % Segmento congiungente a tempo t
+        \draw[thick] (M1_t) -- (M2_t);
+        
+        % Corpi al tempo t
+        \fill[gray!80] (M1_t) circle (4pt) node[right=4pt, black] {$t_1$};
+        \fill[gray!80] (M2_t) circle (4pt) node[below=4pt, black] {$t_2 \ \ 2$};
+        
+        % --- SITUAZIONE AL NUOVO TEMPO t' ---
+        \coordinate (M1_tp) at ({\rB*cos(\angTP)}, {\rB*sin(\angTP)});
+        \coordinate (M2_tp) at ({\rA*cos(180+\angTP)}, {\rA*sin(180+\angTP)});
+        
+        % Segmento congiungente a tempo t'
+        \draw[thin] (M1_tp) -- (M2_tp);
+        
+        % Corpi al tempo t'
+        \fill[gray!80] (M1_tp) circle (4pt) node[below right, black] {$t_1'$};
+        \fill[gray!80] (M2_tp) circle (4pt) node[left=2pt, black] {$t_2'$};
+        
+        % --- ANGOLI \theta ---
+        \draw[thin] (0, 0.5) arc (90:50:0.5);
+        \node at (70:0.7) {$\theta$};
+        
+        \draw[thin] (0, -0.4) arc (270:230:0.4);
+        \node at (250:0.6) {$\theta$};
+
+        % --- VERSORI lungo l'asse orizzontale/verticale interno ---
+        \draw[->, thick, black] (0, 0.4) -- (0, 1.5) node[left] {$\hat{i}_L^T$};
+        \draw[->, thick, black] (0.4, 0) -- (1.5, 0) node[below right, xshift=-6pt] {$\hat{i}_L^N$};
+
+    \end{tikzpicture}
+    \caption{Rappresentazione oraria dello scenario orbitale di due corpi interagenti in $t$ e nell'istante successivo evoluto $t'$. I punti massa ruotano attorno al CM conservando l'allineamento reciproco sull'asse tracciato dal raggio vettore in corrispondenza del bilancio angolare $\theta$.}
+    \label{fig:orbite_circolari_dettagliate}
+\end{figure}
+
+\subsection{Orbite Circolari e Punti Stazionari del Potenziale Efficace}
+Riprendendo la definizione di energia potenziale efficace:
+\begin{equation}
+    U_{eff}(r) = \frac{L_0^2}{2\mu r^2} + U(r)
+\end{equation}
+Ne studiamo i punti stazionari imponendo l'annullamento della derivata prima rispetto al raggio:
+\begin{equation}
+    \frac{dU_{eff}}{dr} = \frac{d}{dr}\left(\frac{L_0^2}{2\mu r^2}\right) + \frac{dU(r)}{dr}
+\end{equation}
+Sviluppando la derivata:
+\begin{align}
+    \frac{dU_{eff}}{dr} &= \frac{dU}{dr} + \frac{L_0^2}{2\mu} \left( -\frac{2}{r^3} \right) = \frac{dU}{dr} - \frac{L_0^2}{\mu r^3} \\
+    &= \frac{dU}{dr} - \frac{(\mu r^2 \omega)^2}{\mu r^3} = \frac{dU}{dr} - \frac{\mu^2 r^4 \omega^2}{\mu r^3} = \frac{dU}{dr} - \mu r \omega^2
+\end{align}
+Nel caso specifico evidenziato prima del \textbf{moto circolare}, il raggio stagna sul minimo del potenziale e la derivata si annulla rigorosamente:
+\begin{equation}
+    \frac{dU_{eff}}{dr} = 0 \quad \Rightarrow \quad \frac{dU}{dr} - \mu r \omega^2 = 0
+\end{equation}
+
+Sappiamo che la forza conservativa deriva dal gradiente del potenziale. Sviluppando l'equazione radiale col versore $\hat{r}$:
+\begin{equation}
+    -\frac{dU}{dr} \hat{r} = -\nabla U = \vec{F} \quad \Rightarrow \quad \left(-\frac{dU}{dr}\hat{r}\right) \cdot \hat{r} = \vec{F} \cdot \hat{r} = F(r)\hat{r}\cdot\hat{r}
+\end{equation}
+Da cui si deduce l'immediata associazione proiettata $\big(-\frac{dU}{dr}\big) = F(r)$. Inserendolo nell'equazione di baricentro stazionario prima trovata:
+\begin{equation}
+    -F(r) - \mu r \omega^2 = 0 \quad \Rightarrow \quad F(r) = - \mu r \omega^2
+\end{equation}
+Questa inaspettata equivalenza non è da considerarsi singolare, bensì racchiude l'ovvia manifesta prova logica dell'espressione per antonomasia della \textbf{Forza dell'accelerazione centripeta}, venendo così assunta come \textit{verifica formale dei risultati ottenuti}.
+
+\subsection{Soluzione Formale per il Moto Radiale}
+Recuperiamo l'energia netta per esplicitare la velocità radiale del sistema nel momento in cui compie avvicinamento o scampo:
+\begin{equation}
+    \frac{1}{2}\mu \dot{r}^2 = E - U_{eff}(r) \quad \Rightarrow \quad \dot{r} = \pm \sqrt{\frac{2}{\mu}(E - U_{eff}(r))}
+\end{equation}
+Il doppio segno indica le due anime comportamentali:
+\begin{itemize}
+    \item Segno $(+)$: $\dot{r} > 0$ associato ad un \textbf{allontanamento} spaziale.
+    \item Segno $(-)$: $\dot{r} < 0$ associato ad un \textbf{avvicinamento} cadente al centro gravitazionale.
+\end{itemize}
+
+Piazzando ora la dipendenza differenziale ricalcata come derivata posizionale sul tempo $\dot{r} = \frac{dr}{dt}$, e compiendo una separazione delle variabili, otteniamo il raggruppamento per l'integrazione:
+\begin{equation}
+    \frac{dr}{dt} = \pm \sqrt{\frac{2}{\mu}(E - U_{eff})} \quad \Rightarrow \quad \frac{\frac{dr}{dt}}{\sqrt{\frac{2}{\mu}(E - U_{eff})}} = \pm 1
+\end{equation}
+
+Procediamo ad \textbf{integrare} entrambi i membri su un intervallo trascorso d'evoluzione, marcato tra uno star preimpostato $t_0$ ed un'arresto $t$:
+\begin{equation}
+    \int_{t_0}^{t} \frac{\frac{dr}{dt'}}{\sqrt{\frac{2}{\mu}(E - U_{eff})}} \, dt' = \pm \int_{t_0}^{t} 1 \, dt' 
+\end{equation}
+Eseguendo un agevole elisione muta per il rimpiazzo della variabile d'integrazione posizionale al numeratore da $dt'$ al concisivo $dr'$, si perviene al blocco compattato:
+\begin{equation}
+    \int_{r_0}^{r(t)} \frac{dr'}{\sqrt{\frac{2}{\mu}(E - U_{eff})}} = \pm(t - t_0)
+\end{equation}
+Sottraendo lo zero arbitrario iniziale o esplicitando brutalmente semplicemente $t$, sigliamo ed estraiamo dal costrutto la vera e propria identità finale designata coma formula \textbf{Soluzione Formale}:
+\begin{equation}
+    t = t_0 \pm \int_{r_0}^{r(t)} \frac{dr'}{\sqrt{\frac{2}{\mu}(E - U_{eff})}}
+\end{equation}
+
+\begin{osservazione}{Significato e scissione dell'integrale}
+    Ipotizzando di essere tanto propensi da risolvere di fattura la natura analitica di tale integrale (a seconda di come venga imposta $U$), troveremmo in discesa pura una funzione rovesciata per il raggio in espansione $r(t)$.
+    Mani in pasta in siffatto punto dell'osservazione potremmo separare e sezionare chiaramente tutti i tratti limitati per cui $r(t)$ cresce regolarmente comportando che valga fermamente $\dot{r}>0$, da tutti gli speculari in cui incappando in chiusura orbitante $r(t)$ regredisce decrescendo, per cui $\dot{r}<0$.
+\end{osservazione}
+

@@ -1,0 +1,162 @@
+\chapter{La Gravitazione}
+
+\section{Storia e scoperte in campo astronomico}
+Il Sistema Solare è costituito dal Sole e dai 9 pianeti orbitanti: Mercurio, Venere, Marte, Terra, Giove, Saturno, Nettuno, Urano ($\sim 1781$), Plutone ($\sim 1930$). I Greci conoscevano solo quelli fino a Saturno e la loro concezione del sistema solare era \textbf{GEOCENTRICA}, formalizzata da Tolomeo ma già presentata da Aristotele. La teoria prevedeva:
+
+\begin{itemize}
+    \item \textbf{Terra al centro} dell'universo;
+    \item Sole, Luna e altri pianeti compiono \textbf{orbite circolari};
+    \item Si divide il mondo \textbf{SUBLUNARE} imperfetto (Terra) da quello \textbf{SOVRALUNARE} perfetto (tutto il resto): il primo è dominato da corruzione e moto rettilineo, il secondo da incorruttibilità e moto circolare ($\alpha, \omega$, principio e fine, \textit{Apocatastasi}).
+\end{itemize}
+
+\subsection{L'evoluzione verso il modello Newtoniano}
+Per spiegare le apparenti irregolarità del moto planetario (come il \textbf{moto retrogrado} di Marte), Tolomeo introdusse il sistema degli \textit{epicicli} e dei \textit{deferenti}: il pianeta ruota su un cerchio (epiciclo) il cui centro ruota a sua volta attorno alla Terra su un cerchio maggiore (deferente). Questa costruzione geometrica serviva a giustificare il moto cicloidale osservato.
+
+Con il passare dei secoli, la visione dell'universo cambiò radicalmente grazie a figure chiave:
+\begin{itemize}
+    \item \textbf{Copernico}: Eliocentrismo.
+    \item \textbf{Brahe e Keplero}: Osservazioni di precisione e tre leggi sperimentali.
+    \item \textbf{Galileo}: Introduzione del telescopio, prove delle fasi di Venere, satelliti di Giove e macchie solari (fine dell'incorruttibilità celeste). Unificazione della fisica terrestre e celeste.
+\end{itemize}
+
+\section{Legge di Gravitazione Universale}
+Sulla base dei lavori di Keplero, Isaac Newton "scoprì" la natura della forza responsabile del moto dei pianeti: la forza gravitazionale è \textbf{attrattiva}, \textbf{centrale} (proporzionale a $1/r^2$) e proporzionale alla \textbf{massa gravitazionale}.
+
+\begin{teorema}{Legge di Gravitazione Universale}
+Due masse puntiformi $m_1$ e $m_2$ poste a distanza $r$ si attraggono con una forza diretta lungo la congiungente:
+\begin{equation}
+    F = G \frac{m_1 m_2}{r^2}
+\end{equation}
+Formulazione vettoriale per la forza esercitata da $m_1$ su $m_2$:
+\begin{equation}
+    \vec{F}_{12} = - \frac{G m_1 m_2}{|\vec{r}_{12}|^3} \vec{r}_{12} = - \frac{G m_1 m_2}{r^2} \hat{r}_{12}
+\end{equation}
+Esercitata da $m_2$ su $m_1$ (III principio):
+\begin{equation}
+    \vec{F}_{21} = -\vec{F}_{12} = + \frac{G m_1 m_2}{r^2} \hat{r}_{12}
+\end{equation}
+\end{teorema}
+
+\subsection{La Bilancia di Cavendish (1798)}
+La costante $G$ fu misurata da Henry Cavendish tramite una bilancia a torsione. L'esperimento consiste in un'asticella leggera con due piccole masse $m$ alle estremità, sospesa a un filo di torsione. Avvicinando due grandi masse di piombo $M$, la forza di attrazione produce un momento torcente che ruota l'asticella di un angolo $\theta$.
+\begin{equation}
+    M_{tors} = c \theta = F \cdot L \quad \Rightarrow \quad c\theta = \left( G \frac{Mm}{r^2} \right) L
+\end{equation}
+Misurando l'angolo $\theta$ (tramite un raggio di luce riflesso da uno specchio su una scala graduata), si ottiene:
+\begin{equation}
+    G = 6.67 \times 10^{-11} \, \frac{\text{N} \cdot \text{m}^2}{\text{kg}^2}
+\end{equation}
+
+\section{Massa e Campo Gravitazionale}
+
+\subsection{Principio di Equivalenza}
+\begin{itemize}
+    \item \textbf{Massa Inerziale ($m_i$)}: Misura la resistenza all'accelerazione ($F = m_i a$).
+    \item \textbf{Massa Gravitazionale ($m_g$)}: Misura l'interazione con il campo ($F = G M m_g / r^2$).
+\end{itemize}
+Sperimentalmente, ogni corpo cade con accelerazione $g$:
+\begin{equation}
+    m_{i} a = G \frac{M_T m_{g}}{R_T^2} \quad \Rightarrow \quad a = \left( G \frac{M_T}{R_T^2} \right) \frac{m_g}{m_i}
+\end{equation}
+Perché $a = g$ per qualunque corpo, deve essere $m_g/m_i = \text{costante}$. Si assume $m_g \equiv m_i$.
+
+\subsection{Campo Gravitazionale e Sovrapposizione}
+Definiamo il campo $\vec{g}$ prodotto da una massa $M$:
+\begin{equation}
+    \vec{g} = \frac{\vec{F}_g}{m} = - \frac{GM}{r^2} \hat{r}
+\end{equation}
+Per $n$ masse orbitanti, vale il principio di sovrapposizione lineare:
+\begin{equation}
+    \vec{G}_{tot} = \sum \vec{g}_i = - G \sum \frac{M_i}{r_i^2} \hat{r}_i
+\end{equation}
+
+\section{Moto in Campo Centrale e Leggi di Keplero}
+Il moto avviene sotto una forza centrale $F(r) = - \frac{k}{r^2}$. L'energia totale è:
+\begin{equation}
+    E = \frac{1}{2} \mu \dot{r}^2 + U_{eff}(r) = \frac{1}{2} \mu \dot{r}^2 + \frac{L^2}{2\mu r^2} - \frac{GmM}{r}
+\end{equation}
+
+\subsection{Orbite Circolari e Minimo di Energia}
+Per un'orbita circolare ($r = r^*$), il raggio è costante ($\dot{r} = 0$) e corrisponde al minimo di $U_{eff}$:
+\begin{equation}
+    \frac{dU_{eff}}{dr} = 0 \quad \Rightarrow \quad - \frac{L^2}{\mu r^3} + \frac{GmM}{r^2} = 0 \quad \Rightarrow \quad r^* = \frac{L^2}{GmM\mu}
+\end{equation}
+L'energia minima vale:
+\begin{equation}
+    E^* = U_{eff}(r^*) = \frac{L^2}{2\mu (r^*)^2} - \frac{GmM}{r^*} = \frac{1}{2} \left[ \frac{GmM}{r^*} \right] - \frac{GmM}{r^*} = - \frac{GmM}{2r^*}
+\end{equation}
+
+\subsection{Classificazione delle Orbite e Eccentricità}
+La soluzione generale per la traiettoria è:
+\begin{equation}
+    r(\phi) = \frac{p}{1 + \epsilon \cos\phi} \quad \text{con } p = \frac{L^2}{GmM\mu} \text{ e } \epsilon = \sqrt{1 + \frac{2EL^2}{\mu(GmM)^2}}
+\end{equation}
+\begin{itemize}
+    \item $E > 0 \Rightarrow \epsilon > 1$: Iperbole (moto illimitato).
+    \item $E = 0 \Rightarrow \epsilon = 1$: Parabola (velocità di fuga).
+    \item $E^* < E < 0 \Rightarrow 0 < \epsilon < 1$: Ellisse (moto limitato).
+    \item $E = E^* \Rightarrow \epsilon = 0$: Circonferenza.
+\end{itemize}
+
+\begin{teorema}{I Legge di Keplero}
+    Le orbite dei pianeti sono ellissi con il Sole in uno dei fuochi.
+\end{teorema}
+Proprietà dell'ellisse:
+$r_{min} = p/(1+\epsilon) = a(1-\epsilon)$ (Perielio), 
+$r_{max} = p/(1-\epsilon) = a(1+\epsilon)$ (Afelio). 
+Semiasse maggiore $a = (r_{min} + r_{max})/2 = \frac{p}{1-\epsilon^2} = \frac{GmM}{2|E|}$.
+
+\subsection{III Legge di Keplero: Derivazione Analitica}
+\begin{teorema}{III Legge di Keplero}
+L'area dell'ellisse è $A = \pi a b$. Dalla conservazione del momento angolare sapendo che la velocità areolare è $\dot{A} = L/2\mu$:
+\begin{equation}
+    A = \int_{0}^{T} \dot{A} \, dt = \frac{L}{2\mu} T = \pi a b \quad \Rightarrow \quad T^2 = \frac{4\pi^2 \mu^2 a^2 b^2}{L^2}
+\end{equation}
+Usando la relazione geometrica $b^2 = a^2 (1-\epsilon^2)$ e l'espressione di $L^2 = \mu GmM p = \mu GmM a(1-\epsilon^2)$:
+\begin{equation}
+    T^2 = \frac{4\pi^2 \mu^2 a^2 [a^2(1-\epsilon^2)]}{\mu G M m a(1-\epsilon^2)} = \frac{4\pi^2 \mu a^3}{G M m} = \frac{4\pi^2 a^3}{G(M+m)}
+\end{equation}
+Per $M \gg m$ (caso del Sole):
+\begin{equation}
+    \frac{a^3}{T^2} \approx \frac{GM_{sole}}{4\pi^2} = \text{costante per tutti i pianeti}
+\end{equation}
+\end{teorema}
+
+\subsection{Verifica Newtoniana: da Keplero a $1/r^2$}
+Newton dimostrò che se vale la $III$ legge di Keplero per orbite circolari ($a=r$):
+\begin{equation}
+    T^2 = K r^3 \quad \Rightarrow \quad \omega^2 = \left( \frac{2\pi}{T} \right)^2 = \frac{4\pi^2}{K r^3}
+\end{equation}
+L'accelerazione centripeta richiesta è:
+\begin{equation}
+    a_c = \omega^2 r = \frac{4\pi^2}{K r^3} r = \frac{4\pi^2}{K} \frac{1}{r^2}
+\end{equation}
+Dunque la forza deve essere del tipo $F \propto 1/r^2$.
+
+\section{Teorema dei Gusci (Shell Theorem)}
+\subsection{Dimostrazione Integrale}
+Calcoliamo la forza tra un guscio sferico di raggio $R$ e massa $M$ e un punto $m$ a distanza $r$ dal centro. Consideriamo un anello infinitesimo di massa $dM = \sigma (2\pi R^2 \sin\theta d\theta)$.
+La forza lungo l'asse è:
+\begin{equation}
+    dF = \frac{Gm \cdot dM}{s^2} \cos\psi = \frac{Gm \sigma 2\pi R^2 \sin\theta d\theta}{s^2} \left[ \frac{r - R\cos\theta}{s} \right]
+\end{equation}
+Dalla legge di Carnot: $s^2 = r^2 + R^2 - 2rR\cos\theta$. Differenziando: $2s ds = 2rR\sin\theta d\theta \Rightarrow \sin\theta d\theta = \frac{s ds}{rR}$.
+Inoltre $\cos\theta = \frac{r^2 + R^2 - s^2}{2rR}$. Sostituendo:
+\begin{equation}
+    dF = \frac{Gm M}{4r^2 R} \left[ 1 + \frac{r^2 - R^2}{s^2} \right] ds
+\end{equation}
+Integrando tra $s_1 = r-R$ e $s_2 = r+R$ per un punto esterno ($r > R$):
+\begin{equation}
+    F = \frac{GmM}{4r^2 R} \int_{r-R}^{r+R} \left( 1 + \frac{r^2 - R^2}{s^2} \right) ds = \frac{GmM}{4r^2 R} \left[ s - \frac{r^2 - R^2}{s} \right]_{r-R}^{r+R} = \dots = \frac{GmM}{r^2}
+\end{equation}
+Per un punto interno ($r < R$), integrando tra $R-r$ e $R+r$:
+\begin{equation}
+    F = \dots = \frac{GmM}{4r^2 R} [ (R+r) - (R-r) + (R-r) - (R+r) ] = 0
+\end{equation}
+\begin{osservazione}{Sfera Piena}
+    Per una sfera piena di raggio $R_T$, all'esterno $F \propto 1/r^2$. All'interno ($r < R_T$), solo la massa contenuta nella sfera di raggio $r$ contribuisce:
+    \begin{equation}
+        F(r) = \frac{G m M(r)}{r^2} = \frac{G m (\rho \frac{4}{3}\pi r^3)}{r^2} \propto r
+    \end{equation}
+    La forza cresce linearmente dal centro fino alla superficie, per poi decrescere come $1/r^2$.
+\end{osservazione}
