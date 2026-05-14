@@ -9,7 +9,8 @@ Gli appunti coprono diversi ambiti fondamentali, tra cui:
 - Dinamica del Punto e dei Sistemi: Principi di Newton, forze, attriti e leggi di conservazione.
 - Urti: Dinamica degli urti elastici e anelastici.
 - Corpo Rigido: Rotazioni, momenti d'inerzia e oscillazioni.
-- Termodinamica (in corso di integrazione).
+- Termodinamica 
+- Relatività Ristretta
 
 STRUTTURA DELLA REPOSITORY
 La cartella e' organizzata nei seguenti moduli:
