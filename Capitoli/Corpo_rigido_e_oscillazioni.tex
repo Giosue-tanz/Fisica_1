@@ -1,5 +1,2184 @@
-\chapter{Corpo rigido e oscillazioni.pdf}
+\chapter{Corpo Rigido e Oscillazioni}
 
 
 % --- Batch Pagine 1-10 ---
 % Errore batch 0-10
+
+\section{Moti del Corpo Rigido}
+Il moto deve rispettare la condizione di rigidità, ovvero:
+\begin{equation}
+    \frac{d}{dt} \left( |\vec{r}_i - \vec{r}_j| \right) = 0
+\end{equation}
+Sviluppando la derivata della distanza:
+\begin{equation}
+    \frac{2(\vec{r}_i - \vec{r}_j) \cdot (\vec{v}_i - \vec{v}_j)}{2\sqrt{(\vec{r}_i - \vec{r}_j)^2}} = 0
+\end{equation}
+(Si nota che il denominatore non può essere nullo in quanto $i \neq j$).
+Questo si verifica in tre casi:
+\begin{enumerate}
+    \item $\vec{r}_i = \vec{r}_j$: $i$ e $j$ sono lo stesso punto (caso banale).
+    \item $\vec{v}_i = \vec{v}_j$: i due punti hanno la stessa velocità. Possiamo considerare il corpo concentrato nel centro di massa e trattarlo, di fatto, come un \textbf{punto materiale}.
+    \item $d\vec{r} \perp d\vec{v}$: la distanza relativa e la velocità relativa tra $i$ e $j$ sono ortogonali.
+\end{enumerate}
+Nel caso 3, se poniamo l'origine in $i$ ($\vec{r}_i = 0$), abbiamo $\vec{r}_j \perp \vec{v}_j$. Poiché $\vec{r}_i$ e $\vec{r}_j$ rimangono alla stessa distanza, il moto relativo descrive una traiettoria \textbf{circolare}.
+
+In generale, sappiamo che per un moto rotatorio si può scrivere $\vec{v}_i = \vec{\omega}_i \times \vec{r}_i$ e $\vec{v}_j = \vec{\omega}_j \times \vec{r}_j$. Verifichiamo allora che se esistono $\vec{\omega}_i, \vec{\omega}_j$, deve necessariamente valere $\vec{\omega}_i = \vec{\omega}_j$:
+\begin{align*}
+    0 &= (\vec{r}_i - \vec{r}_j) \cdot (\vec{\omega}_i \times \vec{r}_i - \vec{\omega}_j \times \vec{r}_j) \\
+    &= \cancel{\vec{r}_i \cdot (\vec{\omega}_i \times \vec{r}_i)} - \vec{r}_j \cdot (\vec{\omega}_i \times \vec{r}_i) + \vec{r}_i \cdot (\vec{\omega}_j \times \vec{r}_j) + \cancel{\vec{r}_j \cdot (\vec{\omega}_j \times \vec{r}_j)}
+\end{align*}
+Applicando una permutazione ciclica del prodotto misto ($\vec{A} \cdot (\vec{B} \times \vec{C}) = \vec{C} \cdot (\vec{A} \times \vec{B})$):
+\begin{equation}
+    = - \left[ \vec{r}_i \cdot (\vec{r}_j \times \vec{\omega}_i) \right] + \vec{r}_i \cdot (\vec{\omega}_j \times \vec{r}_j)
+\end{equation}
+Ricordando che il prodotto vettoriale è anticommutativo ($\vec{A} \times \vec{B} = -\vec{B} \times \vec{A}$):
+\begin{align*}
+    &= - \vec{r}_i \cdot (\vec{r}_j \times \vec{\omega}_i) - \vec{r}_i \cdot (\vec{r}_j \times \vec{\omega}_j) \\
+    &= - \vec{r}_i \cdot \left[ \vec{r}_j \times (\vec{\omega}_i - \vec{\omega}_j) \right] = 0 \iff \vec{\omega}_i = \vec{\omega}_j = \vec{\omega}
+\end{align*}
+Quindi tutti i punti del corpo condividono la stessa velocità angolare $\vec{\omega}$.
+
+Consideriamo il caso in cui il corpo subisca una traslazione rigida pari a $\vec{R}$. In questo caso:
+\begin{equation*}
+    \vec{r}_i \to \vec{r}_i + \vec{R}, \quad \vec{v}_i \to \vec{v}_i + \vec{V}
+\end{equation*}
+Tuttavia, le differenze $(\vec{v}_i - \vec{v}_j)$ e $(\vec{r}_i - \vec{r}_j)$ rimangono le stesse di prima. Di conseguenza, anche se il corpo trasla di $\vec{R}$, ogni punto continua a muoversi con velocità angolare $\vec{\omega}$.
+Cioè \textbf{rotazione} e \textbf{traslazione} possono verificarsi contemporaneamente.
+
+I moti possibili per un corpo rigido sono quindi:
+\begin{itemize}
+    \item \textbf{Traslazione} (caso 2)
+    \item \textbf{Rotazione} (caso 3)
+    \item \textbf{Rototraslazione} (combinazione dei casi 2 e 3)
+\end{itemize}
+
+\subsection{Distribuzione dei gradi di libertà}
+Cosa succede ai gradi di libertà (d.o.f.) del sistema?
+\begin{itemize}
+    \item La posizione del punto di riferimento $\vec{R}(t) = (X(t), Y(t), Z(t))$ fornisce \textbf{3 d.o.f.} legati alla \textit{traslazione}.
+    \item Una volta fissato il primo punto $A$ (che sta traslando con il corpo), un secondo punto $B$ si può muovere solo lungo una superficie sferica di raggio $AB$ centrata in $A$. Fissato un asse, $B$ possiede due coordinate angolari libere. Quindi introduce \textbf{2 d.o.f.} legati alla \textit{rotazione}.
+    \item Fissato anche l'asse di rotazione identificato dai punti $A$ e $B$, un terzo punto $C$, dovendo mantenere distanze costanti sia da $A$ che da $B$, può muoversi solo lungo una singola circonferenza che fa da base a un cono con asse passante per $A$ e $B$. Questo introduce \textbf{1 d.o.f.} residuo di \textit{rotazione}.
+\end{itemize}
+
+Il bilancio totale per un corpo rigido libero è dunque:
+\begin{equation*}
+    \text{3 DOF (Punto di riferimento per Traslazione)} + \text{3 DOF (Rotazioni indipendenti)} = \text{6 DOF}
+\end{equation*}
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}[>=latex, scale=1]
+        % Assi principali
+        \draw[->, thick] (0,0) -- (3,0) node[right] {$y$};
+        \draw[->, thick] (0,0) -- (0,3) node[above] {$z$};
+        \draw[->, thick] (0,0) -- (-1.5,-1.5) node[below left] {$x$};
+        
+        % Vettore R(t) e punto A
+        \coordinate (A) at (4,1);
+        \draw[->, thick, mygreen] (0,0) -- (A) node[midway, below right] {$\vec{R}(t)$};
+        \fill (A) circle (1.5pt) node[below right] {$A$};
+        
+        % Assi locali A (x', y', z')
+        \draw[->, thin, mypen] (A) -- ++(1.5,0) node[right] {$y'$};
+        \draw[->, thin, mypen] (A) -- ++(0,1.5) node[above] {$z'$};
+        \draw[->, thin, mypen] (A) -- ++(-0.8,-0.8) node[below left] {$x'$};
+        
+        % Punto B
+        \coordinate (B) at (4.5, 3);
+        \draw[thick, dashed] (A) -- (B);
+        \fill (B) circle (1.5pt) node[right] {$B$};
+        
+        % Punto C
+        \coordinate (C) at (5.5, 1.5);
+        \fill (C) circle (1.5pt) node[right] {$C$};
+        \draw[thick, dashed] (A) -- (C);
+        \draw[thick, dashed] (B) -- (C);
+        
+        % Assi locali C (x'', y'')
+        \draw[->, thin, mypen] (C) -- ++(1,0) node[right] {$y''$};
+        \draw[->, thin, mypen] (C) -- ++(-0.5,-0.5) node[below left] {$x''$};
+    \end{tikzpicture}
+    \caption{Costruzione incrementale dei gradi di libertà per tre punti non allineati del corpo rigido.}
+\end{figure}
+
+\section{Centro di Massa del Corpo Rigido e Simmetrie}
+Il corpo rigido, in generale, è un sistema di punti materiali \textbf{continuo}. Pertanto, la definizione di centro di massa passa da una sommatoria discreta a un integrale esteso a tutto il volume del corpo:
+\begin{equation}
+    \vec{R}_{CM} = \frac{\int_{CR} \vec{r} \, dm(\vec{r})}{\int_{CR} dm(\vec{r})}
+\end{equation}
+dove l'integrale è limitato al volume occupato dal corpo rigido (CR).
+
+È utile introdurre la \textbf{funzione densità di massa} volumetrica:
+\begin{equation}
+    \rho(\vec{r}) = \left. \frac{dm}{dV} \right|_{\vec{r}} \implies dm(\vec{r}) = \rho(\vec{r}) \, dV
+\end{equation}
+Sostituendo nella formula del centro di massa si ottiene:
+\begin{equation}
+    \vec{R}_{CM} = \frac{1}{M_{CR}} \int_{CR} \rho(\vec{r}) \, \vec{r} \, dV
+\end{equation}
+dove l'elemento di volume $dV$ si esprime in base al sistema di coordinate scelto:
+\begin{equation*}
+dV = 
+\begin{cases} 
+dx \, dy \, dz & \text{coordinate cartesiane} \\ 
+r \, dr \, d\phi \, dz & \text{coordinate cilindriche} \\ 
+r^2 \sin\theta \, dr \, d\theta \, d\phi & \text{coordinate sferiche} 
+\end{cases}
+\end{equation*}
+
+Di solito, se il corpo presenta delle simmetrie e la densità è uniforme (o rispetta le stesse simmetrie), il centro di massa giace sull'asse o sul piano di simmetria. Se il corpo è asimmetrico, il centro di massa si sposterà di conseguenza verso le zone a maggiore densità o estensione.
+
+\subsection{Densità superficiale e lineare}
+A seconda della geometria del corpo, è possibile definire densità ridotte:
+\begin{itemize}
+    \item Se una dimensione è trascurabile rispetto alle altre due (es. $dz \ll dx, dy$), si parla di \textbf{densità superficiale}:
+    \begin{equation}
+        \sigma(\vec{r}) = \left. \frac{dm}{dA} \right|_{\vec{r}} \qquad \text{dove } dA = 
+        \begin{cases} 
+        dx \, dy & \text{cartesiane} \\ 
+        r \, dr \, d\phi & \text{cilindriche} 
+        \end{cases}
+    \end{equation}
+    \item Se due dimensioni sono trascurabili rispetto alla terza (es. $dz, dy \ll dx$), si parla di \textbf{densità lineare}:
+    \begin{equation}
+        \lambda(\vec{r}) = \left. \frac{dm}{dl} \right|_{\vec{r}} \qquad \text{dove } dl = dx \text{ (in coordinate cartesiane)}
+    \end{equation}
+\end{itemize}
+
+\subsection{Asse di Simmetria}
+Dimostriamo che se un corpo possiede un \textbf{asse di simmetria}, il suo Centro di Massa appartiene a tale asse.
+Consideriamo un corpo simmetrico rispetto all'asse $z$, tale che la sua densità rispetti la condizione $\rho(x,y,z) = \rho(-x,-y,z)$ e i suoi limiti spaziali siano simmetrici: $\exists \, a, b > 0$ tali che $-a \le x \le a$ e $-b \le y \le b$.
+
+Calcoliamo la coordinata $x_{CM}$:
+\begin{equation}
+    x_{CM} = \frac{1}{M} \int_{-a}^{a} x \, dx \int_{-b}^{b} dy \int dz \, \rho(x,y,z)
+\end{equation}
+Applichiamo la sostituzione di variabili $X = -x \implies dX = -dx$ (i limiti da $-a$ ad $a$ diventano da $a$ a $-a$ e il segno differenziale si inverte):
+\begin{equation}
+    x_{CM} = \frac{1}{M} \int_{a}^{-a} (-X) (-dX) \int_{b}^{-b} (-dY) \int dz \, \rho(-X,-Y,z)
+\end{equation}
+Riordinando gli estremi di integrazione (che comporta un cambio di segno per ciascun integrale ribaltato) otteniamo:
+\begin{equation}
+    x_{CM} = - \frac{1}{M} \int_{-a}^{a} X \, dX \int_{-b}^{b} dY \int dz \, \rho(-X,-Y,z)
+\end{equation}
+Essendo per ipotesi $\rho(-X,-Y,z) = \rho(X,Y,z)$, l'integrale al secondo membro è esattamente l'espressione di partenza di $x_{CM}$, quindi:
+\begin{equation}
+    x_{CM} = - x_{CM} \implies 2x_{CM} = 0 \implies x_{CM} = 0
+\end{equation}
+Con lo \textbf{stesso ragionamento per $y_{CM}$} si ottiene $y_{CM} = 0$.
+
+Le coordinate del centro di massa sono pertanto $(0, 0, z_{CM})$. Ne consegue che $CM \in z$, ovvero \textbf{il Centro di Massa appartiene all'asse di simmetria}.
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}[scale=1.5, >=latex]
+        % Corpo simmetrico rispetto all'asse z
+        \draw[thick, fill=gray!20] (0,2.5) .. controls (1.5,1.5) and (1.5,-0.5) .. (0,-1) .. controls (-1.5,-0.5) and (-1.5,1.5) .. (0,2.5);
+        
+        % Asse z
+        \draw[->, thick, mypen] (0,-1.5) -- (0,3) node[above] {$z$};
+        
+        % Elementi di massa simmetrici
+        \coordinate (P1) at (1, 0.5);
+        \coordinate (P2) at (-1, 0.5);
+        
+        \fill (P1) circle (1.5pt) node[right] {$dm(x,y,z)$};
+        \fill (P2) circle (1.5pt) node[left] {$dm(-x,-y,z)$};
+        
+        % Segmento che li unisce
+        \draw[dashed] (P1) -- (P2);
+        \fill (0,0.5) circle (1pt);
+    \end{tikzpicture}
+    \caption{Corpo con asse di simmetria $z$. Ad ogni elemento di massa ad una certa distanza dall'asse corrisponde un elemento identico dalla parte opposta.}
+\end{figure}
+
+\subsection{Piano e Centro di Simmetria}
+
+\paragraph{2) Piano di Simmetria}
+Dimostriamo che se un corpo possiede un \textbf{piano di simmetria}, il suo Centro di Massa appartiene a tale piano.
+Consideriamo un piano di simmetria coincidente con il piano $(x,y)$. La densità rispetta la condizione $\rho(x,y,z) = \rho(x,y,-z)$ e i limiti lungo $z$ sono simmetrici: $\exists \, c > 0 \mid -c \le z \le c$.
+
+Calcoliamo la coordinata $z_{CM}$:
+\begin{equation}
+    z_{CM} = \frac{1}{M} \int_{-c}^{c} z \, dz \int dx \int dy \, \rho(x,y,z)
+\end{equation}
+Applicando la sostituzione di variabili $Z = -z \implies dZ = -dz$:
+\begin{equation}
+    z_{CM} = \frac{1}{M} \int_{c}^{-c} (-Z) (-dZ) \int dx \int dy \, \rho(x,y,-Z)
+\end{equation}
+Riordinando gli estremi di integrazione si ottiene un segno meno globale:
+\begin{equation}
+    z_{CM} = - \frac{1}{M} \int_{-c}^{c} Z \, dZ \int dx \int dy \, \rho(x,y,-Z)
+\end{equation}
+Poiché per ipotesi $\rho(x,y,-Z) = \rho(x,y,Z)$, l'espressione a destra coincide con l'integrale di partenza cambiato di segno:
+\begin{equation}
+    z_{CM} = - z_{CM} \implies 2z_{CM} = 0 \implies z_{CM} = 0
+\end{equation}
+Le coordinate del centro di massa sono pertanto $(x_{CM}, y_{CM}, 0)$, il che dimostra che \textbf{il Centro di Massa appartiene al piano di simmetria} $(x,y)$.
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}[scale=1.2, >=latex]
+        % Corpo attraversato dal piano
+        \draw[thick, fill=gray!10] (0, 0) ellipse (1.5 and 2.5);
+        
+        % Piano di simmetria (x,y) in prospettiva
+        \draw[dashed, blue, fill=blue!5, opacity=0.5] (-2.5,-1) -- (1.5,-1) -- (2.5,1) -- (-1.5,1) -- cycle;
+        
+        % Assi
+        \draw[->, thick] (0,0) -- (1.5,0) node[right] {$y$};
+        \draw[->, thick] (0,0) -- (0,2) node[above] {$z$};
+        \draw[->, thick] (0,0) -- (-1,-1) node[below left] {$x$};
+        
+        % Punti simmetrici
+        \coordinate (P1) at (0.8, 1.2);
+        \coordinate (P2) at (0.8, -1.2);
+        
+        \fill (P1) circle (1.5pt) node[right] {$dm(x,y,z)$};
+        \fill (P2) circle (1.5pt) node[right] {$dm(x,y,-z)$};
+        
+        \draw[dashed] (P1) -- (0.8,0) -- (P2);
+        \fill (0.8,0) circle (1pt);
+    \end{tikzpicture}
+    \caption{Rappresentazione di un corpo tagliato dal suo piano di simmetria equatoriale.}
+\end{figure}
+
+\paragraph{3) Centro di Simmetria}
+Se un corpo possiede un \textbf{centro di simmetria}, il suo Centro di Massa coinciderà esattamente con tale punto.
+Alcuni esempi notevoli:
+\begin{itemize}
+    \item \textbf{Sfera omogenea}: Ogni diametro rappresenta un asse di simmetria. Il centro geometrico funge da centro di simmetria ed è anche il Centro di Massa. In questo caso, il CM appartiene materialmente al corpo ($CM \in \text{corpo}$).
+    \item \textbf{Superficie sferica (guscio)}: Valgono le stesse considerazioni di simmetria della sfera piena, ma in questo caso il CM si trova nel vuoto al centro della bolla ($CM \notin \text{corpo}$).
+    \item \textbf{Cilindro omogeneo}: L'asse longitudinale è l'asse di simmetria. Inoltre possiede un piano di simmetria trasversale a metà altezza ($h/2$). Il CM giace all'intersezione tra l'asse del cilindro e il piano di simmetria.
+\end{itemize}
+
+\section{Forza Totale, Momento Totale e Baricentro}
+Per un corpo esteso immerso in un campo gravitazionale $\vec{g}$, la forza agente su un elemento di massa infinitesimo $dm$ è $d\vec{F} = dm \, \vec{g}(dm)$. La \textbf{forza totale} si ottiene integrando su tutto il volume del corpo:
+\begin{equation}
+    \vec{F}_{tot} = \int_{CR} dm \, \vec{g}(dm)
+\end{equation}
+
+Nel caso tipico in cui le dimensioni del corpo siano del tutto trascurabili rispetto al raggio terrestre ($d \ll R_{\text{terra}}$), l'accelerazione di gravità si può considerare \textbf{costante} su tutta l'estensione del corpo ($\vec{g} = \text{costante}$). In tal caso, il vettore $\vec{g}$ può essere portato fuori dall'integrale:
+\begin{equation}
+    \vec{F}_{tot} = \vec{g} \int_{CR} dm = M \vec{g}
+\end{equation}
+(In generale, per corpi estremamente estesi come le montagne o interi continenti, l'approssimazione di $\vec{g}$ costante non è più valida e bisogna integrare tenendo conto del gradiente gravitazionale locale).
+
+\subsection{Definizione di Baricentro}
+A quale punto geometrico si può immaginare applicata la forza totale $\vec{F}_{tot}$ in modo che eserciti lo stesso momento torcente generato dalla somma di tutti i pesi infinitesimi? Questo punto si chiama \textbf{baricentro}.
+
+Sia $d\vec{F} = \vec{g} \, dm$. Il momento torcente infinitesimo generato da questa forza rispetto al polo di rotazione $O$ è:
+\begin{equation}
+    d\vec{\tau}_O = \vec{R}(dm) \times d\vec{F}(dm) = dm \, (\vec{R} \times \vec{g})
+\end{equation}
+Integrando su tutto il corpo rigido, il momento totale risulta:
+\begin{equation}
+    \vec{\tau}_O = \int_{CR} d\vec{\tau}_O = \int_{CR} dm \, (\vec{R} \times \vec{g})
+\end{equation}
+
+Sotto l'ipotesi in cui l'accelerazione di gravità sia rigorosamente costante su tutto il volume, si può estrarre il prodotto vettoriale per $\vec{g}$ fuori dall'integrale:
+\begin{equation}
+    \vec{\tau}_O = \left( \int_{CR} dm \, \vec{R} \right) \times \vec{g} = (M \vec{R}_{CM}) \times \vec{g} = \vec{R}_{CM} \times (M \vec{g}) = \vec{R}_{CM} \times \vec{F}_{tot}
+\end{equation}
+
+Questa relazione fondamentale dimostra che, se $\vec{g}$ è costante, il momento totale generato dalla gravità su un corpo esteso equivale al momento della sola forza totale $M\vec{g}$ \textbf{applicata nel Centro di Massa} ($\vec{R}_{CM}$). 
+
+Ne consegue che \textbf{il baricentro (centro di gravità) e il centro di massa coincidono}, ma \textit{solo} nell'approssimazione di un campo gravitazionale uniforme.
+\begin{osservazione}{}
+L'omogeneità o disomogeneità della densità del corpo non invalida questa coincidenza: fintantoché $\vec{g}$ è costante, CM e Baricentro saranno sempre lo stesso punto.
+\end{osservazione}
+
+
+\section{Moto di puro rotolamento e rototraslazione}
+
+L'asse di rotazione passa attraverso P. Se P ha una velocità $\vec{v}_P$, allora
+\begin{equation}
+\vec{v}_Q = \vec{v}_P + \vec{\omega} \times \vec{r}
+\end{equation}
+è la velocità del punto $Q$ rispetto al sistema di riferimento inerziale $S$.
+
+Se ci spostiamo sul sistema che ha origine in P con asse $z$ quello di rotazione, allora $\vec{v}_Q' = \vec{\omega} \times \vec{r}$.
+
+% Diagramma: cerchio con asse di rotazione passante per P, sistema di riferimento S con assi x,y,z e punto Q indicato
+
+P può non appartenere al corpo rigido.
+
+\begin{osservazione}{}
+Il moto di un corpo rigido è in generale una composizione di moto traslatorio e moto rotatorio.
+\end{osservazione}
+
+\begin{itemize}
+    \item Il \textbf{rotolamento} si ha con rotazione + traslazione -- scivolamento $\Rightarrow$ il corpo a contatto con la superficie è istantaneamente fermo nel punto di contatto.
+    
+    La \textbf{rototraslazione} si ha con rotazione + traslazione $\Rightarrow$ è il caso più generico, in cui può anche essere presente lo scivolamento del punto di contatto.
+
+    \item Il corpo fa un moto rotatorio attorno ad un asse che in generale può traslare: è detto \textbf{asse istantaneo di rotazione} e ha alcune caratteristiche:
+    \begin{enumerate}
+        \item Passa per $P^*$ dove $\vec{v}_{P^*} \parallel \vec{\omega}$ ovvero $\vec{v}_{P^*} = 0$
+        \item La distanza $P^*Q = \vec{r}^*$ con $|\vec{r}^* \perp \vec{\omega}|$ $\forall\, Q$ (generico)
+    \end{enumerate}
+\end{itemize}
+
+Se $\vec{v}_{P^*} \parallel \vec{\omega}$, allora $\vec{\omega} \times \vec{v}_P = 0$; dalla formula sopra ricaviamo $\vec{v}_{P^*} = \vec{v}_Q - \vec{\omega} \times \vec{r}^*$.
+
+\begin{align*}
+&\Rightarrow \vec{\omega} \times \vec{v}_Q + \vec{\omega} \times (\vec{\omega} \times \vec{r}^*) = 0 = \vec{\omega} \times \vec{v}_Q - (\vec{\omega} \cdot \vec{r}^*)\vec{\omega} + \omega^2 \vec{r}^* \\
+&\text{Se } \vec{r}^* \perp \vec{\omega}, \text{ allora } \vec{\omega} \times \vec{v}_Q + \omega^2 \vec{r}^* = 0 \quad \text{da cui} \\
+&\vec{r}^* = P^*Q = -\frac{\vec{\omega} \times \vec{v}_Q}{\omega^2} \qquad \text{ovvero} \quad \overrightarrow{QP^*} = \frac{\vec{\omega} \times \vec{v}_Q}{\omega^2}
+\end{align*}
+
+$\Rightarrow$ Se conosciamo il punto $Q$ possiamo trovare il punto $P^*$ grazie alla sua distanza dal punto $Q$.
+
+Inoltre vale anche che $\vec{v}_Q = \vec{v}_{P^*} + \vec{\omega} \times \vec{r}^* \quad \forall\, Q$.
+
+Infine se valgono (1) e (2) $\Rightarrow$ $\vec{v}_Q = \vec{\omega} \times \vec{r}^*$, cioè $Q$ fa una rotazione attorno a $P^*$ che però può cambiare nel tempo, cioè ad un altro istante posso trovare un altro $P_1^*$ con le stesse proprietà di $P^*$ (potrebbe anche essere $P_1^* \equiv P^*$).
+
+\paragraph{Determinazione grafica di $P^*$}
+Per determinare graficamente $P^*$ serve conoscere la direzione della velocità di 2 punti.
+
+% Diagramma: costruzione grafica per trovare P*, con due punti Q_1 e Q_2 e le rispettive velocità, le cui perpendicolari si incontrano in P*
+\begin{tikzpicture}
+    % Costruzione grafica per P*
+    \coordinate (P) at (0,0);
+    \coordinate (Q1) at (2,2);
+    \coordinate (Q2) at (3,0.5);
+    
+    \node[left] at (P) {$P^*$};
+    \node[above right] at (Q1) {$Q_1$};
+    \node[right] at (Q2) {$Q_2$};
+    
+    \fill (P) circle (2pt);
+    \fill (Q1) circle (2pt);
+    \fill (Q2) circle (2pt);
+    
+    % Velocità di Q1 (orizzontale)
+    \draw[->,thick,mypen] (Q1) -- ++(1,0) node[above] {$\vec{v}_{Q_1}$};
+    % Perpendicolare da Q1
+    \draw[dashed] (Q1) -- (P);
+    
+    % Velocità di Q2 (verticale)
+    \draw[->,thick,mypen] (Q2) -- ++(0,1) node[right] {$\vec{v}_{Q_2}$};
+    % Perpendicolare da Q2
+    \draw[dashed] (Q2) -- (P);
+\end{tikzpicture}
+
+
+\subsection{Moto di puro rotolamento nei corpi a sezione circolare}
+
+Il moto di puro rotolamento avviene nei corpi a sezione circolare o comunque senza spigoli, in modo da impedire urti e scivolamento.
+
+\begin{equation}
+\vec{v}_Q = \vec{v}_{CM} + \vec{\omega} \times \vec{r}^*
+\end{equation}
+
+% Diagramma: cerchio su superficie con CM, punto Q di contatto, asse z verticale, assi x,y, vettore r* da CM a Q
+\begin{tikzpicture}
+    % Cerchio (sezione del corpo rigido)
+    \draw (0,1.5) circle (1.5);
+    \fill (0,1.5) circle (2pt) node[above right] {$CM$};
+    \fill (0,0) circle (2pt) node[below left] {$Q$};
+    \draw[->] (0,1.5) -- (0,0) node[midway, right] {$\vec{r}_{CM}$};
+    \draw[->] (0,1.5) -- (1.5,1.5) node[midway, above] {$\vec{r}^*$};
+    \draw[thick] (-2,0) -- (3,0) node[below] {superficie};
+    % Assi
+    \draw[->] (-2,-0.5) -- (-1,-0.5) node[right] {$y$};
+    \draw[->] (-2,-0.5) -- (-2,0.5) node[above] {$z$};
+    \node[below left] at (-2,-0.5) {$x_\perp$};
+\end{tikzpicture}
+
+Se $\vec{v}_{CM} = \vec{\omega} \times (-\vec{r}^*)$, cioè il corpo ruota in senso orario, allora $\vec{v}_Q = 0$, cioè l'asse che passa per $Q$ è \textbf{istantaneamente fermo}.
+
+\begin{itemize}
+    \item Inoltre se $\vec{r}^* = \overrightarrow{CM \to Q}$ e $(-\vec{r}^*) = \overrightarrow{Q \to CM}$, allora
+\end{itemize}
+
+$\vec{v}_{CM} = \vec{\omega} \times \vec{R}_{Q \to CM}$, cioè $\vec{v}_{CM}$ ruota intorno ad un asse che passa per $Q$, perché $Q$ rispetta (1) e (2). Quindi è l'asse istantaneo di rotazione. Questo si può dimostrare verificando che anche ogni altro punto del corpo rigido ruota attorno a $Q$ ($S$ generico):
+
+\begin{align*}
+\vec{v}_S &= \vec{v}_{CM} + \vec{\omega} \times \vec{R}_{CM \to S} = \vec{\omega} \times \vec{R}_{Q \to CM} + \vec{\omega} \times \vec{R}_{CM \to S} \\
+&= \vec{\omega} \times (\vec{R}_{Q \to CM} + \vec{R}_{CM \to S}) = \vec{\omega} \times \vec{R}_{Q \to S}, \quad \text{cioè } S \text{ ruota attorno a } Q.
+\end{align*}
+
+\begin{osservazione}{}
+Ogni punto del corpo segue una pura rotazione intorno all'asse $Q$ (se $\vec{v}_Q = 0$).
+\end{osservazione}
+
+% Diagramma: due sistemi di riferimento - SdR CM (punto di riferimento è il CM fermo, Q si muove) e SdR INE (punto di riferimento è Q fermo, il CM si muove)
+
+Essendoci contatto fra superfici, si genera attrito, ma nel caso del puro rotolamento è \textbf{attrito statico} perché $Q$ è fermo (altrimenti, con lo strisciamento è dinamico) $\Rightarrow$ poiché l'attrito statico non dissipa energia, è energeticamente più conveniente (un corpo tende, se può, a rotolare).
+
+\paragraph{Cosa succede se la superficie è in moto?}
+
+% Diagramma: cerchio su superficie in moto con velocità V
+\begin{equation}
+\vec{v}_Q = \vec{v}_{CM} + \vec{\omega} \times \vec{R}_{CM \to Q} = \vec{V}_{PR}
+\end{equation}
+deve essere fermo rispetto alla superficie.
+
+\begin{equation}
+\Rightarrow \vec{v}_{CM} = \vec{V} - \vec{\omega} \times \vec{R}_{CM \to Q} = \vec{V} + \vec{\omega} \times \vec{R}_{Q \to CM}
+\end{equation}
+
+\subsection{La carrucola e la fune}
+
+P è carrucola, Q è fune e $\vec{v}_P = \vec{v}_Q$, cioè la fune non slitta sulla carrucola.
+
+% Diagramma: carrucola con CM, punto P e punto Q sulla fune
+\begin{align*}
+&\vec{v}_{CM} = 0 \\
+&\vec{v}_P = \vec{\omega} \times \vec{R}_{CM \to P} = \vec{v}_Q \\
+&\Rightarrow \vec{a}_Q = \vec{\dot{\omega}} \times \vec{R}_{CM \to P}
+\end{align*}
+
+
+\section{Momento angolare}
+
+Si sfrutta il 2° teorema di Koenig:
+\begin{equation}
+\vec{L}_O = \vec{L}_{CM} + \vec{L}' \qquad \text{con } \vec{L}_{CM} = M\vec{R}_{CM} \times \vec{v}_{CM}; \quad \vec{L}' = \sum_i m_i \vec{r}_i' \times \vec{v}_i'
+\end{equation}
+
+Inoltre $\vec{v}_Q = \vec{v}_{CM} + \vec{\omega} \times \vec{R}_{CM \to Q}$ e $\vec{v}_Q' = \vec{\omega} \times \vec{R}_{CM \to Q}$, $\vec{r}_Q' = \vec{R}_{CM \to Q}$.
+
+% Si sostituisce con la densità e il volume
+\begin{equation}
+\Rightarrow \vec{L}' = \sum_{CR} m_i \vec{r}_i' \times \vec{v}_i' = \int_{CR} dm\, \vec{r}(dm) \times \vec{v}(dm)
+\end{equation}
+
+(Facciamo il caso discreto ma il caso continuo è perfettamente analogo).
+
+% Diagramma: vettori omega, r_i, d_i con angoli theta_i
+
+$\hat{t}_i' = $ versore $\perp$ asse $\vec{\omega}$, \quad $d_i = r_i' \sin\theta_i$
+
+\begin{align*}
+\vec{L}' &= \sum_i m_i \vec{r}_i' \times (\vec{\omega} \times \vec{r}_i') \\
+&= \sum_i m_i \left[(r_i')^2 \vec{\omega} - \vec{r}_i'(\vec{r}_i' \cdot \vec{\omega})\right]
+\end{align*}
+
+\begin{align*}
+&\Rightarrow \vec{r}_i' = r_i'(\hat{\omega}\cos\theta_i + \hat{t}_i \sin\theta_i) \\
+&\Rightarrow \vec{\omega} \cdot \vec{r}_i' = (\omega\hat{\omega}) \cdot r_i'(\hat{\omega}\cos\theta_i + \hat{t}_i\sin\theta_i) = \omega r_i' \cos\theta_i
+\end{align*}
+
+\begin{align*}
+\Rightarrow \vec{L}' &= \sum_i m_i \left(r_i'^2 \vec{\omega} - r_i'(\hat{\omega}\cos\theta_i + \hat{t}_i\sin\theta_i)\omega r_i' \cos\theta_i\right) \\
+&= \sum_i m_i \left(r_i'^2 \vec{\omega} - r_i'^2 \omega \cos^2\theta_i \hat{\omega} - r_i'^2 \omega \hat{t}_i \cos\theta_i \sin\theta_i\right) \\
+&= \sum_i m_i r_i'^2 \omega \sin^2\theta_i \hat{\omega} - \sum_i m_i r_i'^2 \omega \hat{t}_i \cos\theta_i \sin\theta_i
+\end{align*}
+
+\begin{equation}
+\boxed{= \underbrace{\hat{\omega} \sum_i m_i d_i^2}_{\parallel \vec{\omega}} - \underbrace{\omega \sum_i m_i r_i'^2 \cos\theta_i \sin\theta_i \hat{t}_i}_{\text{dipende dalla forma del corpo}} = \vec{L}'}
+\end{equation}
+
+$\Rightarrow$ $\vec{L}_O$ non è, in generale, $\parallel \vec{\omega}$.
+
+\begin{itemize}
+    \item Ogni corpo rigido, indipendentemente dalla sua geometria, ha $\#$ assi ortogonali fra loro $|\vec{L}' \parallel \vec{\omega}| \geq 3$ e sono detti \textbf{assi principali di inerzia}.
+    
+    Se la rotazione avviene attorno a uno di questi assi, allora il termine $\times \vec{\omega}$ è $= 0$.
+\end{itemize}
+
+\begin{equation}
+\vec{L}' = \sum_i m_i d_i^2 \vec{\omega} = \boxed{I_z \vec{\omega}} = \int_{CR} dm\, d(dm)^2 \vec{\omega}
+\end{equation}
+
+$\rightarrow$ dipende dalla geometria del corpo, dalla distribuzione delle masse: se $z$ è l'asse di rotazione allora $I_z$ è il \textbf{momento di inerzia} rispetto a $z$ $[m^2 \cdot kg]$.
+
+\paragraph{Cosa succede se $z$ è un generico asse?}
+In generale $\vec{L}' \neq I_z \vec{\omega}$; se però proiettiamo $\vec{L}'$ lungo $\hat{\omega}$ abbiamo:
+\begin{equation}
+\vec{L}' \cdot \hat{\omega} = L_z = (I_z \omega \hat{\omega} - \Sigma \hat{t}_i) \cdot \hat{\omega} = I_z \omega + 0
+\end{equation}
+
+\begin{equation}
+\Rightarrow \boxed{L_z = I_z \omega} \quad \text{perché } \hat{t}_i \perp \hat{\omega}
+\end{equation}
+
+\begin{osservazione}{}
+Anche se un asse non è principale, la componente $\hat{\omega}$ di $\vec{L}'$ è data da $L_z = I_z\omega$, che essendo una componente, $I_z$ è uno scalare.
+
+$\star$ $\vec{L}$ non è necessariamente riferito al CM.
+\end{osservazione}
+
+
+\subsection{Esempi}
+
+% Diagramma: manubrio (due masse M collegate da asta di lunghezza L) con asse z, omega, angolo theta
+% z' è perpendicolare a z, le due masse sono a distanza L/2 dal CM
+
+\paragraph{a) $\vec{L} \parallel \vec{\omega}$, $z' \perp L$ (asta)}
+
+\begin{align*}
+\vec{L}' &= M(\vec{r}_1' \times \vec{v}_1' + \vec{r}_2' \times \vec{v}_2') \\
+&= M\left(\vec{r}_1' \times (\vec{\omega} \times \vec{r}_1') + \vec{r}_2' \times (\vec{\omega} \times \vec{r}_2')\right) \\
+&= M\left(r_1'^2 + r_2'^2\right)\vec{\omega} = M\left(2\,\frac{L^2}{4}\right)\vec{\omega} \\
+&= \frac{ML^2}{2}\vec{\omega}
+\end{align*}
+
+\begin{equation}
+I_z = \sum_i m_i d_i^2 = 2M \cdot \left(\frac{L}{2}\right)^2 = \frac{ML^2}{2}
+\end{equation}
+
+\begin{equation}
+\Rightarrow \boxed{\vec{L}' = I_z\,\vec{\omega}}
+\end{equation}
+
+\paragraph{b) $I \times \vec{\omega}$, $z' \perp L$ (asta)}
+
+\begin{align*}
+\vec{L}' &= M(\vec{r}_1' \times \vec{v}_1' + \vec{r}_2' \times \vec{v}_2') \\
+&= M\left[r_1'^2 + r_2'^2\right]\vec{\omega} - M\left[\vec{r}_1'(\vec{\omega} \cdot \vec{r}_1') + \vec{r}_2'(\vec{\omega} \cdot \vec{r}_2')\right]
+\end{align*}
+
+Con $\hat{\omega} = -\hat{x}\sin\theta + \hat{y}\cos\theta$, i prodotti scalari danno:
+
+\begin{align*}
+\vec{L}' &= \frac{ML^2}{2}\vec{\omega} - \frac{ML}{2}\omega\sin\theta\left[\vec{r}_1' - \vec{r}_2'\right] \\
+&= \frac{ML^2}{2}\vec{\omega} + \frac{ML^2}{2}\omega\sin\theta\,\hat{x} \qquad \text{(somma $= -L\hat{x}$)} \\
+&= \frac{ML^2}{2}\omega\left(\hat{\omega} + \hat{x}\sin\theta\right) \qquad \hat{y}\cos\theta \text{ componente} \\
+&= \boxed{\frac{ML^2}{2}\omega\cos\theta\,\hat{y}}
+\end{align*}
+
+$\star$ Le rotazioni attorno agli assi non principali sono meno efficienti; conviene favorire quelli principali per evitare logorio e sforzo.
+
+\paragraph{Proiezione di $\vec{L}'$ su $z'$}
+Proviamo a proiettare $\vec{L}'$ su $z'$, cioè $\vec{L}' \cdot \hat{\omega} = L_{z'}$:
+
+% Diagramma: distanze d_1 e d_2 delle masse dall'asse z', con angolo theta
+\begin{align*}
+\vec{L}' \cdot \hat{\omega} &= \frac{ML^2}{2}\cos\theta\,\omega\,\hat{y}\cdot\hat{\omega} = \cos\theta \quad \text{(proietto)} \\
+&= \frac{ML^2}{2}\cos^2\theta\,\omega
+\end{align*}
+
+\begin{align*}
+I_{z'} &= \sum_i m_i d_i^2 = M(d_1^2 + d_2^2) \qquad d_i = r_i'\cos\theta \\
+&= M\left(2\,\frac{L^2}{4}\right)\cos^2\theta = \frac{ML^2\cos^2\theta}{2}
+\end{align*}
+
+\begin{equation}
+\Rightarrow \boxed{L_{z'} = I_{z'}\,\omega}
+\end{equation}
+
+\begin{osservazione}{}
+Se un asse è tale che ha $\sum \hat{t}_i = 0$ allora è un \textbf{asse principale}. Quindi un asse non perpendicolare, storto, non può essere un asse principale.
+
+In generale:
+\[
+\begin{cases}
+I_z\,\omega = L_z & \forall\,\hat{\omega} \text{ qualsiasi} \\
+I_z\,\vec{\omega} = \vec{L}' & \forall\,\hat{\omega} \text{ principale}
+\end{cases}
+\]
+\end{osservazione}
+
+
+\section{Calcolo dei momenti di inerzia (simmetrie)}
+
+\subsection{1) Anello}
+
+Massa $M$, raggio $R$. Massa distribuita sulla fascia, spessore trascurabile ($r_m \ll R$). 1, 2, 3 assi principali.
+
+% Diagramma: anello con assi 1 (passante per il centro, perpendicolare al piano), 2 e 3 (nel piano dell'anello)
+
+\begin{equation}
+\boxed{I_1} = \int_{CR} R^2\,dm = R^2 \int_{CR} dm = \boxed{MR^2}
+\end{equation}
+
+\begin{align*}
+\boxed{I_2 = I_3} &= \int_{CR} t^2\,dm = \int_{CR} (R\cos\theta)^2\,dm = \int_{CR} R^2\cos^2\theta\,\frac{M\,d\theta}{2\pi} \cdot 4\int_0^{\pi/2} \\
+&= \frac{MR^2}{2\pi} \cdot 4 \int_0^{\pi/2} \cos^2\theta\,d\theta = \frac{2MR^2}{\pi}\int_0^{\pi/2}\frac{1+\cos(2\theta)}{2}\,d\theta \\
+&= \frac{2MR^2}{2\pi}\left[\int_0^{\pi/2} d\theta + \int_0^{\pi} \cos(x)\,dx\right] = \frac{MR^2}{2\pi}\cdot\pi = \boxed{\frac{MR^2}{2}}
+\end{align*}
+
+% dove si è usata la sostituzione x = 2theta, dx = 2dtheta
+
+\subsection{2) Disco}
+
+Massa $M$, densità $\sigma = M/\pi R^2$, raggio $R$. Spessore trascurabile ($h \ll R$). 1, 2, 3 assi principali.
+
+% Diagramma: disco con assi 1 (perpendicolare al piano), 2 e 3 (nel piano del disco), con dm elemento di area
+
+\begin{align*}
+\boxed{I_1} &= \int_{CR} R^2\,dm = 2\pi \int_{CR} R^3\,\sigma\,dR = 2\pi\sigma \int_0^R R^3\,dR \\
+&= \frac{2\pi\sigma R^4}{4} = (\pi\sigma R^2)\frac{R^2}{2} = \boxed{\frac{MR^2}{2}}
+\end{align*}
+
+\begin{align*}
+\boxed{I_2 = I_3} &= \int_{CR} x^2\,dm = 2\int_{CR} x^2\,\sigma\,y\,dx = 2\int_{CR} (R\cos\theta)^2\,\sigma\,\sqrt{R^2 - x^2}\,dx
+\end{align*}
+
+Con $y = R\sin\theta$, $x = R\cos\theta$, $dx = -R\sin\theta\,d\theta$:
+
+\begin{align*}
+&= 4\sigma\int_0^{\pi/2} R^2\cos^2\theta \cdot R\sin\theta \cdot R\sin\theta\,d\theta \\
+&= 4R^4\sigma\int_0^{\pi/2}(\cos\theta\,\sin\theta)^2\,d\theta = 4R^4\sigma\int_0^{\pi/2}\frac{\sin^2(2\theta)}{4}\,d\theta
+\end{align*}
+
+(come per il caso prima)
+\begin{align*}
+&= R^4\sigma \int_0^{\pi/2}\frac{1-\cos(4\theta)}{2}\,d\theta = \frac{R^4\sigma}{2}\cdot\frac{\pi}{2} = \boxed{\frac{MR^2}{4}}
+\end{align*}
+
+\subsection{3) Sfera}
+
+Massa $M$, densità $\rho = M/V$, raggio $R$. 1, 2, 3 assi principali.
+
+% Diagramma: sfera con raggio R, angolo theta, distanza t dal centro, assi 1, 2, 3
+
+\begin{align*}
+\boxed{I_1 = I_2 = I_3} &= \int_0^R dR \int_0^{\pi} 2\pi\rho R^4 \sin^3\theta\,d\theta \\
+&= \frac{2\pi\rho R^5}{5}\int_0^{\pi}\sin\theta(1-\cos^2\theta)\,d\theta \\
+&= \frac{2}{5}\pi\rho R^5\left[2 + \int_0^{\pi} d\theta\left(\frac{\cos^3\theta}{3}\right)d\theta\right] = \frac{2}{5}\pi\rho R^5\left(2 + \left[\frac{\cos^3\theta}{3}\right]_0^{\pi}\right) = \boxed{\frac{2}{5}MR^2}
+\end{align*}
+
+dove $\frac{4}{3}\pi R^3 \cdot \rho = M = V \cdot \rho$.
+
+
+\subsection{4) Guscio sferico}
+
+Massa $M$, densità $\sigma = M/4\pi R^2$, raggio $R$. 1, 2, 3 assi principali.
+
+% Diagramma: guscio sferico con assi principali
+
+\begin{align*}
+\boxed{I_1 = I_2 = I_3} &= \int_0^{\pi} 2\pi\sigma R^4 \sin^3\theta\,d\theta \\
+&= 2\pi\sigma R^4 \left[\int_0^{\pi}\sin\theta\,d\theta - \int_0^{\pi}\cos^2\theta\sin\theta\,d\theta\right] \\
+&= \frac{2\pi M R^4}{4\pi R^2}\left(2 - \left[\frac{\cos^3\theta}{3}\right]_0^{\pi}\right) = \frac{MR^2}{2}\cdot\frac{4}{3} = \boxed{\frac{2}{3}MR^2}
+\end{align*}
+
+\subsection{5) Cilindro}
+
+Massa $M$, densità $\rho = M/\pi R^2 L$, raggio $R$, lunghezza $L$.
+
+% Diagramma: cilindro con assi 1 (lungo l'asse del cilindro), 2 e 3 (perpendicolari), CM al centro, angolo phi, distanza d
+
+\begin{equation}
+\boxed{I_1} = \int_{CR} R^2\,dm = \int_0^{L} R^2\,\frac{M\,dz}{L}\cdot\frac{1}{2} = \boxed{\frac{MR^2}{2}}
+\end{equation}
+
+Con $d = R\cos\varphi$:
+
+\begin{align*}
+\boxed{I_2 = I_3} &= \int_{CR} d^2\,dm = \int_0^{2\pi}d\varphi\int_0^{R}dr\int_0^{L/2} 2\,dz\,R\rho(R^2\cos^2\varphi + z^2) \\
+&= 2\rho\left[\int_0^{2\pi}d\varphi\cos^2\varphi \int_0^{R} R^3\,dr\cdot\frac{L}{2} + 2\pi\int_0^R R\,dr\int_0^{L/2} z^2\,dz\right] \\
+&= 2\rho\left[\frac{R^4L}{8}\int_0^{2\pi}\frac{1+\cos(2\varphi)}{2}\,d\varphi + \frac{\pi R^2 \cdot L^3}{24}\right] = 2\rho\left[\frac{R^4 L\pi}{8\cdot 4} + \frac{R^2 L^3\pi}{24}\right]
+\end{align*}
+
+\begin{equation}
+= \rho R^2 L \pi\left(\frac{R^2}{4} + \frac{L^2}{12}\right) = \boxed{\frac{M}{4}\left(R^2 + \frac{L^2}{3}\right)}
+\end{equation}
+
+\subsection{6) Sbarretta}
+
+Massa $M$, densità lineare $\lambda = M/L$, raggio $R$ ($= \sqrt{a^2 + b^2}$), spessori trascurabili ($a, b, R \ll L$).
+
+% Diagramma: sbarretta con assi 1, 2, 3
+
+\begin{equation}
+\boxed{I_1} = \int_{CR} R^2\,dm = \boxed{\frac{MR^2}{2}} \ll I_2, I_3 \quad \text{perché } R \ll L
+\end{equation}
+
+\begin{equation}
+\boxed{I_2 = I_3} = 2\int_0^{L/2} x^2\,\lambda\,dx = 2\lambda\int_0^{L/2} x^2\,dx = 2\lambda\left[\frac{x^3}{3}\right]_0^{L/2} = \frac{\lambda L^3}{12} = \boxed{\frac{ML^2}{12}}
+\end{equation}
+
+\subsection{Altri solidi e i loro momenti di inerzia}
+
+\paragraph{7) Tubo}
+$=$ anello con spessore non trascurabile ($r_1$ e $r_2$ raggi). $I_1$ (asse centrale che lo attraversa) si trova con:
+\begin{equation}
+I_1 = \frac{1}{2}M(r_1^2 + r_2^2)
+\end{equation}
+
+\paragraph{8) Cubo}
+$=$ anche generico parallelepipedo ($a, b, c$ lunghezze). $I_c$ (parallelo a due lunghezze $c$) si trova con:
+\begin{equation}
+I_c = \frac{1}{12}M(a^2 + b^2)
+\end{equation}
+
+Con tutti si può usare \textbf{Huygens--Steiner}.
+
+
+\section{Moto di pura rotazione}
+
+L'asse attorno a cui avviene è fisso, bloccato.
+
+$d_i = d_i' = r_i \sin\theta_i = r_i' \sin\theta_i$ $\Rightarrow$ solo può traslare lungo l'asse di rotazione.
+
+% Diagramma: corpo rigido con asse z fisso, masse m_i a distanza d_i dall'asse, forze F_i
+
+\begin{itemize}
+    \item $L_O$ = momento angolare assiale
+    \item $I$ = momento di inerzia assiale
+    \item $\tau_O$ = momento assiale della forza
+\end{itemize}
+
+È un ragionamento analogo a $L_O$, basta verificare che $r_i \sin\theta\, F_y = r_i' \sin\theta'\, F_y$.
+
+\[
+\begin{cases}
+\vec{L} = I_z\,\vec{\omega} & \text{asse fisso principale} \\
+L_z = I_z\,\omega & \text{asse fisso qualsiasi}
+\end{cases}
+\qquad
+\begin{aligned}
+& \text{accelerazione} \\
+& \text{angolare}
+\end{aligned}
+\]
+
+Studiamo la 2ª equazione cardinale per il corpo rigido che ruota attorno a $z$:
+
+\paragraph{(1) Asse principale: $\vec{L}_{tot} = I_z\,\vec{\omega}$}
+
+\begin{equation}
+\vec{\tau}_{ext} = \frac{d\vec{L}_{tot}}{dt} \qquad \Rightarrow \qquad \boxed{\vec{\tau}_{ext}} = \frac{d(I_z\,\vec{\omega})}{dt} = I_z \cdot \frac{d(\vec{\omega})}{dt} = \boxed{I_z\,\vec{\alpha}}
+\end{equation}
+
+\paragraph{(2) Asse qualsiasi: $L_z = \omega I_z$}
+
+\begin{equation}
+\left[\tau_{ext}\right]_z = \frac{d(I_z\,\omega)}{dt} = \boxed{I_z\,\alpha}
+\end{equation}
+
+$\rightarrow$ $I_z$ è costante perché il corpo rigido è indeformabile e incomprimibile.
+
+Ci sono però dei sistemi in cui $I_z$ può variare:
+
+% Diagramma: sistema con masse che si spostano lungo un asse, cambiando la distribuzione di massa
+
+\begin{equation}
+\Rightarrow \tau_{ext,z} = \frac{d(L_z)}{dt} = I_z\,\alpha + \omega\,\frac{dI_z}{dt}
+\end{equation}
+
+$\hookrightarrow$ Questo caso è interessante se il sistema è \textbf{isolato} ($\tau_z = 0$):
+
+\begin{align*}
+I_z\,\alpha + \omega\,\frac{dI_z}{dt} = 0 \quad &\Rightarrow \quad \alpha = -\frac{d(I_z)}{dt}\cdot\frac{1}{I_z}\cdot\omega \\
+&= \frac{d(\omega)}{dt}\cdot\frac{1}{\omega}
+\end{align*}
+
+da cui:
+\begin{equation}
+\frac{d(\omega)}{d(I_z)} = -\frac{\omega}{I_z}
+\end{equation}
+
+Cioè se $\omega$ aumenta ($d(\omega) > 0$) allora $I_z$ deve diminuire ($d(I_z) < 0$) e viceversa.
+
+\begin{osservazione}{}
+Le forze interne mutano il momento di inerzia.
+\end{osservazione}
+
+\section*{TEOREMA DI HUYGENS-STEINER (assi paralleli)}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+% Assi e corpo
+\draw[thick, ->] (0, -2) -- (0, 3) node[left] {$z$};
+\draw[thick, ->] (2, -2) -- (2, 3) node[right] {$z'$};
+\draw (2, 1) node[circle, fill, inner sep=1.5pt, label=right:{$G$}] {};
+\draw[dashed] (1, -1) ellipse (2cm and 2.5cm); % corpo rigido indicativo
+\draw[->] (0, 0.5) -- (2, 0.5) node[midway, above] {$\bar{d}$};
+\draw (3, 0) node[circle, fill, inner sep=1pt, label=right:{$dm$}] {};
+\draw[dashed] (0, 0) -- (3, 0) node[midway, below] {$d_i$};
+\draw[dashed] (2, 0) -- (3, 0) node[midway, above] {$d'_i$};
+\end{tikzpicture}
+\end{figure}
+
+Il momento di inerzia di un corpo rigido rispetto ad un asse $z$ qualsiasi si calcola come:
+$$ I_z = I_{z'} + M d^2 $$
+
+Lo vediamo pk:
+\begin{align*}
+I_z &= \sum_i m_i d_i^2 = \sum_i m_i ( \bar{d_i'} + \bar{d} )^2 \\
+&= \sum_i m_i ( {d'_i}^2 + d^2 + 2\bar{d} \cdot \bar{d'_i} ) \\
+&= \underbrace{\sum_i m_i {d'_i}^2}_{= I_{z'}} + \underbrace{\sum_i m_i d^2}_{= M d^2} + \underbrace{2\bar{d} \cdot \sum_i m_i \bar{d'_i}}_{\substack{= 0 = x_G \\ \text{pk le coordinate} \\ \text{di } x_G \text{ nel CM } = 0}}
+\end{align*}
+
+$G \equiv CM$
+\begin{equation}
+I_z = I_{z'} + M d^2
+\end{equation}
+
+Quindi si deve conoscere $I_z$ e $I_{z'}$. Inoltre, dati infiniti assi equidistanti da $z'$, questi avranno lo stesso momento di inerzia; Dato invece un fascio di assi, quello che passa per il CM sarà quello che ha il momento di inerzia minore, poiché $d = 0$.
+
+\subsection*{a) rotazione (intorno ad un asse FISSO)}
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\draw[thick, ->] (0, -1) -- (0, 3) node[left] {$z$};
+\draw[->] (0,0) -- (2,2) node[right] {$m_i$};
+\draw[dashed] (0,2) -- (2,2);
+\draw (1, 1) node[right] {$\bar{r}_i$};
+\draw (0, 2) node[left] {$O$};
+\draw (0, 1.5) arc (90:45:0.5) node[midway, above right] {$\theta_i$};
+\end{tikzpicture}
+\end{figure}
+$d_i = r_i \cdot \sin \theta_i$ \quad $\bar{\omega} \parallel \hat{z}$
+
+\begin{align*}
+K &= \sum_i \frac{1}{2} m_i \bar{v}_i^2 = \frac{1}{2} \sum_i m_i ( \bar{\omega} \times \bar{r}_i )^2 \\
+&= \frac{1}{2} \sum_i m_i ( \omega \cdot r_i \cdot \sin \theta_i )^2 \\
+&= \frac{1}{2} \omega^2 \sum_i m_i ( r_i \sin \theta_i )^2 = \frac{\omega^2}{2} \sum_i m_i d_i^2 \\
+&= \frac{1}{2} I_z \omega^2 = \frac{L_z^2}{2 I_z}
+\end{align*}
+
+\subsection*{b) rototraslazione}
+In questo caso si sfrutta Koenig
+\begin{align*}
+K &= \frac{1}{2} M \bar{v}_{CM}^2 + K_{rel} = \frac{1}{2} M v_{CM}^2 + \sum_i m_i \frac{\bar{v}_i'^2}{2} = \frac{1}{2} M v_{CM}^2 + \frac{1}{2} \sum_i m_i ( \bar{\omega} \times \bar{r}_i' )^2 \\
+&= \frac{1}{2} M v_{CM}^2 + \frac{1}{2} I_{CM} \omega^2 \\
+&= K_{TRASL} + K_{ROTAZ}
+\end{align*}
+
+\subsection*{c) rotolamento}
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+\draw[thick] (-2, 0) -- (2, 0);
+\draw (0, 1) circle (1cm);
+\draw[fill] (0, 1) circle (1.5pt) node[below] {$CM$};
+\draw[->] (0, 1) -- (0, 0) node[midway, left] {$R$};
+\draw[fill] (0, 0) circle (1.5pt) node[below] {$P$};
+\draw[->] (0, 2) arc (90:0:0.5) node[right] {$\omega$};
+\end{tikzpicture}
+\end{figure}
+
+$v_P = 0$ \quad $v_{CM} = \omega R$
+
+\begin{align*}
+K &= K_{CM} + K_{rel} = \frac{M}{2} v_{CM}^2 + \frac{\omega^2}{2} I_{CM} \\
+&= \frac{M}{2} \omega^2 R^2 + \frac{I_{CM}}{2} \omega^2 = \frac{\omega^2}{2} ( I_{CM} + M R^2 ) \\
+&= \frac{\omega^2}{2} I_P
+\end{align*}
+
+L'eventuale inclinazione del piano non cambia il rotolamento ($v_{CM} = \omega r$, $a_{CM} = \alpha r$).
+- rotazione su CM + traslazione di CM ($v_{CM} = \omega R$)
+- rotazione istantanea su P ($v_P = 0$)
+
+\subsection*{URTI E LEGGI DI CONSERVAZIONE}
+Su un corpo che viene trascinato agiscono l'attrito STATICO (quando è fermo) e quello DINAMICO (quando si muove) che insieme costituiscono l'ATTRITO RADENTE.
+Un corpo invece che rotola è soggetto all'ATTRITO VOLVENTE ($\ll$ dinamico).
+Nel caso "ideale" si conservano:
+\begin{itemize}
+    \item $\bar{P}$ (quantità di moto) $\Rightarrow \Sigma \bar{F}_{ext} = 0, \bar{I}_{F_{ext}} = 0$
+    \item $\bar{L}_0$ (momento angolare) $\Rightarrow \Sigma \bar{\tau}_{ext} = 0, \bar{I}_{\tau_{ext}} = 0$
+    \item $K$ (energia cinetica) $\Rightarrow L_{diss} = 0$ ($U_i = U_f$ pk $\Delta t \to 0$)
+\end{itemize}
+
+\subsection*{Esempio 1}
+Urto di un proiettile $m$ con una sbarretta $M, L$ non vincolata, appoggiata su un piano liscio. \textbf{Trattazione generale}.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+% sbarretta
+\draw[thick] (2, -1) rectangle (2.5, 1);
+\node at (2.7, 0) {$CM$};
+\node at (2.7, 1.2) {$M, L$};
+\draw[->] (2.25, 0) -- (2.25, -0.5) node[midway, left] {$b$};
+% proiettile
+\filldraw (0, -0.5) circle (2pt) node[above] {$m$};
+\draw[->] (0, -0.5) -- (1, -0.5) node[below] {$v_0$};
+% assi
+\draw[->] (4, 0) -- (5, 0) node[right] {$x$};
+\draw[->] (4, 0) -- (4, 1) node[above] {$y$};
+\draw[->] (4, 0) circle (2pt);
+\node at (4.3, -0.3) {$z$};
+\end{tikzpicture}
+\caption*{prima dell'urto}
+\end{figure}
+
+$b = \text{parametro d'impatto}$
+
+- no forze esterne $\rightarrow$ SISTEMA ISOLATO: $\bar{P}$ costante
+$$ \bar{P}_i = \bar{P}_{mi} + \bar{P}_{Mi} = m\bar{v}_0 + 0 = \bar{P}_f = \bar{P}_{mf} + \bar{P}_{Mf} = m\bar{v}' + M\bar{v}_{CM} $$
+$$ \Rightarrow \bar{v}' = \bar{v}_0 - \frac{M}{m} \bar{v}_{CM} $$
+
+- no momenti forze esterne $\rightarrow$ SISTEMA ISOLATO: $\bar{L}_0$ costante.
+$O \equiv CM$ (comodo)
+$$ \bar{L}_{CM}^i = \bar{b} \times \bar{p}_i = m \bar{b} \times \bar{v}_0 = \bar{L}_{CM}^f = \bar{b} \times \bar{P}_f = m \bar{b} \times \bar{v}' + \underbrace{I_{CM}}_{= ML^2/12} \cdot \bar{\omega} $$
+$$ \Rightarrow \bar{\omega} = \frac{M}{I_{CM}} (\bar{b} \times \bar{v}_{CM}) $$
++ rotazione intorno a CM \\
++ traslazione del CM
+
+L'urto avviene lungo $\hat{x}$:
+$\bar{v}_{CM} = v_{CM} \hat{x} \Rightarrow \bar{\omega} = \omega \hat{z}$
+$\bar{b} = -b \hat{y} \Rightarrow \bar{v}' = v' \hat{x}$
+$$ v' = v_0 - \frac{M}{m} v_{CM} \; , \; \omega = \frac{12 M b v_{CM}}{M L^2} $$
+
+- l'energia dipende dal tipo di urto
+\begin{align*}
+K_i &= K_{mi} = \frac{1}{2} m v_0^2 \\
+K_f &= K_{mf} + K_{Mf} = \frac{1}{2} (m v'^2 + I_{CM} \omega^2 + M v_{CM}^2) \\
+&= \frac{1}{2} m v_0^2 + \frac{1}{2} M \left(1 + \frac{M}{m} + \frac{12 b^2}{L^2}\right) v_{CM}^2 - M v_0 v_{CM}
+\end{align*}
+$$ \Rightarrow \Delta E = K_f - K_i = \frac{1}{2} M v_{CM}^2 \left( 1 + \frac{M}{m} + \frac{12 b^2}{L^2} - \frac{2 v_0}{v_{CM}} \right) $$
+
+\subsubsection*{Caso 1: Urto totalmente anelastico ($\Delta E \neq 0$)}
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+% sbarretta
+\draw[thick] (2, -1) rectangle (2.5, 1);
+\node at (2.7, 0) {$CM$};
+% proiettile
+\filldraw (2, -0.5) circle (2pt);
+\draw[->] (2.25, 0) -- (2.25, -0.5) node[midway, left] {$b$};
+\node at (3, -1) {dopo l'urto};
+\end{tikzpicture}
+\end{figure}
+
+$$ v' = \omega b + v_{CM} = v_{CM} ( 1 + 12b^2/L^2 ) = v_0 - M v_{CM} / m $$
+$$ \Rightarrow v_{CM} = \frac{v_0}{1 + \frac{M}{m} + \frac{12 b^2}{L^2}} $$
+$$ \Rightarrow v' = \frac{v_0 (L^2 + 12b^2)}{12b^2 + \left(\frac{m+M}{m}\right) L^2} $$
+$$ \Rightarrow \omega = \frac{m b v_0 \cdot 12}{(m+M)L^2 + 12 m b^2} $$
+$$ \Rightarrow \Delta E = - \frac{m M}{2} \cdot \frac{(v_0 \cdot L)^2}{(m+M)L^2 + 12 m b^2} $$
+
+\subsubsection*{Caso 2: Urto totalmente elastico ($\Delta E = 0$)}
+
+\begin{figure}[ht]
+\raggedleft
+\begin{tikzpicture}
+% sbarretta
+\draw[thick] (2, -1) rectangle (2.5, 1);
+\node at (2.7, 0) {$CM$};
+\draw[->] (2.7, 0) -- (3.2, 0) node[above] {$v_{CM}$};
+% proiettile
+\filldraw (1, -0.5) circle (2pt);
+\draw[->] (1, -0.5) -- (1.5, -0.5) node[below] {$v'$};
+\draw[->] (2.25, 0) -- (2.25, -0.5) node[midway, left] {$b$};
+\node at (3, -1) {dopo l'urto};
+\end{tikzpicture}
+\end{figure}
+
+$$ 1 + \frac{M}{m} + \frac{12 b^2}{L^2} - \frac{2 v_0}{v_{CM}} = 0 \text{ affinché } \Delta E = 0 $$
+$$ \Rightarrow v_{CM} = \frac{2 m v_0 L^2}{(M+m)L^2 + 12mb^2} \quad \Rightarrow v' = v_0 \left( 1 - \frac{2 M L^2}{(M+m)L^2 + 12mb^2} \right) $$
+$$ \Rightarrow \omega = \frac{24 m b v_0}{(M+m)L^2 + 12mb^2} $$
+
+\subsubsection*{Caso 3: Urto centrale $\bar{b} = 0$}
+Si tratta come un punto materiale.
+\paragraph*{3.1 (anelastico)}
+$$ \Rightarrow \omega = 0 \quad \Rightarrow v' = \frac{m v_0}{m+M} \quad \Rightarrow v_{CM} = v' = \frac{m v_0}{m+M} $$
+$$ \Rightarrow \Delta E = K_{rel} = \frac{-m M}{m+M} \cdot \frac{v_0^2}{2} = - \frac{1}{2} \mu v_0^2 $$
+
+\paragraph*{3.2 (elastico)}
+$$ \Rightarrow \omega = 0 \quad \Rightarrow v' = \left| \frac{m-M}{M+m} \right| v_0 \quad \Rightarrow v_{CM} = \frac{2 v_0 m}{m+M} $$
+
+\subsection*{Esempio 2}
+Urto di un proiettile $m$ con una sbarretta $M, L$ vincolata ad un perno liscio passante x un estremo. \textbf{trattazione generale}
+
+\begin{figure}[ht]
+\raggedleft
+\begin{tikzpicture}
+% perno P
+\draw (2.25, 1) circle (2pt) node[above right] {$P$};
+% sbarretta
+\draw[thick] (2, -1) rectangle (2.5, 1);
+\node at (2.7, 0) {$CM$};
+\node at (2.7, 0.5) {$M, L$};
+% proiettile
+\filldraw (0, -0.5) circle (2pt) node[above] {$m$};
+\draw[->] (0, -0.5) -- (1, -0.5) node[below] {$v_0$};
+\draw[<->] (2.25, 0) -- (2.25, -0.5) node[midway, left] {$b$};
+\node at (3, -1.5) {prima dell'urto};
+% assi
+\draw[->] (4, 0) -- (5, 0) node[right] {$\hat{x}$};
+\draw[->] (4, 0) -- (4, 1) node[above] {$\hat{y}$};
+\draw[->] (4, 0) circle (2pt);
+\node at (4.3, -0.3) {$\hat{z}$};
+\end{tikzpicture}
+\end{figure}
+
+- Forza impulsiva di $P \rightarrow$ SISTEMA NON ISOLATO: $\Delta \bar{P} \neq 0$
+$$ \bar{P}_i = \bar{P}_{mi} + \bar{P}_{Mi} = m\bar{v}_0 + 0 \quad \bar{P}_f = \bar{P}_{mf} + \bar{P}_{Mf} = m\bar{v}' + M\bar{v}_{CM} $$
+$$ \Rightarrow \Delta \bar{P} = m\bar{v}' + M\bar{v}_{CM} - m\bar{v}_0 = m(\bar{v}' - \bar{v}_0) + M \frac{L \omega}{2} \hat{x} $$
+$\bar{v}_0 = v_0 \hat{x}, \bar{b} = -b \hat{y}$
+
+- no momenti forze esterne su $P \rightarrow$ braccio nullo: $\bar{L}_O \text{ costante} = \bar{L}_P$
+($O \equiv P$ (per il CM ad esempio non vale $\bar{L}_{CM} \text{ costante}$).
+$$ \bar{L}_P^i = \left(\bar{b} + \frac{\bar{L}}{2}\right) \times \bar{p}_i = m\left(\bar{b} + \frac{\bar{L}}{2}\right) \times \bar{v}_0 = \bar{L}_P^f = \left(\bar{b} + \frac{\bar{L}}{2}\right) \times \bar{p}_f = m\left(\bar{b} + \frac{\bar{L}}{2}\right) \times \bar{v}' + \underbrace{I_P \bar{\omega}}_{= ML^2/3 \cdot \omega} $$
+$$ \Rightarrow v' = v_0 - \frac{2}{3} \frac{M L^2 \omega}{m(L+2b)} $$
+- rotazione intorno a P (no traslazione $\Rightarrow \bar{v}_{CM} = \bar{\omega} \cdot \bar{L}/2$)
+
+- l'energia dipende dal tipo di urto
+\begin{align*}
+K_i &= K_{mi} = \frac{1}{2} m v_0^2 \\
+K_f &= K_{mf} + K_{Mf} = \frac{1}{2} (m v'^2 + I_P \omega^2) \\
+&= \frac{1}{2} \left( m v'^2 + \frac{1}{3} M L^2 \omega^2 \right)
+\end{align*}
+
+$$ \Rightarrow \Delta E = K_f - K_i = \frac{1}{3} M L^2 \omega^2 \left( \frac{1}{2} + \frac{2}{3} \frac{M L^2}{m(L+2b)^2} - \frac{2 v_0}{\omega(L+2b)} \right) $$
+
+*
+$$ \bar{v}_{CM} = \bar{\omega} \times \bar{r} = \omega \cdot r \cdot \sin(\theta_{\omega, r}) $$
+
+\subsubsection*{Caso 1: Urto totalmente anelastico $\Delta E \neq 0$}
+\begin{figure}[ht]
+\raggedleft
+\begin{tikzpicture}
+% sbarretta
+\draw[thick] (2, -1) rectangle (2.5, 1);
+\node at (2.7, 0) {$CM$};
+% perno
+\draw (2.25, 1) circle (2pt) node[right] {$P$};
+% proiettile
+\filldraw (2, -0.5) circle (2pt);
+\node at (3, -1) {dopo l'urto};
+\end{tikzpicture}
+\end{figure}
+
+$$ v' = \omega(b + L/2) = v_0 - \frac{2 M L^2 \omega}{3 m(L+2b)} $$
+$$ \Rightarrow \omega = \frac{6 m v_0 (L+2b)}{4ML^2 + 3m(L+2b)^2} \quad \Rightarrow v' = \frac{v_0}{1 + \frac{4ML^2}{3m(L+2b)^2}} $$
+$$ \Rightarrow \Delta E = - \frac{2 M m L^2 v_0^2}{4ML^2 + 3m(L+2b)^2} \quad \Rightarrow \Delta p = m v_0 \left[ \frac{6ML(b - L/6)}{4ML^2 + 3m(L+2b)^2} \right] $$
+
+\subsubsection*{Caso 2: Urto totalmente elastico $\Delta E = 0$}
+\begin{figure}[ht]
+\raggedleft
+\begin{tikzpicture}
+% sbarretta
+\draw[thick] (2, -1) rectangle (2.5, 1);
+\node at (2.7, 0) {$CM$};
+\draw[->] (2.7, 0) -- (3.2, 0) node[above] {$v_{CM}$};
+% perno
+\draw (2.25, 1) circle (2pt) node[right] {$P$};
+% proiettile
+\filldraw (1, -0.5) circle (2pt);
+\draw[->] (1, -0.5) -- (0.5, -0.5) node[below] {$v'$};
+\node at (3, -1) {dopo l'urto};
+\end{tikzpicture}
+\end{figure}
+
+$$ \frac{1}{2} + \frac{2ML^2}{3m(L+2b)^2} - \frac{2v_0}{\omega(L+2b)} = 0 \text{ affinché } \Delta E = 0 $$
+$$ \Rightarrow \omega = \frac{12 m v_0 (L+2b)}{4ML^2 + 3m(L+2b)^2} $$
+$$ \Rightarrow v' = v_0 \left( 1 - \frac{8 M L^2}{4ML^2 + 3m(L+2b)^2} \right) $$
+$$ \Rightarrow \Delta p = m v_0 \left[ \frac{12 M L(b - L/6)}{4ML^2 + 3m(L+2b)^2} \right] $$
+
+$\bar{b} = -b \hat{y}$ \\
+$\Downarrow$ \\
+$\bar{b} = L/2 \Rightarrow b = -L/2$
+
+\subsubsection*{Caso 3: urto nel perno $\bar{b} = L/2$}
+\paragraph*{3.1 (anelastico)}
+$$ \Rightarrow \omega = 0 \quad \Rightarrow v' = 0 \quad \Rightarrow \Delta E = - \frac{1}{2} m v_0^2 \quad \Rightarrow \Delta p = - m v_0 $$
+
+\paragraph*{3.2 (elastico)}
+$$ \Rightarrow \omega = 0 \quad \Rightarrow v' = -v_0 \quad \Rightarrow \Delta p = -2 m v_0 $$
+
+\subsection*{EQUILIBRIO DI UN CORPO RIGIDO}
+Le forze applicate su un punto di applicazione hanno tutte l'origine comune quindi $\Sigma \bar{\tau}_i^{ext} = \Sigma_i \bar{r}_i \times \bar{F}_i^{ext} = \bar{r} \times \Sigma \bar{F}_i^{ext} = 0$ se $\Sigma_i \bar{F}_i^{ext} = 0$ (PUNTO MATERIALE) quindi è sufficiente che $\Sigma_i \bar{F}_i^{ext} = 0$. Invece nel CORPO RIGIDO essendo esteso e finito, le forze possono avere punti di applicazione diversi, quindi sono necessarie 2 condizioni:
+$$ \begin{cases}
+\Sigma \bar{F} = 0 \\
+\Sigma \bar{\tau} = 0 \text{ (rispetto a un generico polo)}
+\end{cases} \Rightarrow 6 \text{ equazioni per } 6 \text{ d.o.f.} $$
+
+\subsubsection*{Caso 1: COPPIA DI FORZE}
+esempio di verifica
+$||\bar{F}_1|| = ||\bar{F}_2||$, $||\bar{r}_1|| = ||\bar{r}_2|| = L/2$
+
+\begin{figure}[ht]
+\raggedleft
+\begin{tikzpicture}
+% sbarretta
+\draw[thick] (2, -0.2) rectangle (4, 0.2);
+\filldraw (3, 0) circle (1.5pt) node[below] {$CM$};
+% forze
+\draw[->] (2, -0.2) -- (2, 0.5) node[above] {$F_1$};
+\draw[->] (4, 0.2) -- (4, -0.5) node[below] {$F_2$};
+\draw[->] (3, 0) -- (2, 0) node[midway, below] {$r_1$};
+\draw[->] (3, 0) -- (4, 0) node[midway, above] {$r_2$};
+% assi
+\draw[->] (4.5, 0.5) -- (5, 0.5) node[right] {$\hat{x}$};
+\draw[->] (4.5, 0.5) -- (4.5, 1) node[above] {$\hat{y}$};
+\draw[->] (4.5, 0.5) circle (2pt);
+\node at (4.8, 0.2) {$\hat{z}$};
+\end{tikzpicture}
+\end{figure}
+
+- $\Sigma \bar{F}_i = \bar{F}_1 + \bar{F}_2 = \bar{F}_1 + (-\bar{F}_1) = 0 \text{ \checkmark } \Rightarrow \bar{a}_{CM} = 0$
+- $\Sigma_i \bar{\tau}_i = \bar{\tau}_1 + \bar{\tau}_2 = (\bar{r}_1 \times \bar{F}_1) + (\bar{r}_2 \times \bar{F}_2) = -\frac{L}{2} F_1 \hat{z} - \frac{L}{2} F_2 \hat{z} = -L F \hat{z} \neq 0 \text{ \ding{55}}$
+$$ \bar{\alpha}_{CM} = \frac{\bar{\tau}_{CM}}{I_{CM}} = \frac{(-L F \hat{z})}{M L^2/12} = - \frac{12 F \hat{z}}{M L} \neq 0 $$
+
+\subsubsection*{Caso 2: TRAVE CON 2 APPOGGI}
+$||\bar{R}_1 + \bar{R}_2|| = ||\bar{P}|| \Rightarrow \Sigma \bar{F} = \bar{R}_1 + \bar{R}_2 + \bar{P} = 0 \Rightarrow a_{CM} = 0$
+affinché il corpo rimanga in equilibrio, quanto valgono $||\bar{R}_1||$, $||\bar{R}_2||$?
+$R_1, R_2$ dipendono da $x$?
+c'è un caso in cui il corpo non è mai in equilibrio?
+
+\begin{figure}[ht]
+\raggedleft
+\begin{tikzpicture}
+% trave
+\draw[thick] (2, 0) rectangle (4, 0.4);
+% appoggi
+\filldraw[mygreen] (2.2, 0) -- (2.0, -0.4) -- (2.4, -0.4) -- cycle;
+\node[below] at (2.2, -0.4) {1};
+\filldraw[mygreen] (3.6, 0) -- (3.4, -0.4) -- (3.8, -0.4) -- cycle;
+\node[below] at (3.6, -0.4) {2};
+% forze
+\draw[->] (2.2, 0.4) -- (2.2, 1) node[above] {$R_1$};
+\draw[->] (3.6, 0.4) -- (3.6, 1) node[above] {$R_2$};
+\filldraw (3, 0.2) circle (1pt) node[above] {$CM$};
+\draw[->] (3, 0) -- (3, -0.8) node[below] {$P$};
+% quote
+\draw[<->] (2.2, -0.2) -- (3, -0.2) node[midway, below] {$L/2$};
+\draw[<->] (3, 0.2) -- (3.6, 0.2) node[midway, above] {$x$};
+% assi
+\draw[->] (4.5, 0.5) -- (5, 0.5) node[right] {$\hat{x}$};
+\draw[->] (4.5, 0.5) -- (4.5, 1) node[above] {$\hat{y}$};
+\draw[->] (4.5, 0.5) circle (2pt);
+\node at (4.8, 0.2) {$\hat{z}$};
+\end{tikzpicture}
+\end{figure}
+
+$$ \Sigma \bar{\tau}_{CM} = 0 = -\frac{L}{2} \hat{x} \times \bar{R}_1 + 0 \times \bar{P} + x \hat{x} \times \bar{R}_2 = -\frac{R_1 L}{2} (\hat{x} \times \hat{y}) + x R_2 (\hat{x} \times \hat{y}) = 0 $$
+$$ \begin{cases}
+R_1 + R_2 = P \\
+x R_2 = R_1 L/2
+\end{cases} \Rightarrow R_1 = Mg \left( \frac{2x}{2x+L} \right) \quad R_2 = Mg \left( \frac{L}{2x+L} \right) $$
+
+$\Rightarrow R_1, R_2 \ge 0$ pk il corpo è in equilibrio
+$\Rightarrow R_1 \ge 0$ solo se $x \ge 0$
+$\Rightarrow$ in generale $R_2 \ge 0$ sempre e $-L/2 < x \le L/2$
+Quindi il corpo è in equilibrio solo se $x \ge 0$.
+Se $x < 0$ il corpo non è in equilibrio e ruota intorno al perno 2.
+
+* trave con 3 appoggi. nel mondo reale i corpi completamente rigidi non esistono, tendono a piegarsi su loro stessi infatti solitamente una trave ha 2 perni alle estremità e uno al centro.
+
+\subsubsection*{Caso 3: CORPO IN PURO ROTOLAMENTO SUL PIANO ORIZZONTALE}
+\begin{figure}[ht]
+\raggedleft
+\begin{tikzpicture}
+% piano
+\draw[thick] (2, 0) -- (4, 0);
+% corpo
+\draw[mygreen] (3, 1) circle (0.8cm);
+\filldraw (3, 1) circle (1.5pt) node[left] {$CM$};
+\draw[->] (3, 1) -- (4, 1) node[right] {$v_{CM}$};
+% forze
+\filldraw (3, 0.2) circle (1.5pt) node[below left] {$Q$};
+\draw[->] (3, 0.2) -- (3, -0.6) node[below] {$\bar{P}$};
+\draw[->] (3, 0.2) -- (3, 1.8) node[above] {$\bar{R}$};
+\end{tikzpicture}
+\end{figure}
+
+$||\bar{R}|| = ||\bar{P}|| \Rightarrow \Sigma \bar{F} = \bar{R} + \bar{P} = 0 \Rightarrow a_{CM} = 0$ (quota fissa)
+$||F_{S}|| = ||\Sigma \bar{F}_{\parallel \text{ al piano}}|| = 0$ quindi $\Sigma \bar{F}_{EXT} = 0$ \checkmark
+
+Poiché Q è istantaneamente fermo potrebbe esserci attrito per mantenere il puro rotolamento (ex. piano inclinato) ma in questo caso non ci sono Forizzontali.
+$\Sigma \bar{\tau}_{CM} = 0$ pk sia $\bar{P}$ che $\bar{R}$ passano per il centro CM, quindi la distanza fra polo e punto di applicazione è 0.
+
+$\Rightarrow$ moto rettilineo uniforme e quiete = EQUILIBRIO PUNTO \\
+moto di puro rotolamento e quiete = EQUILIBRIO CORPO
+
+\subsection*{TENSORE D'INERZIA (o MATRICE D'INERZIA)}
+un corpo è in pura rotazione intorno a $\hat{\omega}$
+\begin{figure}[ht]
+\raggedleft
+\begin{tikzpicture}
+% corpo rigido
+\draw (2, 1) ellipse (1.5cm and 1cm);
+% assi
+\draw[->] (2, 1) -- (2, 2.5) node[above] {$z$};
+\draw[->] (2, 1) -- (3.5, 1) node[right] {$y$};
+\draw[->] (2, 1) -- (1, 0) node[below] {$x$};
+% omega
+\draw[->, thick, mypen] (2, 1) -- (3, 2.5) node[above right] {$\bar{\omega}$};
+% vettore r
+\draw[->] (2, 1) -- (2.5, 0.5) node[midway, above right] {$\bar{r}$};
+\filldraw (2.5, 0.5) circle (1.5pt) node[right] {$dm$};
+\end{tikzpicture}
+\end{figure}
+
+$$ \begin{cases}
+\bar{r} = \hat{x}x + \hat{y}y + \hat{z}z \\
+\bar{\omega} = \hat{x}\omega_x + \hat{y}\omega_y + \hat{z}\omega_z \\
+\bar{L} = \hat{x}L_x + \hat{y}L_y + \hat{z}L_z
+\end{cases} \Rightarrow \bar{L}_O = \int_{CR} dm \, \bar{r} \times (\underbrace{\bar{\omega} \times \bar{r}}_{= \bar{v}}) = \bar{L} $$
+$ = (\bar{r} \cdot \bar{r})\bar{\omega} - (\bar{r} \cdot \bar{\omega})\bar{r} $
+
+\begin{align*}
+\bar{L} &= \int_{CR} dm \left[ (x^2+y^2+z^2)(\hat{x}\omega_x + \hat{y}\omega_y + \hat{z}\omega_z) - (x\omega_x + y\omega_y + z\omega_z)(\hat{x}x + \hat{y}y + \hat{z}z) \right] \\
+&= \int_{CR} dm \Big\{ \left[ (y^2+z^2)\omega_x - xy\omega_y - xz\omega_z \right]\hat{x} \\
+&\quad + \left[ (z^2+x^2)\omega_y - yx\omega_x - yz\omega_z \right]\hat{y} \\
+&\quad + \left[ (x^2+y^2)\omega_z - zx\omega_x - zy\omega_y \right]\hat{z} \Big\} \\
+&= \hat{x}L_x + \hat{y}L_y + \hat{z}L_z
+\end{align*}
+
+* in generale $\hat{x}, \hat{y}, \hat{z}$ non sono assi principali!
+
+
+
+\begin{align*}
+\Rightarrow L_x &= \omega_x \underbrace{\int_{CR} dm (y^2+z^2)}_{I_{xx}} - \omega_y \underbrace{\int_{CR} dm xy}_{I_{xy}} - \omega_z \underbrace{\int_{CR} dm xz}_{I_{xz}} \\
+\Rightarrow L_y &= -\omega_x \underbrace{\int_{CR} dm xy}_{I_{xy}} + \omega_y \underbrace{\int_{CR} dm (x^2+z^2)}_{I_{yy}} - \omega_z \underbrace{\int_{CR} dm yz}_{I_{yz}} \\
+\Rightarrow L_z &= -\omega_x \underbrace{\int_{CR} dm xz}_{I_{xz}} - \omega_y \underbrace{\int_{CR} dm yz}_{I_{yz}} + \omega_z \underbrace{\int_{CR} dm (y^2+x^2)}_{I_{zz}}
+\end{align*}
+
+$I_{ii} = $ MOMENTI D'INERZIA rispetto all'asse $i$ \\
+$I_{ij} = $ PRODOTTI D'INERZIA
+
+\vspace{0.5cm}
+\begin{minipage}{0.5\textwidth}
+$$
+\begin{pmatrix}
+L_x \\ L_y \\ L_z
+\end{pmatrix}
+=
+\underbrace{
+\begin{pmatrix}
+I_{xx} & I_{xy} & I_{xz} \\
+I_{xy} & I_{yy} & I_{yz} \\
+I_{xz} & I_{yz} & I_{zz}
+\end{pmatrix}
+}_{\text{TENSORE D'INERZIA } I_{ij}}
+\begin{pmatrix}
+\omega_x \\ \omega_y \\ \omega_z
+\end{pmatrix}
+$$
+\end{minipage}
+\begin{minipage}{0.45\textwidth}
+La matrice d'inerzia è simmetrica e reale. Quindi, per il teorema spettrale si diagonalizza con autovalori reali.
+\end{minipage}
+
+\vspace{0.5cm}
+\begin{minipage}{0.5\textwidth}
+$$
+\begin{pmatrix}
+L_x^P \\ L_y^P \\ L_z^P
+\end{pmatrix}
+=
+\begin{pmatrix}
+I_{xx}^P & 0 & 0 \\
+0 & I_{yy}^P & 0 \\
+0 & 0 & I_{zz}^P
+\end{pmatrix}
+\begin{pmatrix}
+\omega_x^P \\ \omega_y^P \\ \omega_z^P
+\end{pmatrix}
+$$
+\end{minipage}
+\begin{minipage}{0.45\textwidth}
+Se infatti si va a calcolare il momento $\vec{L}^P$ rispetto a $P$ asse principale, la matrice è diagonale (terna).
+\end{minipage}
+
+\vspace{0.5cm}
+\begin{itemize}
+    \item gli autovettori sono $\vec{\omega} = (\omega_x, \omega_y, \omega_z)$, quindi se $\vec{\omega} \parallel \hat{x} \Rightarrow \vec{\omega} \cdot \hat{x} = \omega_x \Rightarrow \omega_x$ autovettore e stessa cosa per $\hat{y}$ e $\hat{z}$ (ortogonali).
+    \item se calcoliamo $\vec{L}$ rispetto a degli assi principali $\hat{x}, \hat{y}, \hat{z}$ allora:
+    \begin{align*}
+    \vec{L}^x &= I \vec{\omega} = I_x \omega_x \hat{x} = L_x \hat{x} \\
+    \vec{L}^y &= I \vec{\omega} = I_y \omega_y \hat{y} = L_y \hat{y} \quad \Rightarrow \text{in generale } \vec{L} = I \vec{\omega} \\
+    \vec{L}^z &= I \vec{\omega} = I_z \omega_z \hat{z} = L_z \hat{z}
+    \end{align*}
+    \item si può verificare che gli autovalori sono positivi: $K = L^2 / 2I$, e se l'asse è principale la $I_{ij}$ è diagonale, allora $\vec{L} = I \vec{\omega} \Rightarrow L = I \omega$
+    $$ \Rightarrow K = \frac{L^2}{2I} = \frac{1}{2} I \omega^2 > 0 \quad \text{perché } K \geq 0 \text{ sempre } \left(= \frac{1}{2} \sum m r^2 \omega^2 \geq 0\right) $$
+    \item se ci sono assi con momento di inerzia rispetto ad essi uguale allora gli assi sono ``proporzionali'' e quindi ci sono autovalori degeneri (cioè a cui è associato $+1$ vettore).
+    \item a questo punto si può trovare il momento di inerzia rispetto a un asse qualsiasi arbitrario $\hat{u}$ sfruttando momenti e prodotti d'inerzia e i versori di $\hat{u}$, cioè $(u_x, u_y, u_z)$. = TEOREMA DI POINSOT
+\end{itemize}
+
+\noindent \textbf{* COSENI DIRETTORI:} dato l'asse $\hat{u}$ abbiamo \\
+$||\hat{u}|| = 1 = u_x^2 + u_y^2 + u_z^2 = ||\hat{x} u_x + \hat{y} u_y + \hat{z} u_z||^2$
+
+\begin{minipage}{0.6\textwidth}
+$u_z = \cos(\alpha) = \sin\theta \cos\phi$ \\
+$u_x = \cos(\beta) = \sin\theta \sin\phi$ \\
+$u_y = \cos(\gamma) = \cos\theta$
+\end{minipage}
+\begin{minipage}{0.35\textwidth}
+\begin{tikzpicture}
+\draw[->] (0,0) -- (2,0) node[right] {$x$};
+\draw[->] (0,0) -- (0,2) node[above] {$y$};
+\draw[->] (0,0) -- (-1,-1) node[below left] {$z$};
+\draw[->, thick, olive] (0,0) -- (1.5,1.5) node[right] {$u$};
+\draw[dashed] (1.5,1.5) -- (1.5,0);
+\node at (1.6, 0.7) {$u_y$};
+\node at (0.7, -0.2) {$u_x$};
+\node at (-0.3, -0.3) {$u_z$};
+\end{tikzpicture}
+\end{minipage}
+
+
+
+
+\section*{TEOREMA DI POINSOT ED ELLISSOIDE DI INERZIA}
+
+\begin{minipage}{0.3\textwidth}
+\begin{tikzpicture}
+\draw[->] (0,0) -- (2,0) node[right] {$y$};
+\draw[->] (0,0) -- (0,2) node[above] {$z$};
+\draw[->] (0,0) -- (-1.5,-1) node[below left] {$x$};
+\draw[->, thick, olive] (0,0) -- (1.5,1.5) node[right] {$\hat{u}$};
+\draw[->] (0,0) -- (0.8,2) node[right] {$dm$};
+\draw[dashed] (0.8,2) -- (0.56, 0.56) node[midway, right] {$R$};
+\node at (0.4, 0.9) {$\phi$};
+\node at (0.3, 1.3) {$\vec{r}$};
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}{0.65\textwidth}
+$\hat{u} = $ asse di rotazione, definito da $u_x, u_y, u_z$ \\
+$u_x^2 + u_y^2 + u_z^2 = 1$ \\[0.2cm]
+$R = ||\vec{r}|| \sin\phi = ||\vec{r} \times \hat{u}|| = $ distanza fra $dm$ e $u$ \\[0.2cm]
+\begin{align*}
+I_u &= \int_{CR} dm ||\vec{r} \times \hat{u}||^2 \\
+&= \int_{CR} dm \left[ (y u_z - z u_y)^2 + (z u_x - x u_z)^2 + (x u_y - y u_x)^2 \right] \\
+&= \sum_{i,j} \int_{CR} dm (i u_j - j u_i)^2
+\end{align*}
+\end{minipage}
+
+\vspace{0.5cm}
+\noindent $\Rightarrow I_u = u_x^2 I_{xx} + u_y^2 I_{yy} + u_z^2 I_{zz} + 2 u_x u_y I_{xy} + 2 u_x u_z I_{xz} + 2 u_y u_z I_{yz}$
+
+\vspace{0.5cm}
+\noindent Se dividiamo tutto per $I_u$ e consideriamo \\
+$A = \frac{u_x}{\sqrt{I_u}}, \quad B = \frac{u_y}{\sqrt{I_u}}, \quad C = \frac{u_z}{\sqrt{I_u}} \quad$ allora si ottiene:
+
+\vspace{0.3cm}
+\fbox{$I_{xx} A^2 + I_{yy} B^2 + I_{zz} C^2 + 2(AB I_{xy} + BC I_{yz} + AC I_{xz}) = 1$} \\
+= ELLISSOIDE DI INERZIA
+
+\vspace{0.3cm}
+\begin{minipage}{0.65\textwidth}
+$P = (A,B,C) \quad OP = \sqrt{A^2 + B^2 + C^2} = \frac{1}{\sqrt{I_u}} \sqrt{u_x^2 + u_y^2 + u_z^2}^{=1}$ \\[0.2cm]
+\fbox{$\Rightarrow I_u = \frac{1}{OP^2}$} \quad rispetto a una terna di assi qualsiasi l'ellissoide ha formula quadratica arbitraria $(A,B,C)$
+\end{minipage}
+\begin{minipage}{0.3\textwidth}
+\begin{tikzpicture}
+\draw[->] (0,0) -- (2,0) node[right] {$B$};
+\draw[->] (0,0) -- (0,1.5) node[above] {$C$};
+\draw[->] (0,0) -- (-1,-1) node[below left] {$A$};
+\draw[olive, thick] (0,0) ellipse (1.5 and 0.8);
+\draw[dashed, ->] (0,0) -- (1.2, 0.5) node[right] {$P$};
+\draw[dashed] (0,0) -- (1.5, -0.4) node[right] {$u$};
+\end{tikzpicture}
+\end{minipage}
+
+\vspace{0.5cm}
+\begin{itemize}
+    \item Se cambiamo asse e consideriamo $u'$ (e quindi $I_{u'}$) sicuramente l'equazione dell'ellissoide sarà diversa ma non cambia $I_{u'} = 1 / \overline{OP}^2$ cioè il significato.
+    \item[$\Rightarrow$] L'ellissoide è una MAPPATURA della GEOMETRIA del corpo in un certo SISTEMA DI ASSI: se cambio gli assi $I_{ij}, A, B, C$ cambiano ma l'ellissoide, essendo una proprietà del corpo, rimane lo stesso.
+\end{itemize}
+
+\vspace{0.3cm}
+\noindent Nel caso in cui $x^P, y^P, z^P$ siano principali (quindi $x, y, z$ originari) allora $I_{ii} = I_{ii}^P$ e $I_{ij} = 0 \ \forall i,j$ quindi
+\fbox{$I_{xx}^P A^2 + I_{yy}^P B^2 + I_{zz}^P C^2 = 1$} è l'ellissoide rispetto ad assi principali e in questo caso i semiassi sono $(a,b,c)$: \\
+$a = 1/\sqrt{I_{xx}^P}, \quad b = 1/\sqrt{I_{yy}^P}, \quad c = 1/\sqrt{I_{zz}^P}$
+
+\subsection*{Esempio: SFERA E CILINDRO}
+
+\begin{minipage}{0.5\textwidth}
+\begin{tikzpicture}
+\draw[->] (0,0) -- (2,0) node[right] {$B$};
+\draw[->] (0,0) -- (0,2) node[above] {$C$};
+\draw[->] (0,0) -- (-1,-1) node[below left] {$A$};
+\draw[olive, thick] (0,0) circle (1.2);
+\draw[dashed] (0,0) -- (1.2,0) node[midway, below] {$b$};
+\draw[dashed] (0,0) -- (0,1.2) node[midway, left] {$c$};
+\draw[dashed] (0,0) -- (-0.84,-0.84) node[midway, above left] {$a$};
+\end{tikzpicture}
+
+\textbf{SFERA}
+\begin{itemize}
+    \item $\infty$ assi $x^P, y^P, z^P$
+    \item $I_{xx}^P = I_{yy}^P = I_{zz}^P = I^P = \frac{2}{5}MR^2$
+\end{itemize}
+= SFERA di raggio \\
+\fbox{$A^2 + B^2 + C^2 = \frac{5}{2} \frac{1}{MR^2}$} $\rightarrow a=b=c$
+\end{minipage}
+\begin{minipage}{0.45\textwidth}
+\begin{tikzpicture}
+\draw[->] (0,0) -- (2.5,0) node[right] {$B$};
+\draw[->] (0,0) -- (0,1.5) node[above] {$C$};
+\draw[->] (0,0) -- (-1,-1) node[below left] {$A$};
+\draw[olive, thick] (0,0) ellipse (2 and 0.6);
+\draw[dashed] (0,0) -- (2,0) node[midway, below] {$b$};
+\draw[dashed] (0,0) -- (0,0.6) node[midway, left] {$c$};
+\draw[dashed] (0,0) -- (-0.42,-0.42) node[midway, above left] {$a$};
+\end{tikzpicture}
+
+\textbf{CILINDRO}
+\begin{itemize}
+    \item considero $x^P, y^P, z^P$
+    \item $I_{xx}^P = I_{zz}^P = \frac{1}{4}MR^2 + \frac{1}{12}ML^2$ \\
+          e \\
+          $I_{yy}^P = \frac{1}{2}MR^2$
+\end{itemize}
+= ELLISSOIDE CON ASSI DI RIVOLUZIONE ($a=c, b$)
+\end{minipage}
+
+
+
+
+
+
+\section*{IL GIROSCOPIO, LA TROTTOLA E IL MOTO DI PRECESSIONE}
+Il giroscopio è un CORPO RIGIDO in rotazione abbastanza rapida (intorno a un asse) da creare forze in grado di controbilanciare il peso di ciascuna particella. Quello più semplice è SIMMETRICO.
+
+\vspace{0.5cm}
+\begin{minipage}{0.35\textwidth}
+\begin{tikzpicture}[scale=0.8]
+\draw[->] (0,0) -- (0,-2.5) node[right] {$z$};
+\draw[->] (0,0) -- (-2,-0.5) node[below] {$x$};
+\draw[->] (0,0) -- (-2,1) node[left] {$y$};
+\draw[thick] (0,0) ellipse (1.5 and 0.4);
+\draw[thick, rotate=90] (0,0) ellipse (1.5 and 0.4);
+\draw[thick] (0,0) circle (1.8);
+\draw[fill=gray] (2.5,-1) rectangle (3,-1.5);
+\node at (2.75, -1.8) {$m$};
+\draw (1.5,0) -- (2.75, -1);
+\draw[->, thick] (-1.5,-2) -- (-1.5,-3) node[right] {$\vec{g}$};
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}{0.6\textwidth}
+Esso può ruotare indipendentemente intorno a $x, y$ e $z$ e anche contemporaneamente.
+\begin{itemize}
+    \item Se ruota intorno a $y$ o $z$, basta una coppia di forze anche poco intense per avviare la rotazione.
+    \item Se è fermo e applichiamo una massa $m$ al gancetto, il giroscopio si inclina per effetto della gravità.
+\end{itemize}
+\end{minipage}
+
+\begin{itemize}
+    \item Se il corpo, però ruota contemporaneamente intorno ai 3 assi e, in particolare con $\vec{\omega}$ elevata intorno a $x$, e attacchiamo una massa $m$ il giroscopio non si inclina ma comincia a ruotare intorno all'asse $z$, seguendo il \textbf{MOTO DI PRECESSIONE}.
+\end{itemize}
+
+Senza la massa $m$, $\vec{L} = \hat{x} L_x$. Nel momento in cui aggiungo $m$ si va a creare un momento delle forze $\vec{\tau}$ che è diretto lungo $y$ ($\hat{x} \times \hat{z} = -\hat{y}$) quindi $\vec{\tau} \perp \vec{L}$. \\
+Per la 2° cardinale \quad $d\vec{L} = \vec{\tau} dt$ \quad cioè (visto dall'alto)
+
+\vspace{0.5cm}
+\begin{minipage}{0.3\textwidth}
+\begin{tikzpicture}
+\draw[->, thick] (0,0) -- (3,0) node[above] {$\vec{L}(t)$};
+\draw[->, thick] (3,0) -- (3,-1) node[right] {$d\vec{L}$};
+\draw[->, thick, olive] (0,0) -- (3,-1) node[below] {$\vec{L}(t+dt)$};
+\draw (0.5,0) arc (0:-18:0.5);
+\node at (0.8, -0.2) {$d\theta$};
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}{0.65\textwidth}
+dove $||\vec{L}(t)|| \cong ||\vec{L}(t+dt)||$ per $dt \to 0$ e questo significa che $\vec{L}$ sta ruotando e quindi $x$ sta ruotando intorno a $z$ per azione del $\vec{\tau}$ prodotto da $m$. \\
+= \textbf{MOTO DI PRECESSIONE}
+\end{minipage}
+
+\vspace{0.5cm}
+La velocità angolare di questo moto è \fbox{$\Omega \ll \omega$} ed è pari a:
+$$ \Omega = \frac{d\theta}{dt} = \frac{||d\vec{L}||}{||\vec{L}||} \frac{1}{dt} = \frac{||\vec{\tau}||}{||\vec{L}||} = \frac{||\vec{\tau}||}{L_x} = \frac{||\vec{\tau}||}{I_x \omega_x} $$
+
+\vspace{0.5cm}
+\noindent Analogo è il caso della \textbf{TROTTOLA}
+
+\begin{minipage}{0.3\textwidth}
+\begin{tikzpicture}
+\draw[->] (0,0) -- (0,3) node[right] {$z$};
+\draw[->] (0,0) -- (-2,-1.5) node[left] {$x$};
+\draw[->] (0,0) -- (3,-1) node[right] {$y$};
+\draw[thick, rotate around={30:(0,0)}] (0,0) -- (0,2.5);
+\draw[thick, rotate around={30:(0,0)}] (0,1.5) ellipse (0.5 and 0.2);
+\draw[->, thick, rotate around={30:(0,0)}] (0,2.5) -- (0,3.5) node[left] {$\vec{\omega}$};
+\draw[->, dashed] (0,0) -- (-0.8, 1.4) node[midway, left] {$\vec{r}$};
+\node at (-0.9, 1.5) {CM};
+\draw[->, thick] (-0.8, 1.4) -- (-0.8, 0.4) node[left] {$\vec{P}$};
+\draw (0,0.8) arc (90:120:0.8);
+\node at (-0.4, 1) {$\phi$};
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}{0.65\textwidth}
+\begin{align*}
+\vec{\tau} &= \vec{\tau}_{CM} = \vec{r} \times \vec{P} \\
+&= -Mgr \sin\phi (\hat{\omega} \times \hat{z}) \\
+\text{e} \quad \vec{\omega} &= \omega \hat{\omega}
+\end{align*}
+$\downarrow$ è ortogonale a $\hat{\omega}$ e $\hat{z} \Rightarrow \in (x,y)$ e $\perp \vec{L}$
+
+\vspace{0.3cm}
+\begin{tikzpicture}[scale=0.8]
+\draw[->] (0,0) -- (3,0) node[right] {$[\vec{L}(t)]_{xy}$};
+\draw[->] (3,0) -- (2.5,-1) node[right] {$d\vec{L}$};
+\draw[->] (0,0) -- (2.5,-1) node[below] {$[\vec{L}(t+dt)]_{xy}$};
+\draw (1,0) arc (0:-22:1);
+\node at (1.3, -0.2) {$d\theta$};
+\end{tikzpicture}
+
+$||[\vec{L}(t)]_{xy}|| \cong ||[\vec{L}(t+dt)]_{xy}||$ \\
+con $|[\vec{L}(t)]_{xy}| = |\vec{L}| \sin\phi = b$
+\end{minipage}
+
+$$ \Rightarrow \Omega = \frac{d\theta}{dt} = \frac{||d\vec{L}||}{||b||} \frac{1}{dt} = \frac{||\vec{\tau}||}{||\vec{L}||\sin\phi} = \frac{Mgr}{||\vec{L}||} = \frac{Mgr}{I_\omega \omega} $$
+
+Il $\vec{\tau}_{CM}$ ha anche una componente lungo $\hat{z}$ (che inclina la trottola) e quindi $\phi$ oscilla fra un minimo e un massimo = \textbf{MOTO DI NUTAZIONE}
+
+
+
+
+\begin{center}
+\Huge \textbf{OSCILLAZIONI}
+\end{center}
+
+\section*{MOTO ARMONICO SEMPLICE}
+
+\begin{minipage}{0.3\textwidth}
+\begin{tikzpicture}
+\draw[thick] (0,0) -- (0,1.5);
+\fill[pattern=north east lines] (-0.3,0) rectangle (0,1.5);
+\draw[decoration={aspect=0.3, segment length=2mm, amplitude=2mm, coil}, decorate] (0,0.75) -- (1.5,0.75);
+\draw (1.5, 0.4) rectangle (2.5, 1.1) node[midway] {$M$};
+\node at (0.75, 1.2) {$k, l_0$};
+\draw[->] (0, 0) -- (3, 0) node[right] {$x$};
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}{0.65\textwidth}
+$$ \vec{F}_{el} = -k(x-l_0)\hat{x} = M\ddot{x}\hat{x} \quad \Rightarrow \quad \fbox{$\ddot{x} = -\frac{k}{M}(x-l_0) = -\omega_0^2(x-l_0)$} $$
+\end{minipage}
+
+\vspace{0.3cm}
+$\downarrow$ Si risolve usando il teorema di Cauchy: \\
+``l'equazione diff. non omogenea ha soluzione $\tilde{x} = x_{gen} + x_{part}$ con $x_{gen} = $ sol. dell'omogenea associata e $x_{part} = $ sol particolare della N.O.''
+
+\vspace{0.3cm}
+\textbf{$x_{GEN}$} \\
+$x_{gen}(t) = A\cos(\omega_0 t) + B\sin(\omega_0 t)$ \quad CON $A,B$ COSTANTI (2° ordine) \\
+$x_{gen}(t) = A'\cos(\omega_0 t)\cos\phi - A'\sin(\omega_0 t)\sin\phi$ \quad CON $\phi$ SFASAMENTO
+
+\vspace{0.3cm}
+\textbf{$x_{PART}$} (se c'è una forza costante o nulla) \\
+$x_{part}(t) = l_0$ \quad per SOLUZIONE STAZIONARIA $\ddot{x} = 0 \Rightarrow x - l_0 = 0$
+
+\vspace{0.3cm}
+$\Rightarrow A = A'\cos\phi, \quad B = -A'\sin\phi, \quad tg(\phi) = -B/A$
+
+\vspace{0.3cm}
+Per determinare $A$ e $B$ servono le CONDIZIONI INIZIALI \\
+CIOÈ $x(t)$ CON $t=0$ E $\dot{x}(t)$ CON $t=0$:
+
+\begin{align*}
+\tilde{x}(t) &= A\cos(\omega_0 t) + B\sin(\omega_0 t) + l_0 = x(t) \\
+\dot{x}(t) &= -A\omega_0\sin(\omega_0 t) + B\omega_0\cos(\omega_0 t)
+\end{align*}
+
+$x(0) = x_0 = A + 0 + l_0 \Rightarrow \fbox{$A = x_0 - l_0$}, \quad \dot{x}(0) = \dot{x}_0 = B\omega_0 + 0 \Rightarrow \fbox{$B = \dot{x}_0/\omega_0$}$
+$$ \Rightarrow \tilde{x}(t) = (x_0 - l_0)\cos(\omega_0 t) + \frac{\dot{x}_0}{\omega_0}\sin(\omega_0 t) $$
+
+\section*{ENERGIA $E$}
+$$ \mathcal{L} = \int_{x_0}^{x_1} -k(x-l_0)dx = -\frac{k}{2} [ (x_1 - l_0)^2 - (x_0 - l_0)^2 ] $$
+$U(x) = -\mathcal{L} = \frac{1}{2} k (x-l_0)^2 \to$ la molla acquista energia quando si deforma con $\Delta x$ o $-\Delta x$ \\
+Poiché $F_{el}$ è conservativa,
+\fbox{$E = \frac{1}{2} mv^2 + \frac{1}{2} k (x-l_0)^2$ è una costante.} \\
+Se $v = \dot{x} = 0 \Rightarrow E = \frac{1}{2} k (x-l_0)^2 \quad$ con $x-l_0 = A$ (ampiezza) \\
+la molla oscilla fra $A = x-l_0$ e $-A = l_0-x$ \\
+$\Rightarrow E = \frac{1}{2} k A^2 = \frac{1}{2} m \dot{x}^2 + \frac{1}{2} k (x-l_0)^2$, se l'origine degli assi è in $l_0 \Rightarrow \frac{k}{2}A^2 = \frac{m}{2}\dot{x}^2 + \frac{k}{2}x^2$.
+
+\section*{PERIODO $T$}
+$T = \int_0^T dt$ si risolve con l'energia: $\quad \dot{x}^2 = \frac{k}{m} (A^2 - x^2) = \omega_0^2(A^2 - x^2)$ \\
+$$ \frac{dx}{dt} = \pm \omega_0 \sqrt{A^2 - x^2} = \pm A \omega_0 \sqrt{1 - \left(\frac{x}{A}\right)^2} \quad \Leftarrow \quad \left(\frac{dx}{dt}\right)^2 = \omega_0^2(A^2 - x^2) $$
+
+$$ \Rightarrow \fbox{$T$} = \int_0^T dt = 2 \int_{-A}^A dx \cdot \frac{1}{A\omega_0\sqrt{1-\left(\frac{x}{A}\right)^2}} \quad \text{sostituendo: } x = A\sin y, \ dx = A\cos y \, dy $$
+
+\begin{align*}
+&= 2 \int_{-\pi/2}^{\pi/2} A\cos y \, dy \cdot \frac{1}{A\omega_0\sqrt{1-(\frac{A\sin y}{A})^2}} \\
+&= \frac{2}{\omega_0} \int_{-\pi/2}^{\pi/2} dy \cdot \frac{\cos y}{\cos y} = \frac{2}{\omega_0} \int_{-\pi/2}^{\pi/2} dy \\
+&= \frac{2}{\omega_0} \left(\frac{\pi}{2} - \left(-\frac{\pi}{2}\right)\right) = \frac{2}{\omega_0}(\pi) = \fbox{$\frac{2\pi}{\omega_0}$}
+\end{align*}
+
+$T$ indipendente da $A$ (solo armoniche!) $\Rightarrow V(x) \simeq \frac{k x^2}{2}$
+
+
+
+
+
+
+\section*{PENDOLO SEMPLICE NELLA CONFIGURAZIONE DI PICCOLE OSC.}
+
+\begin{minipage}{0.35\textwidth}
+\begin{tikzpicture}
+\draw[thick, fill=gray!30] (-1.5,0) rectangle (1.5,0.2);
+\draw[thick] (0,0) -- (0,-0.2) node[above right] {$O$};
+\draw[->] (0,0) -- (2,0) node[right] {$x$};
+\draw[->] (0,0) -- (0,-3) node[below] {$y$};
+\draw[->] (0,0) -- (-0.8,-0.5) node[left] {$z$};
+\draw[thick, rotate around={30:(0,0)}] (0,0) -- (0,-2.5) node[midway, left] {$\vec{L}$};
+\fill[blue, rotate around={30:(0,0)}] (0,-2.5) circle (0.15) node[right, black, xshift=2mm] {$m$};
+\draw[->, thick, rotate around={30:(0,0)}] (0,-2.5) -- (0,-1.5) node[left] {$\vec{T}$};
+\draw[->, thick, rotate around={30:(0,0)}] (0,-2.5) -- ++(-30:1) node[below] {$\vec{P}$};
+\draw (0,-1) arc (270:300:1);
+\node at (0.3, -1.2) {$\theta$};
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}{0.6\textwidth}
+\begin{align*}
+\vec{\tau}_O &= \vec{L} \times (\vec{T} + \vec{P}) = \vec{L} \times \vec{T} + \vec{L} \times \vec{P} = \vec{L} \times \vec{P} = mgL \sin(-\theta) \hat{z} \\
+\vec{L}_O &= \vec{L} \times \vec{p} = \vec{L} \times (m\vec{v}) = m\vec{L} \times (\vec{\omega} \times \vec{L}) \\
+&= mL^2\vec{\omega} = mL^2\dot{\theta}\hat{z} \\
+\frac{d\vec{L}_O}{dt} &= \frac{d}{dt}(mL^2\omega\hat{z}) = mL^2\frac{d\omega}{dt}\hat{z} = mL^2\ddot{\theta}\hat{z}
+\end{align*}
+\end{minipage}
+
+$$ \Rightarrow mL^2\ddot{\theta}\hat{z} = -mgL\sin\theta\hat{z} \Rightarrow \fbox{$\ddot{\theta} = -\frac{g}{L}\sin\theta$} \quad \text{caso generale} $$
+
+Nelle Hp di piccole oscillazioni, sviluppiamo $\sin\theta$ con Taylor al 1° ordine e abbiamo che $\sin\theta \cong \theta + o(\theta^3) \cong \theta - \frac{\theta^3}{6}$ \\
+ma allora $\theta \gg \theta^3/6 \Rightarrow \theta^2 \ll 6 \Rightarrow \theta \ll \sqrt{6} \Rightarrow \theta \cong \sqrt{6} \cdot 10^{-1}$
+$$ \Rightarrow \fbox{$\ddot{\theta} = -\omega_0^2\theta = -\frac{g}{L}\theta$} \quad \text{caso delle piccole oscillazioni} $$
+
+\noindent * $g/L = \omega_0^2 \neq \omega^2 = \left(\frac{d\theta}{dt}\right)^2$ pendolo semplice (armonico) in $\theta$ \\
+$\omega = \omega_0 \Leftarrow$ moto armonico = proiezione moto circolare
+
+\section*{ENERGIA E}
+Il pendolo semplice è un sistema CONSERVATIVO, cioè che non disperde energia: $\vec{P}$ è CONSERVATIVA e $\vec{T} \perp \text{moto} \Rightarrow$ quindi il $\mathcal{L}_T = 0$. \\
+$U = 0$ all'altezza di $O$ (punto di sospensione)
+
+$$ E = K + U = \underbrace{\frac{m}{2} (L\dot{\theta})^2 - mgL\cos\theta}_{\text{energia a qualsiasi } \theta \text{ durante il moto}} = \underbrace{-mgL\cos(\theta_0)}_{\text{energia iniziale se } \dot{\theta}=0} $$
+
+\begin{align*}
+\Rightarrow & \frac{m}{2}L^2\dot{\theta}^2 - mgL\cos\theta = -mgL\cos\theta_0 \quad (\div m, \div L, \text{e ricorda } \omega_0^2 = g/L) \\
+\Rightarrow & \dot{\theta}^2 = 2\omega_0^2(\cos\theta - \cos\theta_0) \\
+\Rightarrow & \frac{d\theta}{dt} = \pm \omega_0 \sqrt{2(\cos\theta - \cos\theta_0)}
+\end{align*}
+
+\section*{PERIODO T}
+$T = \int_0^T dt$ si risolve con l'energia: $\dot{\theta}^2 = 2\frac{g}{L}(\cos\theta - \cos\theta_0)$
+$$ \frac{d\theta}{dt} = \pm \omega_0 \sqrt{2(\cos\theta - \cos\theta_0)} \quad \Leftarrow \quad \left(\frac{d\theta}{dt}\right)^2 = 2\omega_0^2(\cos\theta - \cos\theta_0) $$
+$$ \Rightarrow T = \int_0^T dt = 2 \int_{-\theta_0}^{\theta_0} d\theta \frac{1}{\omega_0\sqrt{2(\cos\theta - \cos\theta_0)}} $$
+
+\vspace{0.3cm}
+\noindent sviluppo arm. II ORDINE $\cos\theta_i \cong 1 - \frac{\theta_i^2}{2} \Rightarrow T(\theta_0) \cong T = \frac{2\pi}{\omega_0}$ \\[0.2cm]
+sviluppo IV ORDINE $\cos\theta_i \cong 1 - \frac{\theta_i^2}{2} + \frac{\theta_i^4}{24} \Rightarrow T(\theta_0) \cong T\left(1 + \frac{\theta_0^2}{16}\right) = \frac{2\pi}{\omega_0}\left(1 + \frac{\theta_0^2}{16}\right)$
+
+
+
+
+\section*{SOVRAPPOSIZIONE DI MOTI ARMONICI}
+
+A) \textbf{moti armonici in direzioni parallele ($\hat{x}$)}
+\begin{equation*}
+\begin{cases}
+x_1(t) = A_1 \cos(\omega_1 t + \varphi_1) \\
+x_2(t) = A_2 \cos(\omega_2 t + \varphi_2)
+\end{cases}
+\implies x(t) = A_1 \cos(\omega_1 t + \varphi_1) + A_2 \cos(\omega_2 t + \varphi_2)
+\end{equation*}
+
+1) $\omega_1 = \omega_2 = \omega$ (vediamo che $\exists (A, \varphi) \mid x(t) = A \cos(\omega t + \varphi)$)
+\begin{equation*}
+x(t) = A_1 \cos(\omega t + \varphi_1) + A_2 \cos(\omega t + \varphi_2)
+\end{equation*}
+\begin{align*}
+A \cos(\omega t + \varphi) &= A [\cos(\omega t)\cos\varphi - \sin(\omega t)\sin\varphi] \\
+&= A \cos\varphi \cos(\omega t) - A \sin\varphi \sin(\omega t)
+\end{align*}
+\begin{align*}
+&A_1 \cos(\omega t + \varphi_1) + A_2 \cos(\omega t + \varphi_2) = \\
+&= A_1 [\cos(\omega t)\cos\varphi_1 - \sin(\omega t)\sin\varphi_1] + A_2 [\cos(\omega t)\cos\varphi_2 - \sin(\omega t)\sin\varphi_2] \\
+&= (A_1 \cos\varphi_1 + A_2 \cos\varphi_2)\cos(\omega t) - (A_1 \sin\varphi_1 + A_2 \sin\varphi_2)\sin(\omega t)
+\end{align*}
+
+\begin{equation*}
+\implies A \cos\varphi = A_1 \cos\varphi_1 + A_2 \cos\varphi_2 \quad \text{e} \quad A \sin\varphi = A_1 \sin\varphi_1 + A_2 \sin\varphi_2
+\end{equation*}
+\begin{equation*}
+\implies \tan\varphi = \frac{A_1 \sin\varphi_1 + A_2 \sin\varphi_2}{A_1 \cos\varphi_1 + A_2 \cos\varphi_2} \implies A = \sqrt{A_1^2 + A_2^2 + 2A_1 A_2 \cos(\varphi_1 - \varphi_2)}
+\end{equation*}
+
+\begin{align*}
+\implies (A \cos\varphi)^2 + (A \sin\varphi)^2 = A^2 &= (A_1 \cos\varphi_1 + A_2 \cos\varphi_2)^2 + (A_1 \sin\varphi_1 + A_2 \sin\varphi_2)^2 \\
+&= A_1^2 + A_2^2 + 2A_1 A_2 (\cos\varphi_1 \cos\varphi_2 + \sin\varphi_1 \sin\varphi_2) \\
+&= A_1^2 + A_2^2 + 2A_1 A_2 \cos(\varphi_1 - \varphi_2)
+\end{align*}
+
+\subsection*{1.1) $\varphi_1 = \varphi_2$ CONCORDANZA DI FASE / INTERFERENZA COSTRUTTIVA}
+\begin{equation*}
+\implies A = A_1 + A_2 \qquad \implies \tan\varphi = \tan\varphi_1 = \tan\varphi_2
+\end{equation*}
+% Grafico concordanza di fase
+\begin{tikzpicture}[scale=0.8]
+\draw[->] (-0.2,0) -- (5,0) node[right] {$x$};
+\draw[->] (0,-1.5) -- (0,1.5);
+\draw[blue, thick, domain=0:4.5, samples=100] plot (\x, {sin(\x*180/pi)});
+\draw[green!60!black, thick, domain=0:4.5, samples=100] plot (\x, {0.5*sin(\x*180/pi)});
+\draw[red, thick, domain=0:4.5, samples=100] plot (\x, {1.5*sin(\x*180/pi)});
+\node at (2.5, 1.8) {\tiny $A=A_1+A_2$};
+\node at (2.5, -0.7) {\tiny $A_1$};
+\node at (2.5, -1.2) {\tiny $A_2$};
+\end{tikzpicture}
+
+\subsection*{1.2) $\varphi_1 = \varphi_2 + \pi$ OPPOSIZIONE DI FASE / INTERFERENZA DISTRUTTIVA}
+\begin{equation*}
+\implies A = |A_1 - A_2| \qquad \implies \tan\varphi = \tan\varphi_1 = \tan\varphi_2
+\end{equation*}
+% Grafico opposizione di fase
+\begin{tikzpicture}[scale=0.8]
+\draw[->] (-0.2,0) -- (5,0) node[right] {$x$};
+\draw[->] (0,-1.5) -- (0,1.5);
+\draw[blue, thick, domain=0:4.5, samples=100] plot (\x, {sin(\x*180/pi)});
+\draw[green!60!black, thick, domain=0:4.5, samples=100] plot (\x, {-0.5*sin(\x*180/pi)});
+\draw[red, thick, domain=0:4.5, samples=100] plot (\x, {0.5*sin(\x*180/pi)});
+\node at (2.5, 0.8) {\tiny $A=|A_1-A_2|$};
+\end{tikzpicture}
+
+\subsection*{1.3) $\varphi_1 = \varphi_2 + \pi/2$ QUADRATURA}
+\begin{equation*}
+\implies A = \sqrt{A_1^2 + A_2^2} \qquad \implies \tan\varphi = \frac{A_1 + \tan\varphi_2 A_2}{A_2 - \tan\varphi_2 A_1}
+\end{equation*}
+% Grafico in quadratura
+\begin{tikzpicture}[scale=0.8]
+\draw[->] (-0.2,0) -- (5,0) node[right] {$x$};
+\draw[->] (0,-1.5) -- (0,1.5);
+\draw[blue, thick, domain=0:4.5, samples=100] plot (\x, {sin(\x*180/pi)});
+\draw[green!60!black, thick, domain=0:4.5, samples=100] plot (\x, {0.8*cos(\x*180/pi)});
+\draw[red, thick, domain=0:4.5, samples=100] plot (\x, {sqrt(1+0.64)*sin(\x*180/pi + 38.6)});
+\end{tikzpicture}
+
+\subsection*{1.4) $A_1 = A_2$}
+\begin{equation*}
+\implies A = 2A_1 \left| \cos\left(\frac{\varphi_1 - \varphi_2}{2}\right) \right| \qquad \implies \tan\varphi = \frac{\sin\varphi_1 + \sin\varphi_2}{\cos\varphi_1 + \cos\varphi_2}
+\end{equation*}
+
+Quando $A_1 = A_2$ possiamo avere i 3 casi precedenti (1.1, 1.2, 1.3):
+
+\paragraph*{1.4.1) $A_1 = A_2$, $\varphi_1 = \varphi_2 \implies A = 2A_1$}
+$\hookrightarrow$ IN FASE
+% Grafico
+\begin{tikzpicture}[scale=0.5]
+\draw[->] (-0.2,0) -- (5,0) node[right] {$x$};
+\draw[->] (0,-1.5) -- (0,1.5);
+\draw[blue, thick, domain=0:4.5, samples=100] plot (\x, {0.6*sin(\x*180/pi)});
+\draw[red, thick, domain=0:4.5, samples=100] plot (\x, {1.2*sin(\x*180/pi)});
+\end{tikzpicture}
+
+\paragraph*{1.4.2) $A_1 = A_2$, $\varphi_1 = \varphi_2 + \pi \implies A = 0$}
+$\hookrightarrow$ IN CONTROFASE
+% Grafico
+\begin{tikzpicture}[scale=0.5]
+\draw[->] (-0.2,0) -- (5,0) node[right] {$x$};
+\draw[->] (0,-1.5) -- (0,1.5);
+\draw[blue, thick, domain=0:4.5, samples=100] plot (\x, {0.6*sin(\x*180/pi)});
+\draw[green!60!black, thick, domain=0:4.5, samples=100] plot (\x, {-0.6*sin(\x*180/pi)});
+\draw[red, thick, domain=0:4.5, samples=100] plot (\x, {0});
+\end{tikzpicture}
+
+\paragraph*{1.4.3) $A_1 = A_2$, $\varphi_1 = \varphi_2 + \pi/2 \implies A = \sqrt{2}A_1$}
+$\hookrightarrow$ IN QUADRATURA
+% Grafico
+\begin{tikzpicture}[scale=0.5]
+\draw[->] (-0.2,0) -- (5,0) node[right] {$x$};
+\draw[->] (0,-1.5) -- (0,1.5);
+\draw[blue, thick, domain=0:4.5, samples=100] plot (\x, {0.6*sin(\x*180/pi)});
+\draw[green!60!black, thick, domain=0:4.5, samples=100] plot (\x, {0.6*cos(\x*180/pi)});
+\draw[red, thick, domain=0:4.5, samples=100] plot (\x, {0.6*sqrt(2)*sin(\x*180/pi + 45)});
+\end{tikzpicture}
+
+
+
+
+
+
+2) $\omega_1 \neq \omega_2$ ($\varphi_1 = \varphi_2 = 0$ per semplicità) (non armonico)
+\begin{equation*}
+x(t) = A_1 \cos(\omega_1 t) + A_2 \cos(\omega_2 t)
+\end{equation*}
+\begin{align*}
+\ddot{x}(t) &= -\omega_1^2 A_1 \cos(\omega_1 t) - \omega_2^2 A_2 \cos(\omega_2 t) \\
+&\neq -\lambda (A_1 \cos(\omega_1 t) + A_2 \cos(\omega_2 t)) = -\lambda x(t)
+\end{align*}
+$\nexists \lambda$ perché $\omega_1^2 \neq \omega_2^2$ quindi non si può scrivere una equazione ARMONICA.
+
+\subsection*{2.1) $A_1 = A_2$ FENOMENO DEI BATTIMENTI (se $\omega_1 \simeq \omega_2$)}
+\begin{align*}
+x(t) &= A_1 [\cos(\omega_1 t) + \cos(\omega_2 t)] \\
+&= 2A_1 \cdot \cos\left[ \left( \frac{\omega_1 + \omega_2}{2} \right) t \right] \cos\left[ \left( \frac{\omega_1 - \omega_2}{2} \right) t \right] \\
+&= A(t) \cos\left[ \left( \frac{\omega_1 + \omega_2}{2} \right) t \right]
+\end{align*}
+con $A(t) = 2A_1 \cos\left[ \left( \frac{\omega_1 - \omega_2}{2} \right) t \right]$, chiamando $\Omega_2 = \frac{\omega_1 - \omega_2}{2}$.\\
+Questa è un'OSCILLAZIONE ARMONICA con $\Omega_1 = (\omega_1 + \omega_2)/2$ e ampiezza $A(t)$ variabile.
+
+\vspace{0.5cm}
+\begin{minipage}{0.4\textwidth}
+\begin{tikzpicture}[scale=0.8]
+\draw[->] (-0.2,0) -- (5,0) node[right] {$t$};
+\draw[->] (0,-2.5) -- (0,2.5) node[above] {$x$};
+\node[left] at (0,2) {$2A_1$};
+\node[left] at (0,-2) {$-2A_1$};
+
+% Inviluppo
+\draw[blue, thick, domain=0:4.5, samples=100] plot (\x, {2*cos(\x*180/2)});
+\draw[blue, thick, domain=0:4.5, samples=100] plot (\x, {-2*cos(\x*180/2)});
+
+% Onda portante
+\draw[black, domain=0:4.5, samples=200] plot (\x, {2*cos(\x*180/2)*cos(\x*180*2)});
+
+\node[below, font=\scriptsize] at (2,-2.5) {OSC. RAPIDA / OSC. LENTA};
+\end{tikzpicture}
+\end{minipage}
+\hfill
+\begin{minipage}{0.55\textwidth}
+Si vengono a creare dei LOBI, generati dalla pulsazione armonica $\Omega_2$, detti ONDE MODULANTI che descrivono come varia nel tempo l'ampiezza dell'oscillazione con pulsazione $\Omega_1$ le cui curve sono dette ONDE PORTANTI e sono modulate da $\Omega_2$.
+\end{minipage}
+
+\vspace{0.5cm}
+\begin{equation*}
+T_2 = \frac{2\pi}{\Omega_2} = \frac{4\pi}{\omega_1 - \omega_2} \qquad T_1 = \frac{2\pi}{\Omega_1} = \frac{4\pi}{\omega_1 + \omega_2}
+\end{equation*}
+
+All'interno delle oscillazioni modulanti (in blu) i massimi (e i minimi) vengono raggiunti 2 volte (e 2 volte) mentre normalmente, all'interno di un periodo $T_2$ essi dovrebbero essere raggiunti 1 volta (e 1 volta).\\
+Quindi la distanza temporale $\Delta t$ fra un massimo (e un minimo) e l'altro è pari a (BATTIMENTO):
+\begin{equation*}
+|\Delta t| = T_2 / 2 = \frac{2\pi}{|\omega_1 - \omega_2|} = \frac{1}{|\omega_1 / 2\pi - \omega_2 / 2\pi|} = \frac{1}{|f_1 - f_2|} = \frac{1}{|\Delta f|}
+\end{equation*}
+dove $\Delta f$ è la differenza fra la frequenza di $\omega_1$ e di $\omega_2$.
+
+$\implies$ questo fenomeno avviene per esempio in musica quando si accordano gli strumenti col DIAPASON: se l'accordatore percepisce la modulazione di ampiezza dell'onda risultante dalla composizione del suono del diapason e della corrispondente corda dello strumento significa che i due suoni non sono identici, quindi agisce sul tasto dello strumento da accordare in modo da riportare in fase le due oscillazioni ($\omega_1 = \omega_2$).
+
+
+
+
+\section*{B) MOTI ARMONICI IN DIREZIONI ORTOGONALI ($\hat{x}, \hat{y}$)}
+
+\begin{equation*}
+\begin{cases}
+x(t) = A \cos(\omega_x t + \varphi_x) \qquad -A \le x \le A \\
+y(t) = B \cos(\omega_y t + \varphi_y) \qquad -B \le y \le B
+\end{cases}
+\end{equation*}
+
+\subsection*{1) $\omega_x = \omega_y = \omega$}
+($\varphi_x = 0, \varphi_y = \varphi$ per semplicità)
+\begin{equation*}
+\begin{cases}
+x(t) = A \cos(\omega t) \\
+y(t) = B \cos(\omega t + \varphi)
+\end{cases}
+\end{equation*}
+
+\vspace{0.5cm}
+\begin{minipage}{0.4\textwidth}
+\begin{tikzpicture}[scale=0.8]
+\draw[->] (-3,0) -- (3,0) node[right] {$x$};
+\draw[->] (0,-2.5) -- (0,2.5) node[above] {$y$};
+
+\draw[dashed] (-2,-1.5) rectangle (2,1.5);
+\node[left] at (-2,0) {$-A$};
+\node[right] at (2,0) {$A$};
+\node[below left] at (0,-1.5) {$-B$};
+\node[above left] at (0,1.5) {$B$};
+
+\node[below left] at (-2,-1.5) {$a$};
+\node[above right] at (2,1.5) {$b$};
+\node[above left] at (-2,1.5) {$c$};
+\node[below right] at (2,-1.5) {$d$};
+
+\node[below] at (0,-1.5) {$e$};
+\node[right] at (2,0) {$f$};
+\node[above] at (0,1.5) {$g$};
+\node[left] at (-2,0) {$h$};
+
+\draw[thick, blue] (-2,-1.5) -- (2,1.5); % retta ab
+\end{tikzpicture}
+\end{minipage}
+\hfill
+\begin{minipage}{0.55\textwidth}
+\paragraph*{1.1) $\varphi = 0$ MOTO SULLA RETTA (ab)}
+\begin{equation*}
+\implies y(t) = \frac{B}{A} x(t)
+\end{equation*}
+
+\paragraph*{1.2) $\varphi = \pi$ MOTO SULLA RETTA (cd)}
+\begin{equation*}
+\implies y(t) = -\frac{B}{A} x(t)
+\end{equation*}
+
+\paragraph*{1.3) $\varphi = \pi/2$ MOTO SULL'ELLISSE (efgh) in SENSO ORARIO}
+\begin{equation*}
+\implies \left(\frac{x(t)}{A}\right)^2 + \left(\frac{y(t)}{B}\right)^2 = 1
+\end{equation*}
+
+\paragraph*{1.4) $\varphi = -\pi/2$ MOTO SULL'ELLISSE (efgh) in SENSO ANTIORARIO}
+\begin{equation*}
+\implies \left(\frac{x(t)}{A}\right)^2 + \left(\frac{y(t)}{B}\right)^2 = 1
+\end{equation*}
+\end{minipage}
+\vspace{0.5cm}
+
+\subsection*{2) $\omega_x \neq \omega_y$}
+\textbf{FIGURE DI LISSAJOUS} = traiettorie seguite dai moti armonici nei casi in cui $A=B$.
+
+\vspace{0.5cm}
+\hrule
+\vspace{0.5cm}
+
+\section*{OSCILLAZIONI SMORZATE}
+\begin{definizione}{Transiente} Si dice \textbf{transiente} un fenomeno limitato nel tempo che conduce poi all'equilibrio o allo stato stazionario. \end{definizione}
+
+L'oscillazione smorzata non dura infinitamente ma tende a fermarsi a causa della FORZA d'attrito (spesso viscoso).
+
+Consideriamo il moto unidimensionale su $\hat{x}$:
+\begin{equation*}
+\vec{F}_v = -\beta \vec{v} = -\beta \dot{x} \hat{x} \implies m\ddot{x} = -kx - \beta \dot{x} \implies \ddot{x} + \lambda \dot{x} + \omega_0^2 x = 0 \quad \text{omogenea}
+\end{equation*}
+con $\lambda = \beta/m$ e $\omega_0^2 = k/m$.
+
+È conveniente risolverla con $x(t) = A e^{\alpha t}$ con $\alpha = a + ib, A \in \mathbb{C}$.
+\begin{equation*}
+\dot{x}(t) = \alpha A e^{\alpha t}, \quad \ddot{x}(t) = \alpha^2 A e^{\alpha t}
+\end{equation*}
+\begin{equation*}
+\implies \alpha^2 A e^{\alpha t} + \lambda \alpha A e^{\alpha t} + \omega_0^2 A e^{\alpha t} = 0 \implies \alpha^2 + \lambda \alpha + \omega_0^2 = 0 = p(\alpha) \quad \text{polinomio caratteristico}
+\end{equation*}
+
+
+
+
+\begin{itemize}
+\item \textbf{TEMPO DI SMORZAMENTO $\tau$}
+\end{itemize}
+\begin{equation*}
+\tau = \frac{1}{\lambda} = \frac{m}{\beta}
+\end{equation*}
+se $F_v$ è molto elevata ($\beta \gg$) allora $\tau$ è piccolo, cioè smorza velocemente; al contrario se $F_v$ è ridotta ($\beta \ll$) $\tau$ è grande, cioè smorza lentamente.
+
+\begin{align*}
+\implies x(t) &= e^{-\frac{t}{2\tau}} \left( A e^{i \frac{t}{2}\sqrt{4\omega_0^2 - \lambda^2}} + B e^{-i \frac{t}{2}\sqrt{4\omega_0^2 - \lambda^2}} \right) \quad \text{con } e^{i\theta} = \cos\theta + i\sin\theta \\
+&= e^{-\frac{t}{2\tau}} \left[ (A+B)\cos\left(t\sqrt{\omega_0^2 - \frac{\lambda^2}{4}}\right) + i(A-B)\sin\left(t\sqrt{\omega_0^2 - \frac{\lambda^2}{4}}\right) \right] \\
+&= e^{-\frac{t}{2\tau}} \left[ (A+B)\cos(\omega' t) + i(A-B)\sin(\omega' t) \right] \quad \text{con } \omega' = \sqrt{\omega_0^2 - \frac{\lambda^2}{4}}
+\end{align*}
+
+\begin{equation*}
+\implies x(t) = e^{-\frac{t}{2\tau}} \left[ (A+B)\cos(\omega' t) + i(A-B)\sin(\omega' t) \right]
+\end{equation*}
+
+per determinare $A, B$ dobbiamo usare le condizioni iniziali (esempio semplice) $\rightarrow$
+\begin{equation*}
+x(0) = x_0 \quad \text{e} \quad \dot{x}(0) = -\frac{x_0}{2\tau} \implies \text{CONDIZIONI INIZIALI}
+\end{equation*}
+\begin{equation*}
+\implies x(0) = x_0 = A+B, \qquad \dot{x}(0) = -\frac{(A+B)}{2\tau} + i\omega'(A-B) = -\frac{x_0}{2\tau} \implies A=B
+\end{equation*}
+
+\begin{equation*}
+\implies x(t) = x_0 e^{-\frac{t}{2\tau}} \cos(\omega' t)
+\end{equation*}
+
+\vspace{0.5cm}
+\begin{minipage}{0.4\textwidth}
+L'ampiezza si riduce sempre di più fino ad annullarsi completamente ($x_0 \to 0 = -x_0$).
+\end{minipage}
+\hfill
+\begin{minipage}{0.5\textwidth}
+\begin{tikzpicture}[scale=0.8]
+\draw[->] (-0.2,0) -- (5,0) node[right] {$t$};
+\draw[->] (0,-2.5) -- (0,2.5) node[above] {$x$};
+\node[left] at (0,2) {$x_0$};
+\node[left] at (0,-2) {$-x_0$};
+
+% Inviluppo
+\draw[blue, thick, domain=0:4.5, samples=100] plot (\x, {2*exp(-\x/2)});
+\draw[blue, thick, domain=0:4.5, samples=100] plot (\x, {-2*exp(-\x/2)});
+
+\node[right, blue] at (4.5, {2*exp(-4.5/2)}) {$e^{-\frac{t}{2\tau}}$};
+\node[right, blue] at (4.5, {-2*exp(-4.5/2)}) {$-e^{-\frac{t}{2\tau}}$};
+
+% Oscillazione
+\draw[black, thick, domain=0:4.5, samples=200] plot (\x, {2*exp(-\x/2)*cos(\x*180*2)});
+\end{tikzpicture}
+\end{minipage}
+
+\vspace{0.5cm}
+\begin{equation*}
+T_0 = \frac{2\pi}{\omega_0} \quad \text{periodo dell'oscillatore non smorzato (armonico)}
+\end{equation*}
+\begin{equation*}
+T' = \frac{2\pi}{\omega'} = T_0 \cdot \frac{1}{\sqrt{1 - \frac{1}{(2\omega_0 \tau)^2}}} \quad \text{periodo dell'oscillatore smorzato.}
+\end{equation*}
+$T' > T_0$ cioè lo smorzamento allunga il periodo.
+
+Il fattore rilevante è $\omega_0 \tau = Q$ \textbf{FATTORE DI QUALITÀ}:
+Se $Q \gg 1 \implies \tau \gg \frac{1}{\omega_0} \propto T_0$ cioè $\tau$ è molto lungo ($\tau \gg T_0$).
+
+\begin{itemize}
+\item \textbf{PERDITA DI ENERGIA} ($\Delta E \neq 0$)
+\end{itemize}
+\begin{equation*}
+\frac{d \langle E \rangle_{T'}}{dt} = \left\langle \frac{dE}{dt} \right\rangle_{T'}, \qquad E = \frac{m}{2} \dot{x}^2 + \frac{k}{2} x^2 = \frac{m}{2} (\dot{x}^2 + \omega_0^2 x^2)
+\end{equation*}
+
+\begin{align*}
+\implies \Delta E &= \langle E(t+T') \rangle_{T'} - \langle E(t) \rangle_{T'} = \langle E_0 \rangle_{T'} \left[ e^{-\frac{t+T'}{\tau}} - e^{-\frac{t}{\tau}} \right] \\
+&\cong \langle E_0 \rangle_{T'} e^{-\frac{t}{\tau}} \left( e^{-\frac{T'}{\tau}} - 1 \right) \cong \langle E_0 \rangle_{T_0} e^{-\frac{t}{\tau}} \left( -\frac{T_0}{\tau} \right) \quad (\text{se } \tau \gg T_0 \text{ per Taylor}) \\
+&= - \langle E(t) \rangle_{T_0} \cdot \frac{T_0}{\tau}
+\end{align*}
+
+\begin{equation*}
+\implies \left| \frac{\Delta E}{\langle E(t) \rangle_{T_0}} \right| = \frac{T_0}{\tau} \cong \frac{2\pi}{\omega' \tau} = \frac{2\pi}{Q}
+\end{equation*}
+Si osserva che, da ciò, più $Q$ è grande meno energia si perde durante l'oscillazione.
+
+
+
+
+\section*{OSCILLAZIONI FORZATE}
+Per controbilanciare lo smorzamento è necessario applicare una FORZA ESTERNA NON COSTANTE ($\int dF_c = 0$), che dipende dal tempo, in particolare da una FORZANTE ARMONICA MOTRICE $\vec{F}(t) = \vec{F}(t+T)$ PERIODICA e $\vec{F}(t) = F_0 \sin(\omega t)$ con $\omega =$ pulsazione della sorgente esterna ($\neq \omega_0$): fornisce energia per compensare quella persa.
+
+L'equazione del moto diventa quindi:
+\begin{equation*}
+\ddot{x} + \lambda \dot{x} + \omega_0^2 x = \frac{F(t)}{m} \quad \text{non omogenea} \quad (\lambda = \beta/m \text{ e } \omega_0^2 = k/m)
+\end{equation*}
+
+Si risolve con $x(t) = x_{\text{gen}} + x_{\text{part}}$:
+\begin{itemize}
+\item $x_{\text{gen}} =$ soluzione dell'oscillazione smorzata (\textbf{transiente})
+\item $x_{\text{part}} = A(\omega_0, \omega, \lambda) \sin(\omega t - \varphi)$ (sol. di prova, $A$ e $\varphi$ da determinare) \\
+$\hookrightarrow$ l'oscillatore si deve adattare alla forzante per sopravvivere: dovrà oscillare con $\omega$ della $\vec{F}(t)$.
+\end{itemize}
+
+Sostituendo la soluzione particolare:
+\begin{align*}
+x(t) &= A \sin(\omega t - \varphi) \\
+\dot{x}(t) &= \omega A \cos(\omega t - \varphi) \\
+\ddot{x}(t) &= -\omega^2 A \sin(\omega t - \varphi)
+\end{align*}
+
+\begin{equation*}
+-\omega^2 A \sin(\omega t - \varphi) + \lambda \omega A \cos(\omega t - \varphi) + \omega_0^2 A \sin(\omega t - \varphi) = f_0 \sin(\omega t) \quad \text{con } f_0 = F_0/m
+\end{equation*}
+
+Sviluppiamo con le formule di addizione:
+\begin{align*}
+-\omega^2 A [\sin(\omega t)\cos\varphi - \cos(\omega t)\sin\varphi] & \\
++\lambda \omega A [\cos(\omega t)\cos\varphi + \sin(\omega t)\sin\varphi] & \\
++\omega_0^2 A [\sin(\omega t)\cos\varphi - \cos(\omega t)\sin\varphi] &
+\end{align*}
+
+Eguagliando i coefficienti di $\sin(\omega t)$ e $\cos(\omega t)$:
+\begin{equation*}
+\implies
+\begin{cases}
+\sin(\omega t): \quad -\omega^2 A \cos\varphi + \lambda \omega A \sin\varphi + \omega_0^2 A \cos\varphi = f_0 \quad &\text{(I)} \\
+\cos(\omega t): \quad +\omega^2 A \sin\varphi + \lambda \omega A \cos\varphi - \omega_0^2 A \sin\varphi = 0 \quad &\text{(II)}
+\end{cases}
+\end{equation*}
+
+Dalla (II):
+\begin{equation*}
+\lambda \omega A \cos\varphi = (\omega_0^2 - \omega^2) A \sin\varphi \implies \tan\varphi = \frac{\lambda \omega}{\omega_0^2 - \omega^2}
+\end{equation*}
+Vediamo che $\varphi = 0 \iff \lambda = 0$ cioè l'oscillatore e la forzante sono sfasati finché c'è smorzamento. Nel momento in cui le due oscillazioni si sovrappongono ($\varphi=0$) l'oscillatore non sarà più smorzato.
+
+\begin{itemize}
+\item Dalla trigonometria: $\cos\varphi = \frac{1}{\sqrt{1+\tan^2\varphi}}$, \quad $\sin\varphi = \frac{\tan\varphi}{\sqrt{1+\tan^2\varphi}}$
+\end{itemize}
+
+Sostituendo $\cos\varphi$ e $\sin\varphi$ nella (I):
+\begin{equation*}
+A(\omega_0^2 - \omega^2) \cos\varphi + \lambda \omega A \sin\varphi = f_0
+\end{equation*}
+\begin{equation*}
+A \left[ (\omega_0^2 - \omega^2) + \lambda \omega \tan\varphi \right] = f_0 \sqrt{1+\tan^2\varphi} \quad \text{sostituisco } \tan\varphi
+\end{equation*}
+\begin{equation*}
+A = f_0 \frac{\sqrt{1 + (\lambda \omega)^2 / (\omega_0^2 - \omega^2)^2}}{(\omega_0^2 - \omega^2) + \frac{(\lambda \omega)^2}{(\omega_0^2 - \omega^2)}} = f_0 \frac{\sqrt{(\omega_0^2 - \omega^2)^2 + (\lambda \omega)^2}}{(\omega_0^2 - \omega^2)^2 + (\lambda \omega)^2}
+\end{equation*}
+
+\begin{equation*}
+\implies A = f_0 \frac{1}{\sqrt{(\omega_0^2 - \omega^2)^2 + (\lambda \omega)^2}}
+\end{equation*}
+
+Vediamo che per determinare $A$ e $\varphi$ non abbiamo bisogno delle condizioni iniziali, queste influiscono solo sul \textbf{transiente} ($x_{\text{gen}}$) mentre il \textbf{moto finale stazionario}, che comincia non appena si esaurisce il transiente, dipende esclusivamente dalla forzante perdendo le informazioni del suo moto precedente.
+
+
+
+
+\vspace{0.5cm}
+\begin{figure}[ht]
+    \centering
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \begin{tikzpicture}[scale=0.8, >=stealth]
+        \draw[->, thick, mypen] (-0.2,0) -- (5,0) node[right] {$\omega$};
+        \draw[->, thick, mypen] (0,-0.2) -- (0,4) node[above] {$A$};
+        \node[left] at (0,3.5) {$A_M$};
+        \node[left] at (0,1) {$\frac{F_0}{\omega_0^2}$};
+        \draw[dashed, mypen] (0,3.5) -- (2.5,3.5);
+        \draw[dashed, mypen] (2.5,0) -- (2.5,3.5);
+        \node[below] at (2.5,0) {$\omega_0$};
+        \draw[thick, mygreen] (0,1) to[out=0,in=180] (2.5,3.5) to[out=0,in=170] (4.5,0.2);
+        \end{tikzpicture}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \begin{tikzpicture}[scale=0.8, >=stealth]
+        \draw[->, thick, mypen] (-0.2,0) -- (5,0) node[right] {$\omega$};
+        \draw[->, thick, mypen] (0,-0.2) -- (0,4) node[above] {$\varphi$};
+        \node[left] at (0,3) {$\pi$};
+        \node[left] at (0,1.5) {$\pi/2$};
+        \draw[dashed, mypen] (0,3) -- (4.5,3);
+        \draw[dashed, mypen] (0,1.5) -- (2.5,1.5);
+        \draw[dashed, mypen] (2.5,0) -- (2.5,1.5);
+        \node[below] at (2.5,0) {$\omega_0$};
+        \draw[thick, mygreen] (0,0) to[out=0,in=180] (2.5,1.5) to[out=0,in=180] (4.5,3);
+        \end{tikzpicture}
+    \end{minipage}
+    \caption{Andamento dell'ampiezza $A$ e dello sfasamento $\varphi$ in funzione di $\omega$.}
+\end{figure}
+
+\vspace{0.5cm}
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\begin{align*}
+A(\omega \ll \omega_0) &\cong \frac{F_0}{\omega_0^2} \\
+A(\omega \gg \omega_0) &\cong \frac{F_0}{\omega^2} \to 0
+\end{align*}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\begin{align*}
+\varphi(\omega \ll \omega_0) &\cong 0 \qquad \qquad 0 \le \varphi \le \pi \\
+\varphi(\omega \gg \omega_0) &\to \pi
+\end{align*}
+\end{minipage}
+
+\vspace{0.5cm}
+\begin{osservazione}{Risonanza}
+In condizioni di risonanza abbiamo:
+\begin{equation*}
+    A(\omega = \omega_0) = \frac{F_0}{\lambda \omega} = \frac{F_0 Q}{\omega_0^2} \qquad \text{e} \qquad \varphi(\omega = \omega_0) = \frac{\pi}{2}
+\end{equation*}
+\end{osservazione}
+
+\vspace{0.5cm}
+\begin{itemize}
+\item \textbf{ENERGIA E RISONANZA}
+\end{itemize}
+Il periodo d'oscillazione della forzante è $T = 2\pi/\omega$.
+
+Se si considera il SISTEMA OSCILLATORE + FORZANTE, è NON CONSERVATIVO perché l'energia trasmessa all'oscillatore per compensare quella persa è a spese della forzante.
+Il SISTEMA OSCILLATORE invece è CONSERVATIVO poiché l'energia persa è recuperata grazie alla forzante.
+
+\begin{equation*}
+E = \frac{1}{2}m\dot{x}^2 + \frac{1}{2}kx^2 \qquad \frac{dE}{dt} = \dot{x}(m\ddot{x} + kx) = \dot{x}(-\beta\dot{x} + F_0\sin(\omega t))
+\end{equation*}
+
+\begin{equation*}
+\left\langle \frac{dE}{dt} \right\rangle_T = \frac{1}{T} \int_t^{t+T} dt^* \left( \frac{dE}{dt^*} \right) = \frac{1}{T} [E(t+T) - E(t)] = 0 \quad \text{(moto periodico perché } E(t+T)=E(t)\text{. Lo verifichiamo:)}
+\end{equation*}
+
+\begin{equation*}
+= \frac{1}{T} \int_t^{t+T} dt^* \left[ \underbrace{-\beta(\omega A \cos(\omega t^* - \varphi))^2}_{\text{DISSIPATA (MEDIA)} = (-\beta \omega^2 A^2 / 2) \cdot T} + \underbrace{F_0 \sin(\omega t^*) \omega A \cos(\omega t^* - \varphi)}_{\text{ASSORBITA (MEDIA)} = (+F_0 \omega A \sin\varphi / 2) \cdot T} \right]
+\end{equation*}
+
+\begin{align*}
+\text{(sost. } A \text{ e } \sin\varphi \text{)} \quad &= \frac{\omega A}{2} (F_0 \sin\varphi - \beta \omega A) = \frac{\omega A m}{2} (f_0 \sin\varphi - \lambda \omega A) \\
+&= \frac{F_0 \lambda \omega}{\sqrt{\dots}} - \frac{\omega \lambda F_0}{\sqrt{\dots}} = 0 \quad \checkmark \quad \text{l'oscillatore è conservativo}
+\end{align*}
+
+\vspace{0.5cm}
+\begin{itemize}
+\item Nel caso di $\varphi = \pi/2$ l'energia assorbita è $\frac{F_0 \omega A_M}{2}$ che è la massima possibile ($\sin\varphi, A$ sono MAX).
+\end{itemize}
+\begin{equation*}
+\dot{x} = \omega A \cos(\omega t - \pi/2) = \omega A \sin(\omega t)
+\end{equation*}
+\begin{equation*}
+\implies \frac{dE_{\text{ass}}}{dt} = F_0 \sin(\omega t) \cdot (\omega A \sin(\omega t)) = F_0 \omega A \sin^2(\omega t) \ge 0 \quad \forall t
+\end{equation*}
+
+È sempre LA SORGENTE che cede energia NELLA RISONANZA; nel resto dei casi ci sono dei momenti in cui anche la sorgente riceve energia dall'oscillatore.
+

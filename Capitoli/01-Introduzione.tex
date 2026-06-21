@@ -21,9 +21,9 @@ La Fisica (dal greco \emph{physis}, "natura") è una \textbf{scienza sperimental
 \begin{tikzpicture}[scale=0.65, transform shape,
     node distance=1.5cm,
     auto,
-    block/.style={rectangle, draw, fill=blue!8, text width=10em, text centered, rounded corners=3pt, minimum height=4em, thick},
-    decision/.style={diamond, aspect=2, draw, fill=yellow!15, text width=5em, text centered, inner sep=2pt, thick},
-    outcome/.style={rectangle, draw, thick, text width=9em, text centered, rounded corners=3pt, minimum height=3.5em},
+    block/.style={rectangle, draw=mypen, fill=mypen!10, text width=10em, text centered, rounded corners=3pt, minimum height=4em, thick},
+    decision/.style={diamond, aspect=2, draw=mypen, fill=yellow!15, text width=5em, text centered, inner sep=2pt, thick},
+    outcome/.style={rectangle, draw=mypen, thick, text width=9em, text centered, rounded corners=3pt, minimum height=3.5em},
     arrow/.style={->, >=stealth, thick, draw=gray!80}
 ]
     % Nodes aligned vertically
@@ -142,7 +142,7 @@ Consideriamo l'esempio semplice dell'area di un rettangolo misurato.
     \begin{center}
     \begin{tikzpicture}[scale=1.5]
         % Rettangolo Principale A = ab
-        \draw[thick, fill=blue!5] (0,0) rectangle (3,2);
+        \draw[thick, draw=mypen, fill=mypen!10] (0,0) rectangle (3,2);
         \node at (1.5,1) {\Large $Area = a \cdot b$};
         
         % Striscia errore altezza (a * delta b)
@@ -356,7 +356,7 @@ Passando al limite per $\delta t \to 0$:
         \draw[->] (0,0) -- (0,4) node[above] {$v(t)$};
         
         % Curve
-        \draw[thick, blue] plot [smooth] coordinates {(0.5,1) (1.5,2.5) (3,2.8) (4.5,3.2) (5.5,3.5)};
+        \draw[thick, mypen] plot [smooth] coordinates {(0.5,1) (1.5,2.5) (3,2.8) (4.5,3.2) (5.5,3.5)};
         
         % Trapezoids
         \foreach \x/\y in {0.5/1, 1.5/2.5, 3/2.8, 4.5/3.2} {
@@ -449,7 +449,7 @@ Il moto armonico descrive i sistemi che oscillano attorno a una posizione di equ
         \begin{tikzpicture}[scale=0.6]
             \draw[->] (0,0) -- (4.5,0) node[right] {$t$};
             \draw[->] (0,-1.5) -- (0,1.5) node[above] {$f(t)$};
-            \draw[thick, blue] (0,1) -- (1,1) -- (1,-1) -- (2,-1) -- (2,1) -- (3,1) -- (3,-1) -- (4,-1) -- (4,1);
+            \draw[thick, mypen] (0,1) -- (1,1) -- (1,-1) -- (2,-1) -- (2,1) -- (3,1) -- (3,-1) -- (4,-1) -- (4,1);
             \node[below, font=\small] at (2.25,-1.6) {Funzione Periodica};
         \end{tikzpicture}
     \end{minipage}
@@ -459,7 +459,7 @@ Il moto armonico descrive i sistemi che oscillano attorno a una posizione di equ
         \begin{tikzpicture}[scale=0.6]
             \draw[->] (0,0) -- (4.5,0) node[right] {$t$};
             \draw[->] (0,-1.5) -- (0,1.5) node[above] {$x(t)$};
-            \draw[thick, red, smooth, domain=0:4.2, samples=100] plot (\x, {sin(\x*180/1)});
+            \draw[thick, mygreen, smooth, domain=0:4.2, samples=100] plot (\x, {sin(\x*180/1)});
             \node[below, font=\small] at (2.25,-1.6) {Funzione Armonica};
         \end{tikzpicture}
     \end{minipage}
@@ -537,7 +537,7 @@ Dove $\tau$ è la costante di tempo e $A$ è il valore asintotico della posizion
         \draw[->] (0,0) -- (5,0) node[right] {$t$};
         \draw[->] (0,0) -- (0,3) node[above] {$x(t)$};
         \draw[dashed] (0,2.5) -- (5,2.5) node[right] {$A$};
-        \draw[thick, blue] plot[domain=0:4.8, samples=100] (\x, {2.5*(1 - exp(-\x))});
+        \draw[thick, mypen] plot[domain=0:4.8, samples=100] (\x, {2.5*(1 - exp(-\x))});
     \end{tikzpicture}
     \caption{Andamento della posizione nel moto smorzato: tende asintoticamente ad $A$.}
 \end{figure}
@@ -661,7 +661,7 @@ Il corpo atterra quando $y(t_f) = 0$.
         \draw[->, thick] (0,2.5) -- (1,2.5) node[above] {$\vec{v}_0$};
         
         % Parabola starting at (0, 2.5) going down
-        \draw[thick, blue] plot[domain=0:2.25, samples=50] (\x, {2.5 - 0.49*\x*\x});
+        \draw[thick, mypen] plot[domain=0:2.25, samples=50] (\x, {2.5 - 0.49*\x*\x});
         
         \node[below] at (2.25,0) {$x_f$};
     \end{tikzpicture}
@@ -704,7 +704,7 @@ Il corpo viene lanciato con una velocità iniziale $v_0$ che forma un angolo $\t
         \draw[->] (0,0) -- (0,3) node[above] {$y$};
         
         % Parabola
-        \draw[thick, green!60!black] plot[domain=0:4, samples=50] (\x, {-\x*(\x-4)/1.5});
+        \draw[thick, mygreen] plot[domain=0:4, samples=50] (\x, {-\x*(\x-4)/1.5});
         
         % Vector v0
         \draw[->, thick] (0,0) -- (1, 1.5) node[midway, left] {$\vec{v}_0$};
@@ -755,7 +755,7 @@ Il moto circolare è caratterizzato da alcune nuove grandezze vettoriali:
         \filldraw (1.414, 1.414) circle (2pt) node[above right] {$P$};
         
         % Vectors
-        \draw[->, thick, blue] (1.414, 1.414) -- (-0.5, 3.3) node[above] {$\vec{v}$ (tangente)};
+        \draw[->, thick, mypen] (1.414, 1.414) -- (-0.5, 3.3) node[above] {$\vec{v}$ (tangente)};
         \draw[->, thick, red] (1.414, 1.414) -- (0.5, 0.5) node[midway, right] {$\vec{a}_n \perp \vec{v}$};
         
         % Tangential acceleration (dashed imaginary for MCU)

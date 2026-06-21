@@ -42,7 +42,7 @@ Sono manifestazioni macroscopiche delle forze fondamentali (principalmente elett
         box/.style={draw, rounded corners, minimum height=0.9cm, minimum width=2.2cm, align=center, font=\small},
         leaf/.style={draw, rounded corners=3pt, fill=gray!8, minimum height=0.8cm, align=center, font=\small}
     ]
-    \node[box, fill=blue!15, font=\bfseries] {Forze di Contatto}
+    \node[box, fill=mypen!15, font=\bfseries] {Forze di Contatto}
         child { 
             node[box, fill=green!15] {Rigido--Fluido}
             child { node[leaf] {\textbf{Attrito Viscoso}} }
@@ -182,8 +182,8 @@ Per risolvere questo paradosso, Galileo ideò un celebre \textbf{Esperimento Int
             \draw[->, thick, dashed] (4, 0) -- (5.5, 0); 
             \node[left] at (-4.2, 0.5) {\textbf{C}};
             \filldraw[fill=gray!30, draw=black] (0, 0.18) circle (0.18);
-            \draw[->, thick, red] (0.3, 0.18) -- (1.8, 0.18) node[above] {$\vec{v} = \text{cost}$};
-            \node[below, red] at (1.5, -0.2) {MRU};
+            \draw[->, thick, mygreen] (0.3, 0.18) -- (1.8, 0.18) node[above] {$\vec{v} = \text{cost}$};
+            \node[below, mygreen] at (1.5, -0.2) {MRU};
         \end{scope}
     \end{tikzpicture}
     \captionof{figure}{Esperimento dei piani inclinati di Galileo.}
@@ -418,21 +418,21 @@ Questo significa che le forze di interazione ("Azione" e "Reazione") compaiono s
     \centering
     \begin{tikzpicture}[scale=1.2, >=stealth]
         % Corpo A
-        \node[circle, draw=black, fill=blue!10, minimum size=1.2cm, thick] (A) at (0,0) {\textbf{A}};
+        \node[circle, draw=black, fill=mypen!10, minimum size=1.2cm, thick] (A) at (0,0) {\textbf{A}};
         
         % Corpo B
-        \node[circle, draw=black, fill=red!10, minimum size=1.2cm, thick] (B) at (4,0) {\textbf{B}};
+        \node[circle, draw=black, fill=mypen!10, minimum size=1.2cm, thick] (B) at (4,0) {\textbf{B}};
         
         % Linea tratteggiata di interazione
         \draw[dashed, gray] (A) -- (B);
         
         % Forza F_BA (Su A dovuta a B) <-- verso sinistra
-        \draw[->, ultra thick, blue] (A.west) -- ++(-1.5, 0) node[above] {$\vec{F}_{BA}$};
-        \node[below, blue, font=\scriptsize] at ($(A.west)+(-0.75,0)$) {su A da B};
+        \draw[->, ultra thick, mypen] (A.west) -- ++(-1.5, 0) node[above] {$\vec{F}_{BA}$};
+        \node[below, mypen, font=\scriptsize] at ($(A.west)+(-0.75,0)$) {su A da B};
 
         % Forza F_AB (Su B dovuta ad A) --> verso destra
-        \draw[->, ultra thick, red] (B.east) -- ++(1.5, 0) node[above] {$\vec{F}_{AB}$};
-        \node[below, red, font=\scriptsize] at ($(B.east)+(0.75,0)$) {su B da A};
+        \draw[->, ultra thick, mypen] (B.east) -- ++(1.5, 0) node[above] {$\vec{F}_{AB}$};
+        \node[below, mypen, font=\scriptsize] at ($(B.east)+(0.75,0)$) {su B da A};
         
         % Note visive
         \node[align=center, font=\small] at (2, 0.5) {\textit{Interazione}};
@@ -536,8 +536,8 @@ La misurazione precisa di $\vec{g}$ avviene attraverso particolari pendoli con u
         \node (diff) [box, fill=gray!10] {\textbf{Differenza Massa $\neq$ Peso}};
         
         % Nodi figli
-        \node (massa) [box, below left=1cm and 0.2cm of diff, fill=blue!10] {\textbf{Massa}};
-        \node (peso) [box, below right=1cm and 0.2cm of diff, fill=red!10] {\textbf{Peso}};
+        \node (massa) [box, below left=1cm and 0.2cm of diff, fill=mypen!10] {\textbf{Massa}};
+        \node (peso) [box, below right=1cm and 0.2cm of diff, fill=mypen!10] {\textbf{Peso}};
         
         % Caratteristiche Massa
         \node (m_desc) [below=0.2cm of massa, align=center, font=\small] {
@@ -575,7 +575,7 @@ Dalla seconda legge della dinamica: $N = m(g + a)$. Analizziamo i casi:
     \begin{tikzpicture}[scale=1.0, >=stealth]
         \tikzset{
             cabin/.style={draw=black!70, thick, rounded corners=3pt, fill=gray!6, minimum width=3.2cm, minimum height=3.8cm},
-            person/.style={circle, draw=blue!60, fill=blue!25, minimum size=0.7cm, thick},
+            person/.style={circle, draw=mypen!60, fill=mypen!25, minimum size=0.7cm, thick},
             fvec/.style={->, line width=1.6pt},
             avec/.style={->, line width=2.2pt, violet}
         }
@@ -583,16 +583,16 @@ Dalla seconda legge della dinamica: $N = m(g + a)$. Analizziamo i casi:
         \begin{scope}[xshift=0cm]
             \node[cabin] at (0, 1.9) {};
             \node[person] (Hd1) at (0, 1.9) {\scriptsize $m$};
-            \draw[fvec, red!80] (Hd1.south) -- ++(0,-1.1) node[right=3pt] {$\vec{P}$};
-            \draw[fvec, blue!80] (Hd1.north) -- ++(0,+0.85) node[right=3pt] {$\vec{N}$};
+            \draw[fvec, mygreen!80] (Hd1.south) -- ++(0,-1.1) node[right=3pt] {$\vec{P}$};
+            \draw[fvec, mypen!80] (Hd1.north) -- ++(0,+0.85) node[right=3pt] {$\vec{N}$};
             \node[below=6pt] at (0,0) {\textbf{$a=0$}};
         \end{scope}
         % Caso a > 0
         \begin{scope}[xshift=5.5cm]
             \node[cabin] at (0, 1.9) {};
             \node[person] (Hd2) at (0, 1.9) {\scriptsize $m$};
-            \draw[fvec, red!80]  (Hd2.south) -- ++(0,-1.1) node[right=3pt] {$\vec{P}$};
-            \draw[fvec, line width=2.4pt, blue!80] (Hd2.north) -- ++(0,+1.55) node[right=3pt] {$\vec{N}$};
+            \draw[fvec, mygreen!80]  (Hd2.south) -- ++(0,-1.1) node[right=3pt] {$\vec{P}$};
+            \draw[fvec, line width=2.4pt, mypen!80] (Hd2.north) -- ++(0,+1.55) node[right=3pt] {$\vec{N}$};
             \draw[avec] (-2.2, 1.2) -- (-2.2, 2.8) node[above, violet] {$\vec{a}$};
             \node[below=6pt] at (0,0) {\textbf{$a > 0$}};
         \end{scope}
@@ -600,8 +600,8 @@ Dalla seconda legge della dinamica: $N = m(g + a)$. Analizziamo i casi:
         \begin{scope}[xshift=11cm]
             \node[cabin] at (0, 1.9) {};
             \node[person] (Hd3) at (0, 1.9) {\scriptsize $m$};
-            \draw[fvec, red!80]  (Hd3.south) -- ++(0,-1.1) node[right=3pt] {$\vec{P}$};
-            \draw[fvec, blue!80] (Hd3.north) -- ++(0,+0.45) node[right=3pt] {$\vec{N}$};
+            \draw[fvec, mygreen!80]  (Hd3.south) -- ++(0,-1.1) node[right=3pt] {$\vec{P}$};
+            \draw[fvec, mypen!80] (Hd3.north) -- ++(0,+0.45) node[right=3pt] {$\vec{N}$};
             \draw[avec] (-2.2, 2.8) -- (-2.2, 1.2) node[below, violet] {$\vec{a}$};
             \node[below=6pt] at (0,0) {\textbf{$a < 0$}};
         \end{scope}

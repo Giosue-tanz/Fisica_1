@@ -123,7 +123,10 @@ Procediamo delineando anzitutto i due vettori in tale forma:
 
 Sostituendo ordinatamente queste descrizioni vettoriali nella definizione base del vettore momento angolare, se ne distribuiscono i termini come a seguire:
 \begin{equation}
-    \vec{L} = \vec{r} \times m\vec{v} = m \left[ r\hat{r} \times \big(\dot{r}\hat{r} + r\dot{\phi}\hat{\phi}\big) \right] = m \left( r\dot{r}(\hat{r} \times \hat{r}) + r^2 \dot{\phi} (\hat{r} \times \hat{\phi}) \right)
+    \begin{split}
+        \vec{L} &= \vec{r} \times m\vec{v} = m \left[ r\hat{r} \times \big(\dot{r}\hat{r} + r\dot{\phi}\hat{\phi}\big) \right] \\
+        &= m \left( r\dot{r}(\hat{r} \times \hat{r}) + r^2 \dot{\phi} (\hat{r} \times \hat{\phi}) \right)
+    \end{split}
 \end{equation}
 Data l'impossibilità nel prodotto vettoriale di dar risultato non nullo tra versori complanari e disposti sulla parallela linea d'azione intrinseca ($\hat{r} \times \hat{r} = 0$), il primo contributo si annulla. Risolvendo infine $\hat{r} \times \hat{\phi} = \hat{z}$ come versore uscente dal piano ed indicando come $\omega = \dot{\phi}$ l'identità della velocità angolare, il formalismo si semplifica sino a definire:
 \begin{equation}
@@ -408,7 +411,10 @@ Consideriamo l'approfondimento della specificità in cui l'intensità della forz
 
 Andiamo a ricalcarne l'evoluzione integrativa per isolare il posizionamento di \textbf{Energia Potenziale}:
 \begin{equation}
-    U(r) - U(r_0) = -\mathcal{L}_{r_0 \to r} = - \int_{r_0}^{r} \frac{\alpha}{r'^2} \, dr' = \int_{r_0}^{r} \left(-\frac{\alpha}{r'^2}\right) \, dr' = \left[ \frac{\alpha}{r'} \right]_{r_0}^{r} = \frac{\alpha}{r} - \frac{\alpha}{r_0}
+    \begin{split}
+        U(r) - U(r_0) &= -\mathcal{L}_{r_0 \to r} = - \int_{r_0}^{r} \frac{\alpha}{r'^2} \, dr' \\
+        &= \int_{r_0}^{r} \left(-\frac{\alpha}{r'^2}\right) \, dr' = \left[ \frac{\alpha}{r'} \right]_{r_0}^{r} = \frac{\alpha}{r} - \frac{\alpha}{r_0}
+    \end{split}
 \end{equation}
 
 Se consideriamo convenzionalmente una lunghezza o stacco di distanza dalla scala molto immensa ($r \to +\infty$) i campi tendono fisicamente all'estinzione dell'influenza ed avremo che contemporaneamente le forze decadono $F, U \to 0$. Quindi si proietta e si sceglie di conseguenza il riferimento annullato $r_0 \to +\infty$ in modo tale che esso decada dalla equazione di disavanzo come $\frac{\alpha}{\infty} = 0$, portando a una formula elementare limitata per la singola referenza $U(r)$:

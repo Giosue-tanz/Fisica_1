@@ -35,10 +35,12 @@
 %\usepackage[english]{babel}
 \usepackage{csquotes}
 
-\usepackage[fleqn]{amsmath}  
+\usepackage[fleqn]{amsmath}
+\usepackage{amssymb}  
 \usepackage{ellipsis}
 \usepackage{listings}
 \usepackage{subfig}
+\usepackage{float}
 \usepackage{caption}
 \usepackage{appendix}
 \usepackage{siunitx}
@@ -46,8 +48,12 @@
 
 \usepackage[pdftex]{graphicx} 
 \graphicspath{{./Figure/}}
- \usepackage[eulerchapternumbers,linedheaders,subfig,beramono,eulermath,
-parts,dottedtoc]{classicthesis}
+
+% Font per i titoli
+\usepackage{mathptmx}
+\setkomafont{disposition}{\normalfont\rmfamily\bfseries}
+% \usepackage[eulerchapternumbers,linedheaders,subfig,beramono,eulermath,
+% parts,dottedtoc]{classicthesis}
 
 \usepackage{tikz}
 \usepackage{tikz-3dplot}
@@ -171,6 +177,10 @@ parts,dottedtoc]{classicthesis}
 }
 
 %--------------------------------------------------------------
+
+\usepackage{booktabs}  % for \toprule, \midrule, \bottomrule
+\usepackage{pifont}    % for \ding{55}
+\usepackage{hyperref}  % load LAST - for \url, \texorpdfstring
 \begin{document}
 \frenchspacing
 \raggedbottom
@@ -223,6 +233,7 @@ To view a copy of this license, visit \url{https://creativecommons.org/licenses/
 \include{Capitoli/03-Urti}
 \include{Capitoli/04-Dinamica_Rotazioni}
 \include{Capitoli/05-Gravitazione}
+\include{Capitoli/Corpo_rigido_e_oscillazioni}
 % \include{Chapters/02-StateOfTheArt}
 % \include{Chapters/03-Proposal}
 % \include{Chapters/04-Evaluation}
