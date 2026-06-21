@@ -1,0 +1,104 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{tikz}
+\usepackage{geometry}
+\geometry{a4paper, margin=2cm}
+
+\begin{document}
+
+\begin{flushright}
+FISICA 1 - Fabrizio Cei \quad 23/02/2024
+\end{flushright}
+
+\begin{align*}
+\Rightarrow L_x &= \omega_x \underbrace{\int_{CR} dm (y^2+z^2)}_{I_{xx}} - \omega_y \underbrace{\int_{CR} dm xy}_{I_{xy}} - \omega_z \underbrace{\int_{CR} dm xz}_{I_{xz}} \\
+\Rightarrow L_y &= -\omega_x \underbrace{\int_{CR} dm xy}_{I_{xy}} + \omega_y \underbrace{\int_{CR} dm (x^2+z^2)}_{I_{yy}} - \omega_z \underbrace{\int_{CR} dm yz}_{I_{yz}} \\
+\Rightarrow L_z &= -\omega_x \underbrace{\int_{CR} dm xz}_{I_{xz}} - \omega_y \underbrace{\int_{CR} dm yz}_{I_{yz}} + \omega_z \underbrace{\int_{CR} dm (y^2+x^2)}_{I_{zz}}
+\end{align*}
+
+$I_{ii} = $ MOMENTI D'INERZIA rispetto all'asse $i$ \\
+$I_{ij} = $ PRODOTTI D'INERZIA
+
+\vspace{0.5cm}
+\begin{minipage}{0.5\textwidth}
+$$
+\begin{pmatrix}
+L_x \\ L_y \\ L_z
+\end{pmatrix}
+=
+\underbrace{
+\begin{pmatrix}
+I_{xx} & I_{xy} & I_{xz} \\
+I_{xy} & I_{yy} & I_{yz} \\
+I_{xz} & I_{yz} & I_{zz}
+\end{pmatrix}
+}_{\text{TENSORE D'INERZIA } I_{ij}}
+\begin{pmatrix}
+\omega_x \\ \omega_y \\ \omega_z
+\end{pmatrix}
+$$
+\end{minipage}
+\begin{minipage}{0.45\textwidth}
+La matrice d'inerzia è simmetrica e reale. Quindi, per il teorema spettrale si diagonalizza con autovalori reali.
+\end{minipage}
+
+\vspace{0.5cm}
+\begin{minipage}{0.5\textwidth}
+$$
+\begin{pmatrix}
+L_x^P \\ L_y^P \\ L_z^P
+\end{pmatrix}
+=
+\begin{pmatrix}
+I_{xx}^P & 0 & 0 \\
+0 & I_{yy}^P & 0 \\
+0 & 0 & I_{zz}^P
+\end{pmatrix}
+\begin{pmatrix}
+\omega_x^P \\ \omega_y^P \\ \omega_z^P
+\end{pmatrix}
+$$
+\end{minipage}
+\begin{minipage}{0.45\textwidth}
+Se infatti si va a calcolare il momento $\vec{L}^P$ rispetto a $P$ asse principale, la matrice è diagonale (terna).
+\end{minipage}
+
+\vspace{0.5cm}
+\begin{itemize}
+    \item gli autovettori sono $\vec{\omega} = (\omega_x, \omega_y, \omega_z)$, quindi se $\vec{\omega} \parallel \hat{x} \Rightarrow \vec{\omega} \cdot \hat{x} = \omega_x \Rightarrow \omega_x$ autovettore e stessa cosa per $\hat{y}$ e $\hat{z}$ (ortogonali).
+    \item se calcoliamo $\vec{L}$ rispetto a degli assi principali $\hat{x}, \hat{y}, \hat{z}$ allora:
+    \begin{align*}
+    \vec{L}^x &= I \vec{\omega} = I_x \omega_x \hat{x} = L_x \hat{x} \\
+    \vec{L}^y &= I \vec{\omega} = I_y \omega_y \hat{y} = L_y \hat{y} \quad \Rightarrow \text{in generale } \vec{L} = I \vec{\omega} \\
+    \vec{L}^z &= I \vec{\omega} = I_z \omega_z \hat{z} = L_z \hat{z}
+    \end{align*}
+    \item si può verificare che gli autovalori sono positivi: $K = L^2 / 2I$, e se l'asse è principale la $I_{ij}$ è diagonale, allora $\vec{L} = I \vec{\omega} \Rightarrow L = I \omega$
+    $$ \Rightarrow K = \frac{L^2}{2I} = \frac{1}{2} I \omega^2 > 0 \quad \text{perché } K \geq 0 \text{ sempre } \left(= \frac{1}{2} \sum m r^2 \omega^2 \geq 0\right) $$
+    \item se ci sono assi con momento di inerzia rispetto ad essi uguale allora gli assi sono ``proporzionali'' e quindi ci sono autovalori degeneri (cioè a cui è associato $+1$ vettore).
+    \item a questo punto si può trovare il momento di inerzia rispetto a un asse qualsiasi arbitrario $\hat{u}$ sfruttando momenti e prodotti d'inerzia e i versori di $\hat{u}$, cioè $(u_x, u_y, u_z)$. = TEOREMA DI POINSOT
+\end{itemize}
+
+\noindent \textbf{* COSENI DIRETTORI:} dato l'asse $\hat{u}$ abbiamo \\
+$||\hat{u}|| = 1 = u_x^2 + u_y^2 + u_z^2 = ||\hat{x} u_x + \hat{y} u_y + \hat{z} u_z||^2$
+
+\begin{minipage}{0.6\textwidth}
+$u_z = \cos(\alpha) = \sin\theta \cos\phi$ \\
+$u_x = \cos(\beta) = \sin\theta \sin\phi$ \\
+$u_y = \cos(\gamma) = \cos\theta$
+\end{minipage}
+\begin{minipage}{0.35\textwidth}
+\begin{tikzpicture}
+\draw[->] (0,0) -- (2,0) node[right] {$x$};
+\draw[->] (0,0) -- (0,2) node[above] {$y$};
+\draw[->] (0,0) -- (-1,-1) node[below left] {$z$};
+\draw[->, thick, olive] (0,0) -- (1.5,1.5) node[right] {$u$};
+\draw[dashed] (1.5,1.5) -- (1.5,0);
+\node at (1.6, 0.7) {$u_y$};
+\node at (0.7, -0.2) {$u_x$};
+\node at (-0.3, -0.3) {$u_z$};
+\end{tikzpicture}
+\end{minipage}
+
+\end{document}

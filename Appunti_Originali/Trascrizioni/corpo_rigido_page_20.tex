@@ -1,0 +1,66 @@
+% Fisica 1 - Fabrizio Cei
+% Corpo Rigido - Pagina 20
+
+\subsection{4) Guscio sferico}
+
+Massa $M$, densità $\sigma = M/4\pi R^2$, raggio $R$. 1, 2, 3 assi principali.
+
+% Diagramma: guscio sferico con assi principali
+
+\begin{align*}
+\boxed{I_1 = I_2 = I_3} &= \int_0^{\pi} 2\pi\sigma R^4 \sin^3\theta\,d\theta \\
+&= 2\pi\sigma R^4 \left[\int_0^{\pi}\sin\theta\,d\theta - \int_0^{\pi}\cos^2\theta\sin\theta\,d\theta\right] \\
+&= \frac{2\pi M R^4}{4\pi R^2}\left(2 - \left[\frac{\cos^3\theta}{3}\right]_0^{\pi}\right) = \frac{MR^2}{2}\cdot\frac{4}{3} = \boxed{\frac{2}{3}MR^2}
+\end{align*}
+
+\subsection{5) Cilindro}
+
+Massa $M$, densità $\rho = M/\pi R^2 L$, raggio $R$, lunghezza $L$.
+
+% Diagramma: cilindro con assi 1 (lungo l'asse del cilindro), 2 e 3 (perpendicolari), CM al centro, angolo phi, distanza d
+
+\begin{equation}
+\boxed{I_1} = \int_{CR} R^2\,dm = \int_0^{L} R^2\,\frac{M\,dz}{L}\cdot\frac{1}{2} = \boxed{\frac{MR^2}{2}}
+\end{equation}
+
+Con $d = R\cos\varphi$:
+
+\begin{align*}
+\boxed{I_2 = I_3} &= \int_{CR} d^2\,dm = \int_0^{2\pi}d\varphi\int_0^{R}dr\int_0^{L/2} 2\,dz\,R\rho(R^2\cos^2\varphi + z^2) \\
+&= 2\rho\left[\int_0^{2\pi}d\varphi\cos^2\varphi \int_0^{R} R^3\,dr\cdot\frac{L}{2} + 2\pi\int_0^R R\,dr\int_0^{L/2} z^2\,dz\right] \\
+&= 2\rho\left[\frac{R^4L}{8}\int_0^{2\pi}\frac{1+\cos(2\varphi)}{2}\,d\varphi + \frac{\pi R^2 \cdot L^3}{24}\right] = 2\rho\left[\frac{R^4 L\pi}{8\cdot 4} + \frac{R^2 L^3\pi}{24}\right]
+\end{align*}
+
+\begin{equation}
+= \rho R^2 L \pi\left(\frac{R^2}{4} + \frac{L^2}{12}\right) = \boxed{\frac{M}{4}\left(R^2 + \frac{L^2}{3}\right)}
+\end{equation}
+
+\subsection{6) Sbarretta}
+
+Massa $M$, densità lineare $\lambda = M/L$, raggio $R$ ($= \sqrt{a^2 + b^2}$), spessori trascurabili ($a, b, R \ll L$).
+
+% Diagramma: sbarretta con assi 1, 2, 3
+
+\begin{equation}
+\boxed{I_1} = \int_{CR} R^2\,dm = \boxed{\frac{MR^2}{2}} \ll I_2, I_3 \quad \text{perché } R \ll L
+\end{equation}
+
+\begin{equation}
+\boxed{I_2 = I_3} = 2\int_0^{L/2} x^2\,\lambda\,dx = 2\lambda\int_0^{L/2} x^2\,dx = 2\lambda\left[\frac{x^3}{3}\right]_0^{L/2} = \frac{\lambda L^3}{12} = \boxed{\frac{ML^2}{12}}
+\end{equation}
+
+\subsection{Altri solidi e i loro momenti di inerzia}
+
+\paragraph{7) Tubo}
+$=$ anello con spessore non trascurabile ($r_1$ e $r_2$ raggi). $I_1$ (asse centrale che lo attraversa) si trova con:
+\begin{equation}
+I_1 = \frac{1}{2}M(r_1^2 + r_2^2)
+\end{equation}
+
+\paragraph{8) Cubo}
+$=$ anche generico parallelepipedo ($a, b, c$ lunghezze). $I_c$ (parallelo a due lunghezze $c$) si trova con:
+\begin{equation}
+I_c = \frac{1}{12}M(a^2 + b^2)
+\end{equation}
+
+Con tutti si può usare \textbf{Huygens--Steiner}.

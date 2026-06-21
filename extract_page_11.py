@@ -1,0 +1,13 @@
+import fitz
+import os
+
+pdf_path = "Appunti_Originali/Corpo rigido e oscillazioni.pdf"
+out_dir = "Appunti_Originali/Corpo_rigido_img"
+os.makedirs(out_dir, exist_ok=True)
+
+doc = fitz.open(pdf_path)
+page = doc.load_page(11) # Page index 11 is the 12th page (or maybe 11th if 0-indexed). Let's extract 11.
+pix = page.get_pixmap(dpi=150)
+out_path = os.path.join(out_dir, "page_11.png")
+pix.save(out_path)
+print(f"Saved {out_path}")

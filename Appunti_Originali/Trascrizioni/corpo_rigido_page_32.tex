@@ -1,0 +1,129 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{tikz}
+
+\begin{document}
+
+\section*{SOVRAPPOSIZIONE DI MOTI ARMONICI}
+
+A) \textbf{moti armonici in direzioni parallele ($\hat{x}$)}
+\begin{equation*}
+\begin{cases}
+x_1(t) = A_1 \cos(\omega_1 t + \varphi_1) \\
+x_2(t) = A_2 \cos(\omega_2 t + \varphi_2)
+\end{cases}
+\implies x(t) = A_1 \cos(\omega_1 t + \varphi_1) + A_2 \cos(\omega_2 t + \varphi_2)
+\end{equation*}
+
+1) $\omega_1 = \omega_2 = \omega$ (vediamo che $\exists (A, \varphi) \mid x(t) = A \cos(\omega t + \varphi)$)
+\begin{equation*}
+x(t) = A_1 \cos(\omega t + \varphi_1) + A_2 \cos(\omega t + \varphi_2)
+\end{equation*}
+\begin{align*}
+A \cos(\omega t + \varphi) &= A [\cos(\omega t)\cos\varphi - \sin(\omega t)\sin\varphi] \\
+&= A \cos\varphi \cos(\omega t) - A \sin\varphi \sin(\omega t)
+\end{align*}
+\begin{align*}
+&A_1 \cos(\omega t + \varphi_1) + A_2 \cos(\omega t + \varphi_2) = \\
+&= A_1 [\cos(\omega t)\cos\varphi_1 - \sin(\omega t)\sin\varphi_1] + A_2 [\cos(\omega t)\cos\varphi_2 - \sin(\omega t)\sin\varphi_2] \\
+&= (A_1 \cos\varphi_1 + A_2 \cos\varphi_2)\cos(\omega t) - (A_1 \sin\varphi_1 + A_2 \sin\varphi_2)\sin(\omega t)
+\end{align*}
+
+\begin{equation*}
+\implies A \cos\varphi = A_1 \cos\varphi_1 + A_2 \cos\varphi_2 \quad \text{e} \quad A \sin\varphi = A_1 \sin\varphi_1 + A_2 \sin\varphi_2
+\end{equation*}
+\begin{equation*}
+\implies \text{tg}\,\varphi = \frac{A_1 \sin\varphi_1 + A_2 \sin\varphi_2}{A_1 \cos\varphi_1 + A_2 \cos\varphi_2} \implies A = \sqrt{A_1^2 + A_2^2 + 2A_1 A_2 \cos(\varphi_1 - \varphi_2)}
+\end{equation*}
+
+\begin{align*}
+\implies (A \cos\varphi)^2 + (A \sin\varphi)^2 = A^2 &= (A_1 \cos\varphi_1 + A_2 \cos\varphi_2)^2 + (A_1 \sin\varphi_1 + A_2 \sin\varphi_2)^2 \\
+&= A_1^2 + A_2^2 + 2A_1 A_2 (\cos\varphi_1 \cos\varphi_2 + \sin\varphi_1 \sin\varphi_2) \\
+&= A_1^2 + A_2^2 + 2A_1 A_2 \cos(\varphi_1 - \varphi_2)
+\end{align*}
+
+\subsection*{1.1) $\varphi_1 = \varphi_2$ CONCORDANZA DI FASE / INTERFERENZA COSTRUTTIVA}
+\begin{equation*}
+\implies A = A_1 + A_2 \qquad \implies \text{tg}\,\varphi = \text{tg}\,\varphi_1 = \text{tg}\,\varphi_2
+\end{equation*}
+% Grafico concordanza di fase
+\begin{tikzpicture}[scale=0.8]
+\draw[->] (-0.2,0) -- (5,0) node[right] {$x$};
+\draw[->] (0,-1.5) -- (0,1.5);
+\draw[blue, thick, domain=0:4.5, samples=100] plot (\x, {sin(\x*180/pi)});
+\draw[green!60!black, thick, domain=0:4.5, samples=100] plot (\x, {0.5*sin(\x*180/pi)});
+\draw[red, thick, domain=0:4.5, samples=100] plot (\x, {1.5*sin(\x*180/pi)});
+\node at (2.5, 1.8) {\tiny $A=A_1+A_2$};
+\node at (2.5, -0.7) {\tiny $A_1$};
+\node at (2.5, -1.2) {\tiny $A_2$};
+\end{tikzpicture}
+
+\subsection*{1.2) $\varphi_1 = \varphi_2 + \pi$ OPPOSIZIONE DI FASE / INTERFERENZA DISTRUTTIVA}
+\begin{equation*}
+\implies A = |A_1 - A_2| \qquad \implies \text{tg}\,\varphi = \text{tg}\,\varphi_1 = \text{tg}\,\varphi_2
+\end{equation*}
+% Grafico opposizione di fase
+\begin{tikzpicture}[scale=0.8]
+\draw[->] (-0.2,0) -- (5,0) node[right] {$x$};
+\draw[->] (0,-1.5) -- (0,1.5);
+\draw[blue, thick, domain=0:4.5, samples=100] plot (\x, {sin(\x*180/pi)});
+\draw[green!60!black, thick, domain=0:4.5, samples=100] plot (\x, {-0.5*sin(\x*180/pi)});
+\draw[red, thick, domain=0:4.5, samples=100] plot (\x, {0.5*sin(\x*180/pi)});
+\node at (2.5, 0.8) {\tiny $A=|A_1-A_2|$};
+\end{tikzpicture}
+
+\subsection*{1.3) $\varphi_1 = \varphi_2 + \pi/2$ QUADRATURA}
+\begin{equation*}
+\implies A = \sqrt{A_1^2 + A_2^2} \qquad \implies \text{tg}\,\varphi = \frac{A_1 + \text{tg}\,\varphi_2 A_2}{A_2 - \text{tg}\,\varphi_2 A_1}
+\end{equation*}
+% Grafico in quadratura
+\begin{tikzpicture}[scale=0.8]
+\draw[->] (-0.2,0) -- (5,0) node[right] {$x$};
+\draw[->] (0,-1.5) -- (0,1.5);
+\draw[blue, thick, domain=0:4.5, samples=100] plot (\x, {sin(\x*180/pi)});
+\draw[green!60!black, thick, domain=0:4.5, samples=100] plot (\x, {0.8*cos(\x*180/pi)});
+\draw[red, thick, domain=0:4.5, samples=100] plot (\x, {sqrt(1+0.64)*sin(\x*180/pi + 38.6)});
+\end{tikzpicture}
+
+\subsection*{1.4) $A_1 = A_2$}
+\begin{equation*}
+\implies A = 2A_1 \left| \cos\left(\frac{\varphi_1 - \varphi_2}{2}\right) \right| \qquad \implies \text{tg}\,\varphi = \frac{\sin\varphi_1 + \sin\varphi_2}{\cos\varphi_1 + \cos\varphi_2}
+\end{equation*}
+
+Quando $A_1 = A_2$ possiamo avere i 3 casi precedenti (1.1, 1.2, 1.3):
+
+\paragraph*{1.4.1) $A_1 = A_2$, $\varphi_1 = \varphi_2 \implies A = 2A_1$}
+$\hookrightarrow$ IN FASE
+% Grafico
+\begin{tikzpicture}[scale=0.5]
+\draw[->] (-0.2,0) -- (5,0) node[right] {$x$};
+\draw[->] (0,-1.5) -- (0,1.5);
+\draw[blue, thick, domain=0:4.5, samples=100] plot (\x, {0.6*sin(\x*180/pi)});
+\draw[red, thick, domain=0:4.5, samples=100] plot (\x, {1.2*sin(\x*180/pi)});
+\end{tikzpicture}
+
+\paragraph*{1.4.2) $A_1 = A_2$, $\varphi_1 = \varphi_2 + \pi \implies A = 0$}
+$\hookrightarrow$ IN CONTROFASE
+% Grafico
+\begin{tikzpicture}[scale=0.5]
+\draw[->] (-0.2,0) -- (5,0) node[right] {$x$};
+\draw[->] (0,-1.5) -- (0,1.5);
+\draw[blue, thick, domain=0:4.5, samples=100] plot (\x, {0.6*sin(\x*180/pi)});
+\draw[green!60!black, thick, domain=0:4.5, samples=100] plot (\x, {-0.6*sin(\x*180/pi)});
+\draw[red, thick, domain=0:4.5, samples=100] plot (\x, {0});
+\end{tikzpicture}
+
+\paragraph*{1.4.3) $A_1 = A_2$, $\varphi_1 = \varphi_2 + \pi/2 \implies A = \sqrt{2}A_1$}
+$\hookrightarrow$ IN QUADRATURA
+% Grafico
+\begin{tikzpicture}[scale=0.5]
+\draw[->] (-0.2,0) -- (5,0) node[right] {$x$};
+\draw[->] (0,-1.5) -- (0,1.5);
+\draw[blue, thick, domain=0:4.5, samples=100] plot (\x, {0.6*sin(\x*180/pi)});
+\draw[green!60!black, thick, domain=0:4.5, samples=100] plot (\x, {0.6*cos(\x*180/pi)});
+\draw[red, thick, domain=0:4.5, samples=100] plot (\x, {0.6*sqrt(2)*sin(\x*180/pi + 45)});
+\end{tikzpicture}
+
+\end{document}

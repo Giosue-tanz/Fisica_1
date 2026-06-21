@@ -1,0 +1,63 @@
+% Fisica 1 - Fabrizio Cei - 09/02/2024
+% Corpo Rigido - Pagina 19
+
+\section{Calcolo dei momenti di inerzia (simmetrie)}
+
+\subsection{1) Anello}
+
+Massa $M$, raggio $R$. Massa distribuita sulla fascia, spessore trascurabile ($r_m \ll R$). 1, 2, 3 assi principali.
+
+% Diagramma: anello con assi 1 (passante per il centro, perpendicolare al piano), 2 e 3 (nel piano dell'anello)
+
+\begin{equation}
+\boxed{I_1} = \int_{CR} R^2\,dm = R^2 \int_{CR} dm = \boxed{MR^2}
+\end{equation}
+
+\begin{align*}
+\boxed{I_2 = I_3} &= \int_{CR} t^2\,dm = \int_{CR} (R\cos\theta)^2\,dm = \int_{CR} R^2\cos^2\theta\,\frac{M\,d\theta}{2\pi} \cdot 4\int_0^{\pi/2} \\
+&= \frac{MR^2}{2\pi} \cdot 4 \int_0^{\pi/2} \cos^2\theta\,d\theta = \frac{2MR^2}{\pi}\int_0^{\pi/2}\frac{1+\cos(2\theta)}{2}\,d\theta \\
+&= \frac{2MR^2}{2\pi}\left[\int_0^{\pi/2} d\theta + \int_0^{\pi} \cos(x)\,dx\right] = \frac{MR^2}{2\pi}\cdot\pi = \boxed{\frac{MR^2}{2}}
+\end{align*}
+
+% dove si è usata la sostituzione x = 2theta, dx = 2dtheta
+
+\subsection{2) Disco}
+
+Massa $M$, densità $\sigma = M/\pi R^2$, raggio $R$. Spessore trascurabile ($h \ll R$). 1, 2, 3 assi principali.
+
+% Diagramma: disco con assi 1 (perpendicolare al piano), 2 e 3 (nel piano del disco), con dm elemento di area
+
+\begin{align*}
+\boxed{I_1} &= \int_{CR} R^2\,dm = 2\pi \int_{CR} R^3\,\sigma\,dR = 2\pi\sigma \int_0^R R^3\,dR \\
+&= \frac{2\pi\sigma R^4}{4} = (\pi\sigma R^2)\frac{R^2}{2} = \boxed{\frac{MR^2}{2}}
+\end{align*}
+
+\begin{align*}
+\boxed{I_2 = I_3} &= \int_{CR} x^2\,dm = 2\int_{CR} x^2\,\sigma\,y\,dx = 2\int_{CR} (R\cos\theta)^2\,\sigma\,\sqrt{R^2 - x^2}\,dx
+\end{align*}
+
+Con $y = R\sin\theta$, $x = R\cos\theta$, $dx = -R\sin\theta\,d\theta$:
+
+\begin{align*}
+&= 4\sigma\int_0^{\pi/2} R^2\cos^2\theta \cdot R\sin\theta \cdot R\sin\theta\,d\theta \\
+&= 4R^4\sigma\int_0^{\pi/2}(\cos\theta\,\sin\theta)^2\,d\theta = 4R^4\sigma\int_0^{\pi/2}\frac{\sin^2(2\theta)}{4}\,d\theta
+\end{align*}
+
+(come per il caso prima)
+\begin{align*}
+&= R^4\sigma \int_0^{\pi/2}\frac{1-\cos(4\theta)}{2}\,d\theta = \frac{R^4\sigma}{2}\cdot\frac{\pi}{2} = \boxed{\frac{MR^2}{4}}
+\end{align*}
+
+\subsection{3) Sfera}
+
+Massa $M$, densità $\rho = M/V$, raggio $R$. 1, 2, 3 assi principali.
+
+% Diagramma: sfera con raggio R, angolo theta, distanza t dal centro, assi 1, 2, 3
+
+\begin{align*}
+\boxed{I_1 = I_2 = I_3} &= \int_0^R dR \int_0^{\pi} 2\pi\rho R^4 \sin^3\theta\,d\theta \\
+&= \frac{2\pi\rho R^5}{5}\int_0^{\pi}\sin\theta(1-\cos^2\theta)\,d\theta \\
+&= \frac{2}{5}\pi\rho R^5\left[2 + \int_0^{\pi} d\theta\left(\frac{\cos^3\theta}{3}\right)d\theta\right] = \frac{2}{5}\pi\rho R^5\left(2 + \left[\frac{\cos^3\theta}{3}\right]_0^{\pi}\right) = \boxed{\frac{2}{5}MR^2}
+\end{align*}
+
+dove $\frac{4}{3}\pi R^3 \cdot \rho = M = V \cdot \rho$.

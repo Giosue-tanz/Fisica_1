@@ -1,0 +1,69 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{tikz}
+
+\begin{document}
+
+\begin{flushright}
+FISICA 1 - Fabrizio Cei \quad 27/02/2024
+\end{flushright}
+
+2) $\omega_1 \neq \omega_2$ ($\varphi_1 = \varphi_2 = 0$ per semplicità) (non armonico)
+\begin{equation*}
+x(t) = A_1 \cos(\omega_1 t) + A_2 \cos(\omega_2 t)
+\end{equation*}
+\begin{align*}
+\ddot{x}(t) &= -\omega_1^2 A_1 \cos(\omega_1 t) - \omega_2^2 A_2 \cos(\omega_2 t) \\
+&\neq -\lambda (A_1 \cos(\omega_1 t) + A_2 \cos(\omega_2 t)) = -\lambda x(t)
+\end{align*}
+$\nexists \lambda$ perché $\omega_1^2 \neq \omega_2^2$ quindi non si può scrivere una equazione ARMONICA.
+
+\subsection*{2.1) $A_1 = A_2$ FENOMENO DEI BATTIMENTI (se $\omega_1 \simeq \omega_2$)}
+\begin{align*}
+x(t) &= A_1 [\cos(\omega_1 t) + \cos(\omega_2 t)] \\
+&= 2A_1 \cdot \cos\left[ \left( \frac{\omega_1 + \omega_2}{2} \right) t \right] \cos\left[ \left( \frac{\omega_1 - \omega_2}{2} \right) t \right] \\
+&= A(t) \cos\left[ \left( \frac{\omega_1 + \omega_2}{2} \right) t \right]
+\end{align*}
+con $A(t) = 2A_1 \cos\left[ \left( \frac{\omega_1 - \omega_2}{2} \right) t \right]$, chiamando $\Omega_2 = \frac{\omega_1 - \omega_2}{2}$.\\
+Questa è un'OSCILLAZIONE ARMONICA con $\Omega_1 = (\omega_1 + \omega_2)/2$ e ampiezza $A(t)$ variabile.
+
+\vspace{0.5cm}
+\begin{minipage}{0.4\textwidth}
+\begin{tikzpicture}[scale=0.8]
+\draw[->] (-0.2,0) -- (5,0) node[right] {$t$};
+\draw[->] (0,-2.5) -- (0,2.5) node[above] {$x$};
+\node[left] at (0,2) {$2A_1$};
+\node[left] at (0,-2) {$-2A_1$};
+
+% Inviluppo
+\draw[blue, thick, domain=0:4.5, samples=100] plot (\x, {2*cos(\x*180/2)});
+\draw[blue, thick, domain=0:4.5, samples=100] plot (\x, {-2*cos(\x*180/2)});
+
+% Onda portante
+\draw[black, domain=0:4.5, samples=200] plot (\x, {2*cos(\x*180/2)*cos(\x*180*2)});
+
+\node[below, font=\scriptsize] at (2,-2.5) {OSC. RAPIDA / OSC. LENTA};
+\end{tikzpicture}
+\end{minipage}
+\hfill
+\begin{minipage}{0.55\textwidth}
+Si vengono a creare dei LOBI, generati dalla pulsazione armonica $\Omega_2$, detti ONDE MODULANTI che descrivono come varia nel tempo l'ampiezza dell'oscillazione con pulsazione $\Omega_1$ le cui curve sono dette ONDE PORTANTI e sono modulate da $\Omega_2$.
+\end{minipage}
+
+\vspace{0.5cm}
+\begin{equation*}
+T_2 = \frac{2\pi}{\Omega_2} = \frac{4\pi}{\omega_1 - \omega_2} \qquad T_1 = \frac{2\pi}{\Omega_1} = \frac{4\pi}{\omega_1 + \omega_2}
+\end{equation*}
+
+All'interno delle oscillazioni modulanti (in blu) i massimi (e i minimi) vengono raggiunti 2 volte (e 2 volte) mentre normalmente, all'interno di un periodo $T_2$ essi dovrebbero essere raggiunti 1 volta (e 1 volta).\\
+Quindi la distanza temporale $\Delta t$ fra un massimo (e un minimo) e l'altro è pari a (BATTIMENTO):
+\begin{equation*}
+|\Delta t| = T_2 / 2 = \frac{2\pi}{|\omega_1 - \omega_2|} = \frac{1}{|\omega_1 / 2\pi - \omega_2 / 2\pi|} = \frac{1}{|f_1 - f_2|} = \frac{1}{|\Delta f|}
+\end{equation*}
+dove $\Delta f$ è la differenza fra la frequenza di $\omega_1$ e di $\omega_2$.
+
+$\implies$ questo fenomeno avviene per esempio in musica quando si accordano gli strumenti col DIAPASON: se l'accordatore percepisce la modulazione di ampiezza dell'onda risultante dalla composizione del suono del diapason e della corrispondente corda dello strumento significa che i due suoni non sono identici, quindi agisce sul tasto dello strumento da accordare in modo da riportare in fase le due oscillazioni ($\omega_1 = \omega_2$).
+
+\end{document}

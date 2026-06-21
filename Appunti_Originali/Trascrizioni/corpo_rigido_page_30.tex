@@ -1,0 +1,82 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{tikz}
+\usepackage{geometry}
+\geometry{a4paper, margin=2cm}
+
+\begin{document}
+
+\begin{center}
+\Huge \textbf{OSCILLAZIONI}
+\end{center}
+
+\section*{MOTO ARMONICO SEMPLICE}
+
+\begin{minipage}{0.3\textwidth}
+\begin{tikzpicture}
+\draw[thick] (0,0) -- (0,1.5);
+\fill[pattern=north east lines] (-0.3,0) rectangle (0,1.5);
+\draw[decoration={aspect=0.3, segment length=2mm, amplitude=2mm, coil}, decorate] (0,0.75) -- (1.5,0.75);
+\draw (1.5, 0.4) rectangle (2.5, 1.1) node[midway] {$M$};
+\node at (0.75, 1.2) {$k, l_0$};
+\draw[->] (0, 0) -- (3, 0) node[right] {$x$};
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}{0.65\textwidth}
+$$ \vec{F}_{el} = -k(x-l_0)\hat{x} = M\ddot{x}\hat{x} \quad \Rightarrow \quad \fbox{$\ddot{x} = -\frac{k}{M}(x-l_0) = -\omega_0^2(x-l_0)$} $$
+\end{minipage}
+
+\vspace{0.3cm}
+$\downarrow$ Si risolve usando il teorema di Cauchy: \\
+``l'equazione diff. non omogenea ha soluzione $\tilde{x} = x_{gen} + x_{part}$ con $x_{gen} = $ sol. dell'omogenea associata e $x_{part} = $ sol particolare della N.O.''
+
+\vspace{0.3cm}
+\textbf{$x_{GEN}$} \\
+$x_{gen}(t) = A\cos(\omega_0 t) + B\sin(\omega_0 t)$ \quad CON $A,B$ COSTANTI (2° ordine) \\
+$x_{gen}(t) = A'\cos(\omega_0 t)\cos\phi - A'\sin(\omega_0 t)\sin\phi$ \quad CON $\phi$ SFASAMENTO
+
+\vspace{0.3cm}
+\textbf{$x_{PART}$} (se c'è una forza costante o nulla) \\
+$x_{part}(t) = l_0$ \quad per SOLUZIONE STAZIONARIA $\ddot{x} = 0 \Rightarrow x - l_0 = 0$
+
+\vspace{0.3cm}
+$\Rightarrow A = A'\cos\phi, \quad B = -A'\sin\phi, \quad tg(\phi) = -B/A$
+
+\vspace{0.3cm}
+Per determinare $A$ e $B$ servono le CONDIZIONI INIZIALI \\
+CIOÈ $x(t)$ CON $t=0$ E $\dot{x}(t)$ CON $t=0$:
+
+\begin{align*}
+\tilde{x}(t) &= A\cos(\omega_0 t) + B\sin(\omega_0 t) + l_0 = x(t) \\
+\dot{x}(t) &= -A\omega_0\sin(\omega_0 t) + B\omega_0\cos(\omega_0 t)
+\end{align*}
+
+$x(0) = x_0 = A + 0 + l_0 \Rightarrow \fbox{$A = x_0 - l_0$}, \quad \dot{x}(0) = \dot{x}_0 = B\omega_0 + 0 \Rightarrow \fbox{$B = \dot{x}_0/\omega_0$}$
+$$ \Rightarrow \tilde{x}(t) = (x_0 - l_0)\cos(\omega_0 t) + \frac{\dot{x}_0}{\omega_0}\sin(\omega_0 t) $$
+
+\section*{ENERGIA $E$}
+$$ \mathcal{L} = \int_{x_0}^{x_1} -k(x-l_0)dx = -\frac{k}{2} [ (x_1 - l_0)^2 - (x_0 - l_0)^2 ] $$
+$U(x) = -\mathcal{L} = \frac{1}{2} k (x-l_0)^2 \to$ la molla acquista energia quando si deforma con $\Delta x$ o $-\Delta x$ \\
+Poiché $F_{el}$ è conservativa,
+\fbox{$E = \frac{1}{2} mv^2 + \frac{1}{2} k (x-l_0)^2$ è una costante.} \\
+Se $v = \dot{x} = 0 \Rightarrow E = \frac{1}{2} k (x-l_0)^2 \quad$ con $x-l_0 = A$ (ampiezza) \\
+la molla oscilla fra $A = x-l_0$ e $-A = l_0-x$ \\
+$\Rightarrow E = \frac{1}{2} k A^2 = \frac{1}{2} m \dot{x}^2 + \frac{1}{2} k (x-l_0)^2$, se l'origine degli assi è in $l_0 \Rightarrow \frac{k}{2}A^2 = \frac{m}{2}\dot{x}^2 + \frac{k}{2}x^2$.
+
+\section*{PERIODO $T$}
+$T = \int_0^T dt$ si risolve con l'energia: $\quad \dot{x}^2 = \frac{k}{m} (A^2 - x^2) = \omega_0^2(A^2 - x^2)$ \\
+$$ \frac{dx}{dt} = \pm \omega_0 \sqrt{A^2 - x^2} = \pm A \omega_0 \sqrt{1 - \left(\frac{x}{A}\right)^2} \quad \Leftarrow \quad \left(\frac{dx}{dt}\right)^2 = \omega_0^2(A^2 - x^2) $$
+
+$$ \Rightarrow \fbox{$T$} = \int_0^T dt = 2 \int_{-A}^A dx \cdot \frac{1}{A\omega_0\sqrt{1-\left(\frac{x}{A}\right)^2}} \quad \text{sostituendo: } x = A\sin y, \ dx = A\cos y \, dy $$
+
+\begin{align*}
+&= 2 \int_{-\pi/2}^{\pi/2} A\cos y \, dy \cdot \frac{1}{A\omega_0\sqrt{1-(\frac{A\sin y}{A})^2}} \\
+&= \frac{2}{\omega_0} \int_{-\pi/2}^{\pi/2} dy \cdot \frac{\cos y}{\cos y} = \frac{2}{\omega_0} \int_{-\pi/2}^{\pi/2} dy \\
+&= \frac{2}{\omega_0} \left(\frac{\pi}{2} - \left(-\frac{\pi}{2}\right)\right) = \frac{2}{\omega_0}(\pi) = \fbox{$\frac{2\pi}{\omega_0}$}
+\end{align*}
+
+$T$ indipendente da $A$ (solo armoniche!) $\Rightarrow V(x) \simeq \frac{k x^2}{2}$
+
+\end{document}

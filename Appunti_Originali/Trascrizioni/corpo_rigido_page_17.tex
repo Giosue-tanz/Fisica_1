@@ -1,0 +1,72 @@
+% Fisica 1 - Fabrizio Cei - 06/02/2024
+% Corpo Rigido - Pagina 17
+
+\section{Momento angolare}
+
+Si sfrutta il 2° teorema di Koenig:
+\begin{equation}
+\vec{L}_O = \vec{L}_{CM} + \vec{L}' \qquad \text{con } \vec{L}_{CM} = M\vec{R}_{CM} \times \vec{v}_{CM}; \quad \vec{L}' = \sum_i m_i \vec{r}_i' \times \vec{v}_i'
+\end{equation}
+
+Inoltre $\vec{v}_Q = \vec{v}_{CM} + \vec{\omega} \times \vec{R}_{CM \to Q}$ e $\vec{v}_Q' = \vec{\omega} \times \vec{R}_{CM \to Q}$, $\vec{r}_Q' = \vec{R}_{CM \to Q}$.
+
+% Si sostituisce con la densità e il volume
+\begin{equation}
+\Rightarrow \vec{L}' = \sum_{CR} m_i \vec{r}_i' \times \vec{v}_i' = \int_{CR} dm\, \vec{r}(dm) \times \vec{v}(dm)
+\end{equation}
+
+(Facciamo il caso discreto ma il caso continuo è perfettamente analogo).
+
+% Diagramma: vettori omega, r_i, d_i con angoli theta_i
+
+$\hat{t}_i' = $ versore $\perp$ asse $\vec{\omega}$, \quad $d_i = r_i' \sin\theta_i$
+
+\begin{align*}
+\vec{L}' &= \sum_i m_i \vec{r}_i' \times (\vec{\omega} \times \vec{r}_i') \\
+&= \sum_i m_i \left[(r_i')^2 \vec{\omega} - \vec{r}_i'(\vec{r}_i' \cdot \vec{\omega})\right]
+\end{align*}
+
+\begin{align*}
+&\Rightarrow \vec{r}_i' = r_i'(\hat{\omega}\cos\theta_i + \hat{t}_i \sin\theta_i) \\
+&\Rightarrow \vec{\omega} \cdot \vec{r}_i' = (\omega\hat{\omega}) \cdot r_i'(\hat{\omega}\cos\theta_i + \hat{t}_i\sin\theta_i) = \omega r_i' \cos\theta_i
+\end{align*}
+
+\begin{align*}
+\Rightarrow \vec{L}' &= \sum_i m_i \left(r_i'^2 \vec{\omega} - r_i'(\hat{\omega}\cos\theta_i + \hat{t}_i\sin\theta_i)\omega r_i' \cos\theta_i\right) \\
+&= \sum_i m_i \left(r_i'^2 \vec{\omega} - r_i'^2 \omega \cos^2\theta_i \hat{\omega} - r_i'^2 \omega \hat{t}_i \cos\theta_i \sin\theta_i\right) \\
+&= \sum_i m_i r_i'^2 \omega \sin^2\theta_i \hat{\omega} - \sum_i m_i r_i'^2 \omega \hat{t}_i \cos\theta_i \sin\theta_i
+\end{align*}
+
+\begin{equation}
+\boxed{= \underbrace{\hat{\omega} \sum_i m_i d_i^2}_{\parallel \vec{\omega}} - \underbrace{\omega \sum_i m_i r_i'^2 \cos\theta_i \sin\theta_i \hat{t}_i}_{\text{dipende dalla forma del corpo}} = \vec{L}'}
+\end{equation}
+
+$\Rightarrow$ $\vec{L}_O$ non è, in generale, $\parallel \vec{\omega}$.
+
+\begin{itemize}
+    \item Ogni corpo rigido, indipendentemente dalla sua geometria, ha $\#$ assi ortogonali fra loro $|\vec{L}' \parallel \vec{\omega}| \geq 3$ e sono detti \textbf{assi principali di inerzia}.
+    
+    Se la rotazione avviene attorno a uno di questi assi, allora il termine $\times \vec{\omega}$ è $= 0$.
+\end{itemize}
+
+\begin{equation}
+\vec{L}' = \sum_i m_i d_i^2 \vec{\omega} = \boxed{I_z \vec{\omega}} = \int_{CR} dm\, d(dm)^2 \vec{\omega}
+\end{equation}
+
+$\rightarrow$ dipende dalla geometria del corpo, dalla distribuzione delle masse: se $z$ è l'asse di rotazione allora $I_z$ è il \textbf{momento di inerzia} rispetto a $z$ $[m^2 \cdot kg]$.
+
+\paragraph{Cosa succede se $z$ è un generico asse?}
+In generale $\vec{L}' \neq I_z \vec{\omega}$; se però proiettiamo $\vec{L}'$ lungo $\hat{\omega}$ abbiamo:
+\begin{equation}
+\vec{L}' \cdot \hat{\omega} = L_z = (I_z \omega \hat{\omega} - \Sigma \hat{t}_i) \cdot \hat{\omega} = I_z \omega + 0
+\end{equation}
+
+\begin{equation}
+\Rightarrow \boxed{L_z = I_z \omega} \quad \text{perché } \hat{t}_i \perp \hat{\omega}
+\end{equation}
+
+\begin{osservazione}{}
+Anche se un asse non è principale, la componente $\hat{\omega}$ di $\vec{L}'$ è data da $L_z = I_z\omega$, che essendo una componente, $I_z$ è uno scalare.
+
+$\star$ $\vec{L}$ non è necessariamente riferito al CM.
+\end{osservazione}

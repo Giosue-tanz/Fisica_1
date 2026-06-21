@@ -1,0 +1,97 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{tikz}
+
+\begin{document}
+
+\begin{flushright}
+FISICA 1 - Fabrizio Cei \quad 01/03/2024
+\end{flushright}
+
+\begin{itemize}
+\item \textbf{TEMPO DI SMORZAMENTO $\tau$}
+\end{itemize}
+\begin{equation*}
+\tau = \frac{1}{\lambda} = \frac{m}{\beta}
+\end{equation*}
+se $F_v$ è molto elevata ($\beta \gg$) allora $\tau$ è piccolo, cioè smorza velocemente; al contrario se $F_v$ è ridotta ($\beta \ll$) $\tau$ è grande, cioè smorza lentamente.
+
+\begin{align*}
+\implies x(t) &= e^{-\frac{t}{2\tau}} \left( A e^{i \frac{t}{2}\sqrt{4\omega_0^2 - \lambda^2}} + B e^{-i \frac{t}{2}\sqrt{4\omega_0^2 - \lambda^2}} \right) \quad \text{con } e^{i\theta} = \cos\theta + i\sin\theta \\
+&= e^{-\frac{t}{2\tau}} \left[ (A+B)\cos\left(t\sqrt{\omega_0^2 - \frac{\lambda^2}{4}}\right) + i(A-B)\sin\left(t\sqrt{\omega_0^2 - \frac{\lambda^2}{4}}\right) \right] \\
+&= e^{-\frac{t}{2\tau}} \left[ (A+B)\cos(\omega' t) + i(A-B)\sin(\omega' t) \right] \quad \text{con } \omega' = \sqrt{\omega_0^2 - \frac{\lambda^2}{4}}
+\end{align*}
+
+\begin{equation*}
+\implies x(t) = e^{-\frac{t}{2\tau}} \left[ (A+B)\cos(\omega' t) + i(A-B)\sin(\omega' t) \right]
+\end{equation*}
+
+per determinare $A, B$ dobbiamo usare le condizioni iniziali (esempio semplice) $\rightarrow$
+\begin{equation*}
+x(0) = x_0 \quad \text{e} \quad \dot{x}(0) = -\frac{x_0}{2\tau} \implies \text{CONDIZIONI INIZIALI}
+\end{equation*}
+\begin{equation*}
+\implies x(0) = x_0 = A+B, \qquad \dot{x}(0) = -\frac{(A+B)}{2\tau} + i\omega'(A-B) = -\frac{x_0}{2\tau} \implies A=B
+\end{equation*}
+
+\begin{equation*}
+\implies x(t) = x_0 e^{-\frac{t}{2\tau}} \cos(\omega' t)
+\end{equation*}
+
+\vspace{0.5cm}
+\begin{minipage}{0.4\textwidth}
+L'ampiezza si riduce sempre di più fino ad annullarsi completamente ($x_0 \to 0 = -x_0$).
+\end{minipage}
+\hfill
+\begin{minipage}{0.5\textwidth}
+\begin{tikzpicture}[scale=0.8]
+\draw[->] (-0.2,0) -- (5,0) node[right] {$t$};
+\draw[->] (0,-2.5) -- (0,2.5) node[above] {$x$};
+\node[left] at (0,2) {$x_0$};
+\node[left] at (0,-2) {$-x_0$};
+
+% Inviluppo
+\draw[blue, thick, domain=0:4.5, samples=100] plot (\x, {2*exp(-\x/2)});
+\draw[blue, thick, domain=0:4.5, samples=100] plot (\x, {-2*exp(-\x/2)});
+
+\node[right, blue] at (4.5, {2*exp(-4.5/2)}) {$e^{-\frac{t}{2\tau}}$};
+\node[right, blue] at (4.5, {-2*exp(-4.5/2)}) {$-e^{-\frac{t}{2\tau}}$};
+
+% Oscillazione
+\draw[black, thick, domain=0:4.5, samples=200] plot (\x, {2*exp(-\x/2)*cos(\x*180*2)});
+\end{tikzpicture}
+\end{minipage}
+
+\vspace{0.5cm}
+\begin{equation*}
+T_0 = \frac{2\pi}{\omega_0} \quad \text{periodo dell'oscillatore non smorzato (armonico)}
+\end{equation*}
+\begin{equation*}
+T' = \frac{2\pi}{\omega'} = T_0 \cdot \frac{1}{\sqrt{1 - \frac{1}{(2\omega_0 \tau)^2}}} \quad \text{periodo dell'oscillatore smorzato.}
+\end{equation*}
+$T' > T_0$ cioè lo smorzamento allunga il periodo.
+
+Il fattore rilevante è $\omega_0 \tau = Q$ \textbf{FATTORE DI QUALITÀ}:
+Se $Q \gg 1 \implies \tau \gg \frac{1}{\omega_0} \propto T_0$ cioè $\tau$ è molto lungo ($\tau \gg T_0$).
+
+\begin{itemize}
+\item \textbf{PERDITA DI ENERGIA} ($\Delta E \neq 0$)
+\end{itemize}
+\begin{equation*}
+\frac{d \langle E \rangle_{T'}}{dt} = \left\langle \frac{dE}{dt} \right\rangle_{T'}, \qquad E = \frac{m}{2} \dot{x}^2 + \frac{k}{2} x^2 = \frac{m}{2} (\dot{x}^2 + \omega_0^2 x^2)
+\end{equation*}
+
+\begin{align*}
+\implies \Delta E &= \langle E(t+T') \rangle_{T'} - \langle E(t) \rangle_{T'} = \langle E_0 \rangle_{T'} \left[ e^{-\frac{t+T'}{\tau}} - e^{-\frac{t}{\tau}} \right] \\
+&\cong \langle E_0 \rangle_{T'} e^{-\frac{t}{\tau}} \left( e^{-\frac{T'}{\tau}} - 1 \right) \cong \langle E_0 \rangle_{T_0} e^{-\frac{t}{\tau}} \left( -\frac{T_0}{\tau} \right) \quad (\text{se } \tau \gg T_0 \text{ per Taylor}) \\
+&= - \langle E(t) \rangle_{T_0} \cdot \frac{T_0}{\tau}
+\end{align*}
+
+\begin{equation*}
+\implies \left| \frac{\Delta E}{\langle E(t) \rangle_{T_0}} \right| = \frac{T_0}{\tau} \cong \frac{2\pi}{\omega' \tau} = \frac{2\pi}{Q}
+\end{equation*}
+Si osserva che, da ciò, più $Q$ è grande meno energia si perde durante l'oscillazione.
+
+\end{document}

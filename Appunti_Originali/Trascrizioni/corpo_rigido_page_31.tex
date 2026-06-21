@@ -1,0 +1,70 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{tikz}
+\usepackage{geometry}
+\geometry{a4paper, margin=2cm}
+
+\begin{document}
+
+\begin{flushright}
+FISICA 1 - Fabrizio Cei \quad 27/02/2024
+\end{flushright}
+
+\section*{PENDOLO SEMPLICE NELLA CONFIGURAZIONE DI PICCOLE OSC.}
+
+\begin{minipage}{0.35\textwidth}
+\begin{tikzpicture}
+\draw[thick, fill=gray!30] (-1.5,0) rectangle (1.5,0.2);
+\draw[thick] (0,0) -- (0,-0.2) node[above right] {$O$};
+\draw[->] (0,0) -- (2,0) node[right] {$x$};
+\draw[->] (0,0) -- (0,-3) node[below] {$y$};
+\draw[->] (0,0) -- (-0.8,-0.5) node[left] {$z$};
+\draw[thick, rotate around={30:(0,0)}] (0,0) -- (0,-2.5) node[midway, left] {$\vec{L}$};
+\fill[blue, rotate around={30:(0,0)}] (0,-2.5) circle (0.15) node[right, black, xshift=2mm] {$m$};
+\draw[->, thick, rotate around={30:(0,0)}] (0,-2.5) -- (0,-1.5) node[left] {$\vec{T}$};
+\draw[->, thick, rotate around={30:(0,0)}] (0,-2.5) -- ++(-30:1) node[below] {$\vec{P}$};
+\draw (0,-1) arc (270:300:1);
+\node at (0.3, -1.2) {$\theta$};
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}{0.6\textwidth}
+\begin{align*}
+\vec{\tau}_O &= \vec{L} \times (\vec{T} + \vec{P}) = \vec{L} \times \vec{T} + \vec{L} \times \vec{P} = \vec{L} \times \vec{P} = mgL \sin(-\theta) \hat{z} \\
+\vec{L}_O &= \vec{L} \times \vec{p} = \vec{L} \times (m\vec{v}) = m\vec{L} \times (\vec{\omega} \times \vec{L}) = mL^2\vec{\omega} = mL^2\dot{\theta}\hat{z} \\
+\frac{d\vec{L}_O}{dt} &= \frac{d}{dt}(mL^2\omega\hat{z}) = mL^2\frac{d\omega}{dt}\hat{z} = mL^2\ddot{\theta}\hat{z}
+\end{align*}
+\end{minipage}
+
+$$ \Rightarrow mL^2\ddot{\theta}\hat{z} = -mgL\sin\theta\hat{z} \Rightarrow \fbox{$\ddot{\theta} = -\frac{g}{L}\sin\theta$} \quad \text{caso generale} $$
+
+Nelle Hp di piccole oscillazioni, sviluppiamo $\sin\theta$ con Taylor al 1° ordine e abbiamo che $\sin\theta \cong \theta + o(\theta^3) \cong \theta - \frac{\theta^3}{6}$ \\
+ma allora $\theta \gg \theta^3/6 \Rightarrow \theta^2 \ll 6 \Rightarrow \theta \ll \sqrt{6} \Rightarrow \theta \cong \sqrt{6} \cdot 10^{-1}$
+$$ \Rightarrow \fbox{$\ddot{\theta} = -\omega_0^2\theta = -\frac{g}{L}\theta$} \quad \text{caso delle piccole oscillazioni} $$
+
+\noindent * $g/L = \omega_0^2 \neq \omega^2 = \left(\frac{d\theta}{dt}\right)^2$ pendolo semplice (armonico) in $\theta$ \\
+$\omega = \omega_0 \Leftarrow$ moto armonico = proiezione moto circolare
+
+\section*{ENERGIA E}
+Il pendolo semplice è un sistema CONSERVATIVO, cioè che non disperde energia: $\vec{P}$ è CONSERVATIVA e $\vec{T} \perp \text{moto} \Rightarrow$ quindi il $\mathcal{L}_T = 0$. \\
+$U = 0$ all'altezza di $O$ (punto di sospensione)
+
+$$ E = K + U = \underbrace{\frac{m}{2} (L\dot{\theta})^2 - mgL\cos\theta}_{\text{energia a qualsiasi } \theta \text{ durante il moto}} = \underbrace{-mgL\cos(\theta_0)}_{\text{energia iniziale se } \dot{\theta}=0} $$
+
+\begin{align*}
+\Rightarrow & \frac{m}{2}L^2\dot{\theta}^2 - mgL\cos\theta = -mgL\cos\theta_0 \quad (\div m, \div L, \text{e ricorda } \omega_0^2 = g/L) \\
+\Rightarrow & \dot{\theta}^2 = 2\omega_0^2(\cos\theta - \cos\theta_0) \\
+\Rightarrow & \frac{d\theta}{dt} = \pm \omega_0 \sqrt{2(\cos\theta - \cos\theta_0)}
+\end{align*}
+
+\section*{PERIODO T}
+$T = \int_0^T dt$ si risolve con l'energia: $\dot{\theta}^2 = 2\frac{g}{L}(\cos\theta - \cos\theta_0)$
+$$ \frac{d\theta}{dt} = \pm \omega_0 \sqrt{2(\cos\theta - \cos\theta_0)} \quad \Leftarrow \quad \left(\frac{d\theta}{dt}\right)^2 = 2\omega_0^2(\cos\theta - \cos\theta_0) $$
+$$ \Rightarrow T = \int_0^T dt = 2 \int_{-\theta_0}^{\theta_0} d\theta \frac{1}{\omega_0\sqrt{2(\cos\theta - \cos\theta_0)}} $$
+
+\vspace{0.3cm}
+\noindent sviluppo arm. II ORDINE $\cos\theta_i \cong 1 - \frac{\theta_i^2}{2} \Rightarrow T(\theta_0) \cong T = \frac{2\pi}{\omega_0}$ \\[0.2cm]
+sviluppo IV ORDINE $\cos\theta_i \cong 1 - \frac{\theta_i^2}{2} + \frac{\theta_i^4}{24} \Rightarrow T(\theta_0) \cong T\left(1 + \frac{\theta_0^2}{16}\right) = \frac{2\pi}{\omega_0}\left(1 + \frac{\theta_0^2}{16}\right)$
+
+\end{document}

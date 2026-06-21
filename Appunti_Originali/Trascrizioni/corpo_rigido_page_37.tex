@@ -1,0 +1,107 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{tikz}
+
+\begin{document}
+
+\begin{flushright}
+FISICA 1 - Fabrizio Cei \quad 05/03/2024
+\end{flushright}
+
+\vspace{0.5cm}
+\noindent
+\begin{minipage}{0.48\textwidth}
+\begin{tikzpicture}[scale=0.8]
+\draw[->] (-0.2,0) -- (5,0) node[right] {$\omega$};
+\draw[->] (0,-0.2) -- (0,4) node[above] {$A$};
+\node[left] at (0,3.5) {$A_M$};
+\node[left] at (0,1) {$\frac{F_0}{\omega_0^2}$};
+\draw[dashed] (0,3.5) -- (2.5,3.5);
+\draw[dashed] (2.5,0) -- (2.5,3.5);
+\node[below] at (2.5,0) {$\omega_0$};
+\draw[thick, blue] (0,1) to[out=0,in=180] (2.5,3.5) to[out=0,in=170] (4.5,0.2);
+\end{tikzpicture}
+\end{minipage}
+\hfill
+\begin{minipage}{0.48\textwidth}
+\begin{tikzpicture}[scale=0.8]
+\draw[->] (-0.2,0) -- (5,0) node[right] {$\omega$};
+\draw[->] (0,-0.2) -- (0,4) node[above] {$\varphi$};
+\node[left] at (0,3) {$\pi$};
+\node[left] at (0,1.5) {$\pi/2$};
+\draw[dashed] (0,3) -- (4.5,3);
+\draw[dashed] (0,1.5) -- (2.5,1.5);
+\draw[dashed] (2.5,0) -- (2.5,1.5);
+\node[below] at (2.5,0) {$\omega_0$};
+\draw[thick, blue] (0,0) to[out=0,in=180] (2.5,1.5) to[out=0,in=180] (4.5,3);
+\end{tikzpicture}
+\end{minipage}
+
+\vspace{0.5cm}
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\begin{align*}
+A(\omega \ll \omega_0) &\cong \frac{F_0}{\omega_0^2} \\
+A(\omega \gg \omega_0) &\cong \frac{F_0}{\omega^2} \to 0
+\end{align*}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\begin{align*}
+\varphi(\omega \ll \omega_0) &\cong 0 \qquad \qquad 0 \le \varphi \le \pi \\
+\varphi(\omega \gg \omega_0) &\to \pi
+\end{align*}
+\end{minipage}
+
+\vspace{0.5cm}
+\begin{center}
+\begin{tikzpicture}
+\node (A) at (0,0) {$A(\omega = \omega_0) = \frac{F_0}{\lambda \omega} = \frac{F_0 Q}{\omega^2}$};
+\node (B) at (6,0) {$\varphi(\omega = \omega_0) = \pi/2$};
+\node (R) at (3,-1) {\textbf{RISONANZA}};
+\draw[->] (3,-0.2) -- (R);
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.5cm}
+\begin{itemize}
+\item \textbf{ENERGIA E RISONANZA}
+\end{itemize}
+Il periodo d'oscillazione della forzante è $T = 2\pi/\omega$.
+
+Se si considera il SISTEMA OSCILLATORE + FORZANTE, è NON CONSERVATIVO perché l'energia trasmessa all'oscillatore per compensare quella persa è a spese della forzante.
+Il SISTEMA OSCILLATORE invece è CONSERVATIVO poiché l'energia persa è recuperata grazie alla forzante.
+
+\begin{equation*}
+E = \frac{1}{2}m\dot{x}^2 + \frac{1}{2}kx^2 \qquad \frac{dE}{dt} = \dot{x}(m\ddot{x} + kx) = \dot{x}(-\beta\dot{x} + F_0\sin(\omega t))
+\end{equation*}
+
+\begin{equation*}
+\left\langle \frac{dE}{dt} \right\rangle_T = \frac{1}{T} \int_t^{t+T} dt^* \left( \frac{dE}{dt^*} \right) = \frac{1}{T} [E(t+T) - E(t)] = 0 \quad \begin{subarray}{l} \text{moto periodico} \\ \text{perché } E(t+T)=E(t) \\ \text{Lo verifichiamo:} \end{subarray}
+\end{equation*}
+
+\begin{equation*}
+= \frac{1}{T} \int_t^{t+T} dt^* \left[ \underbrace{-\beta(\omega A \cos(\omega t^* - \varphi))^2}_{\begin{subarray}{c} \text{DISSIPATA (MEDIA)} \\ \parallel \\ (-\beta \omega^2 A^2 / 2) \cdot T \end{subarray}} + \underbrace{F_0 \sin(\omega t^*) \omega A \cos(\omega t^* - \varphi)}_{\begin{subarray}{c} \text{ASSORBITA (MEDIA)} \\ \parallel \\ (+F_0 \omega A \sin\varphi / 2) \cdot T \end{subarray}} \right]
+\end{equation*}
+
+\begin{align*}
+\begin{subarray}{c} \text{sostituisco } A \\ \text{e } \sin\varphi \text{ di} \\ \text{prima} \end{subarray} \quad &= \frac{\omega A}{2} (F_0 \sin\varphi - \beta \omega A) = \frac{\omega A m}{2} (f_0 \sin\varphi - \lambda \omega A) \\
+&= \frac{F_0 \lambda \omega}{\sqrt{\dots}} - \frac{\omega \lambda F_0}{\sqrt{\dots}} = 0 \quad \checkmark \quad \text{l'oscillatore è conservativo}
+\end{align*}
+
+\vspace{0.5cm}
+\begin{itemize}
+\item Nel caso di $\varphi = \pi/2$ l'energia assorbita è $\frac{F_0 \omega A_M}{2}$ che è la massima possibile ($\sin\varphi, A$ sono MAX).
+\end{itemize}
+\begin{equation*}
+\dot{x} = \omega A \cos(\omega t - \pi/2) = \omega A \sin(\omega t)
+\end{equation*}
+\begin{equation*}
+\implies \frac{dE_{\text{ass}}}{dt} = F_0 \sin(\omega t) \cdot (\omega A \sin(\omega t)) = F_0 \omega A \sin^2(\omega t) \ge 0 \quad \forall t
+\end{equation*}
+
+È sempre LA SORGENTE che cede energia NELLA RISONANZA; nel resto dei casi ci sono dei momenti in cui anche la sorgente riceve energia dall'oscillatore.
+
+\end{document}

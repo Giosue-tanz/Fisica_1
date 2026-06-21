@@ -1,0 +1,96 @@
+\section{Moti del Corpo Rigido}
+Il moto deve rispettare la condizione di rigidità, ovvero:
+\begin{equation}
+    \frac{d}{dt} \left( |\vec{r}_i - \vec{r}_j| \right) = 0
+\end{equation}
+Sviluppando la derivata della distanza:
+\begin{equation}
+    \frac{2(\vec{r}_i - \vec{r}_j) \cdot (\vec{v}_i - \vec{v}_j)}{2\sqrt{(\vec{r}_i - \vec{r}_j)^2}} = 0
+\end{equation}
+(Si nota che il denominatore non può essere nullo in quanto $i \neq j$).
+Questo si verifica in tre casi:
+\begin{enumerate}
+    \item $\vec{r}_i = \vec{r}_j$: $i$ e $j$ sono lo stesso punto (caso banale).
+    \item $\vec{v}_i = \vec{v}_j$: i due punti hanno la stessa velocità. Possiamo considerare il corpo concentrato nel centro di massa e trattarlo, di fatto, come un \textbf{punto materiale}.
+    \item $d\vec{r} \perp d\vec{v}$: la distanza relativa e la velocità relativa tra $i$ e $j$ sono ortogonali.
+\end{enumerate}
+Nel caso 3, se poniamo l'origine in $i$ ($\vec{r}_i = 0$), abbiamo $\vec{r}_j \perp \vec{v}_j$. Poiché $\vec{r}_i$ e $\vec{r}_j$ rimangono alla stessa distanza, il moto relativo descrive una traiettoria \textbf{circolare}.
+
+In generale, sappiamo che per un moto rotatorio si può scrivere $\vec{v}_i = \vec{\omega}_i \times \vec{r}_i$ e $\vec{v}_j = \vec{\omega}_j \times \vec{r}_j$. Verifichiamo allora che se esistono $\vec{\omega}_i, \vec{\omega}_j$, deve necessariamente valere $\vec{\omega}_i = \vec{\omega}_j$:
+\begin{align*}
+    0 &= (\vec{r}_i - \vec{r}_j) \cdot (\vec{\omega}_i \times \vec{r}_i - \vec{\omega}_j \times \vec{r}_j) \\
+    &= \cancel{\vec{r}_i \cdot (\vec{\omega}_i \times \vec{r}_i)} - \vec{r}_j \cdot (\vec{\omega}_i \times \vec{r}_i) + \vec{r}_i \cdot (\vec{\omega}_j \times \vec{r}_j) + \cancel{\vec{r}_j \cdot (\vec{\omega}_j \times \vec{r}_j)}
+\end{align*}
+Applicando una permutazione ciclica del prodotto misto ($\vec{A} \cdot (\vec{B} \times \vec{C}) = \vec{C} \cdot (\vec{A} \times \vec{B})$):
+\begin{equation}
+    = - \left[ \vec{r}_i \cdot (\vec{r}_j \times \vec{\omega}_i) \right] + \vec{r}_i \cdot (\vec{\omega}_j \times \vec{r}_j)
+\end{equation}
+Ricordando che il prodotto vettoriale è anticommutativo ($\vec{A} \times \vec{B} = -\vec{B} \times \vec{A}$):
+\begin{align*}
+    &= - \vec{r}_i \cdot (\vec{r}_j \times \vec{\omega}_i) - \vec{r}_i \cdot (\vec{r}_j \times \vec{\omega}_j) \\
+    &= - \vec{r}_i \cdot \left[ \vec{r}_j \times (\vec{\omega}_i - \vec{\omega}_j) \right] = 0 \iff \vec{\omega}_i = \vec{\omega}_j = \vec{\omega}
+\end{align*}
+Quindi tutti i punti del corpo condividono la stessa velocità angolare $\vec{\omega}$.
+
+Consideriamo il caso in cui il corpo subisca una traslazione rigida pari a $\vec{R}$. In questo caso:
+\begin{equation*}
+    \vec{r}_i \to \vec{r}_i + \vec{R}, \quad \vec{v}_i \to \vec{v}_i + \vec{V}
+\end{equation*}
+Tuttavia, le differenze $(\vec{v}_i - \vec{v}_j)$ e $(\vec{r}_i - \vec{r}_j)$ rimangono le stesse di prima. Di conseguenza, anche se il corpo trasla di $\vec{R}$, ogni punto continua a muoversi con velocità angolare $\vec{\omega}$.
+Cioè \textbf{rotazione} e \textbf{traslazione} possono verificarsi contemporaneamente.
+
+I moti possibili per un corpo rigido sono quindi:
+\begin{itemize}
+    \item \textbf{Traslazione} (caso 2)
+    \item \textbf{Rotazione} (caso 3)
+    \item \textbf{Rototraslazione} (combinazione dei casi 2 e 3)
+\end{itemize}
+
+\subsection{Distribuzione dei gradi di libertà}
+Cosa succede ai gradi di libertà (d.o.f.) del sistema?
+\begin{itemize}
+    \item La posizione del punto di riferimento $\vec{R}(t) = (X(t), Y(t), Z(t))$ fornisce \textbf{3 d.o.f.} legati alla \textit{traslazione}.
+    \item Una volta fissato il primo punto $A$ (che sta traslando con il corpo), un secondo punto $B$ si può muovere solo lungo una superficie sferica di raggio $AB$ centrata in $A$. Fissato un asse, $B$ possiede due coordinate angolari libere. Quindi introduce \textbf{2 d.o.f.} legati alla \textit{rotazione}.
+    \item Fissato anche l'asse di rotazione identificato dai punti $A$ e $B$, un terzo punto $C$, dovendo mantenere distanze costanti sia da $A$ che da $B$, può muoversi solo lungo una singola circonferenza che fa da base a un cono con asse passante per $A$ e $B$. Questo introduce \textbf{1 d.o.f.} residuo di \textit{rotazione}.
+\end{itemize}
+
+Il bilancio totale per un corpo rigido libero è dunque:
+\begin{equation*}
+    \text{3 DOF (Punto di riferimento per Traslazione)} + \text{3 DOF (Rotazioni indipendenti)} = \text{6 DOF}
+\end{equation*}
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}[>=latex, scale=1]
+        % Assi principali
+        \draw[->, thick] (0,0) -- (3,0) node[right] {$y$};
+        \draw[->, thick] (0,0) -- (0,3) node[above] {$z$};
+        \draw[->, thick] (0,0) -- (-1.5,-1.5) node[below left] {$x$};
+        
+        % Vettore R(t) e punto A
+        \coordinate (A) at (4,1);
+        \draw[->, thick, mygreen] (0,0) -- (A) node[midway, below right] {$\vec{R}(t)$};
+        \fill (A) circle (1.5pt) node[below right] {$A$};
+        
+        % Assi locali A (x', y', z')
+        \draw[->, thin, blue] (A) -- ++(1.5,0) node[right] {$y'$};
+        \draw[->, thin, blue] (A) -- ++(0,1.5) node[above] {$z'$};
+        \draw[->, thin, blue] (A) -- ++(-0.8,-0.8) node[below left] {$x'$};
+        
+        % Punto B
+        \coordinate (B) at (4.5, 3);
+        \draw[thick, dashed] (A) -- (B);
+        \fill (B) circle (1.5pt) node[right] {$B$};
+        
+        % Punto C
+        \coordinate (C) at (5.5, 1.5);
+        \fill (C) circle (1.5pt) node[right] {$C$};
+        \draw[thick, dashed] (A) -- (C);
+        \draw[thick, dashed] (B) -- (C);
+        
+        % Assi locali C (x'', y'')
+        \draw[->, thin, red] (C) -- ++(1,0) node[right] {$y''$};
+        \draw[->, thin, red] (C) -- ++(-0.5,-0.5) node[below left] {$x''$};
+    \end{tikzpicture}
+    \caption{Costruzione incrementale dei gradi di libertà per tre punti non allineati del corpo rigido.}
+\end{figure}

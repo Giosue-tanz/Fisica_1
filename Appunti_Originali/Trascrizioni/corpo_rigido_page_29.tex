@@ -1,0 +1,106 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{tikz}
+\usepackage{geometry}
+\geometry{a4paper, margin=2cm}
+
+\begin{document}
+
+\begin{flushright}
+FISICA 1 - Fabrizio Cei \quad 23/02/2024
+\end{flushright}
+
+\section*{IL GIROSCOPIO, LA TROTTOLA E IL MOTO DI PRECESSIONE}
+Il giroscopio è un CORPO RIGIDO in rotazione abbastanza rapida (intorno a un asse) da creare forze in grado di controbilanciare il peso di ciascuna particella. Quello più semplice è SIMMETRICO.
+
+\vspace{0.5cm}
+\begin{minipage}{0.35\textwidth}
+\begin{tikzpicture}[scale=0.8]
+\draw[->] (0,0) -- (0,-2.5) node[right] {$z$};
+\draw[->] (0,0) -- (-2,-0.5) node[below] {$x$};
+\draw[->] (0,0) -- (-2,1) node[left] {$y$};
+\draw[thick] (0,0) ellipse (1.5 and 0.4);
+\draw[thick, rotate=90] (0,0) ellipse (1.5 and 0.4);
+\draw[thick] (0,0) circle (1.8);
+\draw[fill=gray] (2.5,-1) rectangle (3,-1.5);
+\node at (2.75, -1.8) {$m$};
+\draw (1.5,0) -- (2.75, -1);
+\draw[->, thick] (-1.5,-2) -- (-1.5,-3) node[right] {$\vec{g}$};
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}{0.6\textwidth}
+Esso può ruotare indipendentemente intorno a $x, y$ e $z$ e anche contemporaneamente.
+\begin{itemize}
+    \item Se ruota intorno a $y$ o $z$, basta una coppia di forze anche poco intense per avviare la rotazione.
+    \item Se è fermo e applichiamo una massa $m$ al gancetto, il giroscopio si inclina per effetto della gravità.
+\end{itemize}
+\end{minipage}
+
+\begin{itemize}
+    \item Se il corpo, però ruota contemporaneamente intorno ai 3 assi e, in particolare con $\vec{\omega}$ elevata intorno a $x$, e attacchiamo una massa $m$ il giroscopio non si inclina ma comincia a ruotare intorno all'asse $z$, seguendo il \textbf{MOTO DI PRECESSIONE}.
+\end{itemize}
+
+Senza la massa $m$, $\vec{L} = \hat{x} L_x$. Nel momento in cui aggiungo $m$ si va a creare un momento delle forze $\vec{\tau}$ che è diretto lungo $y$ ($\hat{x} \times \hat{z} = -\hat{y}$) quindi $\vec{\tau} \perp \vec{L}$. \\
+Per la 2° cardinale \quad $d\vec{L} = \vec{\tau} dt$ \quad cioè (visto dall'alto)
+
+\vspace{0.5cm}
+\begin{minipage}{0.3\textwidth}
+\begin{tikzpicture}
+\draw[->, thick] (0,0) -- (3,0) node[above] {$\vec{L}(t)$};
+\draw[->, thick] (3,0) -- (3,-1) node[right] {$d\vec{L}$};
+\draw[->, thick, olive] (0,0) -- (3,-1) node[below] {$\vec{L}(t+dt)$};
+\draw (0.5,0) arc (0:-18:0.5);
+\node at (0.8, -0.2) {$d\theta$};
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}{0.65\textwidth}
+dove $||\vec{L}(t)|| \cong ||\vec{L}(t+dt)||$ per $dt \to 0$ e questo significa che $\vec{L}$ sta ruotando e quindi $x$ sta ruotando intorno a $z$ per azione del $\vec{\tau}$ prodotto da $m$. \\
+= \textbf{MOTO DI PRECESSIONE}
+\end{minipage}
+
+\vspace{0.5cm}
+La velocità angolare di questo moto è \fbox{$\Omega \ll \omega$} ed è pari a:
+$$ \Omega = \frac{d\theta}{dt} = \frac{||d\vec{L}||}{||\vec{L}||} \frac{1}{dt} = \frac{||\vec{\tau}||}{||\vec{L}||} = \frac{||\vec{\tau}||}{L_x} = \frac{||\vec{\tau}||}{I_x \omega_x} $$
+
+\vspace{0.5cm}
+\noindent Analogo è il caso della \textbf{TROTTOLA}
+
+\begin{minipage}{0.3\textwidth}
+\begin{tikzpicture}
+\draw[->] (0,0) -- (0,3) node[right] {$z$};
+\draw[->] (0,0) -- (-2,-1.5) node[left] {$x$};
+\draw[->] (0,0) -- (3,-1) node[right] {$y$};
+\draw[thick, rotate around={30:(0,0)}] (0,0) -- (0,2.5);
+\draw[thick, rotate around={30:(0,0)}] (0,1.5) ellipse (0.5 and 0.2);
+\draw[->, thick, rotate around={30:(0,0)}] (0,2.5) -- (0,3.5) node[left] {$\vec{\omega}$};
+\draw[->, dashed] (0,0) -- (-0.8, 1.4) node[midway, left] {$\vec{r}$};
+\node at (-0.9, 1.5) {CM};
+\draw[->, thick] (-0.8, 1.4) -- (-0.8, 0.4) node[left] {$\vec{P}$};
+\draw (0,0.8) arc (90:120:0.8);
+\node at (-0.4, 1) {$\phi$};
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}{0.65\textwidth}
+$$ \vec{\tau} = \vec{\tau}_{CM} = \vec{r} \times \vec{P} = -Mgr \sin\phi (\hat{\omega} \times \hat{z}) \quad \text{e} \quad \vec{\omega} = \omega \hat{\omega} $$
+$\downarrow$ è ortogonale a $\hat{\omega}$ e $\hat{z} \Rightarrow \in (x,y)$ e $\perp \vec{L}$
+
+\vspace{0.3cm}
+\begin{tikzpicture}[scale=0.8]
+\draw[->] (0,0) -- (3,0) node[right] {$[\vec{L}(t)]_{xy}$};
+\draw[->] (3,0) -- (2.5,-1) node[right] {$d\vec{L}$};
+\draw[->] (0,0) -- (2.5,-1) node[below] {$[\vec{L}(t+dt)]_{xy}$};
+\draw (1,0) arc (0:-22:1);
+\node at (1.3, -0.2) {$d\theta$};
+\end{tikzpicture}
+
+$||[\vec{L}(t)]_{xy}|| \cong ||[\vec{L}(t+dt)]_{xy}||$ \\
+con $|[\vec{L}(t)]_{xy}| = |\vec{L}| \sin\phi = b$
+\end{minipage}
+
+$$ \Rightarrow \Omega = \frac{d\theta}{dt} = \frac{||d\vec{L}||}{||b||} \frac{1}{dt} = \frac{||\vec{\tau}||}{||\vec{L}||\sin\phi} = \frac{Mgr}{||\vec{L}||} = \frac{Mgr}{I_\omega \omega} $$
+
+Il $\vec{\tau}_{CM}$ ha anche una componente lungo $\hat{z}$ (che inclina la trottola) e quindi $\phi$ oscilla fra un minimo e un massimo = \textbf{MOTO DI NUTAZIONE}
+
+\end{document}

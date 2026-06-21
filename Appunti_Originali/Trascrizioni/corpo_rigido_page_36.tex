@@ -1,0 +1,77 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{amsmath, amssymb}
+
+\begin{document}
+
+\section*{OSCILLAZIONI FORZATE}
+Per controbilanciare lo smorzamento è necessario applicare una FORZA ESTERNA NON COSTANTE ($\int dF_c = 0$), che dipende dal tempo, in particolare da una FORZANTE ARMONICA MOTRICE $\vec{F}(t) = \vec{F}(t+T)$ PERIODICA e $\vec{F}(t) = F_0 \sin(\omega t)$ con $\omega =$ pulsazione della sorgente esterna ($\neq \omega_0$): fornisce energia per compensare quella persa.
+
+L'equazione del moto diventa quindi:
+\begin{equation*}
+\ddot{x} + \lambda \dot{x} + \omega_0^2 x = \frac{F(t)}{m} \quad \text{non omogenea} \quad (\lambda = \beta/m \text{ e } \omega_0^2 = k/m)
+\end{equation*}
+
+Si risolve con $x(t) = x_{\text{gen}} + x_{\text{part}}$:
+\begin{itemize}
+\item $x_{\text{gen}} =$ soluzione dell'oscillazione smorzata = TRANSIENTE
+\item $x_{\text{part}} = A(\omega_0, \omega, \lambda) \sin(\omega t - \varphi)$ (sol. di prova, $A$ e $\varphi$ da determinare) \\
+$\hookrightarrow$ l'oscillatore si deve adattare alla forzante per sopravvivere: dovrà oscillare con $\omega$ della $\vec{F}(t)$.
+\end{itemize}
+
+Sostituendo la soluzione particolare:
+\begin{align*}
+x(t) &= A \sin(\omega t - \varphi) \\
+\dot{x}(t) &= \omega A \cos(\omega t - \varphi) \\
+\ddot{x}(t) &= -\omega^2 A \sin(\omega t - \varphi)
+\end{align*}
+
+\begin{equation*}
+-\omega^2 A \sin(\omega t - \varphi) + \lambda \omega A \cos(\omega t - \varphi) + \omega_0^2 A \sin(\omega t - \varphi) = f_0 \sin(\omega t) \quad \text{con } f_0 = F_0/m
+\end{equation*}
+
+Sviluppiamo con le formule di addizione:
+\begin{align*}
+-\omega^2 A [\sin(\omega t)\cos\varphi - \cos(\omega t)\sin\varphi] & \\
++\lambda \omega A [\cos(\omega t)\cos\varphi + \sin(\omega t)\sin\varphi] & \\
++\omega_0^2 A [\sin(\omega t)\cos\varphi - \cos(\omega t)\sin\varphi] &
+\end{align*}
+
+Eguagliando i coefficienti di $\sin(\omega t)$ e $\cos(\omega t)$:
+\begin{equation*}
+\implies
+\begin{cases}
+\sin(\omega t): \quad -\omega^2 A \cos\varphi + \lambda \omega A \sin\varphi + \omega_0^2 A \cos\varphi = f_0 \quad &\text{(I)} \\
+\cos(\omega t): \quad +\omega^2 A \sin\varphi + \lambda \omega A \cos\varphi - \omega_0^2 A \sin\varphi = 0 \quad &\text{(II)}
+\end{cases}
+\end{equation*}
+
+Dalla (II):
+\begin{equation*}
+\lambda \omega A \cos\varphi = (\omega_0^2 - \omega^2) A \sin\varphi \implies \text{tg}\,\varphi = \frac{\lambda \omega}{\omega_0^2 - \omega^2}
+\end{equation*}
+Vediamo che $\varphi = 0 \iff \lambda = 0$ cioè l'oscillatore e la forzante sono sfasati finché c'è smorzamento. Nel momento in cui le due oscillazioni si sovrappongono ($\varphi=0$) l'oscillatore non sarà più smorzato.
+
+\begin{itemize}
+\item Dalla trigonometria: $\cos\varphi = \frac{1}{\sqrt{1+\text{tg}^2\varphi}}$, \quad $\sin\varphi = \frac{\text{tg}\,\varphi}{\sqrt{1+\text{tg}^2\varphi}}$
+\end{itemize}
+
+Sostituendo $\cos\varphi$ e $\sin\varphi$ nella (I):
+\begin{equation*}
+A(\omega_0^2 - \omega^2) \cos\varphi + \lambda \omega A \sin\varphi = f_0
+\end{equation*}
+\begin{equation*}
+A \left[ (\omega_0^2 - \omega^2) + \lambda \omega \text{tg}\,\varphi \right] = f_0 \sqrt{1+\text{tg}^2\varphi} \quad \text{sostituisco } \text{tg}\,\varphi
+\end{equation*}
+\begin{equation*}
+A = f_0 \frac{\sqrt{1 + (\lambda \omega)^2 / (\omega_0^2 - \omega^2)^2}}{(\omega_0^2 - \omega^2) + \frac{(\lambda \omega)^2}{(\omega_0^2 - \omega^2)}} = f_0 \frac{\sqrt{(\omega_0^2 - \omega^2)^2 + (\lambda \omega)^2}}{(\omega_0^2 - \omega^2)^2 + (\lambda \omega)^2}
+\end{equation*}
+
+\begin{equation*}
+\implies A = f_0 \frac{1}{\sqrt{(\omega_0^2 - \omega^2)^2 + (\lambda \omega)^2}}
+\end{equation*}
+
+Vediamo che per determinare $A$ e $\varphi$ non abbiamo bisogno delle condizioni iniziali, queste influiscono solo sul TRANSIENTE ($x_{\text{gen}}$) mentre il \textbf{MOTO FINALE STAZIONARIO}, che comincia non appena si esaurisce il transiente, dipende esclusivamente dalla FORZANTE perdendo le informazioni del suo moto precedente.
+
+\end{document}

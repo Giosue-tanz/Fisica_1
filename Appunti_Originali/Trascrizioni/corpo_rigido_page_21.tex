@@ -1,0 +1,72 @@
+% Fisica 1 - Fabrizio Cei - 09/02/2024
+% Corpo Rigido - Pagina 21
+
+\section{Moto di pura rotazione}
+
+L'asse attorno a cui avviene è fisso, bloccato.
+
+$d_i = d_i' = r_i \sin\theta_i = r_i' \sin\theta_i$ $\Rightarrow$ solo può traslare lungo l'asse di rotazione.
+
+% Diagramma: corpo rigido con asse z fisso, masse m_i a distanza d_i dall'asse, forze F_i
+
+\begin{itemize}
+    \item $L_O$ = momento angolare assiale
+    \item $I$ = momento di inerzia assiale
+    \item $\tau_O$ = momento assiale della forza
+\end{itemize}
+
+È un ragionamento analogo a $L_O$, basta verificare che $r_i \sin\theta\, F_y = r_i' \sin\theta'\, F_y$.
+
+\[
+\begin{cases}
+\vec{L} = I_z\,\vec{\omega} & \text{asse fisso principale} \\
+L_z = I_z\,\omega & \text{asse fisso qualsiasi}
+\end{cases}
+\qquad
+\begin{aligned}
+& \text{accelerazione} \\
+& \text{angolare}
+\end{aligned}
+\]
+
+Studiamo la 2ª equazione cardinale per il corpo rigido che ruota attorno a $z$:
+
+\paragraph{(1) Asse principale: $\vec{L}_{tot} = I_z\,\vec{\omega}$}
+
+\begin{equation}
+\vec{\tau}_{ext} = \frac{d\vec{L}_{tot}}{dt} \qquad \Rightarrow \qquad \boxed{\vec{\tau}_{ext}} = \frac{d(I_z\,\vec{\omega})}{dt} = I_z \cdot \frac{d(\vec{\omega})}{dt} = \boxed{I_z\,\vec{\alpha}}
+\end{equation}
+
+\paragraph{(2) Asse qualsiasi: $L_z = \omega I_z$}
+
+\begin{equation}
+\left[\tau_{ext}\right]_z = \frac{d(I_z\,\omega)}{dt} = \boxed{I_z\,\alpha}
+\end{equation}
+
+$\rightarrow$ $I_z$ è costante perché il corpo rigido è indeformabile e incomprimibile.
+
+Ci sono però dei sistemi in cui $I_z$ può variare:
+
+% Diagramma: sistema con masse che si spostano lungo un asse, cambiando la distribuzione di massa
+
+\begin{equation}
+\Rightarrow \tau_{ext,z} = \frac{d(L_z)}{dt} = I_z\,\alpha + \omega\,\frac{dI_z}{dt}
+\end{equation}
+
+$\hookrightarrow$ Questo caso è interessante se il sistema è \textbf{isolato} ($\tau_z = 0$):
+
+\begin{align*}
+I_z\,\alpha + \omega\,\frac{dI_z}{dt} = 0 \quad &\Rightarrow \quad \alpha = -\frac{d(I_z)}{dt}\cdot\frac{1}{I_z}\cdot\omega \\
+&= \frac{d(\omega)}{dt}\cdot\frac{1}{\omega}
+\end{align*}
+
+da cui:
+\begin{equation}
+\frac{d(\omega)}{d(I_z)} = -\frac{\omega}{I_z}
+\end{equation}
+
+Cioè se $\omega$ aumenta ($d(\omega) > 0$) allora $I_z$ deve diminuire ($d(I_z) < 0$) e viceversa.
+
+\begin{osservazione}{}
+Le forze interne mutano il momento di inerzia.
+\end{osservazione}

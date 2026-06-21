@@ -1,0 +1,72 @@
+% Fisica 1 - Fabrizio Cei
+% Corpo Rigido - Pagina 18
+
+\subsection{Esempi}
+
+% Diagramma: manubrio (due masse M collegate da asta di lunghezza L) con asse z, omega, angolo theta
+% z' è perpendicolare a z, le due masse sono a distanza L/2 dal CM
+
+\paragraph{a) $\vec{L} \parallel \vec{\omega}$, $z' \perp L$ (asta)}
+
+\begin{align*}
+\vec{L}' &= M(\vec{r}_1' \times \vec{v}_1' + \vec{r}_2' \times \vec{v}_2') \\
+&= M\left(\vec{r}_1' \times (\vec{\omega} \times \vec{r}_1') + \vec{r}_2' \times (\vec{\omega} \times \vec{r}_2')\right) \\
+&= M\left(r_1'^2 + r_2'^2\right)\vec{\omega} = M\left(2\,\frac{L^2}{4}\right)\vec{\omega} \\
+&= \frac{ML^2}{2}\vec{\omega}
+\end{align*}
+
+\begin{equation}
+I_z = \sum_i m_i d_i^2 = 2M \cdot \left(\frac{L}{2}\right)^2 = \frac{ML^2}{2}
+\end{equation}
+
+\begin{equation}
+\Rightarrow \boxed{\vec{L}' = I_z\,\vec{\omega}}
+\end{equation}
+
+\paragraph{b) $I \times \vec{\omega}$, $z' \perp L$ (asta)}
+
+\begin{align*}
+\vec{L}' &= M(\vec{r}_1' \times \vec{v}_1' + \vec{r}_2' \times \vec{v}_2') \\
+&= M\left[r_1'^2 + r_2'^2\right]\vec{\omega} - M\left[\vec{r}_1'(\vec{\omega} \cdot \vec{r}_1') + \vec{r}_2'(\vec{\omega} \cdot \vec{r}_2')\right]
+\end{align*}
+
+Con $\hat{\omega} = -\hat{x}\sin\theta + \hat{y}\cos\theta$, i prodotti scalari danno:
+
+\begin{align*}
+\vec{L}' &= \frac{ML^2}{2}\vec{\omega} - \frac{ML}{2}\omega\sin\theta\left[\vec{r}_1' - \vec{r}_2'\right] \\
+&= \frac{ML^2}{2}\vec{\omega} + \frac{ML^2}{2}\omega\sin\theta\,\hat{x} \qquad \text{(somma $= -L\hat{x}$)} \\
+&= \frac{ML^2}{2}\omega\left(\hat{\omega} + \hat{x}\sin\theta\right) \qquad \hat{y}\cos\theta \text{ componente} \\
+&= \boxed{\frac{ML^2}{2}\omega\cos\theta\,\hat{y}}
+\end{align*}
+
+$\star$ Le rotazioni attorno agli assi non principali sono meno efficienti; conviene favorire quelli principali per evitare logorio e sforzo.
+
+\paragraph{Proiezione di $\vec{L}'$ su $z'$}
+Proviamo a proiettare $\vec{L}'$ su $z'$, cioè $\vec{L}' \cdot \hat{\omega} = L_{z'}$:
+
+% Diagramma: distanze d_1 e d_2 delle masse dall'asse z', con angolo theta
+\begin{align*}
+\vec{L}' \cdot \hat{\omega} &= \frac{ML^2}{2}\cos\theta\,\omega\,\hat{y}\cdot\hat{\omega} = \cos\theta \quad \text{(proietto)} \\
+&= \frac{ML^2}{2}\cos^2\theta\,\omega
+\end{align*}
+
+\begin{align*}
+I_{z'} &= \sum_i m_i d_i^2 = M(d_1^2 + d_2^2) \qquad d_i = r_i'\cos\theta \\
+&= M\left(2\,\frac{L^2}{4}\right)\cos^2\theta = \frac{ML^2\cos^2\theta}{2}
+\end{align*}
+
+\begin{equation}
+\Rightarrow \boxed{L_{z'} = I_{z'}\,\omega}
+\end{equation}
+
+\begin{osservazione}{}
+Se un asse è tale che ha $\sum \hat{t}_i = 0$ allora è un \textbf{asse principale}. Quindi un asse non perpendicolare, storto, non può essere un asse principale.
+
+In generale:
+\[
+\begin{cases}
+I_z\,\omega = L_z & \forall\,\hat{\omega} \text{ qualsiasi} \\
+I_z\,\vec{\omega} = \vec{L}' & \forall\,\hat{\omega} \text{ principale}
+\end{cases}
+\]
+\end{osservazione}

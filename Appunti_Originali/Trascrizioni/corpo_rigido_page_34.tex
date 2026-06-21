@@ -1,0 +1,126 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{tikz}
+
+\begin{document}
+
+\section*{B) MOTI ARMONICI IN DIREZIONI ORTOGONALI ($\hat{x}, \hat{y}$)}
+
+\begin{equation*}
+\begin{cases}
+x(t) = A \cos(\omega_x t + \varphi_x) \qquad -A \le x \le A \\
+y(t) = B \cos(\omega_y t + \varphi_y) \qquad -B \le y \le B
+\end{cases}
+\end{equation*}
+
+\subsection*{1) $\omega_x = \omega_y = \omega$}
+($\varphi_x = 0, \varphi_y = \varphi$ per semplicità)
+\begin{equation*}
+\begin{cases}
+x(t) = A \cos(\omega t) \\
+y(t) = B \cos(\omega t + \varphi)
+\end{cases}
+\end{equation*}
+
+\vspace{0.5cm}
+\begin{minipage}{0.4\textwidth}
+\begin{tikzpicture}[scale=0.8]
+\draw[->] (-3,0) -- (3,0) node[right] {$x$};
+\draw[->] (0,-2.5) -- (0,2.5) node[above] {$y$};
+
+\draw[dashed] (-2,-1.5) rectangle (2,1.5);
+\node[left] at (-2,0) {$-A$};
+\node[right] at (2,0) {$A$};
+\node[below left] at (0,-1.5) {$-B$};
+\node[above left] at (0,1.5) {$B$};
+
+\node[below left] at (-2,-1.5) {$a$};
+\node[above right] at (2,1.5) {$b$};
+\node[above left] at (-2,1.5) {$c$};
+\node[below right] at (2,-1.5) {$d$};
+
+\node[below] at (0,-1.5) {$e$};
+\node[right] at (2,0) {$f$};
+\node[above] at (0,1.5) {$g$};
+\node[left] at (-2,0) {$h$};
+
+\draw[thick, blue] (-2,-1.5) -- (2,1.5); % retta ab
+\end{tikzpicture}
+\end{minipage}
+\hfill
+\begin{minipage}{0.55\textwidth}
+\paragraph*{1.1) $\varphi = 0$ MOTO SULLA RETTA (ab)}
+\begin{equation*}
+\implies y(t) = \frac{B}{A} x(t)
+\end{equation*}
+
+\paragraph*{1.2) $\varphi = \pi$ MOTO SULLA RETTA (cd)}
+\begin{equation*}
+\implies y(t) = -\frac{B}{A} x(t)
+\end{equation*}
+
+\paragraph*{1.3) $\varphi = \pi/2$ MOTO SULL'ELLISSE (efgh) in SENSO ORARIO}
+\begin{equation*}
+\implies \left(\frac{x(t)}{A}\right)^2 + \left(\frac{y(t)}{B}\right)^2 = 1
+\end{equation*}
+
+\paragraph*{1.4) $\varphi = -\pi/2$ MOTO SULL'ELLISSE (efgh) in SENSO ANTIORARIO}
+\begin{equation*}
+\implies \left(\frac{x(t)}{A}\right)^2 + \left(\frac{y(t)}{B}\right)^2 = 1
+\end{equation*}
+\end{minipage}
+\vspace{0.5cm}
+
+\subsection*{2) $\omega_x \neq \omega_y$}
+\textbf{FIGURE DI LISSAJOUS} = traiettorie seguite dai moti armonici nei casi in cui $A=B$.
+
+\vspace{0.5cm}
+\hrule
+\vspace{0.5cm}
+
+\section*{OSCILLAZIONI SMORZATE}
+transienti = limitati e poi equilibrio.
+
+L'oscillazione smorzata non dura infinitamente ma tende a fermarsi a causa della FORZA d'attrito (spesso viscoso).
+
+Consideriamo il moto unidimensionale su $\hat{x}$:
+\begin{equation*}
+\vec{F}_v = -\beta \vec{v} = -\beta \dot{x} \hat{x} \implies m\ddot{x} = -kx - \beta \dot{x} \implies \ddot{x} + \lambda \dot{x} + \omega_0^2 x = 0 \quad \text{omogenea}
+\end{equation*}
+con $\lambda = \beta/m$ e $\omega_0^2 = k/m$.
+
+È conveniente risolverla con $x(t) = A e^{\alpha t}$ con $\alpha = a + ib, A \in \mathbb{C}$.
+\begin{equation*}
+\dot{x}(t) = \alpha A e^{\alpha t}, \quad \ddot{x}(t) = \alpha^2 A e^{\alpha t}
+\end{equation*}
+\begin{equation*}
+\implies \alpha^2 A e^{\alpha t} + \lambda \alpha A e^{\alpha t} + \omega_0^2 A e^{\alpha t} = 0 \implies \alpha^2 + \lambda \alpha + \omega_0^2 = 0 = p(\alpha) \quad \text{polinomio caratteristico}
+\end{equation*}
+\begin{equation*}
+\implies \alpha = \frac{-\lambda \pm \sqrt{\lambda^2 - 4\omega_0^2}}{2} \quad \text{SOLUZIONI}
+\end{equation*}
+
+\vspace{0.5cm}
+\noindent
+\begin{minipage}[t]{0.48\textwidth}
+\begin{itemize}
+\item $\lambda^2 \ge 4\omega_0^2 \implies \alpha \in \mathbb{R}^-$
+\end{itemize}
+$\implies$ Soluzione $x(t) =$ somma di esponenziali reali $<0$ (DECRESCENTI) \\
+$\hookrightarrow$ NON C'E' OSCILLAZIONE\\
+\textbf{SOVRASMORZAMENTO}\\
+= smorzamento elevato
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\begin{itemize}
+\item $\lambda^2 < 4\omega_0^2 \implies \alpha \in \mathbb{C}, \bar{\alpha} \in \mathbb{C}$
+\end{itemize}
+$\implies$ Soluzione $x(t) =$ somma di esponenziali complessi coniugati (SINUSOIDALI) \\
+$\hookrightarrow$ C'E' OSCILLAZIONE\\
+\textbf{SMORZAMENTO ("normale")}
+\end{minipage}
+
+\end{document}
