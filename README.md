@@ -17,8 +17,8 @@ Gli appunti sono in continuo aggiornamento e revisione. Essendo un *work in prog
 
 Questo lavoro è il frutto di un processo collaborativo che ha unito competenze diverse per raggiungere un risultato didattico e visivo di alta qualità:
 
-- **Chiara Rustici**: Autrice degli appunti di base originali, che hanno fornito l'impalcatura teorica fondamentale e la primissima stesura concettuale.
-- **Giosuè Aiello**: Responsabile della riformulazione formale del testo, della stesura tipografica in $\LaTeX$ e dell'integrazione completa di tutta la sezione relativa agli esercizi e ai problemi svolti.
+- **Chiara Rustici**: Autrice degli appunti manoscritti di base, che hanno fornito l'impalcatura teorica fondamentale e la primissima stesura concettuale.
+- **Giosuè Aiello**: Responsabile della riformulazione formale del testo (inclusa la rielaborazione dei passaggi logico-matematici di alcuni teoremi e dimostrazioni), della stesura tipografica in $\LaTeX$ e dell'integrazione completa di tutta la sezione relativa agli esercizi e ai problemi svolti.
 
 ---
 
