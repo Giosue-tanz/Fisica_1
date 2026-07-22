@@ -1,4 +1,4 @@
-# 📘 Teoria di Fisica 1
+# Teoria di Fisica 1
 
 Benvenuti nel repository ufficiale degli appunti di **Teoria di Fisica 1**. 
 
@@ -6,14 +6,14 @@ Questo progetto nasce con l'obiettivo di fornire un testo organico, chiaro e rig
 
 ---
 
-## ⚠️ Stato del Progetto
+## Stato del Progetto
 
 **ATTENZIONE: Questo documento è attualmente in fase di stesura.**  
 Gli appunti sono in continuo aggiornamento e revisione. Essendo un *work in progress*, potrebbero essere presenti refusi, sezioni temporaneamente incomplete o paragrafi in via di perfezionamento.
 
 ---
 
-## 👥 Autori e Contributi
+## Autori e Contributi
 
 Questo lavoro è il frutto di un processo collaborativo che ha unito competenze diverse per raggiungere un risultato didattico e visivo di alta qualità:
 
@@ -22,7 +22,7 @@ Questo lavoro è il frutto di un processo collaborativo che ha unito competenze 
 
 ---
 
-## 🛠 Compilazione
+## Compilazione
 
 Il progetto è interamente scritto in $\LaTeX$. Per generare o aggiornare il file PDF in autonomia:
 
@@ -39,7 +39,7 @@ Il progetto è interamente scritto in $\LaTeX$. Per generare o aggiornare il fil
 
 ---
 
-## ⚖️ Licenza
+## Licenza
 
 Questo materiale è distribuito con licenza **Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)**. 
 Consultare il file `LICENSE` per i dettagli legali completi. Siete liberi di studiare, condividere e adattare il materiale, a patto di citare sempre adeguatamente gli autori e di **non** farne in alcun caso un uso commerciale.
