@@ -1329,7 +1329,10 @@ I_u &= \int_{CR} dm ||\vec{r} \times \hat{u}||^2 \\
 \end{minipage}
 
 \vspace{0.5cm}
-\noindent $\Rightarrow I_u = u_x^2 I_{xx} + u_y^2 I_{yy} + u_z^2 I_{zz} + 2 u_x u_y I_{xy} + 2 u_x u_z I_{xz} + 2 u_y u_z I_{yz}$
+\begin{align*}
+    \Rightarrow I_u =& u_x^2 I_{xx} + u_y^2 I_{yy} + u_z^2 I_{zz} \\
+    &+ 2 u_x u_y I_{xy} + 2 u_x u_z I_{xz} + 2 u_y u_z I_{yz}
+\end{align*}
 
 \vspace{0.5cm}
 \noindent Se dividiamo tutto per $I_u$ e consideriamo \\
@@ -1511,14 +1514,12 @@ Il $\vec{\tau}_{CM}$ ha anche una componente lungo $\hat{z}$ (che inclina la tro
 
 
 
-\begin{center}
-\Huge \textbf{OSCILLAZIONI}
-\end{center}
+\section{Oscillazioni}
 
-\section*{MOTO ARMONICO SEMPLICE}
+\subsection{Moto Armonico Semplice}
 
 \begin{minipage}{0.3\textwidth}
-\begin{tikzpicture}
+\begin{tikzpicture}[scale=0.9]
 \draw[thick] (0,0) -- (0,1.5);
 \fill[pattern=north east lines] (-0.3,0) rectangle (0,1.5);
 \draw[decoration={aspect=0.3, segment length=2mm, amplitude=2mm, coil}, decorate] (0,0.75) -- (1.5,0.75);
@@ -1587,7 +1588,7 @@ $T$ indipendente da $A$ (solo armoniche!) $\Rightarrow V(x) \simeq \frac{k x^2}{
 
 
 
-\section*{PENDOLO SEMPLICE NELLA CONFIGURAZIONE DI PICCOLE OSC.}
+\subsection{Pendolo Semplice nelle Piccole Oscillazioni}
 
 \begin{minipage}{0.35\textwidth}
 \begin{tikzpicture}
@@ -1606,7 +1607,7 @@ $T$ indipendente da $A$ (solo armoniche!) $\Rightarrow V(x) \simeq \frac{k x^2}{
 \end{minipage}
 \begin{minipage}{0.6\textwidth}
 \begin{align*}
-\vec{\tau}_O &= \vec{L} \times (\vec{T} + \vec{P}) = \vec{L} \times \vec{T} + \vec{L} \times \vec{P} = \vec{L} \times \vec{P} = mgL \sin(-\theta) \hat{z} \\
+\vec{\tau}_O &= \vec{L} \times (\vec{T} + \vec{P}) = \vec{L} \times \vec{T} + \vec{L} \times \vec{P} \\ &= \vec{L} \times \vec{P} = mgL \sin(-\theta) \hat{z} \\
 \vec{L}_O &= \vec{L} \times \vec{p} = \vec{L} \times (m\vec{v}) = m\vec{L} \times (\vec{\omega} \times \vec{L}) \\
 &= mL^2\vec{\omega} = mL^2\dot{\theta}\hat{z} \\
 \frac{d\vec{L}_O}{dt} &= \frac{d}{dt}(mL^2\omega\hat{z}) = mL^2\frac{d\omega}{dt}\hat{z} = mL^2\ddot{\theta}\hat{z}
@@ -2013,8 +2014,8 @@ Si osserva che, da ciò, più $Q$ è grande meno energia si perde durante l'osci
 
 
 
-\section*{OSCILLAZIONI FORZATE}
-Per controbilanciare lo smorzamento è necessario applicare una FORZA ESTERNA NON COSTANTE ($\int dF_c = 0$), che dipende dal tempo, in particolare da una FORZANTE ARMONICA MOTRICE $\vec{F}(t) = \vec{F}(t+T)$ PERIODICA e $\vec{F}(t) = F_0 \sin(\omega t)$ con $\omega =$ pulsazione della sorgente esterna ($\neq \omega_0$): fornisce energia per compensare quella persa.
+\subsection{Oscillazioni Forzate}
+Per controbilanciare lo smorzamento è necessario applicare una \textbf{forza esterna non costante} ($\int dF_c = 0$), che dipende dal tempo, in particolare da una \textbf{forzante armonica motrice} periodica $\vec{F}(t) = \vec{F}(t+T)$ e $\vec{F}(t) = F_0 \sin(\omega t)$ con $\omega =$ pulsazione della sorgente esterna ($\neq \omega_0$), la quale fornisce energia per compensare quella persa.
 
 L'equazione del moto diventa quindi:
 \begin{equation*}
@@ -2156,13 +2157,15 @@ Il SISTEMA OSCILLATORE invece è CONSERVATIVO poiché l'energia persa è recuper
 E = \frac{1}{2}m\dot{x}^2 + \frac{1}{2}kx^2 \qquad \frac{dE}{dt} = \dot{x}(m\ddot{x} + kx) = \dot{x}(-\beta\dot{x} + F_0\sin(\omega t))
 \end{equation*}
 
-\begin{equation*}
-\left\langle \frac{dE}{dt} \right\rangle_T = \frac{1}{T} \int_t^{t+T} dt^* \left( \frac{dE}{dt^*} \right) = \frac{1}{T} [E(t+T) - E(t)] = 0 \quad \text{(moto periodico perché } E(t+T)=E(t)\text{. Lo verifichiamo:)}
-\end{equation*}
+\begin{align*}
+\left\langle \frac{dE}{dt} \right\rangle_T &= \frac{1}{T} \int_t^{t+T} dt^* \left( \frac{dE}{dt^*} \right) = \frac{1}{T} [E(t+T) - E(t)] = 0 \\
+&\quad \text{(moto periodico perché } E(t+T)=E(t)\text{)}
+\end{align*}
 
-\begin{equation*}
-= \frac{1}{T} \int_t^{t+T} dt^* \left[ \underbrace{-\beta(\omega A \cos(\omega t^* - \varphi))^2}_{\text{DISSIPATA (MEDIA)} = (-\beta \omega^2 A^2 / 2) \cdot T} + \underbrace{F_0 \sin(\omega t^*) \omega A \cos(\omega t^* - \varphi)}_{\text{ASSORBITA (MEDIA)} = (+F_0 \omega A \sin\varphi / 2) \cdot T} \right]
-\end{equation*}
+Verifichiamolo calcolando i contributi di dissipazione e assorbimento:
+\begin{align*}
+&= \frac{1}{T} \int_t^{t+T} dt^* \left[ \underbrace{-\beta(\omega A \cos(\omega t^* - \varphi))^2}_{\text{DISSIPATO} = (-\beta \omega^2 A^2 / 2) \cdot T} + \underbrace{F_0 \sin(\omega t^*) \omega A \cos(\omega t^* - \varphi)}_{\text{ASSORBITO} = (+F_0 \omega A \sin\varphi / 2) \cdot T} \right]
+\end{align*}
 
 \begin{align*}
 \text{(sost. } A \text{ e } \sin\varphi \text{)} \quad &= \frac{\omega A}{2} (F_0 \sin\varphi - \beta \omega A) = \frac{\omega A m}{2} (f_0 \sin\varphi - \lambda \omega A) \\
