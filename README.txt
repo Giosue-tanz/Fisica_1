@@ -32,9 +32,9 @@ Per generare il PDF e' necessaria una distribuzione LaTeX (es. TeX Live o MiKTeX
 
 Librerie consigliate: ClassicThesis, TikZ, TColorBox.
 
-AUTORI
-Giosuè Aiello e Chiara Rustici
-Studenti di Fisica presso il Dipartimento di Fisica dell'Universita' di Pisa
+AUTORE
+Giosuè Aiello (Studente di Fisica presso il Dipartimento di Fisica dell'Universita' di Pisa).
+Queste note sono state realizzate sulla base degli appunti manoscritti di Chiara Rustici, con la rivisitazione formale dell'autore.
 
 LICENZA
 Questo progetto e' rilasciato sotto licenza Creative Commons Attribution-NonCommercial 4.0 International.

@@ -18,7 +18,7 @@
 % use the right myDegree option
 \newcommand{\myDegree}{Corso di Laurea in Fisica\xspace}
 %\newcommand{\myDegree}{Corso di Laurea Magistrale in Informatica\xspace}
-\newcommand{\myName}{Giosuè Aiello \& Chiara Rustici\xspace}
+\newcommand{\myName}{Giosuè Aiello\xspace}
 \newcommand{\mySupervisorTitle}{Relatore/Relatrice\xspace} %%% remove one of the two
 \newcommand{\mySupervisorName}{\textit{Nome Cognome Relatore}\xspace} 
 \newcommand{\myCoSupervisorTitle}{Correlatore/Correlatrice\xspace} %%% optional: remove this command if the thesis has no Co-Supervisor
@@ -49,9 +49,8 @@
 \usepackage[pdftex]{graphicx} 
 \graphicspath{{./Figure/}}
 
-% Font rimosso per usare il default di LaTeX come in Elettronica Digitale
-% \usepackage[eulerchapternumbers,linedheaders,subfig,beramono,eulermath,
-% parts,dottedtoc]{classicthesis}
+% Font dei titoli KOMA-Script di default reimpostato a Serif
+\setkomafont{disposition}{\normalfont\rmfamily\bfseries}
 
 \usepackage{tikz}
 \usepackage{tikz-3dplot}
@@ -81,7 +80,7 @@
     colback=red!5!white,
     colframe=red!10!white,
     fonttitle=\bfseries\color{red!75!black},
-    title=DEFINIZIONE: #1,
+    title={DEFINIZIONE: #1},
     breakable,
     enhanced,
     frame hidden,
@@ -92,7 +91,7 @@
     colback=blue!5!white,
     colframe=blue!10!white,
     fonttitle=\bfseries\color{blue!75!black},
-    title=OSSERVAZIONE: #1,
+    title={OSSERVAZIONE: #1},
     breakable,
     enhanced,
     frame hidden,
@@ -182,6 +181,7 @@
 \usepackage{booktabs}  % for \toprule, \midrule, \bottomrule
 \usepackage{pifont}    % for \ding{55}
 \usepackage{hyperref}  % load LAST - for \url, \texorpdfstring
+\usepackage{bookmark}
 \begin{document}
 \frenchspacing
 \raggedbottom
@@ -200,7 +200,11 @@
 Rosaria Fassari, Gianni Aiello,\\
 Emanuele Antonino Aiello,\\
 Alfio Fassari, Domenica Calvagna,\\
-e a Francesca Guido.}
+ai migliori amici che potessi avere,\\
+i Cicci di cho cho:\\
+Martina Marzione, Davide Lombardo,\\
+Caterina Schinzi, Francesca Guido\\
+e Agnese Micheletti.}
 \end{flushright}
 
 \vfill
@@ -211,6 +215,12 @@ e a Francesca Guido.}
 \noindent
 {\Large \ccbync} Licensed under Creative Commons Attribution-NonCommercial 4.0 International. \\
 To view a copy of this license, visit \url{https://creativecommons.org/licenses/by-nc/4.0/}.
+
+\clearpage
+\thispagestyle{empty}
+\vspace*{\fill}
+\noindent
+{\small \textit{Queste note sono state realizzate sulla base degli appunti manoscritti di Chiara Rustici, con la rivisitazione formale dell'autore.}}\par
 
 \clearpage
 \addtocontents{toc}{\protect\thispagestyle{empty}} % Double check TOC is empty

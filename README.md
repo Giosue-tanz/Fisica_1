@@ -13,12 +13,12 @@ Gli appunti sono in continuo aggiornamento e revisione. Essendo un *work in prog
 
 ---
 
-## Autori e Contributi
+## Autore e Contributi
 
-Questo lavoro è il frutto di un processo collaborativo che ha unito competenze diverse per raggiungere un risultato didattico e visivo di alta qualità:
+Questo lavoro è il frutto di un processo di rielaborazione didattica e visiva:
 
-- **Chiara Rustici**: Autrice degli appunti manoscritti di base, che hanno fornito l'impalcatura teorica fondamentale e la primissima stesura concettuale.
-- **Giosuè Aiello**: Responsabile della riformulazione formale del testo (inclusa la rielaborazione dei passaggi logico-matematici di alcuni teoremi e dimostrazioni), della stesura tipografica in $\LaTeX$ e dell'integrazione completa di tutta la sezione relativa agli esercizi e ai problemi svolti.
+Queste note sono state realizzate sulla base degli appunti originali manoscritti di **Chiara Rustici**. 
+La revisione, la riformulazione formale del testo (inclusa la rielaborazione dei passaggi logico-matematici di alcuni teoremi e dimostrazioni), la stesura tipografica in $\LaTeX$ e l'integrazione completa degli esercizi e dei problemi svolti sono state curate da **Giosuè Aiello**.
 
 ---
 
