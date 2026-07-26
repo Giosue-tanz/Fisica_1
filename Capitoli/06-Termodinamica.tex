@@ -1154,34 +1154,46 @@ Se il gas espande nel vuoto non compie lavoro macroscopico contro forze esterne 
 \end{tikzpicture}
 \end{center}
 
-$Q=0$, $p_e=0 \implies \mathcal{L}=0 \implies \Delta U = 0 \implies$ \textbf{ISOTERMA (Boyle)}: $\;p_A V_A = p_B V_B$
+Poiché il gas si espande nel vuoto, la pressione esterna è nulla ($p_e = 0$) e non viene compiuto lavoro ($L = 0$). Inoltre, essendo il recipiente isolato termicamente, non vi è scambio di calore ($Q = 0$). Per il Primo Principio della Termodinamica si ha dunque:
+\begin{equation}
+    \Delta U = Q - L = 0
+\end{equation}
+Per un gas perfetto, l'energia interna dipende unicamente dalla temperatura ($U = U(T)$), quindi $\Delta U = 0 \implies \Delta T = 0$. La trasformazione tra lo stato iniziale $A$ e finale $B$ giunge alla stessa temperatura ($T_A = T_B$), comportandosi complessivamente come una trasformazione \textbf{isoterma} che segue la legge di Boyle:
+\begin{equation}
+    p_A V_A = p_B V_B
+\end{equation}
 
-\begin{itemize}
-    \item \textbf{adiabatica in $(p, V)$: più ripida dell'isoterma}
-\end{itemize}
+\vspace{0.3cm}
+\subsection{Confronto delle Pendenze tra Adiabatica e Isoterma}
+Nel piano di Clapeyron ($p-V$), una curva adiabatica reversibile risulta sempre più ripida di una curva isoterma passante per il medesimo punto.
 
+\begin{figure}[ht]
+\centering
 \begin{minipage}{0.4\textwidth}
 \begin{center}
-\begin{tikzpicture}[scale=0.8]
-    \draw[->, thick] (0,0) -- (0,4) node[left] {$p$};
-    \draw[->, thick] (0,0) -- (4,0) node[below] {$V$};
-    \draw[thick, color=mypen] (0.5,3.5) to[out=-70, in=160] (3.5,0.5) node[right] {\small Isoterma};
-    \draw[thick, color=mygreen] (0.3,3.5) to[out=-80, in=170] (2,0.3) node[right] {\small Adiabatica};
+\begin{tikzpicture}[scale=0.9]
+    \draw[->, >=stealth, thick, mypen] (0,0) -- (0,4) node[left] {$p$};
+    \draw[->, >=stealth, thick, mypen] (0,0) -- (4,0) node[below] {$V$};
+    \draw[thick, color=blue] (0.5,3.5) to[out=-70, in=160] (3.5,0.5) node[right] {\small Isoterma};
+    \draw[thick, color=notered] (0.3,3.5) to[out=-80, in=170] (2,0.3) node[right] {\small Adiabatica};
 \end{tikzpicture}
 \end{center}
 \end{minipage}\hfill
 \begin{minipage}{0.56\textwidth}
-Differenziando $pV^\gamma = \text{cost.}$:
+Differenziando l'equazione dell'adiabatica reversibile $pV^\gamma = \text{cost.}$:
 \begin{align*}
     d(pV^\gamma) = 0 &\implies V^\gamma dp + \gamma V^{\gamma-1} p\,dV = 0 \\
-    &\implies \frac{dp}{dV} = - \gamma \frac{p}{V}
+    &\implies \left( \frac{dp}{dV} \right)_{\text{adiab}} = - \gamma \frac{p}{V}
 \end{align*}
-Quindi:
-\begin{align*}
-    \gamma = 1 &\implies \frac{dp}{dV} = - \frac{p}{V} \quad \text{(Isoterma)} \\
-    \gamma > 1 &\implies \text{curva più ripida (Adiabatica)}
-\end{align*}
+Confrontando con la pendenza dell'isoterma ($pV = \text{cost.} \implies \gamma = 1$):
+\begin{align}
+    \left( \frac{dp}{dV} \right)_{\text{isot}} &= - \frac{p}{V} \\
+    \left( \frac{dp}{dV} \right)_{\text{adiab}} &= - \gamma \frac{p}{V} = \gamma \left( \frac{dp}{dV} \right)_{\text{isot}}
+\end{align}
+Poiché $\gamma = \frac{c_p}{c_v} > 1$, la pendenza (in modulo) della curva adiabatica è maggiore di quella dell'isoterma di un fattore $\gamma$.
 \end{minipage}
+\caption{Confronto delle pendenze tra isoterma e adiabatica nel piano $p-V$.}
+\end{figure}
 
 \vspace{0.3cm}
 \subsection{Macchine Frigorifere}
@@ -1211,7 +1223,13 @@ A differenza della macchina termica, una \textbf{macchina frigorifera} (o pompa 
 \end{figure}
 
 Essendo un ciclo, la variazione di energia interna è nulla, per cui il lavoro scambiato equivale alla somma algebrica dei calori: $|L| = |Q_c| - Q_f$.
-L'efficienza di questa macchina è descritta dal \textbf{Coefficiente di Prestazione (COP)}, definito come il rapporto tra l'effetto utile (il calore estratto dalla sorgente fredda) e il costo in termini di lavoro assor\section{Ciclo di Carnot e Teorema di Carnot}
+L'efficienza di questa macchina è descritta dal \textbf{Coefficiente di Prestazione (COP)}, definito come il rapporto tra l'effetto utile (il calore estratto dalla sorgente fredda) e il costo in termini di lavoro assorbito $|L|$:
+\begin{equation}
+    \text{COP} = \frac{Q_f}{|L|} = \frac{Q_f}{|Q_c| - Q_f}
+\end{equation}
+
+\vspace{0.3cm}
+\section{Ciclo di Carnot e Teorema di Carnot}
 
 \begin{minipage}{0.4\textwidth}
 \begin{tikzpicture}[scale=1]
@@ -1315,131 +1333,170 @@ Di conseguenza, l'unica possibilità per un dispositivo che compie un ciclo inte
 \end{osservazione}
 
 \vspace{0.5cm}
-\noindent \underline{esempio}: CICLO MONOTERMO (ISOTERMA + ADIABATICA + ISOCORA)\\
-\textbf{gas perfetto}:
-
-\noindent\begin{minipage}{0.65\textwidth}
+\subsection{Esempio: Ciclo monotermo per un gas perfetto}
+Consideriamo un ciclo termodinamico compiuto da $n$ moli di un gas perfetto che scambia calore con una sola sorgente a temperatura $T_1$. Il ciclo è costituito da tre trasformazioni:
 \begin{itemize}
-    \item[\textbf{AB)}] $T_A = T_B = T_1, \quad V_A \to V_B > V_A$ \quad ESPANSIONE REV \\
-    Unico termostato (monoterma)
-    \item[\textbf{BC)}] $T_C = T_2 \neq T_1, \quad V_B \to V_C = V_A$ \quad COMPRESSIONE REV
-    \item[\textbf{CA)}] $T_2 \to T_1, \quad V_C = V_A$ \\
-    $\mathcal{L} = \mathcal{L}_{AB} + \mathcal{L}_{BC} + \mathcal{L}_{CA} = n R T_1 \ln\left(\frac{V_B}{V_A}\right) + \left(-n C_V (T_2 - T_1)\right) + 0$
+    \item \textbf{A $\to$ B (Espansione isoterma reversibile a $T_1$)}: Il gas si espande da $V_A$ a $V_B > V_A$ scambiando calore con l'unico termostato a temperatura $T_1$. Il lavoro compiuto è:
+    \begin{equation}
+        L_{AB} = n R T_1 \ln\left(\frac{V_B}{V_A}\right)
+    \end{equation}
+    \item \textbf{B $\to$ C (Compressione adiabatica reversibile)}: Il gas viene compresso fino al volume iniziale $V_C = V_A$, portando la temperatura a $T_2 \neq T_1$. Senza scambio di calore ($Q_{BC}=0$), il lavoro compiuto è pari all'opposto della variazione di energia interna:
+    \begin{equation}
+        L_{BC} = -\Delta U_{BC} = -n c_v (T_2 - T_1)
+    \end{equation}
+    \item \textbf{C $\to$ A (Raffreddamento isocoro irreversibile)}: Mantenendo il volume costante a $V_A$, il gas viene rimescolato e riportato alla temperatura iniziale $T_1$ cedendo calore. Essendo isocora, non si compie lavoro: $L_{CA} = 0$. (Nota: l'accoppiamento termico tra una temperatura $T_2$ e l'unico termostato a $T_1$ rende la fase irreversibile).
 \end{itemize}
-\end{minipage}\hfill
-\begin{minipage}{0.33\textwidth}
-\begin{tikzpicture}[scale=0.9]
-    \draw[->, >=stealth, thick, mypen] (0,0) -- (0,3) node[left] {$p$};
-    \draw[->, >=stealth, thick, mypen] (0,0) -- (3,0) node[below] {$V$};
+
+\begin{figure}[ht]
+\centering
+\begin{minipage}{0.5\textwidth}
+\begin{center}
+\begin{tikzpicture}[scale=0.95]
+    \draw[->, >=stealth, thick, mypen] (0,0) -- (0,3.5) node[left] {$p$};
+    \draw[->, >=stealth, thick, mypen] (0,0) -- (3.5,0) node[below] {$V$};
     
-    \coordinate (A) at (0.5, 1);
-    \coordinate (B) at (2.5, 0.3);
-    \coordinate (C) at (0.5, 2.5);
+    \coordinate (A) at (0.6, 1.2);
+    \coordinate (B) at (2.8, 0.4);
+    \coordinate (C) at (0.6, 2.8);
     
     \draw[thick, blue, ->, >=stealth] (A) to[out=-40, in=160] (B);
     \draw[thick, notered, ->, >=stealth] (B) to[out=130, in=-60] (C);
     \draw[thick, mygreen, ->, >=stealth] (C) -- (A);
     
-    \node[left] at (A) {A};
-    \node[right] at (B) {B};
-    \node[left] at (C) {C};
-    \node[below] at (1.5, 0.6) {$T_1$};
-    
-\end{tikzpicture}\\
-AB = ISOTERMA R. \\
-BC = ADIABATICA R. \\
-CA = ISOCORA (I).
+    \filldraw[mypen] (A) circle (1.5pt) node[left] {$A$};
+    \filldraw[mypen] (B) circle (1.5pt) node[right] {$B$};
+    \filldraw[mypen] (C) circle (1.5pt) node[left] {$C$};
+    \node[below, blue] at (1.7, 0.7) {\small Isoterma ($T_1$)};
+    \node[right, notered] at (1.7, 1.8) {\small Adiabatica};
+    \node[left, mygreen] at (0.6, 2) {\small Isocora};
+\end{tikzpicture}
+\end{center}
+\end{minipage}\hfill
+\begin{minipage}{0.48\textwidth}
+Il lavoro totale del ciclo è la somma dei lavori delle singole trasformazioni:
+\begin{equation}
+    L_{\text{tot}} = L_{AB} + L_{BC} + L_{CA} = n R T_1 \ln\left(\frac{V_B}{V_A}\right) - n c_v (T_2 - T_1)
+\end{equation}
 \end{minipage}
+\caption{Ciclo monotermo costituito da un'isoterma reversibile, un'adiabatica reversibile e un'isocora irreversibile.}
+\end{figure}
+
+Per l'adiabatica reversibile $B \to C$ vale la relazione tra temperature e volumi:
+\begin{equation}
+    \frac{T_2}{T_1} = \left(\frac{V_B}{V_C}\right)^{\gamma-1} = \left(\frac{V_B}{V_A}\right)^{\gamma-1}
+\end{equation}
+Passando ai logaritmi e ricordando che $\gamma - 1 = \frac{c_p - c_v}{c_v} = \frac{R}{c_v}$, si ottiene:
+\begin{equation}
+    \ln\left(\frac{T_2}{T_1}\right) = (\gamma - 1) \ln\left(\frac{V_B}{V_A}\right) = \frac{R}{c_v} \ln\left(\frac{V_B}{V_A}\right) \implies n R \ln\left(\frac{V_B}{V_A}\right) = n c_v \ln\left(\frac{T_2}{T_1}\right)
+\end{equation}
+Sostituendo questa espressione nel lavoro totale $L_{\text{tot}}$:
+\begin{align}
+    L_{\text{tot}} &= n c_v T_1 \ln\left(\frac{T_2}{T_1}\right) - n c_v (T_2 - T_1) \nonumber \\
+    &= n c_v T_1 \left[ \ln\left(\frac{T_2}{T_1}\right) - \left(\frac{T_2}{T_1} - 1\right) \right]
+\end{align}
+Per la disuguaglianza fondamentale dei logaritmi, per qualsiasi $x > 0$ con $x \neq 1$ vale sempre $\ln(x) < x - 1$, ossia $\ln(x) - (x-1) < 0$. Posto $x = \frac{T_2}{T_1}$, risulta rigorosamente:
+\begin{equation}
+    \boxed{L_{\text{tot}} < 0}
+\end{equation}
+Questo dimostra matematicamente che in un ciclo monotermo irreversibile il lavoro totale prodotto è necessariamente negativo: il sistema subisce lavoro netto dall'ambiente per dissiparlo in calore, in perfetto accordo con il Secondo Principio della Termodinamica (se infatti fosse reversibile o producesse lavoro positivo $L > 0$, violerebbe l'enunciato di Kelvin-Planck).
+
+
+
+
+\subsection{Equivalenza degli Enunciati di Kelvin-Planck e di Clausius}
+Per dimostrare l'equivalenza logica dei due enunciati ($K \iff C$), è sufficiente far vedere che se uno dei due è falso, allora necessariamente lo è anche l'altro. Procediamo con due dimostrazioni per assurdo:
 
 \vspace{0.3cm}
-\begin{align*}
-    \frac{T_2}{T_1} &= \left(\frac{V_B}{V_A}\right)^{\gamma-1} \implies \ln\left(\frac{T_2}{T_1}\right) = (\gamma - 1) \ln\left(\frac{V_B}{V_A}\right) = \frac{R}{C_V} \ln\left(\frac{V_B}{V_A}\right) \\
-    &\implies \mathcal{L} = n C_V \left( T_1 \ln\left(\frac{T_2}{T_1}\right) - (T_2 - T_1) \right) = n C_V T_1 \left( \ln\left(\frac{T_2}{T_1}\right) - \left(\frac{T_2}{T_1} - 1\right) \right)
-\end{align*}
-Poiché $\ln(x) - (x-1) < 0$:
-\begin{equation*}
-    \implies \mathcal{L} < 0 \quad \text{monoterma, } \mathcal{L} < 0 \implies \text{irreversibile}
-\end{equation*}
+\noindent \textbf{1. Dimostrazione $K \implies C$ (se vale Kelvin-Planck, deve valere Clausius)}: \\
+Supponiamo per assurdo che l'enunciato di Kelvin-Planck sia vero e quello di Clausius sia falso.
+Esistono allora una \textbf{macchina anti-Clausius} $C$ (in grado di trasferire calore $Q_1 > 0$ da una sorgente fredda $T_1$ a una calda $T_2$ senza apporto di lavoro esterno) e una normale macchina termica di Carnot $M_C$ operante tra le stesse due sorgenti.
 
-\vspace{0.2cm}
-\noindent \fbox{\parbox{0.3\textwidth}{\small Se fosse revers. $\Downarrow$ \\ $\mathcal{L} > 0$ $\neq$ En. Kelvin}}
-
-
-
-
-\begin{itemize}
-    \item \textbf{EQUIVALENZA DEGLI ENUNCIATI $K \iff C$} \\
-    Per vedere l'equivalenza dimostriamo che se è vero uno, lo è anche l'altro, quindi se uno è falso, è falso anche l'altro. Si procede per assurdo:
-\end{itemize}
-
-\textbf{1) K vero, C falso}: si assume che K sia vero e C sia falso e si deduce un assurdo.
+\begin{figure}[ht]
+\centering
+\begin{minipage}{0.38\textwidth}
 \begin{center}
-\begin{minipage}{0.35\textwidth}
 \begin{tikzpicture}[scale=0.9]
     % T2
-    \draw[thick, mypen, fill=notered!30] (0, 3) rectangle (3, 4) node[midway] {$T_2 > T_1$};
+    \draw[thick, mypen, fill=notered!30] (0, 3) rectangle (3, 4) node[midway] {Sorgente $T_2 > T_1$};
     % T1
-    \draw[thick, mypen, fill=cyan!30] (0, -1) rectangle (3, 0) node[midway] {$T_1$};
+    \draw[thick, mypen, fill=cyan!30] (0, -1) rectangle (3, 0) node[midway] {Sorgente $T_1$};
     
     % Macchina C
-    \draw[thick, mypen] (0.75, 1.5) circle (0.5) node {$C$};
+    \draw[thick, mypen, fill=gray!10] (0.75, 1.5) circle (0.5) node {$C$};
     \draw[->, >=stealth, thick, cyan] (0.75, 0) -- (0.75, 1) node[midway, left] {$Q_1$};
     \draw[->, >=stealth, thick, notered] (0.75, 2) -- (0.75, 3) node[midway, left] {$Q_1$};
     
     % Macchina Mc
-    \draw[thick, mypen] (2.25, 1.5) circle (0.5) node {$M_C$};
+    \draw[thick, mypen, fill=gray!20] (2.25, 1.5) circle (0.5) node {$M_C$};
     \draw[<-, >=stealth, thick, notered] (2.25, 2) -- (2.25, 3) node[midway, right] {$Q_2$};
     \draw[<-, >=stealth, thick, cyan] (2.25, 0) -- (2.25, 1) node[midway, right] {$Q_1$};
-    \draw[->, >=stealth, thick, mypen] (2.75, 1.5) -- (3.5, 1.5) node[right] {$L$};
+    \draw[->, >=stealth, thick, mypen] (2.75, 1.5) -- (3.8, 1.5) node[right] {$L$};
     
 \end{tikzpicture}
-\begin{center}
-MACCHINA DI CLAUSIUS PROIBITA \\ + \\ MACCHINA DI CARNOT
 \end{center}
 \end{minipage}\hfill
-\begin{minipage}{0.56\textwidth}
+\begin{minipage}{0.58\textwidth}
+Accoppiando le due macchine in modo che scambino la stessa quantità di calore $Q_1$ con la sorgente fredda $T_1$, analizziamo i bilanci termici per il sistema combinato:
 \begin{itemize}
-    \item $T_1$ cede e assorbe $Q_1 \implies Q_{T1} = 0$
-    \item $T_2$ cede $Q_2$ e assorbe $Q_1 \implies Q_{T2} = Q_2 - |Q_1|$
-    \item il sistema combinato è ciclico.
-    Essendo $\Delta U_{tot} = 0 \implies L = Q_2 - |Q_1| > 0$
+    \item La sorgente fredda $T_1$ cede calore $Q_1$ alla macchina $C$ e riceve la medesima quantità $Q_1$ dalla macchina $M_C \implies Q_{\text{netto}, T_1} = 0$.
+    \item La sorgente calda $T_2$ riceve calore $Q_1$ dalla macchina $C$ e cede calore $Q_2 > Q_1$ alla macchina $M_C \implies Q_{\text{netto}, T_2} = Q_2 - Q_1 > 0$.
+    \item Il lavoro totale prodotto dal sistema combinato, essendo $\Delta U_{\text{tot}} = 0$ per un ciclo, vale:
+    \begin{equation}
+        L = Q_2 - Q_1 > 0
+    \end{equation}
 \end{itemize}
-$\implies T_1$ non interviene: abbiamo un ciclo monotermo con unica sorgente $T_2$ da cui viene estratto calore per convertirlo integralmente in lavoro ($L > 0$). Questo viola l'enunciato di Kelvin-Planck, che per Hp era vero.\\
-Assurdo. Dunque se Kelvin-Planck è vero, anche Clausius lo è.
 \end{minipage}
-\end{center}
+\caption{Violazione di Kelvin-Planck indotta da una ipotetica macchina anti-Clausius.}
+\end{figure}
+
+Il sistema combinato si comporta quindi come una macchina termica che compie un ciclo interagendo con \textbf{un'unica sorgente di calore} ($T_2$, dato che la sorgente $T_1$ non subisce variazioni nette di calore) e produce un lavoro interamente positivo ($L > 0$). Ciò costituisce una diretta violazione dell'enunciato di Kelvin-Planck, contraddicendo l'ipotesi iniziale. Dunque:
+\begin{equation}
+    K \text{ vero} \implies C \text{ vero}
+\end{equation}
 
 \vspace{0.3cm}
-\textbf{2) C vero, K falso}: si assume che C sia vero e K sia falso e si deduce un assurdo.
+\noindent \textbf{2. Dimostrazione $C \implies K$ (se vale Clausius, deve valere Kelvin-Planck)}: \\
+Supponiamo per assurdo che l'enunciato di Clausius sia vero e quello di Kelvin-Planck sia falso.
+Esiste allora una \textbf{macchina anti-Kelvin-Planck} $K$ capace di prelevare calore $Q > 0$ da una sola sorgente $T_1$ e trasformarlo integralmente in lavoro meccanico $L = Q$.
+
+\begin{figure}[ht]
+\centering
+\begin{minipage}{0.45\textwidth}
 \begin{center}
-\begin{minipage}{0.35\textwidth}
-\begin{tikzpicture}
+\begin{tikzpicture}[scale=0.9]
     % T1
-    \draw[thick, mypen, fill=cyan!30] (0, 3) rectangle (1.5, 4) node[midway] {$T_1$};
+    \draw[thick, mypen, fill=cyan!30] (0, 3) rectangle (1.8, 4) node[midway] {Sorgente $T_1$};
     
     % Macchina K
-    \draw[thick, mypen] (0.75, 1.5) circle (0.5) node {$K$};
-    \draw[<-, >=stealth, thick, cyan] (0.75, 2) -- (0.75, 3) node[midway, right] {$Q$};
-    \draw[->, >=stealth, thick, mypen] (1.25, 1.5) -- (2.5, 1.5) node[midway, above] {$L$};
+    \draw[thick, mypen, fill=gray!10] (0.9, 1.5) circle (0.5) node {$K$};
+    \draw[<-, >=stealth, thick, cyan] (0.9, 2) -- (0.9, 3) node[midway, right] {$Q$};
+    \draw[->, >=stealth, thick, mypen] (1.4, 1.5) -- (2.6, 1.5) node[midway, above] {$L$};
     
     % Attrito
-    \draw[thick, dashed, mypen] (2.5, 1) rectangle (4, 2) node[midway] {attrito};
-    \draw[->, >=stealth, thick, notered] (4, 1.5) -- (5, 1.5) node[midway, above] {$Q$};
+    \draw[thick, dashed, mypen, fill=orange!10] (2.6, 0.8) rectangle (4.2, 2.2) node[midway, align=center] {Dissipatore\\(attrito)};
+    \draw[->, >=stealth, thick, notered] (4.2, 1.5) -- (5.2, 1.5) node[midway, above] {$Q$};
     
     % T2
-    \draw[thick, mypen, fill=notered!30] (5, 1) rectangle (6.5, 2) node[midway] {$T_2 > T_1$};
+    \draw[thick, mypen, fill=notered!30] (5.2, 0.8) rectangle (7, 2.2) node[midway, align=center] {Sorgente\\$T_2 > T_1$};
 \end{tikzpicture}
-\end{minipage}
-\begin{minipage}{0.6\textwidth}
-\begin{itemize}
-    \item $T_1$ cede calore $Q$
-    \item $T_2$ assorbe calore $Q$
-    \item l'attrito trasforma integralmente $L$ in calore $Q$
-\end{itemize}
-$\implies$ La macchina composta assorbe $Q$ da $T_1$ e lo cede interamente a $T_2$, senza alcun lavoro netto immesso. Questo viola l'enunciato di Clausius, che per Hp era vero. 
-Assurdo. Dunque se Clausius è vero, anche Kelvin-Planck lo è.
-\end{minipage}
 \end{center}
+\end{minipage}\hfill
+\begin{minipage}{0.52\textwidth}
+Utilizziamo ora il lavoro $L$ prodotto dalla macchina $K$ per generare calore tramite attrito all'interno di un corpo o di un bagno termico a temperatura superiore $T_2 > T_1$.
+\begin{itemize}
+    \item La sorgente fredda $T_1$ cede calore $Q$.
+    \item Il lavoro meccanico $L = Q$ viene dissipato integralmente in calore all'interno della sorgente calda $T_2$.
+    \item Nessun altro lavoro netto entra o esce dall'ambiente esterno.
+\end{itemize}
+\end{minipage}
+\caption{Violazione di Clausius indotta da una ipotetica macchina anti-Kelvin-Planck.}
+\end{figure}
+
+Il risultato complessivo del sistema accoppiato è il puro trasferimento di una quantità di calore $Q > 0$ da un corpo freddo ($T_1$) a un corpo caldo ($T_2$) senza alcun apporto netto di lavoro dall'esterno. Ciò viola l'enunciato di Clausius, contraddicendo l'ipotesi iniziale. Dunque:
+\begin{equation}
+    C \text{ vero} \implies K \text{ vero}
+\end{equation}
+Rimane così provata la totale equivalenza fisica tra le due formulazioni del Secondo Principio ($K \iff C$).
 
 \section{Temperatura Termodinamica Assoluta}
 Dal Teorema di Carnot sappiamo che il rendimento di una macchina reversibile operante tra due sorgenti dipende unicamente dalle loro temperature. Da ciò si deduce che il rapporto tra i calori scambiati in un ciclo di Carnot dipende solo dalle temperature empiriche $t_1, t_2$ delle due sorgenti:
