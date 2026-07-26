@@ -1272,12 +1272,12 @@ Si definisce \textbf{Energia Cinetica} ($K$ o $E_c$) di un punto materiale:
 \end{equation}
 Relazione fondamentale: $mgh = \frac{1}{2} m v^2 \implies v = \sqrt{2gh}$.
 
-\begin{tcolorbox}[colback=green!5!white,colframe=green!75!black,title=\textbf{Teorema delle Forze Vive}]
+\begin{teorema}{Teorema delle Forze Vive}
 Il lavoro compiuto dalla risultante delle forze agenti su un punto materiale è pari alla variazione della sua energia cinetica:
 \begin{equation}
     L = \Delta K = K_F - K_{in}
 \end{equation}
-\end{tcolorbox}
+\end{teorema}
 
 \textit{Dimostrazione}:
 \[ L = \int \vec{F} \cdot d\vec{s} = \int m \frac{d\vec{v}}{dt} \cdot \vec{v} dt = \int m \left( \frac{1}{2} \frac{d v^2}{dt} \right) dt = \left[ \frac{1}{2} m v^2 \right]_{in}^F \]
@@ -1538,11 +1538,13 @@ La \textbf{Massa Ridotta} è definita come la sommatoria del reciproco dei recip
     \item Se $m_1 \gg m_2 \implies \mu = \frac{m_1 m_2}{m_1 + m_2} \approx \frac{m_1 m_2}{m_1} = m_2$ (es: sistema Terra-Sole).
 \end{itemize}
 
-\begin{tcolorbox}[colback=yellow!5!white,colframe=yellow!75!black,title=\textbf{Esempio: Centro di Massa di 3 punti}]
+\begin{esercizio}{Esempio: Centro di Massa di 3 Punti}
 Siano tre punti di massa $m$ posti in $A(a,0,0)$, $B(0,a,0)$ e $C(0,0,0)$.
 Le coordinate del CM sono:
-\[ \vec{R}_{CM} = \frac{m(a,0,0) + m(0,a,0) + m(0,0,0)}{3m} = \frac{m(a, a, 0)}{3m} = \left( \frac{a}{3}, \frac{a}{3}, 0 \right) \]
-\end{tcolorbox}
+\begin{equation}
+    \vec{R}_{CM} = \frac{m(a,0,0) + m(0,a,0) + m(0,0,0)}{3m} = \frac{m(a, a, 0)}{3m} = \left( \frac{a}{3}, \frac{a}{3}, 0 \right)
+\end{equation}
+\end{esercizio}
 
 \subsection{Sistema di Due Punti}
 Consideriamo un sistema composto da due punti $A$ e $B$ con masse $m_A, m_B$. Definiamo la \textbf{coordinata relativa} $\vec{r}_r = \vec{r}_A - \vec{r}_B$. Possiamo ricavare le posizioni assolute partendo dalla definizione di centro di massa:

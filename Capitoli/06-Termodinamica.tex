@@ -365,7 +365,10 @@ Misurando il volume del gas si ottiene:
     \boxed{V(T_C) = V_0 + \alpha V_0 T_C}
 \end{equation}
 dove $V_0$ è il volume a $T_C=0^\circ\text{C}$ e $p=1\text{ atm}$.
-Il coefficiente $\alpha$ calcolato sperimentalmente vale $\alpha = \frac{V_{100} - V_0}{100 V_0} (^\circ\text{C})^{-1} = \boxed{ \frac{1}{273.15} \, (^\circ\text{C})^{-1} }$.
+Il coefficiente $\alpha$ calcolato sperimentalmente vale:
+\begin{equation}
+    \alpha = \frac{V_{100} - V_0}{100 V_0} (^\circ\text{C})^{-1} = \boxed{ \left( 273.15 \pm 0.01 \, ^\circ\text{C} \right)^{-1} \simeq \frac{1}{273.15} \, (^\circ\text{C})^{-1} }
+\end{equation}
 Questo valore è comune a gran parte dei gas a pressione atmosferica e temperatura molto più elevata di quella di liquefazione.
 
 \subsection{Termometro a Volume Costante}
@@ -373,7 +376,7 @@ Alzando e abbassando il serbatoio di mercurio a seconda dei casi variamo la pres
 \begin{equation}
     \boxed{p(T_C) = p_0 + \alpha p_0 T_C}
 \end{equation}
-dove $p_0$ è la pressione a $T_C=0^\circ\text{C}$. Il coefficiente $\alpha$ risulta identico: $\alpha = \frac{p_{100} - p_0}{100 p_0} (^\circ\text{C})^{-1} = \boxed{ \frac{1}{273.15} \, (^\circ\text{C})^{-1} }$.
+dove $p_0$ è la pressione a $T_C=0^\circ\text{C}$. Il coefficiente $\alpha$ risulta identico, comprensivo dell'incertezza sperimentale: $\alpha = \frac{p_{100} - p_0}{100 p_0} (^\circ\text{C})^{-1} = \boxed{ \left( 273.15 \pm 0.01 \, ^\circ\text{C} \right)^{-1} }$.
 
 \vspace{0.3cm}
 \section{Scala Kelvin e Gas Perfetti}
@@ -403,13 +406,46 @@ Con la meccanica statistica si può dimostrare che l'energia cinetica media $\la
 Con "scala assoluta" inoltre si intende che essa è indipendente dalla sostanza termometrica (scala $\Theta$, legata al Secondo Principio della Termodinamica).
 
 \vspace{0.3cm}
+\subsection{Derivazione dell'Equazione di Stato, Condizioni STP e Legge di Dalton}
+Combinando le due leggi di Gay-Lussac con la legge di Boyle-Mariotte ($p V = \text{costante}$ a $T = \text{costante}$), si ricava l'equazione di stato generale che collega le variabili termodinamiche di una massa gassosa. Consideriamo di passare da uno stato iniziale $A(p_0, V_0, T_0)$ a uno stato finale $B(p, V, T)$ attraverso uno stato intermedio ausiliario $A^*(p_0, V^*, T)$ mediante una trasformazione isobara ($A \to A^*$) e una successiva isoterma ($A^* \to B$):
+\begin{align}
+    \text{Isobara } A \to A^* &: \quad \frac{V^*}{V_0} = \frac{T}{T_0} \implies V^* = V_0 \frac{T}{T_0} \\
+    \text{Isoterma } A^* \to B &: \quad p V = p_0 V^* \implies p V = p_0 V_0 \frac{T}{T_0} \implies \frac{p V}{T} = \frac{p_0 V_0}{T_0} = \text{costante}
+\end{align}
+Per una mole di gas ($n = 1\text{ mol}$), tale costante universale è indicata con $R$ (\textbf{Costante Universale dei Gas}). Generalizzando a un numero di moli $n = m / M_{\text{molare}}$, si ottiene l'\textbf{Equazione di Stato dei Gas Perfetti}:
+\begin{equation}
+    \boxed{ p V = n R T = \frac{N}{N_A} R T = N k_B T }
+\end{equation}
+dove $N$ è il numero totale di molecole, $N_A = 6.022 \cdot 10^{23}\text{ mol}^{-1}$ è il \textbf{Numero di Avogadro} e $k_B = R / N_A = 1.381 \cdot 10^{-23}\text{ J/K}$ è la \textbf{Costante di Boltzmann}.
+
+\begin{definizione}{Condizioni STP e Legge di Avogadro}
+Le \textbf{Condizioni Standard di Temperatura e Pressione (STP)} corrispondono a $T_0 = 273.15\text{ K}$ ($0^\circ\text{C}$) e $p_0 = 101.325\text{ kPa} = 1\text{ atm}$. 
+Per la \textbf{Legge di Avogadro}, volumi uguali di gas diversi, alle medesime condizioni di temperatura e pressione, contengono lo stesso numero di molecole. Nelle condizioni STP, una mole ($n=1\text{ mol}$) di qualsiasi gas perfetto occupa un volume molare standard pari a:
+\begin{equation}
+    V_{\text{mol}} = \frac{R T_0}{p_0} = 22.414\text{ L} = 22.414 \cdot 10^{-3}\text{ m}^3
+\end{equation}
+I valori numerici della costante universale dei gas $R$ nelle diverse unità di misura sono pertanto:
+\begin{equation}
+    R = 8.314 \, \frac{\text{J}}{\text{mol} \cdot \text{K}} = 0.08205 \, \frac{\text{L} \cdot \text{atm}}{\text{mol} \cdot \text{K}} = 1.987 \, \frac{\text{cal}}{\text{mol} \cdot \text{K}}
+\end{equation}
+\end{definizione}
+
+\begin{definizione}{Legge di Dalton delle Pressioni Parziali}
+In un recipiente di volume $V$ contenente una miscela di k gas chimicamente inerti a temperatura $T$, la pressione totale esercitata dalla miscela sulle pareti è uguale alla somma delle \textbf{pressioni parziali} che ciascun gas eserciterebbe se occupasse da solo l'intero volume:
+\begin{equation}
+    \boxed{ p_{\text{tot}} = \sum_{i=1}^k p_i = \sum_{i=1}^k \frac{n_i R T}{V} = \frac{R T}{V} \sum_{i=1}^k n_i = \frac{n_{\text{tot}} R T}{V} }
+\end{equation}
+La pressione parziale dell'i-esimo componente è direttamente proporzionale alla sua frazione molare $x_i = n_i / n_{\text{tot}}$, ovvero $p_i = x_i \, p_{\text{tot}}$.
+\end{definizione}
+
+\vspace{0.3cm}
 \section{Punto Triplo}
 \begin{definizione}{Punto Triplo}
 Il punto triplo è la combinazione di pressione e temperatura in cui in una sostanza coesistono i tre stati di aggregazione della materia in equilibrio termodinamico.
 \end{definizione}
 
 \medskip
-Per l'acqua ($\text{H}_2\text{O}$) questo si verifica a $T \simeq 0.01^\circ\text{C}$ e $p \simeq 4.58 \text{ Torr}$.
+Per l'acqua ($\text{H}_2\text{O}$) questo si verifica a $T \simeq 0.01^\circ\text{C}$ (temperatura alla quale \textbf{deve esistere il ghiaccio fondente}) e $p \simeq 4.58 \text{ Torr}$ (pressione alla quale \textbf{deve esistere l'acqua bollente}): la simultaneità di tali coordinate fisiche garantisce la coesistenza in equilibrio dinamico di ghiaccio, acqua liquida e vapore.
 L'unità di misura K (Kelvin) della scala termodinamica assoluta si definisce come la frazione $1/273.16$ della temperatura termodinamica del punto triplo dell'acqua:
 \begin{equation}
     \boxed{ 1\text{ K} = \frac{T_{\text{punto triplo}}}{273.16} }
@@ -662,6 +698,13 @@ I cambiamenti di stato (a condizioni standard) sono determinati dalla temperatur
 
 \subsection{Calore Latente}
 
+\begin{definizione}{Calore Latente ($\lambda$)}
+Il \textbf{calore latente} è la quantità di calore fornita (o sottratta) a un corpo per passare da uno stato di aggregazione all'altro agendo sui legami intermolecolari, riferita all'unità di massa:
+\begin{equation}
+    \boxed{ \Delta Q = m \lambda \implies \lambda = \frac{\Delta Q}{m} }
+\end{equation}
+\end{definizione}
+
 Un tipico esempio è quello del calore latente di fusione $(\Delta Q)_{\text{fusione}}$ o di solidificazione $(\Delta Q)_{\text{solidificazione}}$ dell'acqua ($\text{H}_2\text{O}$).
 
 % Grafico T-Q e T-t
@@ -722,6 +765,10 @@ Il calore si propaga in tre modi differenti:
 \end{itemize}
 
 \subsection{Convezione}
+\begin{definizione}{Convezione}
+La \textbf{convezione} è un meccanismo di trasmissione del calore caratterizzato da un macroscopico \textbf{trasporto di materia}, tipico dei fluidi (liquidi e gas), in cui il movimento di masse fluide trasferisce energia termica da una regione all'altra.
+\end{definizione}
+
 \begin{figure}[ht]
 \centering
 \begin{tikzpicture}[scale=1]
@@ -734,7 +781,7 @@ Il calore si propaga in tre modi differenti:
 \draw[thick, notered] (-0.2, 0) -- (2.7, 0);
 \node[font=\bfseries, mypen] at (3.5, 1.1) {\parbox{3cm}{\centering Moti convettivi nel fluido}};
 \end{tikzpicture}
-\caption{Moti convettivi in un fluido riscaldato dal basso: il fluido caldo, meno denso, sale verso l'alto ed è sostituito dal fluido freddo che scende, instaurando un ciclo termico continuo.}
+\caption{Moti convettivi in un fluido riscaldato dal basso: il fluido caldo, meno denso, sale verso l'alto ed è sostituito dal fluido freddo che scende, instaurando un ciclo termico continuo con trasporto di materia.}
 \end{figure}
 
 All'interno di un fluido riscaldato dal basso si generano delle correnti che ciclicamente si scaldano (salendo verso l'alto per via della minore densità) e si raffreddano (scendendo nuovamente).
@@ -746,7 +793,12 @@ La quantità di calore scambiata nell'unità di tempo fra l'unità di superficie
 \end{equation}
 dove $h$ è il \textbf{coefficiente di conduttività esterna} (determinato empiricamente).
 \end{definizione}
+
 \subsection{Conduzione}
+\begin{definizione}{Conduzione}
+La \textbf{conduzione} è un meccanismo di propagazione del calore in un mezzo materiale che avviene tramite urti e interazioni a livello molecolare \textbf{senza alcun trasporto di materia} (a differenza della convezione).
+\end{definizione}
+
 \begin{figure}[ht]
 \centering
 \begin{tikzpicture}[scale=1]
@@ -869,6 +921,10 @@ Questa relazione è alla base del principio dei doppi vetri: la quantità rileva
 
 \vspace{0.3cm}
 \subsection{Irraggiamento}
+\begin{definizione}{Irraggiamento}
+L'\textbf{irraggiamento} è la trasmissione di energia termica mediante emissione e propagazione di \textbf{onde elettromagnetiche} da parte di qualsiasi corpo a temperatura maggiore dello zero assoluto ($T > 0\text{ K}$). A differenza della conduzione e della convezione, avviene anche nel vuoto assoluto senza necessità di alcun mezzo materiale in interposizione.
+\end{definizione}
+
 \begin{definizione}{Legge di Stefan-Boltzmann}
 La quantità di calore irradiata da un corpo nero nell'unità di tempo è proporzionale alla quarta potenza della sua temperatura assoluta:
 \begin{equation}
@@ -951,7 +1007,26 @@ Inoltre, se la trasformazione soddisfa le seguenti condizioni:
     \item È infinitamente lenta (il sistema ha il tempo per riequilibrarsi).
     \item Le cause che la generano sono infinitamente piccole.
 \end{itemize}
-allora la trasformazione è definita \textbf{reversibile} (cioè invertibile per il sistema e per l'ambiente senza lasciare traccia). Altrimenti, la trasformazione è \textbf{irreversibile} (ogni processo reale con attrito è irreversibile).
+allora la trasformazione è definita \textbf{reversibile} (cioè invertibile per il sistema e per l'ambiente senza lasciare alcuna traccia). Altrimenti, la trasformazione è \textbf{irreversibile} (ogni processo reale caratterizzato da attrito meccanico, turbolenza o gradienti finiti di temperatura è irreversibile).
+
+\begin{osservazione}{Criterio Globale di Reversibilità e Ciclicità}
+Una distinzione cruciale tra processi reversibili e irreversibili risiede negli effetti sull'ambiente:
+\begin{itemize}
+    \item \textbf{Processo Reversibile}: Effettuando la trasformazione diretta $A \to B$ e successivamente la trasformazione inversa $B \to A$, sia il \textbf{sistema} che l'\textbf{ambiente} tornano esattamente nei rispettivi stati iniziali, senza che nell'universo rimanga alcuna traccia residua del ciclo compiuto.
+    \item \textbf{Processo Irreversibile}: Anche se è sempre possibile riportare il \textbf{sistema} allo stato iniziale $A$ (facendogli compiere un ciclo chiuso per cui $\Delta U_{\text{sist}} = 0$), l'\textbf{ambiente} subirà inevitabilmente una modificazione permanente (ad esempio un dispendio netto di lavoro trasformato in calore dissipato nel termostato freddo).
+\end{itemize}
+\end{osservazione}
+
+\begin{osservazione}{Accoppiamento Termico e Catena Infinita di Termostati}
+Consideriamo un corpo di capacità termica $C$ inizialmente a temperatura $T_1$. Se lo poniamo bruscamente a contatto con un singolo termostato a temperatura $T_2 > T_1$, il corpo assorbe una quantità di calore $Q = C(T_2 - T_1)$. Se successivamente lo raffreddiamo ponendolo a contatto con un termostato a $T_1$, esso cede il calore $Q' = -C(T_2 - T_1)$. 
+Per il corpo il processo è ciclico ($\Delta U = 0$). Tuttavia, per l'ambiente si è verificato un trasferimento diretto di calore dalla sorgente calda $T_2$ alla sorgente fredda $T_1$ senza alcuna produzione di lavoro, un processo fortemente \textbf{irreversibile}.
+L'unico modo concettuale per rendere lo scambio termico \textbf{quasi-reversibile} consiste nell'accoppiare il corpo con una \textbf{catena infinita di termostati ausiliari} a temperature $T_1, T_1+\delta T, T_1+2\delta T, \dots, T_2$, con differenze infinitesime $\delta T \to 0$, in modo che in ogni istante il corpo e il termostato in contatto siano in equilibrio termico approssimato.
+\end{osservazione}
+
+\begin{osservazione}{Rappresentazione nel Piano di Clapeyron ($p, V$)}
+Nel diagramma di Clapeyron, una trasformazione può essere rappresentata da una \textbf{curva continua} e ben definita \textbf{solo se è reversibile}, poiché solo in tal caso ogni punto intermedio corrisponde a uno stato di equilibrio macroscopico con pressione $p$ e temperatura $T$ uniformi in tutto il volume. 
+Per una trasformazione \textbf{irreversibile}, durante il processo intermedio il sistema non è in equilibrio e le variabili di stato non hanno valori uniformi o definiti; pertanto, \textbf{la curva $p(V)$ non esiste}. Graficamente, una trasformazione irreversibile tra due stati di equilibrio $A$ e $B$ si indica convenzionalmente con una \textbf{linea spezzata o tratteggiata}.
+\end{osservazione}
 
 \begin{figure}[ht]
 \centering
@@ -1017,6 +1092,26 @@ In forma differenziale si scrive:
     dU = \delta Q - \delta L
 \end{equation}
 
+\begin{osservazione}{Differenziali Inesatti ($\delta Q$ e $\delta L$)}
+Si nota l'uso del simbolo $\delta$ (o đ) per calore e lavoro, in contrapposizione al differenziale esatto $dU$. Questo indica che $Q$ e $L$ \textbf{non sono funzioni di stato}: le quantità infinitesime $\delta Q$ e $\delta L$ non sono i differenziali di una funzione del solo punto (stato), ma dipendono dal cammino seguito lungo la trasformazione. L'integrale $\int_A^B \delta L = L_{AB}$ rappresenta il lavoro lungo una specifica traiettoria, mentre $\int_A^B dU = U_B - U_A$ è lo stesso per qualunque cammino.
+\end{osservazione}
+
+\subsection{Lavoro delle Forze di Pressione (Trasformazioni Reversibili e Irreversibili)}
+Consideriamo un fluido racchiuso all'interno di un cilindro di sezione di area $S$ munito di un pistone mobile. Se il pistone si sposta di un tratto infinitesimo $dx$, la forza esterna che si oppone all'espansione è $F_e = p_e S$, dove $p_e$ è la pressione esterna. Il lavoro infinitesimo compiuto dal sistema contro l'ambiente esterno è:
+\begin{equation}
+    \delta L = F_e \, dx = p_e S \, dx = p_e \, dV
+\end{equation}
+(Il lavoro compiuto dalle forze esterne sul sistema è di segno opposto, $\delta L_e = -p_e dV$).
+
+\begin{itemize}
+    \item \textbf{Trasformazione Reversibile}: In ogni istante il sistema è in equilibrio meccanico con l'ambiente, per cui la pressione interna del gas è uniforme e bilancia esattamente quella esterna ($p = p_e$). Il lavoro totale per una variazione finita di volume da $V_A$ a $V_B$ è dato dall'integrale:
+    \begin{equation}
+        \boxed{ L_{\text{rev}} = \int_{V_A}^{V_B} p(V) \, dV }
+    \end{equation}
+    Nel piano di Clapeyron ($p, V$), questo integrale rappresenta geometricamente l'\textbf{area sottesa dalla curva} della trasformazione.
+    \item \textbf{Trasformazione Irreversibile}: Durante una trasformazione irreversibile non esiste una pressione $p$ interna uniforme definita, per cui l'integrale $\int p \, dV$ perde di significato rispetto alle coordinate del sistema. Il lavoro può essere calcolato \textbf{solo valutando le forze esterne}, ovvero $L_{\text{irr}} = \int p_e \, dV$. Se ad esempio un gas si espande liberamente nel vuoto ($p_e = 0$), il lavoro compiuto è rigorosamente nullo ($L = 0$), nonostante il volume aumenti da $V_A$ a $V_B$.
+\end{itemize}
+
 \begin{figure}[ht]
 \centering
 \begin{tikzpicture}
@@ -1034,9 +1129,9 @@ In forma differenziale si scrive:
     \filldraw[mypen] (1,3) circle (2pt) node[above right] {$A$};
     \filldraw[mypen] (4,1) circle (2pt) node[above right] {$B$};
     
-    \node at (2.5, 1) {$L$};
+    \node at (2.5, 1) {$L = \int p \, dV$};
 \end{tikzpicture}
-\caption{Lavoro termodinamico come area sottesa nel piano di Clapeyron ($p-V$).}
+\caption{Lavoro termodinamico di una trasformazione reversibile come area sottesa nel piano di Clapeyron ($p-V$).}
 \end{figure}
 
 \vspace{0.3cm}
@@ -1048,9 +1143,39 @@ Oltre al calore specifico per unità di massa ($c = \frac{1}{m}\frac{\delta Q}{d
     \item $c_v$: calore specifico molare a volume costante.
     \item $c_p$: calore specifico molare a pressione costante.
 \end{itemize}
-Dalla \textbf{relazione di Mayer} per i gas perfetti sappiamo che:
+Per solidi e liquidi la dilatazione termica è trascurabile ($dV \simeq 0$), sicché il lavoro di espansione è nullo e le due capacità termiche coincidono ($c_p \simeq c_v \simeq c$). Per i gas, invece, la differenza è notevole ed è regolata dalla \textbf{relazione di Mayer}:
 \begin{equation}
     c_p - c_v = R
+\end{equation}
+\end{definizione}
+
+\begin{definizione}{Calori Specifici dei Gas Perfetti, Gradi di Libertà ed Energia Interna}
+In base al teorema di equipartizione dell'energia della meccanica statistica, ogni grado di libertà molecolare contribuisce per $\frac{1}{2}R$ al calore specifico molare a volume costante $c_v$. Definendo il rapporto dei calori specifici $\gamma = \frac{c_p}{c_v} > 1$, si ha:
+\begin{itemize}
+    \item \textbf{Gas Monoatomici} (3 gradi di libertà traslazionali):
+    \begin{equation}
+        c_v = \frac{3}{2}R, \quad c_p = \frac{5}{2}R, \quad \gamma = \frac{5}{3} \simeq 1.67
+    \end{equation}
+    \item \textbf{Gas Biatomici} (3 traslazionali + 2 rotazionali a temperatura ambiente):
+    \begin{equation}
+        c_v = \frac{5}{2}R, \quad c_p = \frac{7}{2}R, \quad \gamma = \frac{7}{5} = 1.40
+    \end{equation}
+    \item \textbf{Gas Poliatomici} (3 traslazionali + 3 rotazionali):
+    \begin{equation}
+        c_v = 3R, \quad c_p = 4R, \quad \gamma = \frac{4}{3} \simeq 1.33
+    \end{equation}
+\end{itemize}
+Per un gas perfetto, l'energia interna $U$ è funzione esclusiva della temperatura (Legge di Joule). La variazione di energia interna tra due stati a temperature $T_A$ e $T_B$ vale pertanto:
+\begin{equation}
+    \boxed{ \Delta U = n c_v \Delta T = n c_v (T_B - T_A) }
+\end{equation}
+Questa relazione fondamentale è valida per \textbf{qualunque trasformazione} (isocora, isobara, isoterma, adiabatica o persino irreversibile), poiché $U$ è una funzione di stato.
+\end{definizione}
+
+\begin{definizione}{Legge di Dulong e Petit per i Solidi}
+Per i solidi cristallini a temperatura ambiente (al di sopra della temperatura caratteristica di Debye), ogni atomo oscilla attorno alla propria posizione di equilibrio reticolare comportandosi come un oscillatore armonico tridimensionale (3 gradi di libertà cinetici e 3 potenziali). Il calore specifico molare approssima un valore universale indipendente dalla natura chimica della sostanza:
+\begin{equation}
+    \boxed{ C_{\text{mol}} \simeq 6 \cdot \frac{1}{2}R = 3R \simeq 24.9 \, \frac{\text{J}}{\text{mol} \cdot \text{K}} \simeq 6 \, \frac{\text{cal}}{\text{mol} \cdot \text{K}} }
 \end{equation}
 \end{definizione}
 
@@ -1100,26 +1225,43 @@ Un sistema può passare da uno stato iniziale a uno finale attraverso diverse tr
     Il lavoro si esprime come $L = -\Delta U = -n c_v \Delta T$.
 \end{itemize}
 
+\begin{definizione}{Espansione Libera di Joule (Adiabatica Irreversibile)}
+L'\textbf{espansione libera di Joule} è un processo in cui un gas perfetto, contenuto in un recipiente rigidamente isolato termicamente ($Q = 0$), si espande nel vuoto all'apertura di una valvola di comunicazione. Poiché l'espansione avviene contro una pressione esterna nulla ($p_e = 0$), il lavoro compiuto è nullo ($L = 0$). Dal Primo Principio della Termodinamica segue:
+\begin{equation}
+    \Delta U = Q - L = 0 \implies U_B = U_A
+\end{equation}
+Essendo l'energia interna di un gas perfetto funzione esclusiva della temperatura, si conclude che $T_B = T_A$ ($\Delta T = 0$). 
+\textbf{Attenzione}: Sebbene la temperatura iniziale e finale coincidano, questa \textbf{non è una trasformazione isoterma reversibile}. Durante il moto turbolento nel vuoto, il gas attraversa stati di non-equilibrio in cui pressione e temperatura non sono definite uniformemente. Il processo è \textbf{fortemente irreversibile} e comporta un aumento di entropia dell'universo $\Delta S = n R \ln(V_B / V_A) > 0$. Nel diagramma di Clapeyron i punti estremi $A$ e $B$ giacciono sulla medesima iperbole isoterma, ma non possono essere congiunti da alcuna curva continua.
+\end{definizione}
+
 \begin{figure}[ht]
 \centering
-\begin{tikzpicture}
+\begin{tikzpicture}[scale=1.1]
+    % Griglia di fondo leggera
+    \draw[step=1cm, gray!15, very thin] (0,0) grid (5.2,5.2);
+
     % Assi
-    \draw[->, >=stealth, thick, mypen] (0,0) -- (0,5) node[above] {$p$};
-    \draw[->, >=stealth, thick, mypen] (0,0) -- (5,0) node[right] {$V$};
+    \draw[->, >=stealth, thick, mypen] (0,0) -- (0,5.2) node[above] {$p$};
+    \draw[->, >=stealth, thick, mypen] (0,0) -- (5.2,0) node[right] {$V$};
     
-    % Isoterma
-    \draw[thick, blue, domain=1:4] plot (\x, {4/\x}) node[right] {Isoterma};
+    % Punto di intersezione comune A(2, 3) -> p*V = 6 per isoterma; p*V^1.4 = 7.917 per adiabatica
+    % Isocora (V = 2)
+    \draw[thick, mygreen] (2, 0.8) -- (2, 4.8) node[above] {\small Isocora};
     
-    % Adiabatica
-    \draw[thick, notered, domain=1.3:4] plot (\x, {6/(\x^1.4)}) node[right] {Adiabatica};
+    % Isobara (p = 3)
+    \draw[thick, orange] (0.8, 3) -- (4.8, 3) node[right] {\small Isobara};
     
-    % Isocora
-    \draw[thick, mygreen] (2,1) -- (2,4) node[above] {Isocora};
+    % Isoterma (p = 6/V)
+    \draw[thick, blue, domain=1.2:4.8, samples=50] plot (\x, {6/\x}) node[right] {\small Isoterma};
     
-    % Isobara
-    \draw[thick, orange] (1,3) -- (4,3) node[right] {Isobara};
+    % Adiabatica (p = 7.917 / V^1.4)
+    \draw[thick, notered, domain=1.35:4.8, samples=50] plot (\x, {7.917/(\x^1.4)}) node[right] {\small Adiabatica};
+    
+    % Punto di intersezione e proiezioni
+    \draw[dashed, gray] (2,0) node[below] {$V_0$} -- (2,3) -- (0,3) node[left] {$p_0$};
+    \filldraw[mypen] (2,3) circle (2pt) node[above right=1pt] {$A$};
 \end{tikzpicture}
-\caption{Confronto tra trasformazioni nel piano $p-V$.}
+\caption{Confronto tra le quattro trasformazioni fondamentali nel piano $p-V$, intersecantesi nel medesimo stato iniziale $A(V_0, p_0)$. Si noti come, durante un'espansione ($V > V_0$), la curva adiabatica scenda più rapidamente rispetto all'isoterma a causa dell'assenza di apporto di calore ($\gamma > 1$).}
 \end{figure}
 \vspace{0.3cm}
 \subsection{Derivazione dell'Adiabatica Reversibile}
@@ -1255,17 +1397,31 @@ Nel piano di Clapeyron ($p-V$), una curva adiabatica reversibile risulta sempre 
 
 \begin{figure}[ht]
 \centering
-\begin{minipage}{0.4\textwidth}
-\begin{center}
-\begin{tikzpicture}[scale=0.9]
-    \draw[->, >=stealth, thick, mypen] (0,0) -- (0,4) node[left] {$p$};
-    \draw[->, >=stealth, thick, mypen] (0,0) -- (4,0) node[below] {$V$};
-    \draw[thick, color=blue] (0.5,3.5) to[out=-70, in=160] (3.5,0.5) node[right] {\small Isoterma};
-    \draw[thick, color=notered] (0.3,3.5) to[out=-80, in=170] (2,0.3) node[right] {\small Adiabatica};
+\begin{minipage}{0.42\textwidth}
+\centering
+\begin{tikzpicture}[scale=1]
+    % Griglia
+    \draw[step=1cm, gray!15, very thin] (0,0) grid (4.2,4.2);
+    % Assi
+    \draw[->, >=stealth, thick, mypen] (0,0) -- (0,4.2) node[left] {$p$};
+    \draw[->, >=stealth, thick, mypen] (0,0) -- (4.2,0) node[below] {$V$};
+    
+    % Curve passanti per P(1.8, 2.2): p*V = 3.96; p*V^1.4 = 5.019
+    \draw[thick, blue, domain=1.0:3.8, samples=40] plot (\x, {3.96/\x}) node[right] {\small Isoterma};
+    \draw[thick, notered, domain=1.15:3.6, samples=40] plot (\x, {5.019/(\x^1.4)}) node[right] {\small Adiabatica};
+    
+    % Tangente Isoterma (pendenza -1.22)
+    \draw[thin, blue!70, dashed, domain=1.1:2.7] plot (\x, {4.4 - 1.22*\x});
+    
+    % Tangente Adiabatica (pendenza -1.71)
+    \draw[thin, notered!70, dashed, domain=1.25:2.5] plot (\x, {5.28 - 1.71*\x});
+    
+    % Punto di contatto
+    \filldraw[mypen] (1.8, 2.2) circle (1.8pt) node[above right=1pt] {$P$};
+    \draw[dashed, gray] (1.8,0) node[below] {$V_0$} -- (1.8,2.2) -- (0,2.2) node[left] {$p_0$};
 \end{tikzpicture}
-\end{center}
 \end{minipage}\hfill
-\begin{minipage}{0.56\textwidth}
+\begin{minipage}{0.54\textwidth}
 Differenziando l'equazione dell'adiabatica reversibile $pV^\gamma = \text{cost.}$:
 \begin{align*}
     d(pV^\gamma) = 0 &\implies V^\gamma dp + \gamma V^{\gamma-1} p\,dV = 0 \\
@@ -1276,9 +1432,9 @@ Confrontando con la pendenza dell'isoterma ($pV = \text{cost.} \implies \gamma =
     \left( \frac{dp}{dV} \right)_{\text{isot}} &= - \frac{p}{V} \\
     \left( \frac{dp}{dV} \right)_{\text{adiab}} &= - \gamma \frac{p}{V} = \gamma \left( \frac{dp}{dV} \right)_{\text{isot}}
 \end{align}
-Poiché $\gamma = \frac{c_p}{c_v} > 1$, la pendenza (in modulo) della curva adiabatica è maggiore di quella dell'isoterma di un fattore $\gamma$.
+Poiché $\gamma = \frac{c_p}{c_v} > 1$, la pendenza (in modulo) della curva adiabatica nel punto di intersezione $P(V_0, p_0)$ è maggiore di quella dell'isoterma esattamente di un fattore $\gamma$.
 \end{minipage}
-\caption{Confronto delle pendenze tra isoterma e adiabatica nel piano $p-V$.}
+\caption{Confronto analitico e geometrico delle pendenze tra una curva isoterma (blu) e un'adiabatica reversibile (rossa) passanti per il medesimo stato $P(V_0, p_0)$. Le rette tratteggiate indicano le rispettive tangenti in $P$.}
 \end{figure}
 
 \vspace{0.3cm}
@@ -1317,43 +1473,59 @@ L'efficienza di questa macchina è descritta dal \textbf{Coefficiente di Prestaz
 \vspace{0.3cm}
 \section{Ciclo di Carnot e Teorema di Carnot}
 
-\begin{minipage}{0.4\textwidth}
-\begin{tikzpicture}[scale=1]
-    \draw[->, >=stealth, thick, mypen] (0,0) -- (0,3.5) node[left] {$p$};
-    \draw[->, >=stealth, thick, mypen] (0,0) -- (4,0) node[below] {$V$};
+\begin{figure}[ht]
+\centering
+\begin{minipage}{0.48\textwidth}
+\centering
+\begin{tikzpicture}[scale=1.1]
+    % Griglia
+    \draw[step=1cm, gray!15, very thin] (0,0) grid (4.5,4.5);
+    % Assi
+    \draw[->, >=stealth, thick, mypen] (0,0) -- (0,4.6) node[left] {$p$};
+    \draw[->, >=stealth, thick, mypen] (0,0) -- (4.6,0) node[below] {$V$};
     
-    % Isotherms
-    \draw[thick, blue] (0.5, 3) to[out=-60, in=170] (3.5, 1);
-    \node[right] at (3.5, 1) {$T_2$};
-    \draw[thick, blue] (0.5, 1.5) to[out=-60, in=170] (3.5, 0.4);
-    \node[right] at (3.5, 0.4) {$T_1$};
+    % Curve analitiche del ciclo
+    % A->B: Isoterma T2 (p = 4.8/V)
+    \draw[thick, blue, domain=1.2:3.0, samples=30] plot (\x, {4.8/\x});
+    \node[right, blue] at (2.9, 1.8) {$T_2$};
     
-    % Points
-    \coordinate (A) at (1, 2.1);
-    \coordinate (B) at (2.2, 1.35);
-    \coordinate (C) at (3, 0.5);
-    \coordinate (D) at (1.5, 0.9);
+    % B->C: Adiabatica espansione (p = 7.45/V^1.4)
+    \draw[thick, notered, domain=3.0:4.0, samples=30] plot (\x, {7.45/(\x^1.4)});
     
-    % Cycle
-    \draw[thick, fill=gray!30, mypen] (A) to[out=-40, in=165] (B) to[out=-70, in=140] (C) to[out=170, in=-50] (D) to[out=110, in=-70] (A);
+    % C->D: Isoterma T1 (p = 2.4/V)
+    \draw[thick, blue, domain=1.6:4.0, samples=30] plot (\x, {2.4/\x});
+    \node[right, blue] at (3.9, 0.4) {$T_1$};
     
-    \filldraw[mypen] (A) circle (1.5pt) node[above left] {A};
-    \filldraw[mypen] (B) circle (1.5pt) node[above right] {B};
-    \filldraw[mypen] (C) circle (1.5pt) node[below right] {C};
-    \filldraw[mypen] (D) circle (1.5pt) node[below left] {D};
+    % D->A: Adiabatica compressione (p = 5.13/V^1.4)
+    \draw[thick, notered, domain=1.2:1.6, samples=30] plot (\x, {5.13/(\x^1.4)});
     
-    \node at (2, 1.4) {$L$};
+    % Riempimento area ciclo (Lavoro L)
+    \fill[cyan!15, opacity=0.7, domain=1.2:3.0, variable=\x] (1.2,4.0) -- plot (\x, {4.8/\x}) -- (3.0,1.6) -- (3.0,0.8) -- plot[domain=3.0:1.6] (\x, {2.4/\x}) -- (1.6,1.5) -- plot[domain=1.6:1.2] (\x, {5.13/(\x^1.4)}) -- cycle;
+    
+    % Vertici
+    \filldraw[mypen] (1.2, 4.0) circle (1.8pt) node[above right] {$A$};
+    \filldraw[mypen] (3.0, 1.6) circle (1.8pt) node[above right] {$B$};
+    \filldraw[mypen] (4.0, 0.6) circle (1.8pt) node[below right] {$C$};
+    \filldraw[mypen] (1.6, 1.5) circle (1.8pt) node[below left] {$D$};
+    
+    \node[mypen, font=\bfseries] at (2.4, 2.0) {$L > 0$};
 \end{tikzpicture}
-\end{minipage}
-\begin{minipage}{0.55\textwidth}
-Il \textbf{Ciclo di Carnot} è un ciclo termodinamico reversibile che opera tra due temperature $T_2 > T_1$ e si compone di quattro fasi:
+\end{minipage}\hfill
+\begin{minipage}{0.50\textwidth}
+Il \textbf{Ciclo di Carnot} è un ciclo termodinamico reversibile operante tra due sorgenti a temperatura fissa $T_2 > T_1$. Si compone di quattro fasi alternate:
 \begin{itemize}
-    \item \textbf{A $\to$ B}: Espansione isoterma a $T_2$ \\ ($Q_{AB} = L_{AB} > 0$)
-    \item \textbf{B $\to$ C}: Espansione adiabatica \\ ($Q = 0$, $L_{BC} = - \Delta U > 0$)
-    \item \textbf{C $\to$ D}: Compressione isoterma a $T_1$ \\ ($Q_{CD} = L_{CD} < 0$)
-    \item \textbf{D $\to$ A}: Compressione adiabatica \\ ($Q = 0$, $L_{DA} = -\Delta U < 0$)
+    \item \textbf{$A \to B$}: Espansione isoterma a temperatura $T_2$ \\
+    ($Q_2 = Q_{AB} = L_{AB} > 0$)
+    \item \textbf{$B \to C$}: Espansione adiabatica reversibile \\
+    ($Q = 0 \implies L_{BC} = -\Delta U > 0$)
+    \item \textbf{$C \to D$}: Compressione isoterma a temperatura $T_1$ \\
+    ($Q_1 = Q_{CD} = L_{CD} < 0$)
+    \item \textbf{$D \to A$}: Compressione adiabatica reversibile \\
+    ($Q = 0 \implies L_{DA} = -\Delta U < 0$)
 \end{itemize}
 \end{minipage}
+\caption{Rappresentazione nel piano di Clapeyron del ciclo reversibile di Carnot. L'area racchiusa dal ciclo (azzurra) rappresenta il lavoro utile $L = Q_2 - |Q_1|$ prodotto dalla macchina in ogni ciclo.}
+\end{figure}
 
 \vspace{0.3cm}
 Essendo il ciclo chiuso, $\Delta U_{\text{tot}} = 0$. Il calore assorbito è $Q_2 = Q_{AB}$ e quello ceduto $Q_1 = Q_{CD}$. Dalle leggi delle adiabatiche si dimostra che $\frac{V_B}{V_A} = \frac{V_C}{V_D}$, per cui il rendimento si semplifica in:
@@ -1370,32 +1542,44 @@ Date due sorgenti di calore a temperature $T_1$ e $T_2$ (con $T_2 > T_1$):
 \end{definizione}
 
 \vspace{0.3cm}
-\begin{minipage}{0.35\textwidth}
-\begin{tikzpicture}
-    % Sorgente CALDA
-    \draw[thick, mypen, fill=notered!30] (0, 3) rectangle (3, 4) node[midway, align=center] {Sorgente $T_2$};
+\begin{figure}[ht]
+\centering
+\begin{minipage}{0.42\textwidth}
+\centering
+\begin{tikzpicture}[scale=1.05]
+    % Sorgente CALDA T2
+    \draw[thick, mypen, fill=notered!20, rounded corners=2pt] (0, 3) rectangle (3, 3.8) node[midway, font=\bfseries] {Sorgente Calda $T_2$};
     
-    % Macchina Mc (Carnot)
-    \draw[thick, mypen] (0.75, 1.5) circle (0.5) node {$M_C$};
-    \draw[<-, >=stealth, thick, notered] (0.75, 2) -- (0.75, 3) node[left, midway] {$Q_{2C}$};
-    \draw[<-, >=stealth, thick, cyan] (0.75, 0) -- (0.75, 1) node[left, midway] {$Q_{1C}$};
-    \draw[<-, >=stealth, thick, mypen] (0, 1.5) -- (0.25, 1.5) node[left] {$L_C$};
+    % Macchina Mc (Carnot in senso inverso - Frigorifero)
+    \draw[thick, mypen, fill=white] (0.75, 1.5) circle (0.5) node[font=\bfseries] {$M_C$};
+    % Calore ceduto a T2 (freccia verso l'alto da Mc a T2)
+    \draw[->, >=stealth, thick, notered] (0.75, 2) -- (0.75, 3) node[left, midway] {$Q_{2C}$};
+    % Calore assorbito da T1 (freccia verso l'alto da T1 a Mc)
+    \draw[->, >=stealth, thick, cyan] (0.75, 0) -- (0.75, 1) node[left, midway] {$Q_{1C}$};
+    % Lavoro assorbito da Mc (freccia entrante in Mc da sinistra)
+    \draw[->, >=stealth, thick, mypen] (-0.3, 1.5) node[left] {$L_C$} -- (0.25, 1.5);
     
-    % Macchina M (Generica)
-    \draw[thick, mypen] (2.25, 1.5) circle (0.5) node {$M$};
-    \draw[<-, >=stealth, thick, notered] (2.25, 2) -- (2.25, 3) node[right, midway] {$Q_2$};
-    \draw[->, >=stealth, thick, cyan] (2.25, 0) -- (2.25, 1) node[right, midway] {$Q_1$};
-    \draw[->, >=stealth, thick, mypen] (2.75, 1.5) -- (3.25, 1.5) node[right] {$L$};
+    % Macchina M (Generica - Motore termico)
+    \draw[thick, mypen, fill=white] (2.25, 1.5) circle (0.5) node[font=\bfseries] {$M$};
+    % Calore assorbito da T2 (freccia verso il basso da T2 a M)
+    \draw[->, >=stealth, thick, notered] (2.25, 3) -- (2.25, 2) node[right, midway] {$Q_2$};
+    % Calore ceduto a T1 (freccia verso il basso da M a T1)
+    \draw[->, >=stealth, thick, cyan] (2.25, 1) -- (2.25, 0) node[right, midway] {$Q_1$};
+    % Lavoro prodotto da M (freccia uscente da M verso destra)
+    \draw[->, >=stealth, thick, mypen] (2.75, 1.5) -- (3.3, 1.5) node[right] {$L$};
     
-    % Sorgente FREDDA
-    \draw[thick, mypen, fill=cyan!30] (0, -1) rectangle (3, 0) node[midway, align=center] {Sorgente $T_1$};
+    % Sorgente FREDDA T1
+    \draw[thick, mypen, fill=cyan!20, rounded corners=2pt] (0, -0.8) rectangle (3, 0) node[midway, font=\bfseries] {Sorgente Fredda $T_1$};
 \end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}{0.54\textwidth}
+\textbf{Dimostrazione del Teorema di Carnot}:\\
+Si accoppia una macchina termica generica $M$ a una macchina reversibile di Carnot $M_C$ operante in senso inverso (come frigorifero). La macchina $M$ produce un lavoro $L > 0$ estraendo calore dalla sorgente $T_2$, mentre $M_C$ assorbe lavoro $L_C < 0$ per rimettere calore nella medesima sorgente.
+
+Regolando le dimensioni dei cicli in modo che il saldo termico con la sorgente calda sia nullo ($Q_2 + Q_{2C} = 0$), il sistema combinato $M + M_C$ scambia calore unicamente con la sorgente fredda $T_1$.
 \end{minipage}
-\begin{minipage}{0.6\textwidth}
-\textbf{Dimostrazione del Teorema}:\\
-Si accoppia una macchina termica generica $M$ a una macchina di Carnot $M_C$ che opera in senso inverso (come frigorifero). $M$ produce lavoro estraendo calore da $T_2$, mentre $M_C$ assorbe lavoro per trasferire calore a $T_2$.
-Regolando il ciclo in modo che il calore netto scambiato con $T_2$ sia nullo ($Q_2 + Q_{2C} = 0$), il sistema combinato $M + M_C$ scambia calore solo con la sorgente $T_1$.
-\end{minipage}
+\caption{Schema di accoppiamento per la dimostrazione del Teorema di Carnot via assurdo secondo l'enunciato di Kelvin-Planck.}
+\end{figure}
 
 \vspace{0.3cm}
 Per il Secondo Principio (enunciato di Kelvin-Planck), il lavoro totale prodotto non può essere positivo (non si può estrarre calore da un'unica sorgente $T_1$ e produrre lavoro netto). Quindi $L_{tot} \le 0 \implies L - |L_C| \le 0$. Da questo limite termodinamico deriva la disuguaglianza sui rendimenti:
@@ -1435,36 +1619,48 @@ Consideriamo un ciclo termodinamico compiuto da $n$ moli di un gas perfetto che 
 
 \begin{figure}[ht]
 \centering
-\begin{minipage}{0.5\textwidth}
-\begin{center}
-\begin{tikzpicture}[scale=0.95]
-    \draw[->, >=stealth, thick, mypen] (0,0) -- (0,3.5) node[left] {$p$};
-    \draw[->, >=stealth, thick, mypen] (0,0) -- (3.5,0) node[below] {$V$};
+\begin{minipage}{0.48\textwidth}
+\centering
+\begin{tikzpicture}[scale=1.1]
+    % Griglia
+    \draw[step=1cm, gray!15, very thin] (0,0) grid (3.8,3.2);
+    % Assi
+    \draw[->, >=stealth, thick, mypen] (0,0) -- (0,3.3) node[left] {$p$};
+    \draw[->, >=stealth, thick, mypen] (0,0) -- (3.8,0) node[below] {$V$};
     
-    \coordinate (A) at (0.6, 1.2);
-    \coordinate (B) at (2.8, 0.4);
-    \coordinate (C) at (0.6, 2.8);
+    % Vertici analitici (VA = VC = 1.0, VB = 3.0)
+    % Isoterma T1: p = 1.5/V -> A(1.0, 1.5), B(3.0, 0.5)
+    % Adiabatica T1->T2: p = 2.33 / V^1.4 -> B(3.0, 0.5), C(1.0, 2.33)
     
-    \draw[thick, blue, ->, >=stealth] (A) to[out=-40, in=160] (B);
-    \draw[thick, notered, ->, >=stealth] (B) to[out=130, in=-60] (C);
-    \draw[thick, mygreen, ->, >=stealth] (C) -- (A);
+    % A->B Isoterma
+    \draw[thick, blue, domain=1.0:3.0, samples=30] plot (\x, {1.5/\x});
+    % B->C Adiabatica
+    \draw[thick, notered, domain=1.0:3.0, samples=30] plot (\x, {2.33/(\x^1.4)});
+    % C->A Isocora
+    \draw[thick, mygreen, ->, >=stealth] (1.0, 2.33) -- (1.0, 1.5);
     
-    \filldraw[mypen] (A) circle (1.5pt) node[left] {$A$};
-    \filldraw[mypen] (B) circle (1.5pt) node[right] {$B$};
-    \filldraw[mypen] (C) circle (1.5pt) node[left] {$C$};
-    \node[below, blue] at (1.7, 0.7) {\small Isoterma ($T_1$)};
-    \node[right, notered] at (1.7, 1.8) {\small Adiabatica};
-    \node[left, mygreen] at (0.6, 2) {\small Isocora};
+    % Frecce di direzione sulle curve
+    \draw[->, >=stealth, thick, blue] (1.8, {1.5/1.8}) -- (1.9, {1.5/1.9});
+    \draw[<-, >=stealth, thick, notered] (1.7, {2.33/(1.7^1.4)}) -- (1.8, {2.33/(1.8^1.4)});
+    
+    % Punti
+    \filldraw[mypen] (1.0, 1.5) circle (1.6pt) node[left] {$A$};
+    \filldraw[mypen] (3.0, 0.5) circle (1.6pt) node[right] {$B$};
+    \filldraw[mypen] (1.0, 2.33) circle (1.6pt) node[left] {$C$};
+    
+    \node[below, blue] at (2.0, 0.7) {\small Isoterma ($T_1$)};
+    \node[above right, notered] at (1.6, 1.4) {\small Adiabatica};
+    \node[left, mygreen] at (1.0, 1.9) {\small Isocora};
 \end{tikzpicture}
-\end{center}
 \end{minipage}\hfill
 \begin{minipage}{0.48\textwidth}
 Il lavoro totale del ciclo è la somma dei lavori delle singole trasformazioni:
 \begin{equation}
     L_{\text{tot}} = L_{AB} + L_{BC} + L_{CA} = n R T_1 \ln\left(\frac{V_B}{V_A}\right) - n c_v (T_2 - T_1)
 \end{equation}
+Essendo $L_{CA} = 0$, il segno del lavoro totale dipende dal confronto tra il lavoro positivo di espansione isoterma e quello negativo assorbito nella compressione adiabatica.
 \end{minipage}
-\caption{Ciclo monotermo costituito da un'isoterma reversibile, un'adiabatica reversibile e un'isocora irreversibile.}
+\caption{Ciclo monotermo costituito da un'isoterma reversibile ($A \to B$), un'adiabatica reversibile ($B \to C$) e un'isocora irreversibile ($C \to A$).}
 \end{figure}
 
 Per l'adiabatica reversibile $B \to C$ vale la relazione tra temperature e volumi:
@@ -1499,29 +1695,27 @@ Esistono allora una \textbf{macchina anti-Clausius} $C$ (in grado di trasferire 
 
 \begin{figure}[ht]
 \centering
-\begin{minipage}{0.38\textwidth}
-\begin{center}
-\begin{tikzpicture}[scale=0.9]
+\begin{minipage}{0.40\textwidth}
+\centering
+\begin{tikzpicture}[scale=0.95]
     % T2
-    \draw[thick, mypen, fill=notered!30] (0, 3) rectangle (3, 4) node[midway] {Sorgente $T_2 > T_1$};
+    \draw[thick, mypen, fill=notered!20, rounded corners=2pt] (0, 3) rectangle (3, 3.8) node[midway, font=\bfseries] {Sorgente $T_2 > T_1$};
     % T1
-    \draw[thick, mypen, fill=cyan!30] (0, -1) rectangle (3, 0) node[midway] {Sorgente $T_1$};
+    \draw[thick, mypen, fill=cyan!20, rounded corners=2pt] (0, -0.8) rectangle (3, 0) node[midway, font=\bfseries] {Sorgente $T_1$};
     
-    % Macchina C
-    \draw[thick, mypen, fill=gray!10] (0.75, 1.5) circle (0.5) node {$C$};
+    % Macchina anti-Clausius C
+    \draw[thick, mypen, fill=white] (0.75, 1.5) circle (0.5) node[font=\bfseries] {$C$};
     \draw[->, >=stealth, thick, cyan] (0.75, 0) -- (0.75, 1) node[midway, left] {$Q_1$};
     \draw[->, >=stealth, thick, notered] (0.75, 2) -- (0.75, 3) node[midway, left] {$Q_1$};
     
-    % Macchina Mc
-    \draw[thick, mypen, fill=gray!20] (2.25, 1.5) circle (0.5) node {$M_C$};
-    \draw[<-, >=stealth, thick, notered] (2.25, 2) -- (2.25, 3) node[midway, right] {$Q_2$};
-    \draw[<-, >=stealth, thick, cyan] (2.25, 0) -- (2.25, 1) node[midway, right] {$Q_1$};
-    \draw[->, >=stealth, thick, mypen] (2.75, 1.5) -- (3.8, 1.5) node[right] {$L$};
-    
+    % Macchina termica di Carnot Mc (Motore normale)
+    \draw[thick, mypen, fill=white] (2.25, 1.5) circle (0.5) node[font=\bfseries] {$M_C$};
+    \draw[->, >=stealth, thick, notered] (2.25, 3) -- (2.25, 2) node[midway, right] {$Q_2$};
+    \draw[->, >=stealth, thick, cyan] (2.25, 1) -- (2.25, 0) node[midway, right] {$Q_1$};
+    \draw[->, >=stealth, thick, mypen] (2.75, 1.5) -- (3.7, 1.5) node[right, font=\bfseries] {$L$};
 \end{tikzpicture}
-\end{center}
 \end{minipage}\hfill
-\begin{minipage}{0.58\textwidth}
+\begin{minipage}{0.56\textwidth}
 Accoppiando le due macchine in modo che scambino la stessa quantità di calore $Q_1$ con la sorgente fredda $T_1$, analizziamo i bilanci termici per il sistema combinato:
 \begin{itemize}
     \item La sorgente fredda $T_1$ cede calore $Q_1$ alla macchina $C$ e riceve la medesima quantità $Q_1$ dalla macchina $M_C \implies Q_{\text{netto}, T_1} = 0$.
@@ -1532,7 +1726,7 @@ Accoppiando le due macchine in modo che scambino la stessa quantità di calore $
     \end{equation}
 \end{itemize}
 \end{minipage}
-\caption{Violazione di Kelvin-Planck indotta da una ipotetica macchina anti-Clausius.}
+\caption{Violazione dell'enunciato di Kelvin-Planck indotta dall'accoppiamento con una ipotetica macchina anti-Clausius $C$.}
 \end{figure}
 
 Il sistema combinato si comporta quindi come una macchina termica che compie un ciclo interagendo con \textbf{un'unica sorgente di calore} ($T_2$, dato che la sorgente $T_1$ non subisce variazioni nette di calore) e produce un lavoro interamente positivo ($L > 0$). Ciò costituisce una diretta violazione dell'enunciato di Kelvin-Planck, contraddicendo l'ipotesi iniziale. Dunque:
@@ -1547,35 +1741,34 @@ Esiste allora una \textbf{macchina anti-Kelvin-Planck} $K$ capace di prelevare c
 
 \begin{figure}[ht]
 \centering
-\begin{minipage}{0.45\textwidth}
-\begin{center}
+\begin{minipage}{0.46\textwidth}
+\centering
 \begin{tikzpicture}[scale=0.9]
     % T1
-    \draw[thick, mypen, fill=cyan!30] (0, 3) rectangle (1.8, 4) node[midway] {Sorgente $T_1$};
+    \draw[thick, mypen, fill=cyan!20, rounded corners=2pt] (0, 3) rectangle (1.8, 4) node[midway, font=\bfseries] {Sorgente $T_1$};
     
-    % Macchina K
-    \draw[thick, mypen, fill=gray!10] (0.9, 1.5) circle (0.5) node {$K$};
-    \draw[<-, >=stealth, thick, cyan] (0.9, 2) -- (0.9, 3) node[midway, right] {$Q$};
+    % Macchina anti-Kelvin K
+    \draw[thick, mypen, fill=white] (0.9, 1.5) circle (0.5) node[font=\bfseries] {$K$};
+    \draw[->, >=stealth, thick, cyan] (0.9, 3) -- (0.9, 2) node[midway, right] {$Q$};
     \draw[->, >=stealth, thick, mypen] (1.4, 1.5) -- (2.6, 1.5) node[midway, above] {$L$};
     
-    % Attrito
-    \draw[thick, dashed, mypen, fill=orange!10] (2.6, 0.8) rectangle (4.2, 2.2) node[midway, align=center] {Dissipatore\\(attrito)};
+    % Attrito / Dissipatore
+    \draw[thick, dashed, mypen, fill=orange!15, rounded corners=2pt] (2.6, 0.8) rectangle (4.2, 2.2) node[midway, align=center, font=\small] {Dissipatore\\(attrito)};
     \draw[->, >=stealth, thick, notered] (4.2, 1.5) -- (5.2, 1.5) node[midway, above] {$Q$};
     
     % T2
-    \draw[thick, mypen, fill=notered!30] (5.2, 0.8) rectangle (7, 2.2) node[midway, align=center] {Sorgente\\$T_2 > T_1$};
+    \draw[thick, mypen, fill=notered!20, rounded corners=2pt] (5.2, 0.8) rectangle (7, 2.2) node[midway, align=center, font=\bfseries] {Sorgente\\$T_2 > T_1$};
 \end{tikzpicture}
-\end{center}
 \end{minipage}\hfill
-\begin{minipage}{0.52\textwidth}
-Utilizziamo ora il lavoro $L$ prodotto dalla macchina $K$ per generare calore tramite attrito all'interno di un corpo o di un bagno termico a temperatura superiore $T_2 > T_1$.
+\begin{minipage}{0.50\textwidth}
+Utilizziamo ora il lavoro $L$ prodotto dalla macchina $K$ per generare calore tramite attrito (o resistenza elettrica) all'interno di un corpo o di un bagno termico a temperatura superiore $T_2 > T_1$.
 \begin{itemize}
-    \item La sorgente fredda $T_1$ cede calore $Q$.
+    \item La sorgente fredda $T_1$ cede calore netto $Q$.
     \item Il lavoro meccanico $L = Q$ viene dissipato integralmente in calore all'interno della sorgente calda $T_2$.
     \item Nessun altro lavoro netto entra o esce dall'ambiente esterno.
 \end{itemize}
 \end{minipage}
-\caption{Violazione di Clausius indotta da una ipotetica macchina anti-Kelvin-Planck.}
+\caption{Violazione dell'enunciato di Clausius indotta dall'accoppiamento con una ipotetica macchina anti-Kelvin-Planck $K$.}
 \end{figure}
 
 Il risultato complessivo del sistema accoppiato è il puro trasferimento di una quantità di calore $Q > 0$ da un corpo freddo ($T_1$) a un corpo caldo ($T_2$) senza alcun apporto netto di lavoro dall'esterno. Ciò viola l'enunciato di Clausius, contraddicendo l'ipotesi iniziale. Dunque:
@@ -1658,6 +1851,14 @@ Per un processo \textbf{irreversibile} da $A$ a $B$, confrontando il percorso ir
 Per qualsiasi trasformazione da uno stato $A$ ad uno stato $B$, l'integrale di Clausius è sempre minore o uguale alla variazione di entropia del sistema. L'uguaglianza vale solo per trasformazioni reversibili.
 \end{definizione}
 
+\begin{definizione}{Variazione di Entropia per Sorgenti e Termostati}
+Un termostato (o sorgente termica) è per definizione un serbatoio di calore a temperatura costante $T_0$ con capacità termica infinita ($C \to \infty$). Poiché lo scambio termico avviene idealmente in modo isotermo, senza gradienti interni di temperatura, la trasformazione per la sorgente si considera sempre reversibile. La sua variazione di entropia quando scambia un calore $Q_{\text{sorgente}}$ è calcolata elementarmente come:
+\begin{equation}
+    \boxed{ \Delta S_{\text{sorgente}} = \int \frac{\delta Q_{\text{sorgente}}}{T_0} = \frac{Q_{\text{sorgente}}}{T_0} }
+\end{equation}
+Se una sorgente cede una quantità di calore $Q > 0$ ad un sistema operativo, rispetto al termostato il calore è uscente ($Q_{\text{sorgente}} = -Q$), con conseguente diminuzione di entropia $\Delta S_{\text{sorgente}} = -\frac{Q}{T_0}$.
+\end{definizione}
+
 \vspace{0.3cm}
 \subsection{Proprietà dell'Entropia}
 \begin{itemize}
@@ -1694,15 +1895,166 @@ Per qualsiasi trasformazione da uno stato $A$ ad uno stato $B$, l'integrale di C
 Poiché l'entropia è una funzione di stato, la sua variazione $\Delta S$ lungo una trasformazione \textbf{irreversibile} si calcola immaginando un cammino \textbf{reversibile arbitrario} che congiunge gli stessi stati $A$ e $B$.
 \begin{itemize}
     \item \textbf{Espansione libera di un gas perfetto}: $\Delta S_{\text{gas}} = n R \ln(V_B/V_A) > 0$.
-    \item \textbf{Trasformazione Isoterma}: $\Delta S = Q_{AB}/T$.
-    \item \textbf{Trasformazione Adiabatica Reversibile}: $\Delta S = 0$ (isoentropica).
-    \item \textbf{Trasformazione generica gas perfetto}: $\Delta S = n c_V \ln(T_B/T_A) + n R \ln(V_B/V_A)$.
-    \item \textbf{Passaggi di stato}: $\Delta S = m\lambda/T$.
-    \item \textbf{Solidi/liquidi incomprimibili}: $\Delta S = m c \ln(T_B/T_A)$.
+    \item \textbf{Trasformazione Isoterma}: $\Delta S = Q_{AB}/T = n R \ln(V_B/V_A)$.
+    \item \textbf{Trasformazione Adiabatica Reversibile}: $\Delta S = 0$ (trasformazione isoentropica).
+    \item \textbf{Trasformazione generica di un gas perfetto}: 
+    \begin{align}
+        \Delta S &= n c_v \ln\left(\frac{T_B}{T_A}\right) + n R \ln\left(\frac{V_B}{V_A}\right) = n c_p \ln\left(\frac{T_B}{T_A}\right) - n R \ln\left(\frac{p_B}{p_A}\right) \\
+        &= n c_v \ln\left( \frac{T_B V_B^{\gamma-1}}{T_A V_A^{\gamma-1}} \right) = n c_v \ln\left( \frac{p_B V_B^\gamma}{p_A V_A^\gamma} \right)
+    \end{align}
+    \item \textbf{Passaggi di stato (a $T$ e $p$ costanti)}: $\Delta S = \frac{m \lambda}{T}$.
+    \item \textbf{Solidi e liquidi incomprimibili}: $\Delta S = m c \ln\left(\frac{T_B}{T_A}\right)$.
 \end{itemize}
 
-\subsection{Il Diagramma T-S}
-Il diagramma \textbf{Temperatura-Entropia (T-S)} è fondamentale perché l'area sottesa alla curva rappresenta il \textbf{calore scambiato} in una trasformazione reversibile: $\boxed{ Q_{\text{rev}} = \int_A^B T\,dS }$.
+\vspace{0.3cm}
+Inoltre, per un gas perfetto è possibile definire la funzione di stato \textbf{Entropia Assoluta} (a meno di una costante additiva di riferimento $S_0$):
+\begin{equation}
+    S_{\text{gas}}(p, V) = n c_v \ln\left(p V^\gamma\right) + \text{costante}
+\end{equation}
+Mentre per un solido o liquido a calore specifico $C$ costante: $S(T) = C \ln T + \text{costante}$.
+
+\begin{osservazione}{Esempio: Calcolo dell'Entropia in una Espansione Libera ed Equivalenza del Percorso Ausiliario}
+Consideriamo una mole ($n = 1\text{ mol}$) di gas perfetto che si espande liberamente nel vuoto raddoppiando il proprio volume ($V_B = 2V_A$) all'interno di un contenitore rigido adiabatico ($Q=0, L=0$). Come già dimostrato, la temperatura finale coincide con quella iniziale ($T_B = T_A = T_0$). Poiché la trasformazione reale è irreversibile, per calcolare la variazione di entropia del gas $\Delta S_{\text{gas}}$ dobbiamo connettere gli stati di equilibrio $A$ e $B$ tramite una trasformazione reversibile ausiliaria, ad esempio un'\textbf{isoterma reversibile}:
+\begin{equation}
+    \Delta S_{\text{gas}} = \int_A^B \left(\frac{\delta Q}{T}\right)_{\text{rev}} = \frac{1}{T_0} \int_{V_A}^{2V_A} p \, dV = n R \ln\left(\frac{2V_A}{V_A}\right) = R \ln 2 \simeq 5.76 \, \frac{\text{J}}{\text{K}} > 0
+\end{equation}
+Per l'ambiente, nella trasformazione reale non vi è stato alcuno scambio termico ($Q_{\text{amb}} = 0 \implies \Delta S_{\text{amb}} = 0$). Di conseguenza, per l'universo:
+\begin{equation}
+    \Delta S_{\text{univ}} = \Delta S_{\text{gas}} + \Delta S_{\text{amb}} = R \ln 2 + 0 > 0
+\end{equation}
+Se volessimo ripristinare il gas allo stato iniziale comprimendolo reversibilmente a contatto con un termostato ausiliario a temperatura $T_0$, il lavoro esterno compiuto sul gas verrebbe integralmente ceduto come calore alla sorgente ($Q_{\text{sorgente}} = +T_0 \Delta S_{\text{gas}}$), incrementando permanentemente l'entropia del termostato di $+R \ln 2$. Ciò conferma l'impossibilità di cancellare dall'universo l'irreversibilità generata dall'espansione libera.
+\end{osservazione}
+
+\vspace{0.3cm}
+\subsection{Il Diagramma Temperatura-Entropia (T-S)}
+Il diagramma \textbf{Temperatura-Entropia (T-S)} rappresenta un fondamentale strumento analitico in termodinamica. Poiché per una trasformazione reversibile vale la definizione infinitesima $\delta Q_{\text{rev}} = T\,dS$, l'area sottesa alla curva di una trasformazione in tale piano rappresenta geometricamente il \textbf{calore scambiato}:
+\begin{equation}
+    \boxed{ Q_{\text{rev}} = \int_A^B T\,dS }
+\end{equation}
+Per un ciclo termodinamico reversibile chiuso, essendo la variazione di energia interna nulla ($\oint dU = 0$), l'area interna alla linea chiusa del ciclo rappresenta esattamente il \textbf{lavoro netto} compiuto: $L = \oint \delta Q = \oint T\,dS$.
+
+\vspace{0.3cm}
+\subsubsection{Rappresentazione delle Trasformazioni e Confronto delle Pendenze}
+Nel piano T-S, le quattro trasformazioni fondamentali assumono forme geometriche caratteristiche:
+\begin{itemize}
+    \item \textbf{Isoterma ($T = \text{cost}$)}: è rappresentata da una segmento rettilineo \textbf{orizzontale}.
+    \item \textbf{Adiabatica Reversibile / Isoentropica ($S = \text{cost}$)}: è rappresentata da un segmento rettilineo \textbf{verticale} ($\Delta S = 0$).
+    \item \textbf{Isocora e Isobara}: sono rappresentate da curve esponenziali crescenti della forma $T(S) = T_0 e^{\Delta S / n c}$.
+\end{itemize}
+
+\begin{figure}[ht]
+\centering
+\begin{minipage}{0.46\textwidth}
+\centering
+\begin{tikzpicture}[scale=1.05]
+    % Griglia
+    \draw[step=1cm, gray!15, very thin] (0,0) grid (4.2,4.2);
+    % Assi
+    \draw[->, >=stealth, thick, mypen] (0,0) -- (0,4.4) node[left] {$T$};
+    \draw[->, >=stealth, thick, mypen] (0,0) -- (4.4,0) node[below] {$S$};
+    
+    % Punto iniziale comune A(1.2, 1.2)
+    % Isoterma (T = 1.2)
+    \draw[thick, blue] (1.2, 1.2) -- (4.0, 1.2) node[right] {\small Isoterma};
+    
+    % Adiabatica (S = 1.2)
+    \draw[thick, notered] (1.2, 1.2) -- (1.2, 4.0) node[above] {\small Adiabatica};
+    
+    % Isocora: T = 1.2 * exp((S-1.2)/1.2) -> ripida
+    \draw[thick, mygreen, domain=1.2:2.65, samples=30] plot (\x, {1.2*exp((\x-1.2)/1.2)}) node[above] {\small Isocora};
+    
+    % Isobara: T = 1.2 * exp((S-1.2)/2.0) -> meno ripida
+    \draw[thick, orange, domain=1.2:3.6, samples=30] plot (\x, {1.2*exp((\x-1.2)/2.0)}) node[right] {\small Isobara};
+    
+    % Punto A
+    \filldraw[mypen] (1.2, 1.2) circle (1.8pt) node[below left] {$A(S_0, T_0)$};
+    \draw[dashed, gray] (1.2,0) node[below] {$S_0$} -- (1.2,1.2) -- (0,1.2) node[left] {$T_0$};
+\end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}{0.50\textwidth}
+\textbf{Confronto analitico delle pendenze}:\\
+Dalla relazione differenziale del calore scambiato $\delta Q = n c\,dT = T\,dS$, si ricava la pendenza delle curve nel diagramma T-S:
+\begin{equation}
+    \left( \frac{dT}{dS} \right) = \frac{T}{n c}
+\end{equation}
+Confrontando una trasformazione isocora ($c = c_v$) con una isobara ($c = c_p$) passanti per lo stesso stato $(S_0, T_0)$:
+\begin{equation}
+    \left( \frac{dT}{dS} \right)_v = \frac{T}{n c_v} > \frac{T}{n c_p} = \left( \frac{dT}{dS} \right)_p
+\end{equation}
+Poiché $c_p = c_v + R > c_v$, nel piano T-S \textbf{la curva isocora cresce sempre con una pendenza maggiore rispetto alla curva isobara}.
+\end{minipage}
+\caption{Confronto nel piano Temperatura-Entropia tra le quattro trasformazioni termodinamiche elementari a partire dal medesimo stato $A$.}
+\end{figure}
+
+\vspace{0.3cm}
+\subsubsection{Il Ciclo di Carnot nel Piano T-S}
+La potenza concettuale del diagramma T-S si manifesta pienamente nell'analisi del \textbf{Ciclo di Carnot}. Poiché è composto esclusivamente da due isoterme (a $T_2$ e $T_1$) e due adiabatiche reversibili (isoentropiche a $S_B$ e $S_A$), nel piano T-S il ciclo di Carnot assume la geometria elementare di un \textbf{rettangolo}.
+
+\begin{figure}[ht]
+\centering
+\begin{minipage}{0.44\textwidth}
+\centering
+\begin{tikzpicture}[scale=1.1]
+    % Griglia
+    \draw[step=1cm, gray!15, very thin] (0,0) grid (4.2,3.8);
+    % Assi
+    \draw[->, >=stealth, thick, mypen] (0,0) -- (0,4.0) node[left] {$T$};
+    \draw[->, >=stealth, thick, mypen] (0,0) -- (4.2,0) node[below] {$S$};
+    
+    % Rettangolo di Carnot tra S_A=1.2, S_B=3.4 e T1=1.0, T2=3.0
+    \fill[cyan!15, opacity=0.8] (1.2, 1.0) rectangle (3.4, 3.0);
+    
+    % Ciclo
+    \draw[thick, blue, ->, >=stealth] (1.2, 3.0) -- (2.4, 3.0);
+    \draw[thick, blue] (2.4, 3.0) -- (3.4, 3.0) node[above, midway] {$Q_2 > 0$};
+    
+    \draw[thick, notered, ->, >=stealth] (3.4, 3.0) -- (3.4, 2.0);
+    \draw[thick, notered] (3.4, 2.0) -- (3.4, 1.0);
+    
+    \draw[thick, blue, ->, >=stealth] (3.4, 1.0) -- (2.3, 1.0);
+    \draw[thick, blue] (2.3, 1.0) -- (1.2, 1.0) node[below, midway] {$Q_1 < 0$};
+    
+    \draw[thick, notered, ->, >=stealth] (1.2, 1.0) -- (1.2, 2.0);
+    \draw[thick, notered] (1.2, 2.0) -- (1.2, 3.0);
+    
+    % Vertici
+    \filldraw[mypen] (1.2, 3.0) circle (1.6pt) node[above left] {$A$};
+    \filldraw[mypen] (3.4, 3.0) circle (1.6pt) node[above right] {$B$};
+    \filldraw[mypen] (3.4, 1.0) circle (1.6pt) node[below right] {$C$};
+    \filldraw[mypen] (1.2, 1.0) circle (1.6pt) node[below left] {$D$};
+    
+    % Coordinate
+    \draw[dashed, gray] (1.2, 0) node[below] {$S_A$} -- (1.2, 1.0);
+    \draw[dashed, gray] (3.4, 0) node[below] {$S_B$} -- (3.4, 1.0);
+    \draw[dashed, gray] (0, 3.0) node[left] {$T_2$} -- (1.2, 3.0);
+    \draw[dashed, gray] (0, 1.0) node[left] {$T_1$} -- (1.2, 1.0);
+    
+    \node[mypen, font=\bfseries] at (2.3, 2.0) {$L > 0$};
+\end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}{0.52\textwidth}
+Dal grafico rettangolare si deducono per immediata via geometrica tutte le grandezze del ciclo:
+\begin{itemize}
+    \item \textbf{Calore assorbito} ($A \to B$ a $T_2$ costante):
+    \begin{equation}
+        Q_2 = \int_{S_A}^{S_B} T_2\,dS = T_2 (S_B - S_A) > 0
+    \end{equation}
+    \item \textbf{Calore ceduto} ($C \to D$ a $T_1$ costante):
+    \begin{equation}
+        Q_1 = \int_{S_B}^{S_A} T_1\,dS = - T_1 (S_B - S_A) < 0
+    \end{equation}
+    \item \textbf{Lavoro netto} (Area del rettangolo azzurro):
+    \begin{equation}
+        L = Q_2 - |Q_1| = (T_2 - T_1)(S_B - S_A)
+    \end{equation}
+\end{itemize}
+Il rendimento del ciclo si ottiene quindi con una banale semplificazione algebrica:
+\begin{equation}
+    \eta_C = \frac{L}{Q_2} = \frac{(T_2 - T_1)(S_B - S_A)}{T_2 (S_B - S_A)} = 1 - \frac{T_1}{T_2}
+\end{equation}
+\end{minipage}
+\caption{Il ciclo di Carnot rappresentato nel piano T-S: le due isoterme orizzontali e le due adiabatiche verticali delimitano un perfetto rettangolo, rendendo immediata la deduzione geometrica del rendimento.}
+\end{figure}
 
 \subsection{Degradazione dell'Energia e Lavoro Perduto}
 Consideriamo due cicli operanti fra gli stessi termostati $T_A, T_B$, di cui uno di Carnot ($M_C$) e uno irreversibile ($M$).
