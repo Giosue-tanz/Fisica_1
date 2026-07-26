@@ -13,15 +13,6 @@ Gli appunti sono in continuo aggiornamento e revisione. Essendo un *work in prog
 
 ---
 
-## Autore e Contributi
-
-Questo lavoro è il frutto di un processo di rielaborazione didattica e visiva:
-
-Queste note sono state realizzate sulla base degli appunti originali manoscritti di **Chiara Rustici**. 
-La revisione, la riformulazione formale del testo (inclusa la rielaborazione dei passaggi logico-matematici di alcuni teoremi e dimostrazioni), la stesura tipografica in $\LaTeX$ e l'integrazione completa degli esercizi e dei problemi svolti sono state curate da **Giosuè Aiello**.
-
----
-
 ## Compilazione
 
 Il progetto è interamente scritto in $\LaTeX$. Per generare o aggiornare il file PDF in autonomia:
