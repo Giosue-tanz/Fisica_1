@@ -537,7 +537,11 @@ Un'altra notevole applicazione del vincolo di assenza di strisciamento si ha nel
 
 Essendo il Centro di Massa della carrucola fisso nell'origine ($\vec{v}_{CM} = \vec{0}$), la velocità periferica è puramente rotazionale: $\vec{v}_P = \vec{\omega} \times \vec{R}$. Pertanto, l'accelerazione tangenziale trasmessa alla fune vale:
 \begin{align*}
-    \vec{v}_Q &= \vec{\omega} \times \vec{R} \qquad \implies \qquad v_Q = \ome\section{Momento Angolare e Tensore d'Inerzia}
+    \vec{v}_Q &= \vec{\omega} \times \vec{R} \qquad \implies \qquad v_Q = \omega R \\
+    a_Q &= \alpha R
+\end{align*}
+
+\section{Momento Angolare e Tensore d'Inerzia}
 Il momento angolare totale di un corpo rigido in moto rispetto a un polo inerziale fisso $O$ si calcola applicando il secondo teorema di König:
 \begin{equation}
     \vec{L}_O = \vec{L}_{CM} + \vec{L}' \qquad \text{con } \vec{L}_{CM} = M\vec{R}_{CM} \times \vec{v}_{CM} \quad \text{e} \quad \vec{L}' = \sum_i m_i \vec{r}_i' \times \vec{v}_i'
@@ -694,10 +698,6 @@ In sintesi, per un corpo rigido in rotazione con velocità angolare $\vec{\omega
 L_z = I_z \, \omega & \text{proiezione lungo l'asse di rotazione per un \textbf{asse qualsiasi}}
 \end{cases}
 \]
-\end{osservazione}I_z\,\omega = L_z & \forall\,\hat{\omega} \text{ qualsiasi} \\
-I_z\,\vec{\omega} = \vec{L}' & \forall\,\hat{\omega} \text{ principale}
-\end{cases}
-\]
 \end{osservazione}
 
 
@@ -836,7 +836,7 @@ Rispetto a un asse trasversale passante per il centro di massa (assi $2$ e $3$),
 Per un'asta rettilinea omogenea di massa $M$ e lunghezza $L$, con sezione trasversale trascurabile rispetto alla lunghezza ($R \ll L$) e densità lineare $\lambda = \frac{M}{L}$:
 \begin{equation}
     I_1 \approx 0 \qquad \text{(rispetto all'asse longitudinale della sbarretta)}
-\end{align*}
+\end{equation}
 Rispetto ad un asse trasversale ortogonale passante per il centro di massa (origine a metà asta, con estremi in $-L/2$ e $+L/2$):
 \begin{equation}
     I_2 = I_3 = \int_{-L/2}^{+L/2} x^2 \, (\lambda \, dx) = \lambda \left[ \frac{x^3}{3} \right]_{-L/2}^{+L/2} = \left( \frac{M}{L} \right) \left[ \frac{L^3}{24} - \left( -\frac{L^3}{24} \right) \right] = \frac{1}{12} M L^2

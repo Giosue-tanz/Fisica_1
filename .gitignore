@@ -28,6 +28,10 @@ Thumbs.db
 .venv/
 .venv2/
 
+# Python build / cache
+__pycache__/
+*.pyc
+
 # Python scripts di servizio (non fanno parte del libro)
 *.py
 
