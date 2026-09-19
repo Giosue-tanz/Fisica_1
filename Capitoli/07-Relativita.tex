@@ -1,0 +1,1515 @@
+\chapter{Relatività Ristretta}
+
+\section{Moti Relativi e Sistemi di Riferimento}
+
+Nello studio dei moti relativi si scelgono sempre \textbf{due sistemi di riferimento} e si descrive lo stesso fenomeno fisico dall'uno e dall'altro, confrontando i risultati.
+
+\begin{definizione}{Sistema Fisso e Sistema in Moto}
+\begin{itemize}[leftmargin=1.4em]
+    \item \textbf{Sistema ``fisso'' (assoluto)} $S$: è per costruzione un sistema \textbf{inerziale}, rispetto al quale si misurano le grandezze dette \emph{assolute}.
+    \item \textbf{Sistema ``in moto'' (relativo)} $S'$: non è necessariamente inerziale. Si muove rispetto a $S$ con velocità $\vec{V}$ e accelerazione $\vec{A}$, dette rispettivamente \textbf{velocità di trascinamento} (o \textbf{boost}) e \textbf{accelerazione di trascinamento}.
+\end{itemize}
+\end{definizione}
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}[>=stealth, scale=1.0]
+        % Sistema S
+        \draw[->, thick, mypen] (0,0) -- (2.2,0) node[right, font=\small] {$x$};
+        \draw[->, thick, mypen] (0,0) -- (0,2.4) node[above, font=\small] {$y$};
+        \draw[->, thick, mypen] (0,0) -- (-1.1,-1.1) node[below left, font=\small] {$z$};
+        \node[below left, font=\bfseries\small, mypen] at (0,0) {$S$};
+
+        % Sistema S'
+        \begin{scope}[xshift=4.2cm]
+            \draw[->, thick, boxese] (0,0) -- (2.2,0) node[right, font=\small] {$x'$};
+            \draw[->, thick, boxese] (0,0) -- (0,2.4) node[above, font=\small] {$y'$};
+            \draw[->, thick, boxese] (0,0) -- (-1.1,-1.1) node[below left, font=\small] {$z'$};
+            \node[below left, font=\bfseries\small, boxese] at (0,0) {$S'$};
+        \end{scope}
+
+        % Boost
+        \draw[->, very thick, notered] (4.2,-1.6) -- (5.9,-1.6)
+            node[midway, below, font=\small\bfseries] {$\vec{V}$ (boost)};
+
+        % Punto materiale P
+        \coordinate (P) at (6.2,2.0);
+        \fill[notered] (P) circle (2.2pt) node[above right, font=\small] {$P$};
+        \draw[->, thick, mypen, dashed] (0,0) -- (P) node[pos=0.62, above left, font=\small] {$\vec{r}$};
+        \draw[->, thick, boxese, dashed] (4.2,0) -- (P) node[pos=0.5, below right, font=\small] {$\vec{r}\,'$};
+        \draw[->, thick, notered] (0,0) -- (4.2,0) node[pos=0.5, below, font=\small] {$\vec{R}$};
+    \end{tikzpicture}
+    \caption{I due sistemi di riferimento adottati nello studio dei moti relativi: il sistema assoluto $S$ e il sistema relativo $S'$, traslato di $\vec{R}$ e animato dalla velocità di trascinamento $\vec{V}$.}
+\end{figure}
+
+\subsection{Relatività Galileiana: $S$ e $S'$ Entrambi Inerziali}
+
+La composizione classica delle velocità lega la velocità $\vec{u}$ di un corpo misurata in $S$ a quella $\vec{u}\,'$ misurata in $S'$:
+\begin{equation}
+    \vec{u} = \vec{u}\,' + \vec{V}
+\end{equation}
+dove
+\begin{itemize}
+    \item $\vec{u}$ è la velocità del corpo vista da $S$;
+    \item $\vec{u}\,'$ è la velocità del corpo vista da $S'$;
+    \item $\vec{V}$ è la velocità di $S'$ rispetto a $S$.
+\end{itemize}
+
+Se $\vec{V} = \text{cost}$ (ossia $S'$ è a sua volta inerziale), l'integrazione nel tempo è immediata:
+\begin{equation*}
+    \int \vec{u} \, dt = \int \vec{u}\,' \, dt + \vec{V} \int dt
+\end{equation*}
+e si ottengono le \textbf{trasformazioni di Galileo}.
+
+\begin{definizione}{Trasformazioni di Galileo}
+Per un boost $\vec{V} = (V_x, V_y, V_z)$ costante, le coordinate spazio-temporali nei due sistemi sono legate da
+\begin{equation}
+    \begin{cases}
+        x = x' + V_x t \\
+        y = y' + V_y t \\
+        z = z' + V_z t \\
+        t = t'
+    \end{cases}
+\end{equation}
+Il tempo è un \textbf{parametro assoluto}, identico nei due sistemi e indipendente dallo stato di moto dell'osservatore.
+\end{definizione}
+
+Derivando ulteriormente la legge di composizione delle velocità si ottiene quella delle accelerazioni:
+\begin{equation}
+    \vec{a} = \vec{a}\,' + \vec{A}
+\end{equation}
+dove $\vec{a}$ e $\vec{a}\,'$ sono le accelerazioni del corpo misurate rispettivamente in $S$ e in $S'$, e $\vec{A}$ è l'accelerazione di $S'$ rispetto a $S$. Poiché $\vec{V}$ è costante, si ha $\vec{A} = \vec{0}$ e dunque
+\begin{equation}
+    \vec{a} = \vec{a}\,' \implies m\vec{a} = m\vec{a}\,' \implies \vec{F} = \vec{F}\,'
+\end{equation}
+
+\begin{teorema}{Invarianza Galileiana del Secondo Principio}
+Il secondo principio della dinamica è invariante \textbf{in forma e in valore} nel passaggio fra due sistemi di riferimento inerziali collegati da una trasformazione di Galileo.
+\end{teorema}
+
+\subsection{Il Caso di $S'$ Non Inerziale: le Forze Apparenti}
+
+Se la velocità di trascinamento non è costante, $S'$ non è inerziale e la derivazione della legge di composizione delle velocità fornisce
+\begin{equation}
+    \frac{d\vec{u}}{dt} = \frac{d\vec{u}\,'}{dt} + \frac{d\vec{V}}{dt}
+    \qquad \text{ovvero} \qquad
+    \vec{a} = \vec{a}\,' + \vec{A}, \quad \text{con } \vec{A} \neq \vec{0}
+\end{equation}
+
+Moltiplicando per la massa si ottiene $m\vec{a} = m\vec{a}\,' + m\vec{A}$, cioè
+\begin{equation}
+    \vec{F} = \vec{F}\,' + m\vec{A}
+    \qquad \Longrightarrow \qquad
+    \vec{F} + \vec{F}_{\text{app}} = \vec{F}\,'
+\end{equation}
+
+\begin{definizione}{Forza Apparente}
+Si definisce \textbf{forza apparente} (o fittizia) il termine
+\begin{equation}
+    \vec{F}_{\text{app}} = -m\vec{A}
+\end{equation}
+Essa non deriva da alcuna interazione fisica fra corpi, ma è il puro effetto cinematico del moto accelerato del sistema di riferimento: per questo motivo \textbf{non verifica il terzo principio della dinamica} (non esiste alcuna reazione uguale e contraria).
+\end{definizione}
+
+La relazione $\vec{F} + \vec{F}_{\text{app}} = \vec{F}\,'$ costituisce la \textbf{generalizzazione del secondo principio} ai sistemi di riferimento non inerziali.
+
+\subsection{Il Principio di Relatività di Galilei}
+
+\begin{teorema}{Principio di Relatività di Galilei}
+Le leggi della meccanica sono \textbf{invarianti sotto trasformazioni di Galileo} in tutti i sistemi di riferimento inerziali.
+\end{teorema}
+
+Da esso discendono tre conseguenze fondamentali:
+\begin{enumerate}
+    \item \textbf{Invarianza degli intervalli temporali.} Da $t_a = t'_a$ e $t_b = t'_b$ segue immediatamente
+    \begin{equation}
+        \Delta t = \Delta t'
+    \end{equation}
+    \item \textbf{Invarianza degli intervalli spaziali.} Da $x_a = x'_a + V t_a$ e $x_b = x'_b + V t_b$ segue
+    \begin{equation}
+        \Delta x = \Delta x' + V \Delta t
+    \end{equation}
+    e, misurando le posizioni nel medesimo istante ($\Delta t = 0$), $\Delta x = \Delta x'$: le lunghezze sono le stesse per tutti gli osservatori.
+    \item \textbf{Inesistenza di un sistema assoluto privilegiato.} Tutte le velocità sono relative ai vari sistemi; nessuno di essi può essere eletto a riferimento ``vero''.
+\end{enumerate}
+
+\section{Il Periodo di Transizione: Maxwell, Michelson e Morley}
+
+\subsection{L'Invarianza della Velocità della Luce}
+
+Attraverso le sue equazioni, \textbf{Maxwell} dimostra che la velocità della luce nel vuoto, $c \approx 3{,}00 \times 10^8 \, \mathrm{m/s}$, è definita da
+\begin{equation}
+    c = \frac{1}{\sqrt{\varepsilon_0 \mu_0}}
+\end{equation}
+dove $\varepsilon_0$ è la costante dielettrica del vuoto e $\mu_0$ la permeabilità magnetica del vuoto.
+
+Il punto cruciale è che $c$ risulta \textbf{costante}, poiché dipende unicamente da due costanti universali e non dalle trasformazioni galileiane. Essa è la velocità di propagazione nel vuoto di una \textbf{perturbazione} dei campi $\vec{E}$ (elettrico) e $\vec{B}$ (magnetico), cioè di un'\textbf{onda elettromagnetica}.
+
+\subsection{L'Ipotesi dell'Etere Cosmico}
+
+D'Alembert aveva dimostrato che le onde \emph{meccaniche} necessitano di un mezzo per propagarsi. Per analogia si ipotizzò dunque l'esistenza dell'\textbf{etere cosmico}, un mezzo dalle proprietà singolari:
+\begin{itemize}
+    \item permea l'intero universo;
+    \item è volatile;
+    \item ha densità nulla.
+\end{itemize}
+Il suo unico scopo sarebbe stato quello di far propagare la luce.
+
+Resta però un secondo problema, ben più grave: il fatto che $c$ sia costante è in accordo con Maxwell ma \textbf{non} con Galileo. \emph{Chi ha ragione?} Vengono formulate tre ipotesi alternative:
+
+\begin{enumerate}[label=\textbf{\alph*)}]
+    \item Il principio di relatività è \textbf{valido solo per la meccanica} e non per l'elettromagnetismo: nell'elettrodinamica esiste un sistema assoluto e privilegiato (l'etere). Si può applicare Galileo e dimostrarlo sperimentalmente.
+    \item Il principio è \textbf{valido per meccanica ed elettromagnetismo}, ma le equazioni di Maxwell sono sbagliate e la luce non ha velocità costante. Si può applicare Galileo e dimostrarlo sperimentalmente.
+    \item Il principio è \textbf{valido per meccanica ed elettromagnetismo}, ma sono le equazioni di Galileo e Newton a essere sbagliate: è necessario rivedere le leggi di trasformazione, applicarne di nuove e dimostrarle sperimentalmente.
+\end{enumerate}
+
+\begin{osservazione}{Il ``Vento d'Etere''}
+Identificare il sistema di riferimento etereo significa dimostrare che la velocità della luce vale $c' = c \pm v$ a seconda dell'orientazione, rispetto al sistema della Terra (dove $v$ è la velocità della Terra rispetto all'etere, cioè la velocità di trascinamento), mentre vale esattamente $c$ rispetto al sistema dell'etere.
+
+Di conseguenza, l'osservatore terrestre avvertirebbe un \textbf{vento d'etere} di velocità $|\vec{v}\,|$, uguale e opposta a quella della Terra rispetto all'etere, in cui essa si muove con i propri moti di rotazione e rivoluzione.
+\end{osservazione}
+
+Per ottenere una verifica conclusiva e priva di ambiguità era necessario misurare gli effetti al \textbf{secondo ordine} in $\beta = v/c$:
+\begin{equation*}
+    \text{I ordine:} \quad \frac{v}{c} = 10^{-4}
+    \qquad\qquad
+    \text{II ordine:} \quad \left(\frac{v}{c}\right)^{2} = 10^{-8}
+\end{equation*}
+avendo posto $v \approx 3 \cdot 10^4 \, \mathrm{m/s}$ e $c \approx 3 \cdot 10^8 \, \mathrm{m/s}$. La precisione di $10^{-8}$ è il livello necessario per trovare una risposta definitiva e confermare una delle ipotesi precedenti.
+
+\subsection{L'Esperimento di Michelson e Morley}
+
+\begin{notastorica}{1881--1887}
+Nel 1881, e poi in modo definitivo nel 1887 insieme a Morley, \textbf{Michelson} conduce l'esperimento sfruttando l'\textbf{interferometria}, l'unica tecnica dell'epoca capace di raggiungere la sensibilità del secondo ordine richiesta.
+\end{notastorica}
+
+\begin{definizione}{Frange d'Interferenza}
+Le \textbf{frange d'interferenza} sono l'alternanza fra zone di luce e zone di ombra osservate al telescopio, dovute allo sfasamento temporale $\Delta t$ fra i due raggi ricombinati. Le due cause dello sfasamento sono:
+\begin{equation*}
+    \ell_1 \neq \ell_2
+    \qquad \text{e} \qquad
+    c'_1 \neq c'_2
+\end{equation*}
+cioè la disuguaglianza dei bracci e la diversa velocità apparente della luce lungo i due percorsi.
+\end{definizione}
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}[>=stealth, scale=1.15]
+        % --- Sorgente S
+        \fill[boxatt!75] (-3.1,0) circle (3pt);
+        \foreach \a in {-40,-20,0,20,40} {
+            \draw[boxatt!75, thick] (\a:0.16) ++(-3.1,0) -- ++(\a:0.22);
+        }
+        \node[above, font=\small\bfseries, boxatt] at (-3.1,0.3) {$S$};
+        \draw[very thick, boxatt!75] (-2.75,0) -- (-0.4,0);
+
+        % --- Specchio semiriflettente M (a 45 gradi)
+        \draw[line width=2.2pt, mypen!75] (-0.42,-0.42) -- (0.42,0.42);
+        \node[below left, font=\small\bfseries, mypen] at (-0.2,-0.28) {$M$};
+
+        % --- Braccio 1: orizzontale, verso M1
+        \draw[very thick, boxoss] (0,0) -- (2.9,0);
+        \draw[line width=2.4pt, mypen!75] (3.05,-0.6) -- (3.05,0.6);
+        \node[right, font=\small\bfseries, mypen] at (3.15,0) {$M_1$};
+        \draw[->, thick, boxoss] (1.15,0.3) -- (1.95,0.3) node[right, font=\scriptsize] {$1$};
+        \draw[->, thick, boxoss] (1.95,-0.3) -- (1.15,-0.3) node[left, font=\scriptsize] {$1'$};
+        \node[below, font=\small, boxoss] at (1.55,-0.62) {$\ell_1$};
+
+        % --- Braccio 2: verticale, verso M2
+        \draw[very thick, boxese] (0,0) -- (0,2.6);
+        \draw[line width=2.4pt, mypen!75] (-0.6,2.75) -- (0.6,2.75);
+        \node[above, font=\small\bfseries, mypen] at (0,2.85) {$M_2$};
+        \draw[->, thick, boxese] (0.3,1.05) -- (0.3,1.85) node[above, font=\scriptsize] {$2$};
+        \draw[->, thick, boxese] (-0.3,1.85) -- (-0.3,1.05) node[below, font=\scriptsize] {$2'$};
+        \node[left, font=\small, boxese] at (-0.62,1.5) {$\ell_2$};
+
+        % --- Telescopio T
+        \draw[very thick, notered] (0,0) -- (0,-1.7);
+        \draw[line width=1.2pt, mypen!75, fill=mypen!8] (-0.42,-2.25) rectangle (0.42,-1.7);
+        \node[below, font=\small\bfseries, mypen] at (0,-2.32) {$T$};
+
+        % --- Vento d'etere
+        \draw[->, line width=1.4pt, boxatt] (-3.1,-1.5) -- (-1.8,-1.5);
+        \node[below, font=\scriptsize\bfseries, boxatt, align=center] at (-2.45,-1.58) {vento d'etere \; $\vec{v}$};
+
+        % --- Frange d'interferenza
+        \begin{scope}[xshift=5.3cm, yshift=-0.3cm]
+            \draw[line width=1.1pt, mypen!75] (0,0) circle (1.0);
+            \begin{scope}
+                \clip (0,0) circle (0.98);
+                \foreach \i in {-0.85,-0.55,-0.25,0.05,0.35,0.65} {
+                    \fill[mypen!45] (\i,-1) rectangle (\i+0.15,1);
+                }
+            \end{scope}
+            \node[above, font=\scriptsize\bfseries, align=center] at (0,1.1) {frange d'interferenza};
+        \end{scope}
+        \draw[->, thick, mypen!60, dashed] (0.55,-2.0) to[out=8, in=205] (4.2,-0.75);
+    \end{tikzpicture}
+    \caption{Schema dell'interferometro di Michelson. La sorgente $S$ invia il raggio sullo specchio semiriflettente $M$, che lo divide nei due raggi $1$ e $2$ diretti agli specchi $M_1$ e $M_2$ lungo i bracci $\ell_1$ e $\ell_2$; i raggi riflessi $1'$ e $2'$ si ricombinano nel telescopio $T$, dove producono le frange d'interferenza.}
+\end{figure}
+
+\paragraph{Calcolo dei tempi di propagazione.}
+Si prova a isolare la seconda causa, calcolando esplicitamente i due tempi di percorrenza.
+
+\textbf{Raggio 1 --- parallelo al vento d'etere.} Il percorso $1 + 1' \to 2\ell_1$ viene compiuto in parte concorde e in parte discorde al vento d'etere di velocità $v$:
+\begin{equation}
+    t_1 = \frac{\ell_1}{c+v} + \frac{\ell_1}{c-v}
+    = \frac{\ell_1(c-v) + \ell_1(c+v)}{c^2 - v^2}
+    = \boxed{\frac{2c\,\ell_1}{c^2 - v^2}}
+\end{equation}
+calcolato nel sistema della Terra (dove $t_1 = t'_1$).
+
+\textbf{Raggio 2 --- ortogonale al vento d'etere.} Il percorso $2 + 2' \to 2\ell_2$ richiede alcuni passaggi intermedi: nel tempo $t_2/2$ la luce percorre l'ipotenusa di un triangolo rettangolo i cui cateti sono il braccio $\ell_2$ e lo spostamento $v\,t_2/2$ dell'apparato:
+\begin{equation}
+    \left(\frac{c\,t_2}{2}\right)^{\!2} = \ell_2^2 + \left(\frac{v\,t_2}{2}\right)^{\!2}
+    \implies (c^2 - v^2)\, t_2^2 = 4\ell_2^2
+    \implies t_2^2 = \frac{4\ell_2^2}{c^2 - v^2}
+\end{equation}
+da cui
+\begin{equation}
+    t_2 = \boxed{\frac{2\ell_2}{c} \cdot \frac{1}{\sqrt{1 - \dfrac{v^2}{c^2}}}}
+\end{equation}
+calcolato nel sistema dell'etere (dove $t_2 = t'_2$).
+
+Secondo Galileo lo sfasamento vale allora
+\begin{equation}
+    \Delta t = \Delta t' = t_2 - t_1 = \frac{2}{c}
+    \left[ \frac{\ell_2}{\sqrt{1 - \dfrac{v^2}{c^2}}} - \frac{\ell_1}{1 - \dfrac{v^2}{c^2}} \right]
+\end{equation}
+
+\paragraph{Rotazione dell'interferometro.}
+Si ruota ora l'apparato di $\theta = \pi/2$: il raggio $1$ diventa ortogonale al vento d'etere e il raggio $2$ parallelo. Di conseguenza $\ell_1$ e $\ell_2$ si scambiano, e con essi $t_1$ e $t_2$:
+\begin{equation}
+    \Delta t^{\,r} = \Delta t'^{\,r} = t_2^{\,r} - t_1^{\,r} = t_1 - t_2 = \frac{2}{c}
+    \left[ \frac{\ell_2}{1 - \dfrac{v^2}{c^2}} - \frac{\ell_1}{\sqrt{1 - \dfrac{v^2}{c^2}}} \right]
+\end{equation}
+
+\paragraph{Differenza dei tempi di propagazione.}
+La grandezza effettivamente misurabile è la variazione dello sfasamento indotta dalla rotazione. Posto $\beta = v/c$ e sviluppando in serie per $x \ll 1$
+\begin{equation*}
+    \frac{1}{1-x} \approx 1 + x
+    \qquad\qquad
+    \frac{1}{\sqrt{1-x}} \approx 1 + \frac{x}{2}
+\end{equation*}
+si ottiene
+\begin{align}
+    \Delta t^{\,r} - \Delta t
+    &= \frac{2}{c} \left[ \frac{\ell_2}{1-\beta^2} - \frac{\ell_1}{\sqrt{1-\beta^2}}
+       - \frac{\ell_2}{\sqrt{1-\beta^2}} + \frac{\ell_1}{1-\beta^2} \right] \notag \\[4pt]
+    &\approx \frac{2}{c} \left[ \ell_2(1+\beta^2) - \ell_1\left(1+\frac{\beta^2}{2}\right)
+       - \ell_2\left(1+\frac{\beta^2}{2}\right) + \ell_1(1+\beta^2) \right] \notag \\[4pt]
+    &= \boxed{\frac{(\ell_1 + \ell_2)}{c} \cdot \left(\frac{v}{c}\right)^{\!2}}
+\end{align}
+
+\begin{osservazione}{Conclusioni dell'Esperimento}
+Il fattore $\Delta t^{\,r} - \Delta t$ di sfasamento \textbf{non fornisce alcuna prova} che l'etere esista: ruotando l'interferometro, i due raggi non si sfasano a sufficienza.
+
+Detto $\Delta N$ il numero di frange che attraversano l'origine del riferimento del telescopio durante la rotazione, il risultato sperimentale è
+\begin{equation*}
+    \Delta N = \frac{1}{100} \approx 0
+    \qquad \text{contro il valore previsto} \qquad
+    \Delta N = \frac{4}{10}
+\end{equation*}
+(per bracci di lunghezza $\approx 11 \, \mathrm{m}$). Data la piccolezza di $\Delta N$, si è concluso che \textbf{non c'è nessuno spostamento}. L'esperimento è stato ripetuto nei successivi cinquant'anni, ma la conclusione è sempre rimasta la stessa.
+\end{osservazione}
+
+Di fronte a questo risultato furono avanzate tre interpretazioni:
+\begin{enumerate}[label=\textbf{\alph*)}]
+    \item \textbf{Trascinamento dell'etere:} $\Delta N = 0$ è corretto, le ipotesi sono corrette e l'etere è ``locale'', trascinato da ogni corpo di massa finita; pertanto $v = 0$ e non esiste alcun vento d'etere.
+    \item \textbf{Contrazione di Lorentz--Fitzgerald:} $\Delta N = 0$ è corretto, le ipotesi sono corrette, ma nel corso del moto fra Terra ed etere le lunghezze parallele a $\vec{v}$ si contraggono di un fattore $\sqrt{1-\beta^2}$, mentre quelle perpendicolari restano invariate.
+    \item \textbf{Necessità di riformulare le trasformazioni:} $\Delta N = 0$ è corretto, ma le ipotesi sono sbagliate e l'etere \textbf{non esiste} (non c'è vento d'etere perché $v=0$ non ha senso: non c'è nulla rispetto a cui misurarla).
+\end{enumerate}
+
+Le interpretazioni \textbf{a)} e \textbf{b)} risultano contraddittorie o non applicabili ai diversi esperimenti condotti: l'unica plausibile è la \textbf{c)}.
+
+\section{I Postulati della Relatività Ristretta}
+
+\begin{teorema}{Postulati di Einstein}
+La relatività ristretta poggia su due soli postulati:
+\begin{enumerate}
+    \item \textbf{Invarianza delle leggi fisiche:} le leggi della fisica sono invarianti in tutti i sistemi di riferimento inerziali.
+    \item \textbf{Invarianza di $c$:} la velocità della luce nel vuoto ha lo stesso valore $c$ in tutti i sistemi di riferimento inerziali.
+\end{enumerate}
+\end{teorema}
+
+Le conseguenze ribaltano punto per punto quelle galileiane:
+\begin{enumerate}
+    \item \textbf{Dilatazione degli intervalli temporali:} da $t_a = t'_a/\gamma$ e $t_b = t'_b/\gamma$ segue $\Delta t > \Delta t'$.
+    \item \textbf{Contrazione degli intervalli spaziali:} da $x_a = x'_a/\gamma$ e $x_b = x'_b/\gamma$ segue $\Delta x < \Delta x'$.
+    \item \textbf{Inesistenza di un sistema assoluto privilegiato:} tutte le velocità sono relative ai vari sistemi. Questo è l'unico punto che la relatività ristretta eredita intatto dalla relatività galileiana.
+\end{enumerate}
+
+\subsection{La Relatività della Simultaneità}
+
+\begin{osservazione}{La Simultaneità Dipende dal Sistema di Riferimento}
+Si sincronizzano gli orologi in modo che $t_a = t_b = 0$, mediante un segnale inviato dall'origine $O$.
+\begin{itemize}[leftmargin=1.4em]
+    \item \textbf{$S$ e $S'$ in quiete:} $O$ vede arrivare il segnale da $AA'$ nello stesso momento di quello da $BB'$ ($t_a = t_b$); lo stesso vale per $O'$ ($t'_a = t'_b$). Gli eventi $A$, $B$, $A'$, $B'$ sono \textbf{simultanei} sia in $S$ sia in $S'$.
+    \item \textbf{$S$ in quiete, $S'$ in moto con velocità $\vec{v}$:} $O$ vede ancora arrivare i due segnali nello stesso momento ($t_a = t_b$), ma $O'$ vede arrivare \textbf{prima} $BB'$ e \textbf{poi} $AA'$ ($t'_a > t'_b$). Gli eventi $A$ e $B$ sono simultanei in $S$, mentre $A'$ e $B'$ \textbf{non} lo sono in $S'$.
+\end{itemize}
+\end{osservazione}
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}[>=stealth, scale=0.95]
+        % --- Pannello (a): entrambi in quiete
+        \begin{scope}
+            \draw[thick, mypen] (0,0) rectangle (4.2,0.75);
+            \draw[thick, boxese] (0,0.75) rectangle (4.2,1.5);
+            \node[left, font=\small\bfseries, mypen] at (-0.1,0.375) {$S$};
+            \node[left, font=\small\bfseries, boxese] at (-0.1,1.125) {$S'$};
+            \foreach \x/\lab in {0.5/A, 2.1/O, 3.7/B} {
+                \fill[mypen] (\x,0.375) circle (1.6pt) node[below, font=\scriptsize] {$\lab$};
+            }
+            \foreach \x/\lab in {0.5/{A'}, 2.1/{O'}, 3.7/{B'}} {
+                \fill[boxese] (\x,1.125) circle (1.6pt) node[above, font=\scriptsize] {$\lab$};
+            }
+            \draw[->, thick, notered] (2.1,1.125) -- (0.75,1.125);
+            \draw[->, thick, notered] (2.1,1.125) -- (3.45,1.125);
+            \node[font=\small, align=center] at (2.1,-0.95) {(a) $S$ e $S'$ in quiete\\$t_a = t_b$, \; $t'_a = t'_b$};
+        \end{scope}
+        % --- Pannello (b): S' in moto
+        \begin{scope}[xshift=6.4cm]
+            \draw[thick, mypen] (0,0) rectangle (4.2,0.75);
+            \draw[thick, boxese] (0,0.75) rectangle (4.2,1.5);
+            \node[left, font=\small\bfseries, mypen] at (-0.1,0.375) {$S$};
+            \node[left, font=\small\bfseries, boxese] at (-0.1,1.125) {$S'$};
+            \foreach \x/\lab in {0.5/A, 2.1/O, 3.7/B} {
+                \fill[mypen] (\x,0.375) circle (1.6pt) node[below, font=\scriptsize] {$\lab$};
+            }
+            \foreach \x/\lab in {0.5/{A'}, 2.1/{O'}, 3.7/{B'}} {
+                \fill[boxese] (\x,1.125) circle (1.6pt) node[above, font=\scriptsize] {$\lab$};
+            }
+            \draw[->, thick, notered] (2.1,1.125) -- (0.75,1.125);
+            \draw[->, thick, notered] (2.1,1.125) -- (3.45,1.125);
+            \draw[->, very thick, boxatt] (4.45,1.125) -- (5.35,1.125)
+                node[above, font=\scriptsize\bfseries, midway] {$\vec{v}$};
+            \node[font=\small, align=center] at (2.1,-0.95) {(b) $S'$ in moto\\$t_a = t_b$, \; $t'_a > t'_b$};
+        \end{scope}
+    \end{tikzpicture}
+    \caption{La relatività della simultaneità. Due eventi simultanei nel sistema $S$ non lo sono più nel sistema $S'$ in moto: l'osservatore $O'$ va incontro al segnale proveniente da $B$ e si allontana da quello proveniente da $A$.}
+\end{figure}
+
+\section{Le Trasformazioni di Lorentz}
+
+\subsection{Derivazione}
+
+Consideriamo l'istante $t = t' = 0$, nel quale le origini $O$ e $O'$ dei due sistemi inerziali coincidono, e supponiamo che da esse venga inviato un segnale luminoso verso un punto $A$. Il segnale si propaga con velocità $c$ in entrambi i sistemi (secondo postulato), per cui
+\begin{equation}
+    \overline{OA}^2 = \vec{r}^{\;2} = c^2 t^2 = x^2 + y^2 + z^2
+    \qquad\qquad
+    \overline{O'A}^2 = \vec{r}^{\;\prime 2} = c^2 t'^2 = x'^2 + y'^2 + z'^2
+\end{equation}
+
+Poiché il boost è diretto lungo $\hat{x}$, le direzioni trasverse non sono coinvolte: $y' = y$ e $z' = z$. Le due coordinate rimanenti devono invece trasformarsi in modo lineare e generale:
+\begin{equation*}
+    x' = ax + by + dz + ft
+    \qquad\qquad
+    t' = gx + hy + mz + nt
+\end{equation*}
+Dato che $x'$ ``scorre'' solo lungo $x$, mentre $y$ e $z$ restano inalterate, i coefficienti $b$, $d$, $h$, $m$ sono nulli e resta
+\begin{equation*}
+    x' = ax + ft
+    \qquad\qquad
+    t' = gx + nt
+\end{equation*}
+
+Sappiamo inoltre che un punto solidale con $S'$, che ha $x = vt$ in $S$, ha $x' = 0$ in $S'$; quindi
+\begin{equation*}
+    x' = 0 = ax + ft \implies a(vt) = -ft \implies f = -av
+\end{equation*}
+e sostituendo si ottiene la forma cercata
+\begin{equation}
+    x' = ax - avt = a(x - vt)
+\end{equation}
+
+Imponiamo ora l'invarianza del fronte d'onda luminoso, sostituendo $x'$ e $t'$ in $\vec{r}^{\;\prime 2} = c^2t'^2$:
+\begin{equation}
+    c^2 (gx + nt)^2 = a^2 (x - vt)^2 + y^2 + z^2
+\end{equation}
+Sviluppando i quadrati:
+\begin{equation*}
+    (cg)^2 x^2 + (cn)^2 t^2 + 2c^2 gn \, xt = a^2 x^2 + (av)^2 t^2 - 2a^2 v \, xt + y^2 + z^2
+\end{equation*}
+e raccogliendo i termini omologhi:
+\begin{equation}
+    \underbrace{\left(c^2 n^2 - a^2 v^2\right)}_{\to \; c^2} t^2 =
+    \underbrace{\left(a^2 - c^2 g^2\right)}_{\to \; 1} x^2 + y^2 + z^2
+    \underbrace{- \, 2\left(c^2 gn + a^2 v\right)}_{\to \; 0} xt
+\end{equation}
+
+Il confronto con $c^2t^2 = x^2+y^2+z^2$ fornisce il sistema dei tre vincoli:
+\begin{equation}
+    \begin{cases}
+        c^2 n^2 - a^2 v^2 = c^2 & \implies a^2 = c^2(n^2-1)/v^2 \\[2pt]
+        a^2 - c^2 g^2 = 1 & \implies a^2 = 1 + c^2 g^2 \\[2pt]
+        c^2 gn + a^2 v = 0 & \implies g = -a^2 v / (c^2 n)
+    \end{cases}
+\end{equation}
+
+Sostituendo la terza nella seconda e poi nella prima, si ricava $c^2 = (c^2 - v^2)n^2$, ossia
+\begin{equation}
+    n = \frac{1}{\sqrt{1 - v^2/c^2}}
+\end{equation}
+e di conseguenza
+\begin{equation}
+    a^2 = \frac{c^2}{v^2}\left(\frac{c^2}{c^2-v^2} - 1\right)
+        = \frac{c^2}{v^2}\left(\frac{\cancel{c^2} - \cancel{c^2} + v^2}{c^2-v^2}\right)
+        = \frac{c^2}{c^2-v^2}
+    \implies a = \frac{1}{\sqrt{1-v^2/c^2}} = n
+\end{equation}
+\begin{equation}
+    g = -\frac{a^2 v}{c^2 n} = -\frac{a^2 v}{c^2 a} = -\frac{1}{\sqrt{1-v^2/c^2}} \cdot \frac{v}{c^2}
+\end{equation}
+
+\begin{definizione}{Fattore di Lorentz}
+Si definisce \textbf{fattore di Lorentz} la quantità adimensionale
+\begin{equation}
+    \gamma = \frac{1}{\sqrt{1 - \dfrac{v^2}{c^2}}} = \frac{1}{\sqrt{1-\beta^2}}
+    \qquad \text{con} \qquad \beta = \frac{v}{c}
+\end{equation}
+Esso soddisfa sempre $\gamma \geq 1$, con $\gamma = 1$ se e solo se $v = 0$.
+\end{definizione}
+
+\begin{formulario}{Trasformazioni di Lorentz}
+\begin{minipage}[t]{0.47\textwidth}
+\centering \textbf{Da $S$ a $S'$ (dirette)}
+\begin{equation*}
+    \begin{cases}
+        x' = \gamma\,(x - vt) \\
+        y' = y \\
+        z' = z \\
+        t' = \gamma\left(t - \dfrac{v}{c^2}x\right)
+    \end{cases}
+\end{equation*}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.47\textwidth}
+\centering \textbf{Da $S'$ a $S$ (inverse)}
+\begin{equation*}
+    \begin{cases}
+        x = \gamma\,(x' + vt') \\
+        y = y' \\
+        z = z' \\
+        t = \gamma\left(t' + \dfrac{v}{c^2}x'\right)
+    \end{cases}
+\end{equation*}
+\end{minipage}
+\vspace{4pt}
+\end{formulario}
+
+\begin{osservazione}{Simmetria delle Trasformazioni}
+Le trasformazioni inverse si ottengono da quelle dirette scambiando gli apici e sostituendo $v \to -v$: nessuno dei due sistemi è privilegiato rispetto all'altro, in pieno accordo con il primo postulato.
+\end{osservazione}
+
+\subsection{Trasformazioni Relativistiche per la Velocità}
+
+\paragraph{Caso $\vec{u} \parallel \hat{x}$ (velocità del corpo parallela al boost).}
+Siano $\vec{V}$ il boost di $S'$ rispetto a $S$, $\vec{u}\,'$ la velocità del corpo $A$ rispetto a $S'$ e $\vec{u}$ quella rispetto a $S$. Col passare del tempo si ha $x' = u' t'$; sostituendo le trasformazioni di Lorentz $x' = \gamma(x-vt)$ e $t' = \gamma\left(t - \frac{v}{c^2}x\right)$:
+\begin{equation*}
+    \cancel{\gamma}\,(x - vt) = \cancel{\gamma}\left(t - \frac{v}{c^2}x\right) u'
+    \implies x - vt = u't - \frac{u'v}{c^2}x
+    \implies x\left(1 + \frac{u'v}{c^2}\right) = (u'+v)\,t
+\end{equation*}
+da cui
+\begin{equation*}
+    x = \frac{(u'+v)}{1 + \dfrac{vu'}{c^2}}\, t
+\end{equation*}
+Sapendo che nel sistema $S$ vale $x = ut$, eguagliamo le due espressioni:
+\begin{equation}
+    \boxed{\;u_x = \frac{u'_x + v}{1 + \dfrac{v\,u'_x}{c^2}}\;}
+    \qquad \text{lungo } \hat{x}
+\end{equation}
+
+\paragraph{Caso $\vec{u} \perp \hat{x}$ (velocità del corpo perpendicolare al boost).}
+Col passare del tempo $\Delta y' = u'_y \Delta t'$, ma $\Delta y' = \Delta y$ perché il boost non ha componente lungo $\hat{y}$; quindi $u'_y \Delta t' = u_y \Delta t$. Sostituendo la trasformazione del tempo:
+\begin{align*}
+    u'_y \left[ \gamma\left(t_2 - \frac{v}{c^2}x_2\right) - \gamma\left(t_1 - \frac{v}{c^2}x_1\right) \right] &= u_y (t_2 - t_1) \\
+    u'_y \, \gamma \left( \Delta t - \frac{v}{c^2}\Delta x \right) &= u_y \, \Delta t
+\end{align*}
+e dividendo per $\Delta t$:
+\begin{equation}
+    \boxed{\;u_y = \gamma \, u'_y \left(1 - \frac{v}{c^2}u_x\right)\;}
+    \qquad \text{lungo } \hat{y}
+\end{equation}
+Per $u_z$ si segue lo stesso ragionamento, ottenendo
+\begin{equation}
+    \boxed{\;u_z = \gamma \, u'_z \left(1 - \frac{v}{c^2}u_x\right)\;}
+    \qquad \text{lungo } \hat{z}
+\end{equation}
+
+\begin{attenzione}{Le Componenti Trasverse Cambiano Comunque}
+Anche se le \emph{lunghezze} trasverse restano invariate ($\Delta y' = \Delta y$), le \emph{velocità} trasverse si trasformano: ciò accade perché a cambiare è l'intervallo di tempo $\Delta t$ al denominatore, non lo spostamento al numeratore.
+\end{attenzione}
+
+\subsection{Invarianti e Velocità Limite}
+
+Abbiamo visto che $c^2t^2 = x^2+y^2+z^2$ e $c^2t'^2 = x'^2+y'^2+z'^2$: dividendo per $t^2$ e $t'^2$ si ricava
+\begin{equation}
+    \frac{c^2t^2}{t^2} = \frac{x^2}{t^2} + \frac{y^2}{t^2} + \frac{z^2}{t^2} = u_x^2 + u_y^2 + u_z^2
+    \qquad\qquad
+    \frac{c^2t'^2}{t'^2} = u_x'^2 + u_y'^2 + u_z'^2
+\end{equation}
+poiché il segnale emesso da $O$ è luminoso e dunque si muove a $c$. Ciò vale sia se $\vec{u}$ è costante sia se non lo è: $c$ è \textbf{invariante}.
+
+Dalle trasformazioni relativistiche per la velocità emerge dunque che se $u = c$ allora anche $u' = c$. Inoltre:
+\begin{itemize}
+    \item per $v \ll c$ si ha $\gamma \to 1$, e le trasformazioni di Lorentz si riducono a quelle di Galileo (\textbf{principio di corrispondenza});
+    \item per $v \to c$ si ha $\gamma \to \infty$;
+    \item per $v > c$ (impossibile) si avrebbe $\gamma \to n/i$, cioè ci si sposterebbe nel campo complesso $\mathbb{C}$.
+\end{itemize}
+Pertanto $c$ è la \textbf{velocità limite} dell'universo.
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}[>=stealth, scale=1.0]
+        \begin{scope}
+            \draw[->, thick, mypen] (0,0) -- (4.6,0) node[right, font=\small] {$v/c$};
+            \draw[->, thick, mypen] (0,0) -- (0,3.4) node[above, font=\small] {$\gamma$};
+            \draw[dashed, mypen!55] (0,0.8) -- (4.3,0.8);
+            \draw[dashed, notered!70] (4.0,0) -- (4.0,3.3) node[above, font=\scriptsize, notered] {asintoto};
+            \node[left, font=\scriptsize] at (0,0.8) {$1$};
+            \node[below, font=\scriptsize] at (4.0,-0.05) {$1$};
+            \draw[very thick, boxoss, domain=0:0.968, samples=160, smooth, variable=\t]
+                plot ({\t*4.0}, {0.8/sqrt(1-\t*\t)});
+        \end{scope}
+        \begin{scope}[xshift=7.0cm]
+            \draw[->, thick, mypen] (0,0) -- (4.6,0) node[right, font=\small] {$v/c$};
+            \draw[->, thick, mypen] (0,0) -- (0,3.4) node[above, font=\small] {$1/\gamma$};
+            \draw[dashed, mypen!55] (0,2.6) -- (4.0,2.6);
+            \node[left, font=\scriptsize] at (0,2.6) {$1$};
+            \node[below, font=\scriptsize] at (4.0,-0.05) {$1$};
+            \draw[very thick, boxese, domain=0:1, samples=160, smooth, variable=\t]
+                plot ({\t*4.0}, {2.6*sqrt(max(1-\t*\t,0))});
+        \end{scope}
+    \end{tikzpicture}
+    \caption{Andamento del fattore di Lorentz $\gamma$ e del suo reciproco $1/\gamma$ in funzione di $\beta = v/c$. Il fattore $\gamma$ diverge per $v \to c$, mentre $1/\gamma$ (il fattore di contrazione) si annulla nello stesso limite.}
+\end{figure}
+
+\begin{definizione}{Intervallo Spazio-Temporale}
+Si definisce \textbf{intervallo spazio-temporale} la quantità
+\begin{equation}
+    \Delta \sigma^2 = c^2 \Delta t^2 - \Delta x^2 - \Delta y^2 - \Delta z^2
+\end{equation}
+Essa è \textbf{invariante} sotto trasformazioni di Lorentz: pur non essendo più assoluti né il tempo né lo spazio separatamente, esiste una loro combinazione che tutti gli osservatori inerziali misurano identica.
+\end{definizione}
+
+\section{Conseguenze Cinematiche}
+
+\subsection{Contrazione delle Lunghezze}
+
+Consideriamo un oggetto che ha lunghezza $L_0$ in $S'$ e lunghezza $L$ in $S$, con
+\begin{equation*}
+    L_0 = x'_B - x'_A
+    \qquad\qquad
+    L = x_B - x_A
+\end{equation*}
+Sostituendo le trasformazioni di Lorentz per $x'_B$ e $x'_A$:
+\begin{align*}
+    x'_B = \gamma(x_B - vt_B) \, , \qquad & x'_A = \gamma(x_A - vt_A) \\
+    x'_B - x'_A = \gamma\big(x_B - x_A - v(t_B - t_A)\big) \implies & \; L_0 = \gamma\left(L - v\Delta t\right)
+\end{align*}
+Ma $\Delta t = 0$, perché le posizioni $x_B$ e $x_A$ vengono misurate nel medesimo istante, per cui
+\begin{equation}
+    \boxed{\;L = \frac{L_0}{\gamma}\;}
+\end{equation}
+
+\begin{definizione}{Lunghezza Propria e Lunghezza Contratta}
+\begin{itemize}[leftmargin=1.4em]
+    \item La lunghezza del corpo misurata nel sistema \textbf{in quiete rispetto al corpo} ($S'$) si dice \textbf{lunghezza propria} $L_0$: essa è definibile univocamente.
+    \item La lunghezza del corpo misurata nel sistema \textbf{in moto rispetto al corpo} ($S$) si dice \textbf{lunghezza contratta} $L$.
+\end{itemize}
+Vale sempre $L \leq L_0$: la lunghezza propria è la massima misurabile.
+\end{definizione}
+
+\begin{attenzione}{Solo le Lunghezze Parallele al Boost si Contraggono}
+La contrazione riguarda esclusivamente la direzione parallela al boost; per quelle ortogonali vale
+\begin{equation*}
+    L^{\perp} = L_0^{\perp}
+\end{equation*}
+\end{attenzione}
+
+\subsection{Dilatazione dei Tempi}
+
+Consideriamo un evento $E$ che in $S'$ ha luogo nello stesso posto, mentre in $S$ ha luogo in due posizioni diverse: $E(A) = $ inizio ed $E(B) = $ fine. Detto $T_0 = t'_B - t'_A$ l'intervallo misurato in $S'$ e $T = t_B - t_A$ quello misurato in $S$, sostituiamo le trasformazioni di Lorentz:
+\begin{align*}
+    t_B = \gamma\left(t'_B + \frac{v}{c^2}x'_B\right) \, , \qquad & t_A = \gamma\left(t'_A + \frac{v}{c^2}x'_A\right) \\
+    t_B - t_A = \gamma\left(t'_B - t'_A + \frac{v}{c^2}(x'_B - x'_A)\right) \implies & \; T = \gamma\left(T_0 + \frac{v}{c^2}\Delta x'\right)
+\end{align*}
+Ma $\Delta x' = 0$, perché $x'_A = x'_B$ nel momento in cui l'evento comincia e finisce, per cui
+\begin{equation}
+    \boxed{\;T = \gamma \, T_0\;}
+\end{equation}
+
+\begin{definizione}{Tempo Proprio e Tempo Dilatato}
+\begin{itemize}[leftmargin=1.4em]
+    \item Il tempo misurato nel sistema \textbf{in quiete rispetto all'evento} ($S'$) si dice \textbf{tempo proprio} $T_0$: esso è definibile univocamente.
+    \item Il tempo misurato nel sistema \textbf{in moto rispetto all'evento} ($S$) si dice \textbf{tempo dilatato} $T$.
+\end{itemize}
+Vale sempre $T \geq T_0$: il tempo proprio è il minimo misurabile.
+\end{definizione}
+
+\begin{osservazione}{Dualità fra le Due Conseguenze}
+Contrazione delle lunghezze e dilatazione dei tempi sono \textbf{due facce dello stesso fenomeno}: entrambe discendono dalle trasformazioni di Lorentz, ed entrambe si ottengono annullando l'intervallo coniugato ($\Delta t = 0$ per le lunghezze, $\Delta x' = 0$ per i tempi). La grandezza propria --- quella misurata in quiete rispetto all'oggetto della misura --- è sempre l'unica definibile univocamente.
+\end{osservazione}
+
+\subsection{Verifica Sperimentale: il Decadimento del Muone}
+
+\begin{definizione}{Muone}
+Il \textbf{muone} $\mu$ è un leptone instabile che decade secondo
+\begin{equation}
+    \mu \longrightarrow e^{+} + \nu_e + \bar{\nu}_{\mu}
+\end{equation}
+dove $e^{+}$ è il positrone, $\nu_e$ l'elettrone neutrino e $\bar{\nu}_{\mu}$ il muone antineutrino.
+\end{definizione}
+
+Il decadimento è un processo statistico governato da due eventi:
+\begin{itemize}
+    \item \textbf{I evento:} creazione, con $N_0$ muoni prodotti;
+    \item \textbf{II evento:} decadimento, con legge $N(t) = N_0 \, e^{-t/\tau}$.
+\end{itemize}
+La probabilità che il muone \textbf{non} sia ancora decaduto all'istante $t$ è $P = e^{-t/\tau}$, dove $\tau$ è la vita media. Distinguiamo due intervalli:
+\begin{enumerate}
+    \item vita media \textbf{a riposo}: $\tau_0 = 2{,}2 \, \mu\mathrm{s}$ (sistema di quiete);
+    \item vita media \textbf{in moto}: $\tau_{\text{LAB}} = \gamma \, \tau_0$ (sistema in moto con velocità $\vec{v}$).
+\end{enumerate}
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}[>=stealth, scale=0.92]
+        % --- Sistema LAB
+        \begin{scope}
+            \node[font=\small\bfseries, mypen] at (-0.7,2.4) {LAB};
+            \draw[thick, fill=mypen!8] (0.4,0.2) rectangle (1.3,2.1);
+            \node[above, font=\scriptsize\bfseries] at (0.85,2.15) {$B$};
+            \draw[thick, fill=mypen!8] (3.7,0.2) rectangle (4.6,2.1);
+            \node[above, font=\scriptsize\bfseries] at (4.15,2.15) {$R$};
+            \draw[->, thick, notered] (-0.55,1.15) -- (0.3,1.15) node[midway, above, font=\scriptsize] {$P$};
+            \foreach \x/\y in {1.7/1.6, 2.3/1.1, 2.9/1.7, 2.1/0.7, 3.2/1.0} {
+                \fill[boxese] (\x,\y) circle (1.3pt);
+                \node[font=\tiny, boxese] at (\x+0.16,\y+0.16) {$\mu$};
+            }
+            \draw[->, thick, boxatt] (1.9,0.55) -- (3.1,0.55) node[midway, above, font=\scriptsize] {$\vec{v}$};
+            \draw[<->, thick, mypen] (1.3,-0.45) -- (3.7,-0.45);
+            \node[font=\small, mypen] at (2.5,-0.8) {$L_0$};
+            \node[font=\scriptsize, align=center] at (2.5,-1.55) {estremi fermi:\\$t_{\text{LAB}} = L_0/v$};
+        \end{scope}
+        % --- Sistema di quiete
+        \begin{scope}[xshift=7.4cm]
+            \node[font=\small\bfseries, mypen] at (-0.7,2.4) {QUIETE};
+            \draw[thick, fill=mypen!8] (0.9,0.2) rectangle (1.8,2.1);
+            \node[above, font=\scriptsize\bfseries] at (1.35,2.15) {$B$};
+            \draw[thick, fill=mypen!8] (3.2,0.2) rectangle (4.1,2.1);
+            \node[above, font=\scriptsize\bfseries] at (3.65,2.15) {$R$};
+            \foreach \x/\y in {2.1/1.6, 2.5/1.1, 2.8/1.7, 2.3/0.7} {
+                \fill[boxese] (\x,\y) circle (1.3pt);
+                \node[font=\tiny, boxese] at (\x+0.16,\y+0.16) {$\mu$};
+            }
+            \draw[->, thick, boxatt] (1.8,2.45) -- (0.9,2.45) node[midway, above, font=\scriptsize] {$-\vec{v}$};
+            \draw[->, thick, boxatt] (4.1,2.45) -- (3.2,2.45);
+            \draw[<->, thick, mypen] (1.8,-0.45) -- (3.2,-0.45);
+            \node[font=\small, mypen] at (2.5,-0.8) {$L$};
+            \node[font=\scriptsize, align=center] at (2.5,-1.55) {lunghezza contratta:\\$\tau_0' = L/v = L_0/(\gamma v)$};
+        \end{scope}
+    \end{tikzpicture}
+    \caption{L'esperimento del muone letto nei due sistemi di riferimento. I protoni $P$ colpiscono il bersaglio $B$ producendo muoni, che percorrono la distanza fino al rivelatore $R$. Nel LAB la distanza è propria ($L_0$) e il tempo dilatato; nel sistema di quiete del muone la distanza è contratta e il tempo è proprio.}
+\end{figure}
+
+\begin{esempio}{Le Due Letture del Medesimo Conteggio}
+Indichiamo con $P$ i protoni incidenti, $B$ il bersaglio, $R$ il rivelatore, $\vec{v}$ la velocità relativa fra LAB e sistema di quiete, e $\mu$ i muoni prodotti (con $N(t) = N_0$ all'istante iniziale).
+
+\textbf{(1) Nel sistema LAB} la distanza $L_0$ è misurata fra estremi fermi (lunghezza propria) e il tempo di volo è $t_{\text{LAB}} = L_0/v$; la vita media è però dilatata, $\tau_{\text{LAB}} = \gamma \tau_0$:
+\begin{equation}
+    N(t)\big|_{\text{LAB}} = N_0 \, e^{-\frac{t_{\text{LAB}}}{\tau_{\text{LAB}}}}
+    = N_0 \, e^{-\frac{L_0}{v} \cdot \frac{1}{\gamma \tau_0}}
+\end{equation}
+
+\textbf{(2) Nel sistema di quiete del muone} la vita media è quella propria $\tau_0$, ma la distanza appare contratta, $L = L_0/\gamma$, e dunque il tempo di volo è $t_0 = L/v = L_0/(\gamma v)$:
+\begin{equation}
+    N(t)\big|_{\text{quiete}} = N_0 \, e^{-\frac{t_0}{\tau_0}}
+    = N_0 \, e^{-\frac{L_0}{\gamma v} \cdot \frac{1}{\tau_0}}
+\end{equation}
+
+I due conteggi coincidono:
+\begin{equation}
+    \boxed{\;N(t)\big|_{\text{LAB}} = N(t)\big|_{\text{quiete}} = N_0 \, e^{-\frac{L_0}{\gamma v}\cdot\frac{1}{\tau_0}}\;}
+\end{equation}
+I due osservatori attribuiscono la sopravvivenza dei muoni a cause diverse --- l'uno alla dilatazione del tempo, l'altro alla contrazione dello spazio --- ma \textbf{misurano lo stesso numero di particelle}, come deve essere per un fatto oggettivo.
+\end{esempio}
+
+\subsection{Causalità e Successione Temporale}
+
+Due eventi $E(1)$ ed $E(2)$ avvengono in $S$ nell'ordine $t_1 < t_2$, cioè $t_2 - t_1 > 0$, e sono connessi da un segnale che viaggia a velocità $u \leq c$. Vale quindi
+\begin{equation}
+    x_2 - x_1 = u\,(t_2 - t_1) \leq c\,(t_2-t_1) = c\,\Delta t
+    \qquad \implies \qquad \Delta x \leq c\,\Delta t
+\end{equation}
+
+Vediamo ora quanto vale $\Delta t'$ in un altro sistema inerziale:
+\begin{equation}
+    \Delta t' = t'_2 - t'_1 = \gamma\left(t_2 - t_1 - \frac{v}{c^2}x_2 + \frac{v}{c^2}x_1\right)
+    = \gamma\left(\Delta t - \frac{v}{c^2}\Delta x\right)
+\end{equation}
+
+Sappiamo che $\Delta t > 0$: ci chiediamo se $\Delta t'$ possa essere negativo, cioè se l'ordine dei due eventi possa invertirsi. Imponendo $\Delta t' < 0$:
+\begin{equation*}
+    \gamma\left(\Delta t - \frac{v}{c^2}\Delta x\right) < 0
+    \implies \Delta t < \frac{v}{c^2}\Delta x = \frac{v}{c^2}\, u \,\Delta t
+    \implies u\,v > c^2
+\end{equation*}
+il che richiederebbe $u > c$ e $v > c$: \textbf{impossibile}, perché il segnale dovrebbe viaggiare più velocemente della luce.
+
+\begin{teorema}{Conservazione dell'Ordine Causale}
+L'ordine temporale di due eventi causalmente connessi \textbf{si mantiene} in ogni sistema di riferimento inerziale: se $t_2 > t_1$, allora $t'_2 > t'_1$ per qualunque osservatore.
+\end{teorema}
+
+\subsection{Il Cono di Luce di Minkowski}
+
+\begin{definizione}{Cono di Luce}
+Il \textbf{cono di luce di Minkowski} è il cono dello spazio-tempo delimitato dalle linee di universo di un corpo che viaggia a $c$. Esso separa tre regioni:
+\begin{itemize}[leftmargin=1.4em]
+    \item \textbf{PA --- Passato assoluto} ($t<0$): le posizioni occupate e gli eventi che influenzano il presente.
+    \item \textbf{FA --- Futuro assoluto} ($t>0$): le possibili posizioni che il corpo può assumere.
+    \item \textbf{PR --- Presente} ($t=0$): la posizione attuale, da cui si va avanti.
+\end{itemize}
+\end{definizione}
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}[>=stealth, scale=1.0]
+        % Regioni
+        \fill[boxoss!12] (0,0) -- (2.6,2.6) -- (-2.6,2.6) -- cycle;
+        \fill[boxatt!12] (0,0) -- (2.6,-2.6) -- (-2.6,-2.6) -- cycle;
+        % Assi
+        \draw[->, thick, mypen] (-3.6,0) -- (3.6,0) node[right, font=\small] {$x$};
+        \draw[->, thick, mypen] (0,-3.1) -- (0,3.1) node[above, font=\small] {$ct$};
+        % Coni di luce
+        \draw[very thick, notered] (-2.9,-2.9) -- (2.9,2.9);
+        \draw[very thick, notered] (2.9,-2.9) -- (-2.9,2.9);
+        \node[right, font=\scriptsize, notered] at (2.55,2.95) {$x = ct$};
+        \node[left, font=\scriptsize, notered] at (-2.55,2.95) {$x = -ct$};
+        % Ellissi di base
+        \draw[dashed, mypen!60] (0,2.6) ellipse (2.6 and 0.42);
+        \draw[dashed, mypen!60] (0,-2.6) ellipse (2.6 and 0.42);
+        % Etichette
+        \node[font=\small\bfseries, boxoss] at (-1.15,1.95) {FA};
+        \node[font=\scriptsize, boxoss] at (-1.15,1.55) {futuro assoluto};
+        \node[font=\small\bfseries, boxatt] at (0,-1.85) {PA};
+        \node[font=\scriptsize, boxatt] at (0,-1.42) {passato assoluto};
+        \node[font=\scriptsize, mypen!80, align=center] at (2.55,0.55) {altrove\\(non connesso)};
+        \node[font=\scriptsize, mypen!80, align=center] at (-2.55,0.55) {altrove\\(non connesso)};
+        \fill[notered] (0,0) circle (2.4pt);
+        \node[below right, font=\scriptsize\bfseries, notered] at (0.08,-0.06) {PR};
+        % Linea di universo
+        \draw[very thick, boxese, dashed] (0,0) .. controls (0.45,1.0) and (0.6,1.8) .. (0.95,2.6);
+    \end{tikzpicture}
+    \caption{Il cono di luce di Minkowski. Solo gli eventi interni al cono sono causalmente connessi con l'evento nell'origine; la regione esterna (``altrove'') raccoglie gli eventi per raggiungere i quali occorrerebbe una velocità superiore a $c$. La curva tratteggiata in verde è la \emph{linea di universo} di un corpo che accelera restando sempre all'interno del cono.}
+\end{figure}
+
+\section{Dinamica Relativistica}
+
+\subsection{Il Quadrivettore Posizione}
+
+\begin{definizione}{Quadrivettore Posizione}
+Il \textbf{quadrivettore posizione} individua la posizione di un corpo nello spazio-tempo:
+\begin{equation}
+    S = (ct,\, x,\, y,\, z) = (ct,\, \vec{x}\,) = (\underbrace{x_0}_{\text{comp. temporale}},\, \underbrace{\vec{x}}_{\text{comp. spaziali}})
+\end{equation}
+Le coordinate $(x,y,z)$ e il tempo $t$ \textbf{non sono più indipendenti}: $ct$ è la quarta dimensione, e il fattore $c$ le conferisce omogeneità dimensionale con le altre tre (essendo $[c\,t] = \mathrm{m/s} \cdot \mathrm{s} = \mathrm{m}$).
+\end{definizione}
+
+\subsection{Trasformazioni di Lorentz in Forma Matriciale}
+
+Comprimendo le quattro trasformazioni di Lorentz per $x$, $y$, $z$ e $t$ possiamo scrivere
+\begin{equation}
+    (x_0, \vec{x}\,) = \Lambda \, (x'_0, \vec{x}\,')
+\end{equation}
+dove $\Lambda$ è la \textbf{matrice di Lorentz}, che racchiude le trasformazioni. Partendo da
+\begin{equation*}
+    \begin{cases}
+        ct = \gamma\,(ct' + \beta x') \\
+        x = \gamma\,(x' + vt') \\
+        y = y' \\
+        z = z'
+    \end{cases}
+    \qquad \text{con } \beta = \frac{v}{c}
+\end{equation*}
+si ottiene esplicitamente
+\begin{equation}
+    \begin{pmatrix} x_0 \\ x \\ y \\ z \end{pmatrix}
+    =
+    \begin{pmatrix} ct \\ x \\ y \\ z \end{pmatrix}
+    = \Lambda
+    \begin{pmatrix} x'_0 \\ x' \\ y' \\ z' \end{pmatrix}
+    =
+    \begin{pmatrix}
+        \gamma c t' + \beta\gamma x' \\
+        \gamma v t' + \gamma x' \\
+        y' \\ z'
+    \end{pmatrix}
+\end{equation}
+
+\begin{formulario}{Matrici di Lorentz}
+\begin{minipage}[t]{0.47\textwidth}
+\centering \textbf{Da $S'$ a $S$}
+\begin{equation*}
+    \Lambda =
+    \begin{pmatrix}
+        \gamma & \beta\gamma & 0 & 0 \\
+        \beta\gamma & \gamma & 0 & 0 \\
+        0 & 0 & 1 & 0 \\
+        0 & 0 & 0 & 1
+    \end{pmatrix}
+\end{equation*}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.47\textwidth}
+\centering \textbf{Da $S$ a $S'$}
+\begin{equation*}
+    \Lambda^{-1} =
+    \begin{pmatrix}
+        \gamma & -\beta\gamma & 0 & 0 \\
+        -\beta\gamma & \gamma & 0 & 0 \\
+        0 & 0 & 1 & 0 \\
+        0 & 0 & 0 & 1
+    \end{pmatrix}
+\end{equation*}
+\end{minipage}
+\vspace{4pt}
+\end{formulario}
+
+\subsection{Il Quadriprodotto Scalare}
+
+Dati due quadrivettori $A = (A_0, \vec{A}\,) = (A_0, A_x, A_y, A_z)$ e $B = (B_0, \vec{B}\,) = (B_0, B_x, B_y, B_z)$, il loro prodotto scalare si costruisce con la \textbf{metrica di Minkowski}:
+\begin{equation}
+    A \cdot B =
+    \begin{pmatrix} A_0 & A_x & A_y & A_z \end{pmatrix}
+    \begin{pmatrix}
+        1 & 0 & 0 & 0 \\
+        0 & -1 & 0 & 0 \\
+        0 & 0 & -1 & 0 \\
+        0 & 0 & 0 & -1
+    \end{pmatrix}
+    \begin{pmatrix} B_0 \\ B_x \\ B_y \\ B_z \end{pmatrix}
+    = A_0 B_0 - \vec{A} \cdot \vec{B}
+    \qquad \text{in } S
+\end{equation}
+e analogamente $A' \cdot B' = A'_0 B'_0 - \vec{A}\,' \cdot \vec{B}\,'$ in $S'$.
+
+\begin{teorema}{Invarianza del Quadriprodotto Scalare}
+Il quadriprodotto scalare è \textbf{invariante sotto trasformazioni di Lorentz}:
+\begin{equation}
+    A \cdot B = A' \cdot B'
+\end{equation}
+\end{teorema}
+
+\emph{Dimostrazione.} Applicando le trasformazioni al prodotto, e osservando che $A_y B_y = A'_y B'_y$ e $A_z B_z = A'_z B'_z$ (le componenti trasverse non cambiano), basta tenere conto di $A_0 B_0$ e $A_x B_x$:
+\begin{align*}
+    A \cdot B &= A_0 B_0 - A_x B_x - \cancel{A_y B_y} - \cancel{A_z B_z} \\
+    &= \gamma^2 (A'_0 + \beta A'_x)(B'_0 + \beta B'_x) - \gamma^2 (A'_x + \beta A'_0)(B'_x + \beta B'_0) \\
+    &= \gamma^2 \Big( A'_0 B'_0 + \cancel{\beta A'_0 B'_x} + \cancel{\beta B'_0 A'_x} + \beta^2 A'_x B'_x
+       - A'_x B'_x - \cancel{\beta B'_0 A'_x} - \cancel{\beta A'_0 B'_x} - \beta^2 A'_0 B'_0 \Big) \\
+    &= \gamma^2 \left[ A'_0 B'_0 (1-\beta^2) - A'_x B'_x (1-\beta^2) \right]
+     = \gamma^2 (1-\beta^2)\,(A'_0 B'_0 - A'_x B'_x)
+\end{align*}
+Dato che $\gamma^2 = \dfrac{1}{1-\beta^2}$, si ha $\gamma^2(1-\beta^2) = 1$ e dunque
+\begin{equation}
+    \boxed{\;A_0 B_0 - A_x B_x = A'_0 B'_0 - A'_x B'_x\;}
+\end{equation}
+$\square$
+
+\subsection{Norma Quadra e Categorie di Quadrivettori}
+
+\begin{definizione}{Norma Quadra}
+La \textbf{norma quadra} di un quadrivettore (detta anche \emph{intervallo spazio-temporale di Minkowski}) è il quadriprodotto scalare del quadrivettore con sé stesso:
+\begin{equation}
+    A \cdot A = A^2 = A_0 A_0 - \vec{A} \cdot \vec{A} = A_0^2 - |\vec{A}|^2
+    \qquad \text{con } |\vec{A}|^2 = A_x^2 + A_y^2 + A_z^2
+\end{equation}
+Con lo stesso calcolo svolto per il quadriprodotto si dimostra che essa è invariante:
+\begin{equation}
+    A_0^2 - A_x^2 = A_0'^2 - A_x'^2
+\end{equation}
+\end{definizione}
+
+La norma quadra, essendo invariante, permette di classificare i quadrivettori in tre \textbf{categorie}:
+\begin{equation*}
+    A^2 > 0 \; \to \; \textbf{tempo}
+    \qquad\qquad
+    A^2 < 0 \; \to \; \textbf{spazio}
+    \qquad\qquad
+    A^2 = 0 \; \to \; \textbf{luce}
+\end{equation*}
+
+I quattro quadrivettori fondamentali della meccanica relativistica sono quello di \textbf{posizione}, di \textbf{luce}, di \textbf{velocità} e di \textbf{energia--impulso}. Per ciascuno si confronta la norma nel sistema di quiete del corpo ($A'$) con quella nel sistema in moto ($A$).
+
+\paragraph{Quadrivettore posizione: $S = (ct, x, y, z) = (x_0, \vec{x}\,)$.}
+Nel sistema in quiete rispetto al corpo si ha $A' = (A'_0, 0, 0, 0)$; nel sistema in moto, ricordando $t = \gamma t'$,
+\begin{equation*}
+    A = (A_0,\, -\gamma\beta c t',\, 0,\, 0) = (A_0,\, -\gamma v t',\, 0,\, 0) = (A_0,\, -vt,\, 0,\, 0)
+\end{equation*}
+Quindi $A'^2 = A_0'^2$ e
+\begin{equation}
+    A^2 = A_0^2 - (vt)^2 = c^2t^2 - v^2t^2 = (c^2-v^2)\,t^2
+\end{equation}
+Dato che $v < c$ si ha $c^2 - v^2 > 0$, dunque $A^2 > 0$: \textbf{categoria tempo}.
+
+\paragraph{Quadrivettore luce.}
+La luce non ha un sistema di quiete: si muove costantemente a $c$ in ogni sistema inerziale. Il quadrivettore luce nel sistema in moto ha quindi
+\begin{equation}
+    A^2 = A_0^2 - A_x^2 = c^2t^2 - c^2t^2 = 0
+\end{equation}
+poiché $c = c'$. Si ha $A^2 = 0$: \textbf{categoria luce}.
+
+\paragraph{Quadrivettore velocità.}
+Esso si scrive $V = \gamma\,(c, v_x, v_y, v_z) = \gamma\,(c, \vec{v}\,)$.
+Nel sistema di quiete $A' = \left(\frac{d(ct')}{dt'}, 0, 0, 0\right) = (c, 0, 0, 0)$; nel sistema in moto $A = \gamma\,(c, v, 0, 0)$. Quindi $A'^2 = c^2$ e
+\begin{equation}
+    A^2 = \gamma^2 c^2 - \gamma^2 v^2 = \gamma^2 (c^2 - v^2)
+        = (c^2-v^2) \cdot \frac{c^2}{c^2-v^2} = c^2
+\end{equation}
+Dato che $c^2 > 0$, si ha $A^2 > 0$: \textbf{categoria tempo}.
+
+\paragraph{Quadrivettore energia--impulso: $W = \gamma m\,(c, v_x, v_y, v_z) = \left(\dfrac{E}{c}, \vec{p}\,\right)$.}
+Nel sistema di quiete $A' = (mc, 0, 0, 0)$; nel sistema in moto $A = (\gamma mc, \gamma mv, 0, 0)$. Quindi $A'^2 = m^2c^2$ e
+\begin{equation}
+    A^2 = \gamma^2 m^2 c^2 - \gamma^2 m^2 v^2 = \gamma^2 m^2 (c^2-v^2)
+        = m^2 (c^2 - v^2) \cdot \frac{c^2}{c^2-v^2} = m^2 c^2
+\end{equation}
+Dato che $m^2c^2 > 0$, si ha $A^2 > 0$: \textbf{categoria tempo}.
+
+\begin{attenzione}{Invarianza $\neq$ Conservazione}
+Due concetti da non confondere mai:
+\begin{itemize}[leftmargin=1.4em]
+    \item \textbf{Invarianza:} stesso valore in \emph{sistemi di riferimento} diversi.
+    \item \textbf{Conservazione:} stesso valore in \emph{istanti} diversi.
+\end{itemize}
+Una grandezza può essere invariante e non conservata, conservata e non invariante, oppure entrambe le cose (come il quadrimpulso totale in un urto isolato).
+\end{attenzione}
+
+\subsection{Energia Relativistica Totale}
+
+Sappiamo che il quadrivettore energia--impulso vale $W = \left(\frac{E}{c}, \vec{p}\,\right)$ e che la sua norma quadra è $W^2 = \left(\frac{E}{c}\right)^2 - \vec{p}^{\;2} = (mc)^2$. Possiamo dunque ricavarci
+\begin{equation*}
+    \left(\frac{E}{c}\right)^{\!2} = (mc)^2 + \vec{p}^{\;2}
+    \implies E^2 = m^2c^4 + \vec{p}^{\;2}c^2
+    \implies E^2 = c^2\left(m^2c^2 + \vec{p}^{\;2}\right)
+\end{equation*}
+\begin{equation}
+    \boxed{\;E = \sqrt{m^2c^4 + \vec{p}^{\;2}c^2}\;}
+\end{equation}
+
+Esiste anche un secondo modo per esprimere l'energia relativistica, sfruttando la definizione relativistica di quantità di moto $\vec{p} = \gamma m \vec{v}$:
+\begin{align*}
+    E &= \sqrt{m^2c^4 + \vec{p}^{\;2}c^2} = \sqrt{m^2c^4 + \gamma^2 m^2 v^2 c^2}
+    \implies E^2 = m^2c^2\left(c^2 + \gamma^2 v^2\right) \\
+    E^2 &= m^2c^2\left(c^2 + \frac{c^2v^2}{c^2-v^2}\right)
+       = m^2c^2\left(\frac{c^4 - \cancel{c^2v^2} + \cancel{c^2v^2}}{c^2-v^2}\right)
+       = m^2c^4\left(\frac{c^2}{c^2-v^2}\right) = \gamma^2 m^2 c^4
+\end{align*}
+da cui la celebre relazione
+
+\begin{formulario}{Energia Relativistica Totale}
+\begin{equation}
+    E = \gamma\, m c^2
+    \qquad\qquad\qquad
+    E = \sqrt{m^2c^4 + \vec{p}^{\;2}c^2}
+\end{equation}
+Le due espressioni sono equivalenti: la prima è comoda quando si conosce la velocità, la seconda quando si conosce l'impulso (ed è l'unica utilizzabile per le particelle di massa nulla).
+\end{formulario}
+
+\begin{osservazione}{Conservazione del Quadrimpulso negli Urti}
+Se il quadrimpulso si conserva in $S$, allora si conserva anche in $S'$. Per una reazione $A + B \to C + D$:
+\begin{equation}
+    \begin{pmatrix} E_A/c \\ \vec{p}_A \end{pmatrix} + \begin{pmatrix} E_B/c \\ \vec{p}_B \end{pmatrix}
+    \longrightarrow
+    \begin{pmatrix} E_C/c \\ \vec{p}_C \end{pmatrix} + \begin{pmatrix} E_D/c \\ \vec{p}_D \end{pmatrix}
+\end{equation}
+Si separano \textbf{sempre} la componente temporale $(E_i/c)$ da quelle spaziali $(\vec{p}_i)$, ottenendo due equazioni indipendenti:
+\begin{equation}
+    \begin{cases}
+        \dfrac{E_A}{c} + \dfrac{E_B}{c} = \dfrac{E_C}{c} + \dfrac{E_D}{c} \\[8pt]
+        \vec{p}_A + \vec{p}_B = \vec{p}_C + \vec{p}_D
+    \end{cases}
+\end{equation}
+Applicando a ciascun termine la trasformazione di Lorentz $\frac{E_i}{c} = \gamma\left(\frac{E'_i}{c} + \beta p'_{i,x}\right)$ e sommando, i fattori $\gamma$ si semplificano da entrambi i lati e si ritrova la medesima legge di conservazione in $S'$.
+\end{osservazione}
+
+\subsection{Energia Cinetica Relativistica e Difetto di Massa}
+
+\begin{definizione}{Energia Cinetica Relativistica}
+L'energia cinetica relativistica è la differenza fra l'energia totale e l'energia a riposo:
+\begin{equation}
+    T = K_{\text{rel}} = E - E_0 = \gamma m c^2 - mc^2 = (\gamma - 1)\,mc^2
+\end{equation}
+dove $E$ è l'energia totale ed $E_0 = mc^2$ l'\textbf{energia a riposo}, posseduta da ogni corpo per il solo fatto di avere massa.
+\end{definizione}
+
+\begin{esempio}{La Fusione Nucleare nel Sole}
+La catena protone--protone che alimenta il Sole si riassume nella reazione
+\begin{equation}
+    4p \longrightarrow {}^{4}\mathrm{He}^{2+} + 2e^{+} + 2\nu_e
+\end{equation}
+dove $p$ è il protone, ${}^{4}\mathrm{He}^{2+}$ il nucleo di elio (elio ionizzato), $e^+$ il positrone e $\nu_e$ l'elettrone neutrino.
+
+Misurando le masse si osserva che la quantità di prodotto è \textbf{minore} di quella dei reagenti:
+\begin{equation*}
+    m(4p) > m({}^{4}\mathrm{He}^{2+}) + 2m(e^+) + 2m(\nu_e)
+\end{equation*}
+Questo accade perché una parte di $m(4p)$ viene trasformata in energia: è il \textbf{difetto di massa}.
+\end{esempio}
+
+\begin{definizione}{Difetto di Massa}
+Il difetto di massa è dovuto a una trasformazione di ``energia di massa'' (quella che la massa ha in quanto tale) in ``energia cinetica'' (quella che la massa ha quando si muove). L'energia legata alla massa a riposo è l'\textbf{energia a riposo}:
+\begin{equation}
+    E_0 = mc^2
+    \qquad \Longleftrightarrow \qquad
+    \Delta m = \frac{\Delta E}{c^2}
+\end{equation}
+\end{definizione}
+
+\subsection{Particelle senza Massa}
+
+Per la meccanica classica non ha senso parlare di corpi con $m = 0$, poiché si avrebbe $E = U + \frac{1}{2}mv^2 = 0$. Nella meccanica relativistica, invece, se $m = 0$ allora
+\begin{equation}
+    E = \gamma m c^2 = \frac{mc^2}{\sqrt{1 - \dfrac{v^2}{c^2}}} =
+    \begin{cases}
+        0 & \text{se } v < c \\
+        \text{indeterminata} & \text{se } v = c
+    \end{cases}
+\end{equation}
+L'indeterminazione si risolve usando l'altra espressione dell'energia:
+\begin{equation}
+    E = \sqrt{\cancelto{0}{m^2c^4} + \vec{p}^{\;2}c^2} = |\vec{p}\,|\,c
+\end{equation}
+per cui il quadrimpulso di una particella massless vale
+\begin{equation}
+    W_{\gamma} = \begin{pmatrix} E/c \\ \vec{p} \end{pmatrix} = \begin{pmatrix} |\vec{p}\,| \\ \vec{p} \end{pmatrix}
+\end{equation}
+Il \textbf{fotone} --- il quanto di luce --- è l'esempio fondamentale di particella senza massa.
+
+\subsection{Unità di Misura in Meccanica Relativistica}
+
+Si adottano unità di misura particolari per rendere più semplici i calcoli e le formule.
+
+\begin{definizione}{Unità Naturali}
+Si pone
+\begin{equation}
+    c = 1 \qquad (= 2{,}998 \cdot 10^8 \, \mathrm{m/s})
+\end{equation}
+In queste unità le formule si alleggeriscono notevolmente; per esempio
+\begin{equation*}
+    \frac{E}{c} \to E \, , \qquad \frac{E}{c^2} \to E \, , \qquad
+    E = \sqrt{m^2 + \vec{p}^{\;2}} \, , \qquad E = \gamma m
+\end{equation*}
+\end{definizione}
+
+\begin{definizione}{Elettronvolt}
+L'\textbf{elettronvolt} è l'energia acquistata da una particella di carica $e$ quando attraversa una differenza di potenziale di $1 \, \mathrm{V}$:
+\begin{equation}
+    1 \, \mathrm{eV} = 1{,}6 \cdot 10^{-19} \, \mathrm{J}
+\end{equation}
+\end{definizione}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{minipage}[t]{0.42\textwidth}
+\centering
+\textbf{Multipli e sottomultipli}\\[4pt]
+\begin{tabular}{@{}ll@{}}
+\toprule
+$\mathrm{meV}$ & $= 10^{-3} \, \mathrm{eV}$ \\
+$\mathrm{keV}$ & $= 10^{3} \, \mathrm{eV}$ \\
+$\mathrm{MeV}$ & $= 10^{6} \, \mathrm{eV}$ \\
+$\mathrm{GeV}$ & $= 10^{9} \, \mathrm{eV}$ \\
+$\mathrm{TeV}$ & $= 10^{12} \, \mathrm{eV}$ \\
+\bottomrule
+\end{tabular}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.52\textwidth}
+\centering
+\textbf{Masse di alcune particelle}\\[4pt]
+\begin{tabular}{@{}ll@{}}
+\toprule
+Bosone $Z^0$ & $m_{Z^0} = 91 \, \mathrm{GeV}/c^2$ \\
+Protone & $m_p = 938 \, \mathrm{MeV}/c^2$ \\
+Neutrone & $m_n = 939{,}57 \, \mathrm{MeV}/c^2$ \\
+Elettrone & $m_e = 0{,}511 \, \mathrm{MeV}/c^2$ \\
+\bottomrule
+\end{tabular}
+\end{minipage}
+\end{center}
+
+\section{Dinamica degli Urti Relativistici}
+
+\subsection{Confronto fra Urti Classici e Relativistici}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.35}
+\begin{tabular}{@{}p{0.46\textwidth} p{0.46\textwidth}@{}}
+\toprule
+\textbf{Meccanica classica} & \textbf{Meccanica relativistica} \\
+\midrule
+\textbf{Quantità di moto} \newline
+$\vec{p}_A + \vec{p}_B = \vec{p}_C + \vec{p}_D$ \quad \checkmark
+&
+\textbf{Quantità di moto} \newline
+$\vec{p}_A + \vec{p}_B = \vec{p}_C + \vec{p}_D$ \quad \checkmark \\
+\midrule
+\textbf{Quantità di massa} \newline
+$m_A + m_B = m_C + m_D$ \quad \checkmark
+&
+\textbf{Energia (totale)} \newline
+$E_A + E_B = E_C + E_D$ \quad \checkmark \\
+\midrule
+\textbf{Energia (cinetica)} \newline
+a) $K_A + K_B = K_C + K_D$ \quad \checkmark \newline
+\hspace*{1em} $\Rightarrow$ urto elastico \newline
+b) $K_A + K_B \neq K_C + K_D$ \quad \ding{55} \newline
+\hspace*{1em} $\Rightarrow$ urto anelastico \newline
+\hspace*{1em} (parzialmente o totalmente)
+&
+\textbf{Quantità di massa ed energia cinetica} \newline
+a) $m_A + m_B = m_C + m_D$ \; e \newline
+\hspace*{1em} $K_A + K_B = K_C + K_D$ \quad \checkmark \newline
+\hspace*{1em} $\Rightarrow$ urto elastico \newline
+b) $m_A + m_B \neq m_C + m_D$ \; e \newline
+\hspace*{1em} $K_A + K_B \neq K_C + K_D$ \quad \ding{55} \newline
+\hspace*{1em} $\Rightarrow$ urto anelastico \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{attenzione}{Che Cosa Cambia Davvero}
+Nella meccanica relativistica la massa \textbf{non} si conserva separatamente: a conservarsi è l'\emph{energia totale}, di cui l'energia a riposo $mc^2$ è una componente. Un urto anelastico relativistico non ``perde'' energia, la converte in massa (o viceversa).
+\end{attenzione}
+
+\begin{definizione}{Sistemi di Riferimento per gli Urti}
+I moti possono essere studiati in due sistemi privilegiati:
+\begin{itemize}[leftmargin=1.4em]
+    \item \textbf{Laboratorio (LAB):} il bersaglio è fermo (\emph{target}).
+    \item \textbf{Centro di massa (CM):} il CM è fermo e i due corpi si muovono con lo stesso $|\vec{p}\,|$ (\emph{collider}); oppure il CM si muove e i due corpi hanno $\vec{p}$ diversi (\emph{collider asimmetrico}).
+\end{itemize}
+\end{definizione}
+
+\subsection{Gli Invarianti di Mandelstam}
+
+\paragraph{Invariante $s$ (per quadrivettori di tipo tempo).}
+\begin{equation}
+    s = (W_A + W_B)^2
+\end{equation}
+
+Nel \textbf{LAB} il bersaglio $B$ è fermo, per cui (in unità naturali)
+\begin{equation*}
+    W_A + W_B \big|_{\text{LAB}} = \begin{pmatrix} E_A + E_B \\ \vec{p}_A + \vec{p}_B \end{pmatrix}
+    = \begin{pmatrix} E_A + m_B \\ \vec{p}_A \end{pmatrix}
+\end{equation*}
+\begin{equation}
+    \implies s = E_A^2 + m_B^2 + 2E_A m_B - \vec{p}_A^{\;2}
+    = m_A^2 + m_B^2 + 2E_A m_B
+\end{equation}
+avendo usato $E^2 - p^2 = m^2$.
+
+Nel \textbf{CM} si ha $\vec{p}_A = -\vec{p}_B$, per cui
+\begin{equation*}
+    W_A + W_B \big|_{\text{CM}} = \begin{pmatrix} E_A + E_B \\ \vec{p}_A + \vec{p}_B \end{pmatrix}
+    = \begin{pmatrix} E_A + E_B \\ \vec{0} \end{pmatrix}
+    \implies s = E_A^2 + E_B^2 + 2E_A E_B = E_{\text{CM}}^2
+\end{equation*}
+Infatti, sviluppando esplicitamente:
+\begin{align*}
+    s &= E_A^2 + E_B^2 + 2E_AE_B - \vec{p}_A^{\;2} - \vec{p}_B^{\;2} - 2\vec{p}_A \cdot \vec{p}_B \\
+      &= m_A^2 + m_B^2 + 2E_AE_B - |\vec{p}\,|^2 \cdot 2\,(\cos \pi) \\
+      &= m_A^2 + m_B^2 + 2p^2 + 2E_AE_B = E_A^2 + E_B^2 + 2E_AE_B = (E_A + E_B)^2 = E_{\text{CM}}^2
+\end{align*}
+
+\begin{osservazione}{Il Significato di $s$}
+L'invariante $s$ è il \textbf{quadrato dell'energia totale disponibile nel centro di massa}: è la grandezza che determina quali particelle possono essere prodotte in una reazione. Calcolandolo nel LAB (dove si conoscono i dati sperimentali) e uguagliandolo al valore nel CM (dove si conosce lo stato finale) si risolvono i problemi di soglia senza mai dover cambiare esplicitamente sistema.
+\end{osservazione}
+
+\paragraph{Invariante $t$ (per quadrivettori di tipo spazio e tempo).}
+\begin{equation}
+    t = (W_A - W_C)^2
+\end{equation}
+Nel CM si ha $W_A = \begin{pmatrix} E_A \\ \vec{p}_A \end{pmatrix}$, $W_B = \begin{pmatrix} E_B \\ -\vec{p}_A \end{pmatrix}$, $W_C = \begin{pmatrix} E_C \\ \vec{p}_C \end{pmatrix}$, $W_D = \begin{pmatrix} E_D \\ -\vec{p}_C \end{pmatrix}$; dalla conservazione $E_A + E_B = E_C + E_D$ segue $2E_A = 2E_C$ per particelle identiche. Quindi:
+\begin{align}
+    t &= E_A^2 + E_C^2 - 2E_AE_C - \vec{p}_A^{\;2} - \vec{p}_C^{\;2} + 2\vec{p}_A \cdot \vec{p}_C \notag \\
+      &= m_A^2 + m_C^2 - 2E_AE_C + 2\,p_A p_C \cos\theta
+       = 2m_A^2 - 2E_A^2 + 2|\vec{p}_A|^2 \cos\theta \notag \\
+      &= 2m_A^2 - \left(2m_A^2 + 2|\vec{p}_A|^2\right) + 2|\vec{p}_A|^2 \cos\theta
+       = -2|\vec{p}_A|^2\,(1 - \cos\theta) \notag \\
+      &= \boxed{\,-4\,|\vec{p}_A|^2 \sin^2\!\left(\frac{\theta}{2}\right)}
+\end{align}
+avendo usato l'identità $1 - \cos\theta = 2\sin^2(\theta/2)$. L'invariante $t$, essendo negativo, è un quadrivettore di \textbf{tipo spazio}: esso misura il \textbf{momento trasferito} nell'urto.
+
+\subsection{Urto Totalmente Anelastico: Classico contro Relativistico}
+
+\begin{esempio}{Confronto Numerico}
+Due corpi di masse $m_A = m_B = M = 3{,}0 \cdot 10^4 \, \mathrm{kg}$ urtano in modo totalmente anelastico, con $\vec{v}_A = 50 \, \mathrm{m/s}$ e $\vec{v}_B = 0$.\footnote{Il manoscritto originale riporta $M = 30 \cdot 10^4 \, \mathrm{kg}$; i risultati numerici scritti di seguito nel manoscritto sono però coerenti con $M = 3{,}0 \cdot 10^4 \, \mathrm{kg}$, valore qui adottato.}
+
+\textbf{Nella meccanica classica} la variazione di energia cinetica è
+\begin{equation*}
+    \Delta K = -\frac{1}{2}\mu \vec{v}_r^{\;2} = -\frac{1}{2}\cdot\frac{M^2}{2M}\vec{v}_r^{\;2}
+    = -\frac{M}{4}\vec{v}_r^{\;2} \sim -19 \cdot 10^6 \, \mathrm{J}
+\end{equation*}
+e \textbf{non} si ha alcuna perdita di massa.
+
+\textbf{Nella meccanica relativistica}, invece, si ha una perdita di massa. Dalla conservazione dell'energia totale:
+\begin{equation*}
+    \Delta E_{\text{tot}} = \Delta E_c + \Delta E_0 = 0
+    \implies \Delta K = -\Delta E_0 = -\gamma \Delta m c^2
+\end{equation*}
+ma essendo $v \ll c$ si ha $\gamma \to 1$, per cui $\Delta K = -\Delta m c^2$ e
+\begin{equation*}
+    \Delta m = \frac{|\Delta K|}{c^2} \sim 2 \cdot 10^{-10} \, \mathrm{kg}
+\end{equation*}
+una massa enormemente più piccola di un granello di sabbia ($\sim 10^{-6} \, \mathrm{kg}$).
+\end{esempio}
+
+\begin{osservazione}{Quando il Difetto di Massa Diventa Osservabile}
+Se $v \ll c$, allora $\gamma \to 1$ e $\Delta m$ è insignificante e trascurabile: ecco perché la meccanica classica funziona benissimo nella vita quotidiana. Quando invece $v \sim c$ e $\gamma \to +\infty$, $\Delta m$ diventa significativa e misurabile su scala atomica.
+\end{osservazione}
+
+\begin{teorema}{Il Quadrimpulso si Conserva Sempre}
+Indipendentemente dal tipo di urto, vale
+\begin{equation}
+    W_A + W_B = W_C + W_D
+    \qquad \Longleftrightarrow \qquad
+    \begin{cases}
+        E_A + E_B = E_C + E_D \\
+        \vec{p}_A + \vec{p}_B = \vec{p}_C + \vec{p}_D
+    \end{cases}
+\end{equation}
+con $E = \gamma mc^2 = \sqrt{m^2c^4 + \vec{p}^{\;2}c^2}$ e $\vec{p} = \gamma m \vec{v}$, ossia
+\begin{equation}
+    \sqrt{\vec{p}_A^{\;2} + m_A^2c^2} + \sqrt{\vec{p}_B^{\;2} + m_B^2c^2}
+    = \sqrt{\vec{p}_C^{\;2} + m_C^2c^2} + \sqrt{\vec{p}_D^{\;2} + m_D^2c^2}
+\end{equation}
+\end{teorema}
+
+Sono inoltre utilissime le due relazioni
+\begin{equation}
+    \gamma = \frac{E}{mc^2}
+    \qquad\qquad
+    \beta = \frac{|\vec{v}\,|}{c} \cdot \frac{\gamma m}{\gamma m} = \frac{|\vec{p}\,|}{E/c} = \frac{|\vec{p}\,|\,c}{E}
+\end{equation}
+
+\subsection{L'Effetto Compton}
+
+\begin{definizione}{Effetto Compton}
+L'\textbf{effetto Compton} è la diffusione di un fotone su un elettrone fermo:
+\begin{equation}
+    \gamma + e^{-} \longrightarrow e^{-} + \gamma
+\end{equation}
+con $m_{\gamma} = 0$.
+\end{definizione}
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}[>=stealth, scale=1.1]
+        % Fotone incidente
+        \draw[decorate, decoration={snake, amplitude=1.4pt, segment length=5pt}, very thick, boxatt]
+            (-3.0,0) -- (-0.25,0);
+        \draw[->, very thick, boxatt] (-0.35,0) -- (-0.15,0);
+        \node[above, font=\small, boxatt] at (-1.8,0.18) {$\gamma_i$ \; ($E_{\gamma i}$)};
+        % Elettrone bersaglio
+        \fill[boxoss] (0,0) circle (2.6pt);
+        \node[left, font=\small, boxoss] at (-0.12,-0.62) {$e^{-}_i$ (fermo)};
+        % Fotone diffuso
+        \draw[decorate, decoration={snake, amplitude=1.4pt, segment length=5pt}, very thick, boxatt]
+            (0.2,0.12) -- (2.4,1.55);
+        \draw[->, very thick, boxatt] (2.25,1.45) -- (2.5,1.61);
+        \node[right, font=\small, boxatt] at (2.5,1.6) {$\gamma_f$ \; ($E_{\gamma f}$)};
+        % Elettrone rinculo
+        \draw[->, very thick, boxoss] (0.2,-0.12) -- (2.4,-1.35);
+        \node[right, font=\small, boxoss] at (2.45,-1.4) {$e^{-}_f$ \; ($E_{ef}$)};
+        % Angoli
+        \draw[->, thick, mypen] (0.95,0) arc (0:33:0.95);
+        \node[font=\small, mypen] at (1.12,0.3) {$\theta_{\gamma}$};
+        \draw[->, thick, mypen] (1.25,0) arc (0:-29:1.25);
+        \node[font=\small, mypen] at (1.42,-0.36) {$\theta_{e}$};
+        % Assi
+        \draw[->, thin, mypen!60] (-3.0,-1.9) -- (-2.2,-1.9) node[right, font=\scriptsize] {$\hat{x}$};
+        \draw[->, thin, mypen!60] (-3.0,-1.9) -- (-3.0,-1.1) node[above, font=\scriptsize] {$\hat{y}$};
+        \draw[dashed, mypen!45] (0,0) -- (3.0,0);
+    \end{tikzpicture}
+    \caption{Cinematica dell'effetto Compton nel sistema del laboratorio: il fotone incidente $\gamma_i$ viene diffuso di un angolo $\theta_{\gamma}$, mentre l'elettrone inizialmente fermo rincula di un angolo $\theta_e$.}
+\end{figure}
+
+Nel LAB i quadrimpulsi iniziali e finali sono
+\begin{equation*}
+    W_{\text{tot},i} =
+    \begin{cases}
+        W_{\gamma i} = \begin{pmatrix} E_{\gamma i}/c \\ \vec{p}_{\gamma i} \end{pmatrix} \\[10pt]
+        W_{e i} = \begin{pmatrix} E_{e i}/c \\ \vec{p}_{e i} \end{pmatrix} = \begin{pmatrix} m_e c \\ \vec{0} \end{pmatrix}
+    \end{cases}
+    \qquad\qquad
+    W_{\text{tot},f} =
+    \begin{cases}
+        W_{\gamma f} = \begin{pmatrix} E_{\gamma f}/c \\ \vec{p}_{\gamma f} \end{pmatrix} \\[10pt]
+        W_{e f} = \begin{pmatrix} E_{e f}/c \\ \vec{p}_{e f} \end{pmatrix}
+    \end{cases}
+\end{equation*}
+con i versori $\hat{p}_{\gamma i} = \hat{x}$, $\hat{p}_{e i} = \vec{0}$, e
+\begin{equation*}
+    \hat{p}_{\gamma f} = \cos\theta_{\gamma}\,\hat{x} + \sin\theta_{\gamma}\,\hat{y}
+    \qquad\qquad
+    \hat{p}_{e f} = \cos\theta_{e}\,\hat{x} - \sin\theta_{e}\,\hat{y}
+\end{equation*}
+
+Proiettando la conservazione del quadrimpulso sulle tre coordinate (in unità naturali):
+\begin{equation}
+    \begin{cases}
+        E/c \, : \quad E_{\gamma i} + m_e = E_{\gamma f} + E_{ef} \\
+        \hat{x} \, : \quad E_{\gamma i} + 0 = E_{\gamma f}\cos\theta_{\gamma} + p_{ef}\cos\theta_e \\
+        \hat{y} \, : \quad 0 + 0 = E_{\gamma f}\sin\theta_{\gamma} - p_{ef}\sin\theta_e
+    \end{cases}
+\end{equation}
+Quadrando e sommando le ultime due equazioni si elimina $\theta_e$:
+\begin{equation*}
+    p_{ef}^2 = E_{\gamma i}^2 + E_{\gamma f}^2 - 2E_{\gamma i}E_{\gamma f}\cos\theta_{\gamma}
+\end{equation*}
+e sostituendo in $E_{ef} = \sqrt{m_e^2 + p_{ef}^2}$ nella prima equazione:
+\begin{align*}
+    m_e^2 + E_{\gamma i}^2 + E_{\gamma f}^2 - 2E_{\gamma i}E_{\gamma f}\cos\theta_{\gamma}
+    &= \left(E_{\gamma i} - E_{\gamma f} + m_e\right)^2 \\
+    &= E_{\gamma i}^2 + E_{\gamma f}^2 + m_e^2 + 2E_{\gamma i}m_e - 2E_{\gamma f}m_e - 2E_{\gamma i}E_{\gamma f}
+\end{align*}
+Semplificando i termini uguali:
+\begin{equation*}
+    E_{\gamma i}E_{\gamma f}\left(\cos\theta_{\gamma} - 1\right) = \left(E_{\gamma f} - E_{\gamma i}\right)m_e
+    \implies \frac{1 - \cos\theta_{\gamma}}{m_e} = \frac{E_{\gamma i} - E_{\gamma f}}{E_{\gamma i}E_{\gamma f}}
+\end{equation*}
+
+\begin{formulario}{Formula di Compton}
+\begin{equation}
+    \frac{1}{E_{\gamma f}} - \frac{1}{E_{\gamma i}} = \frac{2\sin^2\!\left(\dfrac{\theta_{\gamma}}{2}\right)}{m_e}
+\end{equation}
+L'energia ceduta dal fotone è massima per l'angolo di \textbf{retrodiffusione} $\theta_{\gamma} = 180^{\circ}$ ($\pi$), in corrispondenza del quale $\sin^2(\theta_\gamma/2) = 1$.
+\end{formulario}
+
+\subsection{Produzione di una Risonanza: $e^+ e^- \to Z^0$}
+
+\begin{esempio}{Energia di Soglia per il Bosone $Z^0$}
+Un positrone e un elettrone si annichilano producendo il bosone $Z^0$:
+\begin{equation}
+    e^+ + e^- \longrightarrow Z^0
+\end{equation}
+Poiché si lavora in configurazione \emph{collider}, il CM coincide con il LAB e $\hat{p}_+ = +\hat{x}$, $\hat{p}_- = -\hat{x}$, $\hat{p}_Z = 0$. Il $Z^0$ viene prodotto \textbf{a riposo}: l'energia di soglia $E_s$ è quindi l'energia a riposo del $Z^0$, cioè $E_{s,\text{tot}} = E_{0,Z^0}$.
+
+Inoltre $E_+ = E_-$ e $|\vec{p}_+| = |\vec{p}_-|$, perché $e^+$ ed $e^-$ sono particelle identiche a meno della carica. Proiettando la conservazione del quadrimpulso:
+\begin{equation*}
+    \begin{cases}
+        E/c \, : \quad 2E_{\pm} = m_Z \implies E_{\pm} = m_Z/2 \\
+        \hat{x} \, : \quad p_+ - p_- = 0 \implies p_+ = p_-
+    \end{cases}
+\end{equation*}
+
+Da $E_{\pm} = \gamma_{\pm}m_{\pm}$ si ricava il fattore di Lorentz necessario:
+\begin{equation*}
+    \gamma_{\pm} = \frac{E_{\pm}}{m_{\pm}} = \frac{m_Z}{m_e}\cdot\frac{1}{2} \sim 9 \cdot 10^4
+\end{equation*}
+e da $\gamma_{\pm}^2 = \dfrac{1}{1-\beta_{\pm}^2}$ segue $1 - \beta_{\pm}^2 = \dfrac{1}{\gamma_{\pm}^2}$, da cui con uno sviluppo di Taylor
+\begin{equation*}
+    \beta_{\pm} = \sqrt{1 - \frac{1}{\gamma_{\pm}^2}} \approx 1 - \frac{1}{2\gamma_{\pm}^2}
+    \implies v_{\pm} = 0{,}999\,c
+\end{equation*}
+che è la velocità necessaria perché si crei la risonanza.
+\end{esempio}
+
+\subsection{Decadimento del Pione Neutro}
+
+\begin{esempio}{$\pi^0 \to \gamma_1 + \gamma_2$}
+Il pione neutro $\pi^0$ è una particella instabile che decade in due fotoni. Nel CM il pione è fermo ($\hat{p}_{\pi} = 0$) e i due fotoni sono emessi in direzioni opposte, $\hat{p}_1 = -\hat{x}$ e $\hat{p}_2 = +\hat{x}$. I quadrimpulsi sono
+\begin{equation*}
+    W_{\text{tot},i} = W_{\pi} = \begin{pmatrix} E_{\pi}/c \\ \vec{p}_{\pi} \end{pmatrix} = \begin{pmatrix} m_{\pi}c \\ \vec{0} \end{pmatrix}
+    \qquad\qquad
+    W_{\text{tot},f} =
+    \begin{cases}
+        W_{\gamma 1} = \begin{pmatrix} E_{\gamma 1}/c \\ \vec{p}_{\gamma 1} \end{pmatrix} \\[10pt]
+        W_{\gamma 2} = \begin{pmatrix} E_{\gamma 2}/c \\ \vec{p}_{\gamma 2} \end{pmatrix}
+    \end{cases}
+\end{equation*}
+Poiché $\gamma_1$ e $\gamma_2$ sono la stessa particella, $E_{\gamma 1} = E_{\gamma 2}$ e $|\vec{p}_{\gamma 1}| = |\vec{p}_{\gamma 2}|$ (essendo $m_{\gamma} = 0$, vale $E_{\gamma}/c = |\vec{p}_{\gamma}|$). Proiettando:
+\begin{equation*}
+    \begin{cases}
+        E/c \, : \quad m_{\pi} = 2E_{\gamma} \implies E_{\gamma} = m_{\pi}/2 \\
+        \hat{x} \, : \quad 0 = -E_{\gamma 1} + E_{\gamma 2} \implies E_{\gamma 1} = E_{\gamma 2}
+    \end{cases}
+    \qquad \text{nel CM}
+\end{equation*}
+
+Ci spostiamo ora dal CM al LAB usando Lorentz per la componente $E/c$:
+\begin{align}
+    E_1 &= \gamma_1 \left(E_1^{\text{CM}} - \beta_1 \vec{p}_{\gamma 1}^{\;\text{CM}}\right)
+         = \gamma_1 |\vec{p}_{\gamma 1}^{\;\text{CM}}| \left(1 - \beta\cos\theta_1\right)
+         = \frac{\gamma\, m_{\pi}}{2}\,(1 - \beta) \\
+    E_2 &= \gamma_2 \left(E_2^{\text{CM}} + \beta_2 \vec{p}_{\gamma 2}^{\;\text{CM}}\right)
+         = \gamma_2 |\vec{p}_{\gamma 2}^{\;\text{CM}}| \left(1 + \beta\cos\theta_2\right)
+         = \frac{\gamma\, m_{\pi}}{2}\,(1 + \beta)
+\end{align}
+nel caso particolare $\theta^{\text{CM}} = 0$. I due fotoni, equivalenti nel CM, appaiono nel LAB uno ``arrossato'' e l'altro ``blueshiftato'': è l'effetto Doppler relativistico.
+\end{esempio}
+
+\subsection{La Produzione dell'Antiprotone}
+
+\begin{notastorica}{Segrè e Chamberlain, 1955}
+Nel 1955 \textbf{Segrè} e \textbf{Chamberlain} scoprono l'antiprotone grazie all'acceleratore di particelle \emph{Bevatron} del Berkeley National Laboratory (California), vincendo il premio Nobel nel 1959.
+\end{notastorica}
+
+La reazione studiata è
+\begin{equation}
+    \underbrace{p}_{A} + \underbrace{p}_{B} \longrightarrow \underbrace{p}_{1} + \underbrace{p}_{2} + \underbrace{p}_{3} + \underbrace{\bar{p}}_{4}
+\end{equation}
+Per capire se era possibile produrlo, è stata calcolata l'\textbf{energia di soglia}, la minima perché la reazione si verifichi. I quadrimpulsi totali sono
+\begin{equation*}
+    W_{\text{tot},i}\big|_{\text{LAB}} = W_A + W_B = \begin{pmatrix} E_A/c + m_B c \\ \vec{p}_A + \vec{0} \end{pmatrix}
+    \qquad\qquad
+    W_{\text{tot},f}\big|_{\text{CM}} = \begin{pmatrix} (E_1+E_2+E_3+E_4)/c \\ \vec{0} \end{pmatrix}
+\end{equation*}
+dove tutti gli impulsi finali sono nulli perché si è \textbf{a soglia}: le quattro particelle vengono prodotte ferme nel CM.
+
+Dato che il quadrimpulso si conserva, usiamo l'invariante $s$ di Mandelstam: $s = (W_A+W_B)^2 = (W_1+W_2+W_3+W_4)^2$. Non possiamo però scrivere l'equazione interamente nel LAB (avremmo 16 incognite meno 4 vincoli, cioè 12 variabili): sfruttiamo dunque l'\textbf{invarianza} calcolando $s_i$ nel LAB e $s_f$ nel CM.
+\begin{align*}
+    s_i\big|_{\text{LAB}} &= E_A^2 - \vec{p}_A^{\;2} + m_B^2 + 2E_A m_B - 2\vec{p}_A \cdot \vec{0}
+     = m_A^2 + m_B^2 + 2E_A m_B = 2m_p^2 + 2E_p m_p \\
+    s_f\big|_{\text{CM}} &= E_{\text{tot},f}^2 = (4m_p)^2 = 16\,m_p^2 = E_{\text{soglia}}
+\end{align*}
+Uguagliando:
+\begin{equation}
+    16\,m_p^2 = 2m_p^2 + 2E_p m_p
+    \implies 14\,m_p = 2E_p
+    \implies \boxed{E_p = 7\,m_p = 7\,E_{0,p}}
+\end{equation}
+da cui si ricavano
+\begin{equation*}
+    K_p = E_p - E_{0,p} = 7m_p - m_p = 6\,m_p
+    \qquad
+    \gamma_p = \frac{E_p}{m_p} = \frac{7m_p}{m_p} = 7
+\end{equation*}
+\begin{equation*}
+    |\vec{p}_p| = \sqrt{E_p^2 - m_p^2} = m_p\sqrt{7^2 - 1^2} = m_p\sqrt{48}
+    \implies \beta = \frac{|\vec{p}_p|}{E_p} = \frac{\sqrt{48}\,m_p}{7\,m_p} = \frac{\sqrt{48}}{7} \approx 0{,}99 \sim 1\,c
+\end{equation*}
+
+\subsubsection{La Correzione con l'Impulso di Fermi}
+
+Al tempo, fornire una quantità tale di energia non era possibile; pertanto venne sfruttato l'\textbf{impulso di Fermi} $\vec{p}_F$, l'impulso isotropo posseduto dai nucleoni ($N + P$) del bersaglio in berillio. In questo modo $W_B = \begin{pmatrix} E_B/c \\ \vec{p}_F \end{pmatrix}$ con $p_F \approx 0{,}2\,m_p$, e l'invariante iniziale diventa
+\begin{align*}
+    s_i &= \underbrace{E_A^2 - \vec{p}_A^{\;2}}_{m_p^2} + \underbrace{E_B^2 - \vec{p}_F^{\;2}}_{m_p^2} + 2E_AE_B - 2\vec{p}_A \cdot \vec{p}_F \\
+        &= 2m_p^2 + 2\left(E_AE_B - \vec{p}_A \cdot \vec{p}_F\right)
+         = 2m_p^2 + 2\left(E_AE_B + p_A p_F \cdot 1\right) \\
+        &= 2m_p^2 + 2E_p\,(m_p + p_F) = 2m_p^2 + 2{,}4\,E_p m_p
+\end{align*}
+avendo usato $\vec{a}\cdot\vec{b} = a\,b\cos\theta$ con $\theta = \pi$ (l'impulso di Fermi del nucleone è diretto \emph{contro} il proiettile, configurazione più favorevole), e le approssimazioni $E_A \sim |\vec{p}_A| = |\vec{p}_p|$, $E_B \sim m_B$. Uguagliando nuovamente a $s_f = 16 m_p^2$:
+\begin{equation}
+    16\,m_p^2 = \left(2m_p + 2{,}4\,E_p\right)m_p
+    \implies 14\,m_p = 2{,}4\,E_p
+    \implies \boxed{E_p = \frac{14}{2{,}4}\,m_p \sim 5{,}83\,m_p}
+\end{equation}
+
+\begin{osservazione}{Il Guadagno della Correzione di Fermi}
+La correzione di Fermi permette di \textbf{ridurre l'energia} richiesta al fascio da $7\,m_p$ a circa $5{,}83\,m_p$: un risparmio di quasi il $17\%$, decisivo per rendere l'esperimento realizzabile con le tecnologie dell'epoca.
+\end{osservazione}

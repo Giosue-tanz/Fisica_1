@@ -1,165 +1,664 @@
 \chapter{La Gravitazione}
 
-\section{Storia e scoperte in campo astronomico}
-Il Sistema Solare è costituito dal Sole e dai 9 pianeti orbitanti: Mercurio, Venere, Marte, Terra, Giove, Saturno, Nettuno, Urano ($\sim 1781$), Plutone ($\sim 1930$). I Greci conoscevano solo quelli fino a Saturno e la loro concezione del sistema solare era \textbf{GEOCENTRICA}, formalizzata da Tolomeo ma già presentata da Aristotele. La teoria prevedeva:
+\section{Storia e Scoperte in Campo Astronomico}
 
+La gravitazione è il primo caso nella storia della fisica in cui un'unica legge matematica ha reso conto di fenomeni fino ad allora ritenuti di natura completamente diversa --- la caduta dei gravi sulla Terra e il moto dei pianeti nel cielo. Vale la pena ripercorrere brevemente la strada che vi ha condotto, perché il capitolo precedente ne contiene già tutti gli strumenti matematici: la gravitazione non è che il più importante esempio di forza centrale.
+
+Il Sistema Solare è costituito dal Sole e dagli otto pianeti che gli orbitano attorno: Mercurio, Venere, Terra, Marte, Giove, Saturno, Urano e Nettuno. I Greci conoscevano soltanto quelli visibili a occhio nudo, fino a Saturno; Urano fu scoperto da Herschel nel 1781 e Nettuno nel 1846, mentre Plutone --- individuato nel 1930 --- è stato riclassificato come \emph{pianeta nano} nel 2006.
+
+La concezione greca del cosmo era \textbf{geocentrica}: formalizzata da Tolomeo, ma già presente in Aristotele, essa prevedeva
 \begin{itemize}
-    \item \textbf{Terra al centro} dell'universo;
-    \item Sole, Luna e altri pianeti compiono \textbf{orbite circolari};
-    \item Si divide il mondo \textbf{SUBLUNARE} imperfetto (Terra) da quello \textbf{SOVRALUNARE} perfetto (tutto il resto): il primo è dominato da corruzione e moto rettilineo, il secondo da incorruttibilità e moto circolare ($\alpha, \omega$, principio e fine, \textit{Apocatastasi}).
+    \item la \textbf{Terra immobile al centro} dell'universo;
+    \item il Sole, la Luna e i pianeti in moto su \textbf{orbite circolari}, il cerchio essendo ritenuto la sola figura perfetta;
+    \item una separazione netta fra il mondo \textbf{sublunare}, imperfetto, dominato dalla corruzione e dal moto rettilineo, e quello \textbf{sovralunare}, perfetto, incorruttibile e sede del solo moto circolare, senza principio né fine.
 \end{itemize}
 
-\subsection{L'evoluzione verso il modello Newtoniano}
-Per spiegare le apparenti irregolarità del moto planetario (come il \textbf{moto retrogrado} di Marte), Tolomeo introdusse il sistema degli \textit{epicicli} e dei \textit{deferenti}: il pianeta ruota su un cerchio (epiciclo) il cui centro ruota a sua volta attorno alla Terra su un cerchio maggiore (deferente). Questa costruzione geometrica serviva a giustificare il moto cicloidale osservato.
+\subsection{L'Evoluzione verso il Modello Newtoniano}
 
-Con il passare dei secoli, la visione dell'universo cambiò radicalmente grazie a figure chiave:
+Il modello geocentrico si scontrava però con un'osservazione imbarazzante: il \textbf{moto retrogrado}. Osservati da Terra, i pianeti esterni come Marte non avanzano uniformemente fra le stelle fisse, ma di tanto in tanto rallentano, tornano indietro per qualche settimana e poi riprendono il cammino, descrivendo un cappio.
+
+Per salvare i moti circolari Tolomeo introdusse il sistema degli \textbf{epicicli} e dei \textbf{deferenti}: il pianeta percorre un cerchio minore, l'epiciclo, il cui centro a sua volta ruota attorno alla Terra lungo un cerchio maggiore, il deferente. La composizione dei due moti circolari produce una traiettoria a cappi che riproduce il moto retrogrado osservato.
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}[>=stealth, scale=1.0, font=\small]
+        \def\Rd{2.25}   % raggio del deferente
+        \def\Re{0.78}   % raggio dell'epiciclo
+        \def\kk{5}      % rapporto fra le velocità angolari
+
+        % Traiettoria risultante (epitrocoide, con i cappi)
+        \draw[very thick, notered, domain=0:360, samples=400, smooth]
+            plot ({\Rd*cos(\x) + \Re*cos(\kk*\x)}, {\Rd*sin(\x) + \Re*sin(\kk*\x)});
+
+        % Deferente
+        \draw[dashed, thick, mypen!50] (0,0) circle (\Rd);
+
+        % Terra al centro
+        \filldraw[boxoss!45, draw=boxoss, very thick] (0,0) circle (0.17);
+        \node[mypen, anchor=north east] at (-0.1,-0.1) {Terra};
+
+        % Centro dell'epiciclo a un istante dato
+        \def\ang{58}
+        \coordinate (C) at ({\Rd*cos(\ang)}, {\Rd*sin(\ang)});
+        \draw[thick, mypen!70] (0,0) -- (C);
+        \fill[mypen] (C) circle (1.6pt);
+        \node[mypen, anchor=south east, xshift=2pt] at (C) {$C$};
+
+        % Epiciclo
+        \draw[thick, boxese] (C) circle (\Re);
+        \coordinate (P) at ({\Rd*cos(\ang) + \Re*cos(\kk*\ang)},
+                            {\Rd*sin(\ang) + \Re*sin(\kk*\ang)});
+        \draw[thick, boxese] (C) -- (P);
+        \filldraw[notered!45, draw=notered, very thick] (P) circle (0.115);
+        \node[notered, anchor=west, xshift=3pt] at (P) {pianeta};
+
+        % Etichette
+        \node[mypen!75, anchor=north] at (-1.55,-2.35) {deferente};
+        \draw[thin, mypen!60] (-1.55,-2.3) -- (-1.75,-1.95);
+        \node[boxese, anchor=west] at (2.25,-1.75) {epiciclo};
+        \draw[thin, boxese!70] (2.2,-1.72) -- (1.55,-1.42);
+    \end{tikzpicture}
+    \caption{Il sistema degli epicicli e dei deferenti. Il pianeta percorre l'epiciclo (in verde) mentre il centro $C$ di quest'ultimo percorre il deferente attorno alla Terra: la traiettoria risultante (in rosso) presenta i cappi che spiegano il moto retrogrado osservato.}
+    \label{fig:epicicli}
+\end{figure}
+
+Nel corso dei secoli la visione dell'universo cambiò radicalmente, grazie a quattro contributi decisivi:
 \begin{itemize}
-    \item \textbf{Copernico}: Eliocentrismo.
-    \item \textbf{Brahe e Keplero}: Osservazioni di precisione e tre leggi sperimentali.
-    \item \textbf{Galileo}: Introduzione del telescopio, prove delle fasi di Venere, satelliti di Giove e macchie solari (fine dell'incorruttibilità celeste). Unificazione della fisica terrestre e celeste.
+    \item \textbf{Copernico} sposta il centro del sistema dalla Terra al Sole (\textbf{eliocentrismo}), riducendo drasticamente il numero di epicicli necessari;
+    \item \textbf{Brahe} raccoglie, senza telescopio, osservazioni di precisione senza precedenti, e \textbf{Keplero} le riassume in tre leggi puramente empiriche, abbandonando per primo il dogma della circolarità in favore dell'ellisse;
+    \item \textbf{Galileo} introduce il telescopio e osserva le fasi di Venere --- incompatibili col geocentrismo --- i satelliti di Giove e le macchie solari, che segnano la fine dell'incorruttibilità celeste;
+    \item \textbf{Newton} unifica infine la fisica terrestre e quella celeste, mostrando che una sola legge di forza rende conto tanto delle tre leggi di Keplero quanto della caduta dei gravi.
 \end{itemize}
 
 \section{Legge di Gravitazione Universale}
-Sulla base dei lavori di Keplero, Isaac Newton "scoprì" la natura della forza responsabile del moto dei pianeti: la forza gravitazionale è \textbf{attrattiva}, \textbf{centrale} (proporzionale a $1/r^2$) e proporzionale alla \textbf{massa gravitazionale}.
+
+Sulla base dei lavori di Keplero, Newton riconobbe la natura della forza responsabile del moto dei pianeti: essa è \textbf{attrattiva}, \textbf{centrale}, proporzionale al prodotto delle masse e inversamente proporzionale al quadrato della distanza.
 
 \begin{teorema}{Legge di Gravitazione Universale}
-Due masse puntiformi $m_1$ e $m_2$ poste a distanza $r$ si attraggono con una forza diretta lungo la congiungente:
+Due masse puntiformi $m_1$ e $m_2$ poste a distanza $r$ si attraggono con una forza diretta lungo la congiungente, di modulo
 \begin{equation}
-    F = G \frac{m_1 m_2}{r^2}
+    F = G \, \frac{m_1 m_2}{r^2}
 \end{equation}
-Formulazione vettoriale per la forza esercitata da $m_1$ su $m_2$:
+Detto $\vec{r}_{12} = \vec{r}_2 - \vec{r}_1$ il vettore che va da $m_1$ a $m_2$, e $\hat{r}_{12}$ il corrispondente versore, la forza esercitata da $m_1$ \emph{su} $m_2$ si scrive
 \begin{equation}
-    \vec{F}_{12} = - \frac{G m_1 m_2}{|\vec{r}_{12}|^3} \vec{r}_{12} = - \frac{G m_1 m_2}{r^2} \hat{r}_{12}
+    \vec{F}_{12} = - \, \frac{G m_1 m_2}{|\vec{r}_{12}|^3} \, \vec{r}_{12}
+                 = - \, \frac{G m_1 m_2}{r^2} \, \hat{r}_{12}
 \end{equation}
-Esercitata da $m_2$ su $m_1$ (III principio):
+mentre quella esercitata da $m_2$ su $m_1$ è, per il terzo principio,
 \begin{equation}
-    \vec{F}_{21} = -\vec{F}_{12} = + \frac{G m_1 m_2}{r^2} \hat{r}_{12}
+    \vec{F}_{21} = -\vec{F}_{12} = + \, \frac{G m_1 m_2}{r^2} \, \hat{r}_{12}
 \end{equation}
 \end{teorema}
 
+\begin{attenzione}{Il Significato del Segno Meno}
+Il segno negativo in $\vec{F}_{12}$ non è una convenzione arbitraria: esprime il carattere \textbf{attrattivo} della forza. Il versore $\hat{r}_{12}$ punta da $m_1$ verso $m_2$, e la forza che $m_1$ esercita su $m_2$ è diretta in verso opposto, cioè verso $m_1$. È questa la differenza formale fondamentale rispetto alla forza di Coulomb, che ha la stessa struttura matematica ma può assumere entrambi i segni.
+\end{attenzione}
+
+Essendo centrale e proporzionale a $1/r^2$, la forza gravitazionale rientra esattamente nella classe studiata nel capitolo precedente: tutto ciò che vi abbiamo dimostrato --- conservazione del momento angolare, planarità dell'orbita, legge delle aree, riduzione a particella equivalente e potenziale efficace --- si applica qui senza modifiche. In particolare, l'energia potenziale gravitazionale si ottiene dalla formula generale $U(r) = \alpha/r$ ponendo $\alpha = -Gm_1m_2$:
+\begin{equation}
+    U(r) = - \, \frac{G m_1 m_2}{r}
+\end{equation}
+con il riferimento fissato all'infinito, $U(+\infty) = 0$. L'energia potenziale è sempre \textbf{negativa}, e tende a zero solo a distanza infinita: è il segno caratteristico di un legame.
+
 \subsection{La Bilancia di Cavendish (1798)}
-La costante $G$ fu misurata da Henry Cavendish tramite una bilancia a torsione. L'esperimento consiste in un'asticella leggera con due piccole masse $m$ alle estremità, sospesa a un filo di torsione. Avvicinando due grandi masse di piombo $M$, la forza di attrazione produce un momento torcente che ruota l'asticella di un angolo $\theta$.
+
+La legge di Newton contiene una costante universale $G$ il cui valore non può essere dedotto per via teorica, ma solo misurato. L'impresa riuscì a \textbf{Henry Cavendish} nel 1798, con una bilancia a torsione di straordinaria sensibilità.
+
+L'apparato consiste in un'asticella leggera di lunghezza $L$, con due piccole masse $m$ alle estremità, sospesa al centro a un sottile filo di torsione. Avvicinando due grandi masse di piombo $M$, l'attrazione gravitazionale produce una coppia che ruota l'asticella di un angolo $\theta$, finché la torsione elastica del filo non la equilibra:
 \begin{equation}
-    M_{tors} = c \theta = F \cdot L \quad \Rightarrow \quad c\theta = \left( G \frac{Mm}{r^2} \right) L
+    \tau_{\text{tors}} = c \, \theta = F \cdot L
+    \qquad \Longrightarrow \qquad
+    c \, \theta = \left( G \, \frac{M m}{r^2} \right) L
 \end{equation}
-Misurando l'angolo $\theta$ (tramite un raggio di luce riflesso da uno specchio su una scala graduata), si ottiene:
+dove $c$ è la costante di torsione del filo, misurabile a parte dal periodo delle oscillazioni libere dell'asticella.
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}[>=stealth, scale=1.05, font=\small]
+        % Posizione ruotata dell'asticella
+        \draw[dashed, thick, mypen!45] (192:2.4) -- (12:2.4);
+        \draw[thick, boxese] (1.55,0) arc (0:12:1.55);
+        \node[boxese, anchor=west, xshift=2pt] at (1.6,0.17) {$\theta$};
+
+        % Asticella
+        \draw[very thick, mypen] (-2.4,0) -- (2.4,0);
+        \draw[<->, thin, mypen!70] (-2.4,1.72) -- (2.4,1.72);
+        \node[mypen, anchor=south] at (0,1.74) {$L$};
+
+        % Masse piccole
+        \filldraw[boxoss!45, draw=boxoss, very thick] (-2.4,0) circle (0.16);
+        \filldraw[boxoss!45, draw=boxoss, very thick] ( 2.4,0) circle (0.16);
+        \node[boxoss, anchor=east, xshift=-4pt] at (-2.4,0) {$m$};
+        \node[boxoss, anchor=west, xshift=4pt]  at ( 2.4,0) {$m$};
+
+        % Masse grandi
+        \filldraw[notered!40, draw=notered, very thick] (-2.4,-1.15) circle (0.32);
+        \filldraw[notered!40, draw=notered, very thick] ( 2.4, 1.15) circle (0.32);
+        \node[notered] at (-2.4,-1.15) {$M$};
+        \node[notered] at ( 2.4, 1.15) {$M$};
+
+        % Forze attrattive: formano una coppia
+        \draw[->, very thick, boxatt] (-2.4,-0.24) -- (-2.4,-0.74);
+        \draw[->, very thick, boxatt] ( 2.4, 0.24) -- ( 2.4, 0.74);
+        \node[boxatt, anchor=east, xshift=-4pt] at (-2.45,-0.5) {$F$};
+        \node[boxatt, anchor=west, xshift=4pt]  at ( 2.45, 0.5) {$F$};
+
+        % Distanza r
+        \draw[<->, thin, mypen!70] (-1.95,0) -- (-1.95,-1.15);
+        \node[mypen, anchor=west, xshift=2pt] at (-1.92,-0.58) {$r$};
+
+        % Filo di torsione, visto dall'alto, e specchio
+        \draw[line width=1.8pt, boxese] (-0.33,0) -- (0.33,0);
+        \filldraw[white, draw=mypen, thick] (0,0) circle (0.11);
+        \draw[thin, mypen] (-0.078,-0.078) -- (0.078,0.078);
+        \draw[thin, mypen] (-0.078,0.078) -- (0.078,-0.078);
+        \node[mypen, anchor=east] at (-0.6,1.12) {filo di torsione ($c$)};
+        \draw[thin, mypen!65] (-0.57,1.06) -- (-0.12,0.15);
+        \node[boxese, anchor=east] at (-0.55,-0.72) {specchio};
+        \draw[thin, boxese!70] (-0.52,-0.67) -- (-0.22,-0.08);
+
+        % Raggio luminoso
+        \draw[->, thick, boxatt!85] (-1.25,-2.25) -- (-0.1,-0.12);
+        \draw[->, thick, boxatt!85] (0.1,-0.12) -- (1.25,-2.25);
+        \node[boxatt, anchor=north] at (-1.3,-2.3) {sorgente};
+        \node[boxatt, anchor=north] at (1.35,-2.3) {scala graduata};
+    \end{tikzpicture}
+    \caption{Schema della bilancia di torsione di Cavendish, vista dall'alto. Le due grandi masse $M$ sono disposte da lati opposti dell'asticella, così che le attrazioni sulle masse $m$ formino una \emph{coppia}: essa torce il filo di un angolo $\theta$, finché la reazione elastica non la equilibra. Un raggio luminoso riflesso da uno specchio solidale con l'asticella amplifica la rotazione fino a renderla leggibile su una scala graduata distante.}
+    \label{fig:cavendish}
+\end{figure}
+
+Misurando l'angolo $\theta$ --- amplificato dal raggio di luce riflesso dallo specchio su una scala graduata distante --- si ricava il valore
 \begin{equation}
-    G = 6.67 \times 10^{-11} \, \frac{\text{N} \cdot \text{m}^2}{\text{kg}^2}
+    G = 6{,}674 \times 10^{-11} \; \frac{\mathrm{N} \cdot \mathrm{m}^2}{\mathrm{kg}^2}
 \end{equation}
+
+\begin{osservazione}{Perché la Misura è Così Difficile}
+$G$ è, di gran lunga, la meno nota fra le costanti fondamentali: la conosciamo con appena quattro o cinque cifre significative, contro le dodici e più di altre costanti. La ragione è l'estrema debolezza dell'interazione gravitazionale fra masse di laboratorio: l'attrazione fra le sfere di Cavendish era dell'ordine di $10^{-7} \, \mathrm{N}$, e non esiste modo di schermare la gravità dei corpi circostanti come si fa con i campi elettrici.
+\end{osservazione}
 
 \section{Massa e Campo Gravitazionale}
 
 \subsection{Principio di Equivalenza}
-\begin{itemize}
-    \item \textbf{Massa Inerziale ($m_i$)}: Misura la resistenza all'accelerazione ($F = m_i a$).
-    \item \textbf{Massa Gravitazionale ($m_g$)}: Misura l'interazione con il campo ($F = G M m_g / r^2$).
-\end{itemize}
-Sperimentalmente, ogni corpo cade con accelerazione $g$:
-\begin{equation}
-    m_{i} a = G \frac{M_T m_{g}}{R_T^2} \quad \Rightarrow \quad a = \left( G \frac{M_T}{R_T^2} \right) \frac{m_g}{m_i}
-\end{equation}
-Perché $a = g$ per qualunque corpo, deve essere $m_g/m_i = \text{costante}$. Si assume $m_g \equiv m_i$.
 
-\subsection{Campo Gravitazionale e Sovrapposizione}
-Definiamo il campo $\vec{g}$ prodotto da una massa $M$:
+La massa compare nella meccanica in due ruoli concettualmente indipendenti:
+\begin{itemize}
+    \item la \textbf{massa inerziale} $m_i$ misura la resistenza del corpo all'accelerazione, ed è quella che compare nel secondo principio, $F = m_i a$;
+    \item la \textbf{massa gravitazionale} $m_g$ misura l'intensità con cui il corpo interagisce con il campo gravitazionale, ed è quella che compare nella legge di Newton, $F = G M m_g / r^2$.
+\end{itemize}
+
+Nulla, a priori, impone che le due coincidano: la prima è una proprietà dinamica, la seconda una sorta di ``carica'' gravitazionale, analoga alla carica elettrica. Eppure l'esperienza mostra che tutti i corpi cadono con la stessa accelerazione $g$. Scriviamo l'equazione del moto di un corpo in caduta libera sulla superficie terrestre:
 \begin{equation}
-    \vec{g} = \frac{\vec{F}_g}{m} = - \frac{GM}{r^2} \hat{r}
+    m_{i} \, a = G \, \frac{M_T \, m_{g}}{R_T^2}
+    \qquad \Longrightarrow \qquad
+    a = \left( G \, \frac{M_T}{R_T^2} \right) \frac{m_g}{m_i}
 \end{equation}
-Per $n$ masse orbitanti, vale il principio di sovrapposizione lineare:
+
+Perché risulti $a = g$ per \emph{qualunque} corpo, indipendentemente dalla sua composizione, il rapporto $m_g/m_i$ deve essere una costante universale; scegliendo opportunamente le unità la si pone uguale a uno.
+
+\begin{teorema}{Principio di Equivalenza (forma debole)}
+Massa inerziale e massa gravitazionale sono proporzionali fra loro e, con una scelta opportuna delle unità, numericamente identiche:
 \begin{equation}
-    \vec{G}_{tot} = \sum \vec{g}_i = - G \sum \frac{M_i}{r_i^2} \hat{r}_i
+    m_g \equiv m_i \equiv m
 \end{equation}
+Di conseguenza l'accelerazione di caduta libera è la stessa per tutti i corpi e vale
+\begin{equation}
+    g = G \, \frac{M_T}{R_T^2}
+\end{equation}
+\end{teorema}
+
+\begin{osservazione}{Una Coincidenza che non è una Coincidenza}
+Nella meccanica newtoniana l'identità $m_g = m_i$ resta un fatto sperimentale privo di spiegazione --- per quanto verificato con precisione altissima, oggi meglio di una parte su $10^{15}$. Sarà Einstein a elevarla da coincidenza a \emph{principio}, facendone il punto di partenza della relatività generale: se tutti i corpi cadono allo stesso modo, allora la caduta non è l'effetto di una forza ma una proprietà dello spazio-tempo stesso, e un osservatore in caduta libera non può distinguere la propria condizione dall'assenza di gravità.
+\end{osservazione}
+
+\subsection{Campo Gravitazionale e Principio di Sovrapposizione}
+
+Conviene separare la sorgente del campo dal corpo che lo subisce, definendo una grandezza che dipenda solo dalla prima.
+
+\begin{definizione}{Campo Gravitazionale}
+Si definisce \textbf{campo gravitazionale} generato da una massa $M$ il vettore
+\begin{equation}
+    \vec{g} = \frac{\vec{F}_g}{m} = - \, \frac{GM}{r^2} \, \hat{r}
+\end{equation}
+cioè la forza per unità di massa che agirebbe su un corpo di prova posto in quel punto. Esso si misura in $\mathrm{N/kg}$, dimensionalmente equivalenti a $\mathrm{m/s^2}$.
+\end{definizione}
+
+Essendo la legge di Newton lineare nelle masse, i campi prodotti da più sorgenti si sommano vettorialmente, senza che l'una interferisca con l'altra. Per $n$ masse $M_i$ vale dunque il \textbf{principio di sovrapposizione}:
+\begin{equation}
+    \vec{g}_{\text{tot}} = \sum_{i} \vec{g}_i = - \, G \sum_{i} \frac{M_i}{r_i^2} \, \hat{r}_i
+\end{equation}
+
+\begin{attenzione}{Campo $\vec{g}$ e Costante $G$}
+Si faccia attenzione a non confondere i due simboli: $G$ è la costante di gravitazione universale, uno scalare fissato una volta per tutte, mentre $\vec{g}$ è un campo vettoriale che varia da punto a punto. Sulla superficie terrestre $|\vec{g}| \approx 9{,}81 \, \mathrm{m/s^2}$, ma il suo valore dipende dalla quota e --- come visto nel capitolo sui sistemi rotanti --- anche dalla latitudine.
+\end{attenzione}
 
 \section{Moto in Campo Centrale e Leggi di Keplero}
-Il moto avviene sotto una forza centrale $F(r) = - \frac{k}{r^2}$. L'energia totale è:
+
+Applichiamo ora al caso gravitazionale l'apparato del potenziale efficace sviluppato nel capitolo precedente. La forza è centrale e vale $F(r) = -k/r^2$ con $k = GmM$; l'energia totale della particella equivalente si scrive allora
 \begin{equation}
-    E = \frac{1}{2} \mu \dot{r}^2 + U_{eff}(r) = \frac{1}{2} \mu \dot{r}^2 + \frac{L^2}{2\mu r^2} - \frac{GmM}{r}
+    E = \frac{1}{2} \mu \dot{r}^2 + U_{\text{eff}}(r)
+      = \frac{1}{2} \mu \dot{r}^2 + \frac{L^2}{2\mu r^2} - \frac{GmM}{r}
 \end{equation}
+
+\begin{osservazione}{Quando la Massa Ridotta si Può Ignorare}
+Per un sistema Sole--pianeta la massa ridotta vale $\mu = \frac{mM}{m+M}$; essendo $M \gg m$, si ha $\mu \approx m$ con ottima approssimazione (per il sistema Sole--Terra l'errore è di circa tre parti su un milione). È per questo che nella pratica astronomica si confonde senza danno la particella equivalente con il pianeta stesso, e il centro di massa con il Sole. La distinzione torna invece essenziale per le stelle binarie, dove le due masse sono confrontabili.
+\end{osservazione}
+
+Il potenziale efficace kepleriano ha una forma caratteristica: il termine centrifugo $L^2/2\mu r^2$ domina a piccole distanze creando una barriera repulsiva, mentre il termine attrattivo $-GmM/r$ domina a grandi distanze. Fra i due si apre una buca di potenziale, il cui minimo corrisponde all'orbita circolare.
 
 \subsection{Orbite Circolari e Minimo di Energia}
-Per un'orbita circolare ($r = r^*$), il raggio è costante ($\dot{r} = 0$) e corrisponde al minimo di $U_{eff}$:
+
+Per un'orbita circolare di raggio $r^*$ il raggio non varia, $\dot{r} = 0$, e il valore $r^*$ coincide con il minimo del potenziale efficace. Imponiamo dunque l'annullamento della derivata:
 \begin{equation}
-    \frac{dU_{eff}}{dr} = 0 \quad \Rightarrow \quad - \frac{L^2}{\mu r^3} + \frac{GmM}{r^2} = 0 \quad \Rightarrow \quad r^* = \frac{L^2}{GmM\mu}
-\end{equation}
-L'energia minima vale:
-\begin{equation}
-    E^* = U_{eff}(r^*) = \frac{L^2}{2\mu (r^*)^2} - \frac{GmM}{r^*} = \frac{1}{2} \left[ \frac{GmM}{r^*} \right] - \frac{GmM}{r^*} = - \frac{GmM}{2r^*}
+    \frac{dU_{\text{eff}}}{dr} = 0
+    \quad \Longrightarrow \quad
+    - \frac{L^2}{\mu r^3} + \frac{GmM}{r^2} = 0
+    \quad \Longrightarrow \quad
+    r^* = \frac{L^2}{G m M \mu}
 \end{equation}
 
-\subsection{Classificazione delle Orbite e Eccentricità}
-La soluzione generale per la traiettoria è:
+Sostituendo $r^*$ nell'espressione del potenziale efficace si ottiene l'energia corrispondente. Conviene osservare che, in $r = r^*$, il termine centrifugo vale esattamente metà del modulo di quello attrattivo:
 \begin{equation}
-    r(\phi) = \frac{p}{1 + \epsilon \cos\phi} \quad \text{con } p = \frac{L^2}{GmM\mu} \text{ e } \epsilon = \sqrt{1 + \frac{2EL^2}{\mu(GmM)^2}}
+    \frac{L^2}{2\mu (r^*)^2} = \frac{1}{2}\,\frac{GmM}{r^*}
 \end{equation}
-\begin{itemize}
-    \item $E > 0 \Rightarrow \epsilon > 1$: Iperbole (moto illimitato).
-    \item $E = 0 \Rightarrow \epsilon = 1$: Parabola (velocità di fuga).
-    \item $E^* < E < 0 \Rightarrow 0 < \epsilon < 1$: Ellisse (moto limitato).
-    \item $E = E^* \Rightarrow \epsilon = 0$: Circonferenza.
+da cui
+\begin{equation}
+    E^* = U_{\text{eff}}(r^*)
+        = \frac{1}{2}\,\frac{GmM}{r^*} - \frac{GmM}{r^*}
+        = - \, \frac{GmM}{2 r^*}
+\end{equation}
+
+\begin{osservazione}{Energia Negativa e Stati Legati}
+$E^*$ è negativa, e rappresenta la minima energia compatibile con il momento angolare $L$ assegnato. Il segno negativo dell'energia totale è la firma di uno \textbf{stato legato}: per liberare il corpo e portarlo all'infinito occorrerebbe fornirgli almeno l'energia $|E^*|$. Si noti inoltre che $E^* = \frac{1}{2}U(r^*)$, cioè l'energia totale è pari a metà dell'energia potenziale --- un caso particolare del \emph{teorema del viriale}.
+\end{osservazione}
+
+\subsection{Velocità di Fuga}
+
+La condizione $E \geq 0$ separa i moti limitati da quelli illimitati e definisce una velocità caratteristica. Un corpo lanciato dalla superficie di un pianeta di massa $M$ e raggio $R$ riesce ad allontanarsi indefinitamente se la sua energia totale è non negativa:
+\begin{equation}
+    E = \frac{1}{2} m v^2 - \frac{GmM}{R} \geq 0
+    \qquad \Longrightarrow \qquad
+    v \geq \sqrt{\frac{2GM}{R}}
+\end{equation}
+
+\begin{definizione}{Velocità di Fuga}
+Si definisce \textbf{velocità di fuga} la minima velocità iniziale che consente a un corpo di allontanarsi indefinitamente dalla sorgente del campo:
+\begin{equation}
+    v_{\text{fuga}} = \sqrt{\frac{2GM}{R}} = \sqrt{2gR}
+\end{equation}
+Per la Terra essa vale circa $11{,}2 \, \mathrm{km/s}$. Si osservi che non dipende dalla massa del corpo lanciato né dalla direzione del lancio, ma solo dal campo della sorgente.
+\end{definizione}
+
+\subsection{Classificazione delle Orbite ed Eccentricità}
+
+Risolvendo l'equazione del moto radiale si ottiene la traiettoria in coordinate polari, che risulta essere in ogni caso una \textbf{conica} con un fuoco nel centro di forza:
+\begin{equation}
+    r(\phi) = \frac{p}{1 + \epsilon \cos\phi}
+    \qquad \text{con} \qquad
+    p = \frac{L^2}{G m M \mu}
+    \, , \qquad
+    \epsilon = \sqrt{1 + \frac{2 E L^2}{\mu \,(G m M)^2}}
+\end{equation}
+dove $p$ è il \textbf{semilato retto} ed $\epsilon$ l'\textbf{eccentricità}. Il legame fra $\epsilon$ ed $E$ è diretto: il segno dell'energia determina il tipo di conica.
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}[>=stealth, scale=1.1, font=\small]
+        \def\p{1.2}
+        % Assi
+        \draw[->, thin, mypen!45] (-3.7,0) -- (1.75,0);
+        \node[mypen, anchor=north, yshift=-2pt] at (1.6,-0.06) {$\phi = 0$};
+        \draw[thin, mypen!45] (0,-2.75) -- (0,2.75);
+
+        % Iperbole  (eps = 1.6)
+        \draw[very thick, boxatt, domain=-110:110, samples=160, smooth]
+            plot ({\p/(1+1.6*cos(\x))*cos(\x)}, {\p/(1+1.6*cos(\x))*sin(\x)});
+        % Parabola  (eps = 1)
+        \draw[very thick, boxnota, domain=-112:112, samples=160, smooth]
+            plot ({\p/(1+1.0*cos(\x))*cos(\x)}, {\p/(1+1.0*cos(\x))*sin(\x)});
+        % Ellisse   (eps = 0.6)
+        \draw[very thick, boxese, domain=0:360, samples=200, smooth]
+            plot ({\p/(1+0.6*cos(\x))*cos(\x)}, {\p/(1+0.6*cos(\x))*sin(\x)});
+        % Circonferenza (eps = 0)
+        \draw[very thick, boxoss] (0,0) circle (\p);
+
+        % Fuoco comune
+        \filldraw[notered] (0,0) circle (2.2pt);
+        \node[notered, anchor=east, xshift=-4pt, yshift=-3pt] at (0,0) {$M$};
+
+        % Legenda, a destra e ben staccata dalle curve
+        \begin{scope}[shift={(2.35,0)}]
+            \foreach \i/\col/\txt in {%
+                0/boxoss/{$\epsilon = 0$ \; circonferenza, \; $E = E^*$},
+                1/boxese/{$0 < \epsilon < 1$ \; ellisse, \; $E^* < E < 0$},
+                2/boxnota/{$\epsilon = 1$ \; parabola, \; $E = 0$},
+                3/boxatt/{$\epsilon > 1$ \; iperbole, \; $E > 0$}}
+            {
+                \draw[very thick, \col] (0,{1.5-0.62*\i}) -- (0.34,{1.5-0.62*\i});
+                \node[\col, anchor=west] at (0.44,{1.5-0.62*\i}) {\txt};
+            }
+        \end{scope}
+    \end{tikzpicture}
+    \caption{Le quattro famiglie di traiettorie in campo kepleriano, tutte con lo stesso semilato retto $p$ e un fuoco comune nel centro di forza $M$. Al crescere dell'eccentricità --- e quindi dell'energia --- l'orbita passa da chiusa ad aperta.}
+    \label{fig:classificazione_orbite}
+\end{figure}
+
+\begin{formulario}{Classificazione delle Orbite}
+\begin{itemize}[leftmargin=1.4em]
+    \item $E > 0 \; \Longrightarrow \; \epsilon > 1$: \textbf{iperbole}, moto illimitato (il corpo proviene dall'infinito e vi ritorna);
+    \item $E = 0 \; \Longrightarrow \; \epsilon = 1$: \textbf{parabola}, caso limite, corrispondente alla velocità di fuga;
+    \item $E^* < E < 0 \; \Longrightarrow \; 0 < \epsilon < 1$: \textbf{ellisse}, moto limitato e periodico;
+    \item $E = E^* \; \Longrightarrow \; \epsilon = 0$: \textbf{circonferenza}, orbita di minima energia.
 \end{itemize}
+\end{formulario}
+
+\subsection{Prima e Seconda Legge di Keplero}
 
 \begin{teorema}{I Legge di Keplero}
-    Le orbite dei pianeti sono ellissi con il Sole in uno dei fuochi.
-\end{teorema}
-Proprietà dell'ellisse:
-$r_{min} = p/(1+\epsilon) = a(1-\epsilon)$ (Perielio), 
-$r_{max} = p/(1-\epsilon) = a(1+\epsilon)$ (Afelio). 
-Semiasse maggiore $a = (r_{min} + r_{max})/2 = \frac{p}{1-\epsilon^2} = \frac{GmM}{2|E|}$.
-
-\subsection{III Legge di Keplero: Derivazione Analitica}
-\begin{teorema}{III Legge di Keplero}
-L'area dell'ellisse è $A = \pi a b$. Dalla conservazione del momento angolare sapendo che la velocità areolare è $\dot{A} = L/2\mu$:
-\begin{equation}
-    A = \int_{0}^{T} \dot{A} \, dt = \frac{L}{2\mu} T = \pi a b \quad \Rightarrow \quad T^2 = \frac{4\pi^2 \mu^2 a^2 b^2}{L^2}
-\end{equation}
-Usando la relazione geometrica $b^2 = a^2 (1-\epsilon^2)$ e l'espressione di $L^2 = \mu GmM p = \mu GmM a(1-\epsilon^2)$:
-\begin{equation}
-    T^2 = \frac{4\pi^2 \mu^2 a^2 [a^2(1-\epsilon^2)]}{\mu G M m a(1-\epsilon^2)} = \frac{4\pi^2 \mu a^3}{G M m} = \frac{4\pi^2 a^3}{G(M+m)}
-\end{equation}
-Per $M \gg m$ (caso del Sole):
-\begin{equation}
-    \frac{a^3}{T^2} \approx \frac{GM_{sole}}{4\pi^2} = \text{costante per tutti i pianeti}
-\end{equation}
+Le orbite dei pianeti sono \textbf{ellissi}, delle quali il Sole occupa uno dei due fuochi.
 \end{teorema}
 
-\subsection{Verifica Newtoniana: da Keplero a \texorpdfstring{$1/r^2$}{1/r\^{}2}}
-Newton dimostrò che se vale la $III$ legge di Keplero per orbite circolari ($a=r$):
-\begin{equation}
-    T^2 = K r^3 \quad \Rightarrow \quad \omega^2 = \left( \frac{2\pi}{T} \right)^2 = \frac{4\pi^2}{K r^3}
-\end{equation}
-L'accelerazione centripeta richiesta è:
-\begin{equation}
-    a_c = \omega^2 r = \frac{4\pi^2}{K r^3} r = \frac{4\pi^2}{K} \frac{1}{r^2}
-\end{equation}
-Dunque la forza deve essere del tipo $F \propto 1/r^2$.
+\begin{teorema}{II Legge di Keplero (legge delle aree)}
+Il raggio vettore che congiunge il Sole al pianeta spazza \textbf{aree uguali in tempi uguali}.
+\end{teorema}
 
-\section{Teorema dei Gusci (Shell Theorem)}
-\subsection{Dimostrazione Integrale}
-Calcoliamo la forza tra un guscio sferico di raggio $R$ e massa $M$ e un punto $m$ a distanza $r$ dal centro. Consideriamo un anello infinitesimo di massa $dM = \sigma (2\pi R^2 \sin\theta d\theta)$.
-La forza lungo l'asse è:
+La seconda legge è già stata dimostrata nel capitolo precedente, dove si è visto che essa discende dalla sola \emph{centralità} della forza, attraverso la conservazione del momento angolare, e non dalla sua particolare dipendenza da $r$. Vale dunque per ogni campo centrale, gravitazionale o meno. La prima legge, invece, è una proprietà specifica del potenziale $1/r$.
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}[>=stealth, scale=0.95, font=\small]
+        \def\semia{3.4}
+        \def\semib{2.4}
+        \def\focc{2.4}
+
+        % Ellisse e assi
+        \draw[very thick, boxese] (0,0) ellipse [x radius=\semia, y radius=\semib];
+        \draw[thin, mypen!40] (-\semia-0.5,0) -- (\semia+0.5,0);
+        \draw[thin, mypen!40] (0,-\semib-0.3) -- (0,\semib+0.3);
+
+        % Fuochi e centro
+        \filldraw[notered] (\focc,0) circle (2.4pt);
+        \filldraw[mypen!55] (-\focc,0) circle (2.0pt);
+        \node[mypen!75, anchor=south, yshift=3pt] at (-\focc,0) {$F_2$};
+        \filldraw[mypen] (0,0) circle (1.6pt);
+        \node[mypen, anchor=north east, xshift=-2pt, yshift=-1pt] at (0,0) {$C$};
+
+        % Perielio e afelio
+        \filldraw[mypen] (\semia,0) circle (1.8pt);
+        \node[mypen, anchor=west, xshift=4pt] at (\semia,0) {perielio};
+        \filldraw[mypen] (-\semia,0) circle (1.8pt);
+        \node[mypen, anchor=east, xshift=-4pt] at (-\semia,0) {afelio};
+
+        % Semiasse maggiore, dentro l'ellisse
+        \draw[<->, very thick, boxoss] (0,-0.62) -- (\semia,-0.62);
+        \node[boxoss, anchor=north] at ({\semia/2},-0.66) {$a$};
+
+        % Semiasse minore
+        \draw[<->, very thick, boxatt] (-1.3,0) -- (-1.3,{\semib*sqrt(1-1.3*1.3/(\semia*\semia))});
+        \node[boxatt, anchor=east, xshift=-3pt] at (-1.3,{\semib*sqrt(1-1.3*1.3/(\semia*\semia))/2}) {$b$};
+
+        % Distanza focale
+        \draw[<->, very thick, boxnota] (0,0.95) -- (\focc,0.95);
+        \node[boxnota, anchor=south] at ({\focc/2},0.99) {$c = \epsilon a$};
+
+        % Pianeta e raggio vettore
+        \def\tp{122}
+        \coordinate (P) at ({\semia*cos(\tp)}, {\semib*sin(\tp)});
+        \filldraw[boxoss!45, draw=boxoss, very thick] (P) circle (0.15);
+        \draw[very thick, notered] (\focc,0) -- (P)
+            node[pos=0.72, anchor=south east, notered] {$r$};
+        \node[notered, anchor=north, yshift=-3pt] at (\focc,0) {$F_1$ (Sole)};
+
+        % Quote impilate sotto l'ellisse
+        \draw[<->, thick, notered!85] (-\semia,-3.05) -- (\focc,-3.05);
+        \node[notered, anchor=north] at ({(\focc-\semia)/2},-3.09) {$r_{\max} = a(1+\epsilon)$};
+        \draw[<->, thick, notered!85] (\focc,-3.75) -- (\semia,-3.75);
+        \node[notered, anchor=west, xshift=4pt] at (\semia,-3.75) {$r_{\min} = a(1-\epsilon)$};
+        \draw[dotted, thin, mypen!55] (-\semia,0) -- (-\semia,-3.0);
+        \draw[dotted, thin, mypen!55] (\focc,0) -- (\focc,-3.7);
+        \draw[dotted, thin, mypen!55] (\semia,0) -- (\semia,-3.7);
+    \end{tikzpicture}
+    \caption{Geometria dell'orbita ellittica. Il Sole occupa il fuoco $F_1$; l'altro fuoco $F_2$ è vuoto. La distanza minima $r_{\min}$ si raggiunge al perielio, quella massima $r_{\max}$ all'afelio, e il semiasse maggiore $a$ ne è la semisomma.}
+    \label{fig:geometria_ellisse}
+\end{figure}
+
+Le grandezze caratteristiche dell'ellisse si ricavano direttamente dall'equazione della conica, valutandola agli estremi:
 \begin{equation}
-    dF = \frac{Gm \cdot dM}{s^2} \cos\psi = \frac{Gm \sigma 2\pi R^2 \sin\theta d\theta}{s^2} \left[ \frac{r - R\cos\theta}{s} \right]
+    r_{\min} = \frac{p}{1+\epsilon} = a\,(1-\epsilon)
+    \qquad \text{(perielio)}
+    \qquad\qquad
+    r_{\max} = \frac{p}{1-\epsilon} = a\,(1+\epsilon)
+    \qquad \text{(afelio)}
 \end{equation}
-Dalla legge di Carnot: $s^2 = r^2 + R^2 - 2rR\cos\theta$. Differenziando: $2s ds = 2rR\sin\theta d\theta \Rightarrow \sin\theta d\theta = \frac{s ds}{rR}$.
-Inoltre $\cos\theta = \frac{r^2 + R^2 - s^2}{2rR}$. Sostituendo:
+e il semiasse maggiore è la loro semisomma:
 \begin{equation}
-    dF = \frac{Gm M}{4r^2 R} \left[ 1 + \frac{r^2 - R^2}{s^2} \right] ds
+    a = \frac{r_{\min} + r_{\max}}{2} = \frac{p}{1-\epsilon^2} = \frac{GmM}{2|E|}
 \end{equation}
-Integrando tra $s_1 = r-R$ e $s_2 = r+R$ per un punto esterno ($r > R$):
-\begin{equation}
-    \begin{split}
-        F &= \frac{GmM}{4r^2 R} \int_{r-R}^{r+R} \left( 1 + \frac{r^2 - R^2}{s^2} \right) ds \\
-        &= \frac{GmM}{4r^2 R} \left[ s - \frac{r^2 - R^2}{s} \right]_{r-R}^{r+R} = \dots = \frac{GmM}{r^2}
-    \end{split}
-\end{equation}
-Per un punto interno ($r < R$), integrando tra $R-r$ e $R+r$:
-\begin{equation}
-    F = \dots = \frac{GmM}{4r^2 R} [ (R+r) - (R-r) + (R-r) - (R+r) ] = 0
-\end{equation}
-\begin{osservazione}{Sfera Piena}
-    Per una sfera piena di raggio $R_T$, all'esterno $F \propto 1/r^2$. All'interno ($r < R_T$), solo la massa contenuta nella sfera di raggio $r$ contribuisce:
-    \begin{equation}
-        F(r) = \frac{G m M(r)}{r^2} = \frac{G m (\rho \frac{4}{3}\pi r^3)}{r^2} \propto r
-    \end{equation}
-    La forza cresce linearmente dal centro fino alla superficie, per poi decrescere come $1/r^2$.
+
+\begin{osservazione}{Il Semiasse Maggiore Dipende solo dall'Energia}
+L'ultima uguaglianza merita attenzione: $a$ è determinato dalla sola energia totale, e non dal momento angolare. Due orbite con la stessa energia ma momenti angolari diversi hanno lo stesso semiasse maggiore --- e dunque, come vedremo, lo stesso periodo --- pur avendo forme molto diverse, l'una quasi circolare e l'altra molto allungata. È il momento angolare, attraverso $p$, a fissare l'eccentricità.
 \end{osservazione}
+
+\subsection{Terza Legge di Keplero: Derivazione Analitica}
+
+\begin{teorema}{III Legge di Keplero}
+Il quadrato del periodo di rivoluzione è proporzionale al cubo del semiasse maggiore dell'orbita:
+\begin{equation}
+    T^2 = \frac{4\pi^2 a^3}{G\,(M+m)}
+\end{equation}
+e, nel limite $M \gg m$, il rapporto $a^3/T^2$ è lo stesso per tutti i corpi orbitanti attorno alla medesima sorgente.
+\end{teorema}
+
+\emph{Dimostrazione.} L'area dell'ellisse vale $A = \pi a b$. D'altra parte, per la seconda legge la velocità areolare è costante e pari a $\dot{A} = L/2\mu$; integrando su un periodo completo:
+\begin{equation}
+    A = \int_{0}^{T} \dot{A} \, dt = \frac{L}{2\mu}\,T = \pi a b
+    \qquad \Longrightarrow \qquad
+    T^2 = \frac{4\pi^2 \mu^2 a^2 b^2}{L^2}
+\end{equation}
+
+Introduciamo ora le due relazioni geometriche che legano $b$ e $L$ ai parametri dell'orbita, $b^2 = a^2(1-\epsilon^2)$ e $L^2 = \mu \, G m M \, p = \mu \, G m M \, a(1-\epsilon^2)$:
+\begin{equation}
+    T^2 = \frac{4\pi^2 \mu^{\cancel{2}} a^2 \left[a^{\cancel{2}}\cancel{(1-\epsilon^2)}\right]}
+               {\cancel{\mu} \, G M m \, \cancel{a}\cancel{(1-\epsilon^2)}}
+        = \frac{4\pi^2 \mu \, a^3}{G M m}
+\end{equation}
+Infine, sostituendo la definizione di massa ridotta $\mu = \dfrac{Mm}{M+m}$, il prodotto $Mm$ si semplifica:
+\begin{equation}
+    T^2 = \frac{4\pi^2 a^3}{G\,(M+m)}
+\end{equation}
+$\square$
+
+Per il Sistema Solare si ha $M_{\text{Sole}} \gg m_{\text{pianeta}}$, sicché $M + m \approx M_{\text{Sole}}$ e
+\begin{equation}
+    \frac{a^3}{T^2} \approx \frac{G\,M_{\text{Sole}}}{4\pi^2} = \text{costante per tutti i pianeti}
+\end{equation}
+che è esattamente la forma empirica in cui Keplero enunciò la legge, senza poterne dare giustificazione.
+
+\subsection{Verifica Newtoniana: da Keplero a \texorpdfstring{$1/r^2$}{1 su r quadro}}
+
+Il ragionamento può essere percorso anche all'indietro, ed è così che Newton procedette: assumendo la terza legge come dato sperimentale, se ne deduce la forma della forza. Consideriamo per semplicità un'orbita circolare, per cui $a = r$, e scriviamo la terza legge come $T^2 = K r^3$. La velocità angolare vale allora
+\begin{equation}
+    \omega^2 = \left( \frac{2\pi}{T} \right)^{\!2} = \frac{4\pi^2}{K r^3}
+\end{equation}
+e l'accelerazione centripeta necessaria a mantenere l'orbita è
+\begin{equation}
+    a_c = \omega^2 r = \frac{4\pi^2}{K r^3} \, r = \frac{4\pi^2}{K} \, \frac{1}{r^2}
+\end{equation}
+
+Poiché $F = m \, a_c$, la forza che agisce sul pianeta deve necessariamente andare come $1/r^2$. La terza legge di Keplero \emph{impone} dunque la dipendenza quadratica inversa: è questo il passaggio con cui il moto dei pianeti cessa di essere un fatto astronomico e diventa un problema di dinamica.
+
+\section{Teorema dei Gusci}
+
+Tutto quanto precede tratta i corpi celesti come punti materiali. Resta da giustificare questa approssimazione: perché è lecito sostituire a un pianeta, che è un corpo esteso di raggio migliaia di chilometri, un punto che ne concentra tutta la massa nel centro? La risposta è il \textbf{teorema dei gusci}, che Newton stesso dovette dimostrare prima di poter pubblicare la legge di gravitazione.
+
+\subsection{Dimostrazione Integrale}
+
+Calcoliamo la forza fra un guscio sferico omogeneo di raggio $R$ e massa $M$ e un punto materiale di massa $m$ posto a distanza $r$ dal centro. Per simmetria la forza risultante è diretta lungo la congiungente centro--punto, e le componenti trasversali si elidono a coppie; basta quindi sommare le sole componenti assiali.
+
+Suddividiamo il guscio in anelli infinitesimi individuati dall'angolo polare $\theta$. Ciascun anello ha massa
+\begin{equation}
+    dM = \sigma \left(2\pi R^2 \sin\theta \, d\theta\right)
+    \qquad \text{con} \qquad \sigma = \frac{M}{4\pi R^2}
+\end{equation}
+e tutti i suoi punti distano ugualmente $s$ dal punto $P$. La componente assiale del contributo dell'anello è
+\begin{equation}
+    dF = \frac{G m \, dM}{s^2} \cos\psi
+       = \frac{G m \, \sigma \, 2\pi R^2 \sin\theta \, d\theta}{s^2}
+         \left[ \frac{r - R\cos\theta}{s} \right]
+\end{equation}
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}[>=stealth, scale=1.3, font=\small]
+        \def\R{1.6}
+        \def\rr{3.9}
+        \def\th{52}
+
+        % Guscio
+        \draw[very thick, mypen] (0,0) circle (\R);
+        \draw[dashed, thin, mypen!40] (0,0) ellipse [x radius=\R, y radius=0.42];
+
+        % Anello infinitesimo
+        \coordinate (Q) at ({\R*sin(\th)}, {\R*cos(\th)});
+        \draw[very thick, boxese] ({\R*sin(\th)},{\R*cos(\th)}) arc (0:-180:{\R*sin(\th)} and 0.3);
+        \draw[very thick, boxese, dashed] ({\R*sin(\th)},{\R*cos(\th)}) arc (0:180:{\R*sin(\th)} and 0.3);
+        \fill[boxese] (Q) circle (1.6pt);
+        \node[boxese, anchor=south, yshift=3pt] at (Q) {$dM$};
+
+        % Asse polare e angolo theta
+        \draw[thick, mypen!55] (0,0) -- (0,\R+0.55);
+        \draw[thick, mypen!80] (0,0) -- (Q);
+        \draw[thick, mypen] (0,0.82) arc (90:{90-\th}:0.82);
+        \node[mypen] at ({1.06*sin(\th/2)}, {1.06*cos(\th/2)}) {$\theta$};
+        \node[mypen, anchor=west, xshift=3pt] at ({\R*sin(\th)*0.55},{\R*cos(\th)*0.55}) {$R$};
+
+        % Asse centro-punto
+        \draw[thick, mypen!45] (0,0) -- (\rr,0);
+        \filldraw[mypen] (0,0) circle (1.7pt);
+        \node[mypen, anchor=north east, xshift=-1pt] at (0,-0.06) {$O$};
+        \filldraw[notered] (\rr,0) circle (2.2pt);
+        \node[mypen, anchor=west, xshift=5pt] at (\rr,0) {$P$ \, ($m$)};
+        \draw[<->, thin, mypen!70] (0,-0.95) -- (\rr,-0.95);
+        \node[mypen, anchor=north] at ({\rr/2},-0.98) {$r$};
+
+        % Distanza s
+        \draw[very thick, boxoss] (Q) -- (\rr,0);
+        \node[boxoss, anchor=south west] at ({(\R*sin(\th)+\rr)/2 - 0.1},{\R*cos(\th)/2}) {$s$};
+
+        % Angolo psi in P
+        \draw[thick, boxatt] ({\rr-0.72},0)
+            arc (180:{180-atan(\R*cos(\th)/(\rr-\R*sin(\th)))}:0.72);
+        \node[boxatt, anchor=south, yshift=1pt] at ({\rr-1.02},0.28) {$\psi$};
+
+        % Forza elementare
+        \draw[->, very thick, notered] (\rr,0) -- ({\rr-0.95},0);
+        \node[notered, anchor=north, yshift=-3pt] at ({\rr-0.5},-0.04) {$dF$};
+    \end{tikzpicture}
+    \caption{Geometria per il teorema dei gusci. Il guscio è suddiviso in anelli infinitesimi individuati dall'angolo $\theta$; tutti i punti dell'anello distano $s$ dal punto $P$, e le componenti trasversali delle forze si elidono per simmetria, lasciando la sola componente assiale $dF \propto \cos\psi$.}
+    \label{fig:shell_theorem}
+\end{figure}
+
+Conviene ora cambiare variabile d'integrazione, passando da $\theta$ a $s$. Per il teorema di Carnot applicato al triangolo $OQP$:
+\begin{equation}
+    s^2 = r^2 + R^2 - 2rR\cos\theta
+\end{equation}
+e differenziando entrambi i membri a $r$ e $R$ fissati:
+\begin{equation}
+    2s \, ds = 2rR\sin\theta \, d\theta
+    \qquad \Longrightarrow \qquad
+    \sin\theta \, d\theta = \frac{s \, ds}{rR}
+\end{equation}
+Dalla stessa relazione si ricava inoltre $\cos\theta = \dfrac{r^2 + R^2 - s^2}{2rR}$, e quindi
+\begin{equation}
+    r - R\cos\theta = r - \frac{r^2 + R^2 - s^2}{2r} = \frac{r^2 - R^2 + s^2}{2r}
+\end{equation}
+
+Sostituendo tutto nell'espressione di $dF$, e usando $\sigma \, 2\pi R^2 = M/2$, si ottiene la forma notevolmente semplice
+\begin{equation}
+    dF = \frac{G m M}{4 r^2 R} \left[ 1 + \frac{r^2 - R^2}{s^2} \right] ds
+\end{equation}
+la cui primitiva è immediata:
+\begin{equation}
+    \int \left[ 1 + \frac{r^2-R^2}{s^2} \right] ds = s - \frac{r^2-R^2}{s}
+\end{equation}
+
+\paragraph{Punto esterno al guscio ($r > R$).}
+La distanza $s$ varia fra un minimo $r-R$ e un massimo $r+R$. Ricordando che $r^2 - R^2 = (r-R)(r+R)$:
+\begin{align}
+    F &= \frac{GmM}{4r^2 R} \left[ s - \frac{r^2 - R^2}{s} \right]_{r-R}^{r+R} \notag \\
+      &= \frac{GmM}{4r^2 R} \Big[ (r+R) - \underbrace{\tfrac{(r-R)(r+R)}{r+R}}_{=\,r-R}
+         - (r-R) + \underbrace{\tfrac{(r-R)(r+R)}{r-R}}_{=\,r+R} \Big] \notag \\
+      &= \frac{GmM}{4r^2 R} \Big[ 2(r+R) - 2(r-R) \Big]
+       = \frac{GmM}{4r^2 \cancel{R}} \cdot 4\cancel{R}
+       = \frac{GmM}{r^2}
+\end{align}
+
+\paragraph{Punto interno al guscio ($r < R$).}
+Ora la distanza $s$ varia fra $R-r$ e $R+r$, e questa volta $r^2 - R^2 = -(R-r)(R+r)$ è negativo:
+\begin{align}
+    F &= \frac{GmM}{4r^2 R} \left[ s - \frac{r^2 - R^2}{s} \right]_{R-r}^{R+r} \notag \\
+      &= \frac{GmM}{4r^2 R} \Big[ (R+r) + \underbrace{\tfrac{(R-r)(R+r)}{R+r}}_{=\,R-r}
+         - (R-r) - \underbrace{\tfrac{(R-r)(R+r)}{R-r}}_{=\,R+r} \Big] \notag \\
+      &= \frac{GmM}{4r^2 R} \Big[ (R+r) + (R-r) - (R-r) - (R+r) \Big] = 0
+\end{align}
+
+\begin{teorema}{Teorema dei Gusci}
+Un guscio sferico omogeneo di massa $M$ esercita su un punto materiale:
+\begin{itemize}[leftmargin=1.4em]
+    \item \textbf{all'esterno} ($r > R$), la stessa forza che eserciterebbe un punto materiale di massa $M$ collocato nel centro,
+    \begin{equation*}
+        F = \frac{GmM}{r^2}
+    \end{equation*}
+    \item \textbf{all'interno} ($r < R$), forza \textbf{nulla} in ogni punto, qualunque sia la posizione.
+    \begin{equation*}
+        F = 0
+    \end{equation*}
+\end{itemize}
+\end{teorema}
+
+\begin{osservazione}{Perché l'Interno è Esattamente Nullo}
+Il risultato interno non è un'approssimazione né un effetto di simmetria banale: il punto non deve stare al centro. Preso un punto qualsiasi dentro il guscio, i coni opposti che lo hanno per vertice intercettano sulla superficie due calotte di area proporzionale al quadrato della rispettiva distanza; l'attrazione maggiore della calotta vicina è compensata esattamente dalla massa maggiore di quella lontana, proprio perché la forza va come $1/r^2$. È dunque un risultato che dipende in modo essenziale dall'esponente $2$: per qualunque altra potenza la cancellazione non avverrebbe.
+\end{osservazione}
+
+\subsection{Il Caso della Sfera Piena}
+
+Una sfera piena si tratta come una successione di gusci concentrici, applicando a ciascuno il teorema.
+
+All'\textbf{esterno} ($r > R_T$) ogni guscio agisce come se la sua massa fosse concentrata nel centro; sommando su tutti i gusci si ottiene che l'intera sfera equivale a un punto materiale di massa $M$ posto nel centro. È questo il risultato che legittima a posteriori l'aver trattato i pianeti come punti.
+
+All'\textbf{interno} ($r < R_T$) i gusci più esterni del punto non esercitano alcuna forza, e contribuisce soltanto la massa $M(r)$ contenuta nella sfera di raggio $r$. Per una densità $\rho$ uniforme:
+\begin{equation}
+    F(r) = \frac{G m \, M(r)}{r^2}
+         = \frac{G m \left(\rho \, \tfrac{4}{3}\pi r^3\right)}{r^2}
+         = \frac{4}{3}\pi G m \rho \, r \; \propto \; r
+\end{equation}
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}[>=stealth, x=1.5cm, y=1.1cm, font=\small]
+        % Assi
+        \draw[->, thick, mypen] (0,0) -- (5.2,0) node[right] {$r$};
+        \draw[->, thick, mypen] (0,0) -- (0,3.0) node[above] {$|\vec{g}(r)|$};
+
+        % Interno: lineare
+        \draw[very thick, boxoss] (0,0) -- (1.8,2.3);
+        % Esterno: 1/r^2, raccordato in r = R_T
+        \draw[very thick, notered, domain=1.8:5.0, samples=120, smooth]
+            plot (\x, {2.3*(1.8/\x)^2});
+
+        % Raggio terrestre
+        \draw[dashed, thin, mypen!60] (1.8,0) -- (1.8,2.3);
+        \draw[dashed, thin, mypen!60] (0,2.3) -- (1.8,2.3);
+        \node[mypen, anchor=north] at (1.8,-0.06) {$R_T$};
+        \node[mypen, anchor=east] at (-0.06,2.3) {$g$};
+
+        % Etichette
+        \node[boxoss, anchor=east] at (1.55,1.05) {$\propto r$};
+        \node[notered, anchor=south west] at (3.0,0.95) {$\propto 1/r^2$};
+        \node[mypen!75, anchor=north, align=center] at (0.9,-0.25) {interno};
+        \node[mypen!75, anchor=north, align=center] at (3.4,-0.25) {esterno};
+    \end{tikzpicture}
+    \caption{Modulo del campo gravitazionale generato da una sfera piena omogenea in funzione della distanza dal centro. Il campo cresce linearmente all'interno, raggiunge il massimo $g$ sulla superficie e decresce come $1/r^2$ all'esterno.}
+    \label{fig:campo_sfera_piena}
+\end{figure}
+
+Il campo cresce dunque \textbf{linearmente} dal centro fino alla superficie, dove raggiunge il valore massimo $g = GM/R_T^2$, per poi decrescere come $1/r^2$. In particolare, al centro esatto della Terra il campo gravitazionale è \textbf{nullo}: tutta la massa circostante attrae in modo perfettamente simmetrico.

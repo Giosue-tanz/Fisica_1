@@ -1,353 +1,616 @@
 \chapter{Dinamica degli Urti}
 
+Lo studio degli urti è il primo caso in cui la dinamica dei sistemi di punti materiali mostra tutta la sua potenza: durante l'interazione le forze in gioco sono così intense e così brevi da risultare impossibili da misurare istante per istante, eppure lo stato finale del sistema resta completamente determinato dalle sole \textbf{leggi di conservazione}. È proprio questa la lezione del capitolo: quando la descrizione dettagliata della forza è inaccessibile, i teoremi di conservazione forniscono ugualmente la risposta.
+
 \begin{definizione}{Urto}
-In fisica, un \textbf{urto} è un'interazione fra corpi (generalmente due) che si compie in un brevissimo intervallo di tempo $\Delta t \to 0$. Durante questo intervallo avviene uno scambio significativo di energia cinetica ($K$) e quantità di moto ($\vec{P}$).
+In fisica, un \textbf{urto} è un'interazione fra corpi (generalmente due) che si compie in un intervallo di tempo brevissimo, $\Delta t \to 0$. Durante tale intervallo avviene uno scambio significativo di energia cinetica $K$ e di quantità di moto $\vec{P}$.
 \end{definizione}
 
-\vspace{0.3cm}
-\section{Forze Impulsive}
-Lo scambio di $K$ e $\vec{P}$ è dovuto all'azione di forze estremamente intense che agiscono per un tempo limitato, chiamate \textbf{forze impulsive}. L'effetto dinamico di tale forza è descritto dal vettore \textbf{impulso} $\vec{I}$:
+La brevità dell'interazione non è un dettaglio accessorio ma l'ipotesi centrale di tutta la trattazione: è da essa che discenderanno sia l'approssimazione di sistema isolato, sia la possibilità di separare nettamente uno ``stato prima'' e uno ``stato dopo'' senza doversi occupare di ciò che accade nel mezzo.
 
 \begin{figure}[ht]
     \centering
-    \begin{tikzpicture}[scale=0.9]
-        % Boxes
-        \fill[cyan!10, rounded corners=2pt] (-3.2,0.5) rectangle (-1,2.2);
-        \draw[thick, mypen, rounded corners=2pt] (-3.2,0.5) rectangle (-1,2.2) node[midway, font=\bfseries] {PRIMA};
-        
-        \fill[notered!10, rounded corners=2pt] (1,0.5) rectangle (3.2,2.2);
-        \draw[thick, mypen, rounded corners=2pt] (1,0.5) rectangle (3.2,2.2) node[midway, font=\bfseries] {DOPO};
-        
-        % Wave interaction
-        \draw[->, >=stealth, thick, notered, decoration={zigzag,amplitude=3pt,segment length=5pt},decorate] (-0.8,1.35) -- (0.8,1.35);
-        \node[below, font=\bfseries, notered] at (0,1.1) {Urto ($\Delta t \to 0$)};
-        
-        % Kinetic/Momentum labels
-        \node[left, font=\bfseries] at (-3.3,1.7) {$K_i$};
-        \node[left, font=\bfseries] at (-3.3,0.9) {$\vec{P}_i$};
-        \node[right, font=\bfseries] at (3.3,1.7) {$K_f$};
-        \node[right, font=\bfseries] at (3.3,0.9) {$\vec{P}_f$};
-        
-        % Note box
-        \node[draw=mygreen, fill=mygreen!10, thick, rounded corners=2pt, text width=3.2cm, font=\small, align=center] at (0,-0.7) {$\Delta U \approx \text{costante}$ \\ \footnotesize in un urto repulsivo spontaneo};
+    \begin{tikzpicture}[>=stealth, scale=1.0,
+        corpoA/.style={fill=boxoss!35, draw=boxoss, thick},
+        corpoB/.style={fill=notered!35, draw=notered, thick}]
+
+        % ---------------- PRIMA ----------------
+        \begin{scope}
+            \node[font=\small\bfseries, mypen] at (2.1,1.75) {PRIMA};
+            \draw[thin, mypen!35] (0.0,0) -- (4.2,0);
+            \filldraw[corpoA] (0.6,0) circle (0.24);
+            \node[font=\small, mypen, below] at (0.6,-0.42) {$m_A$};
+            \draw[->, very thick, boxoss] (1.0,0) -- (1.9,0)
+                node[midway, above, font=\small, boxoss] {$\vec{v}_{Ai}$};
+            \filldraw[corpoB] (3.6,0) circle (0.28);
+            \node[font=\small, mypen, below] at (3.6,-0.46) {$m_B$};
+            \draw[->, very thick, notered] (3.2,0) -- (2.3,0)
+                node[midway, above, font=\small, notered] {$\vec{v}_{Bi}$};
+        \end{scope}
+
+        % ---------------- ZONA D'URTO ----------------
+        \draw[decorate, decoration={zigzag, amplitude=2.6pt, segment length=5pt},
+              very thick, boxatt] (4.5,0) -- (5.7,0);
+        \node[font=\small\bfseries, boxatt, align=center] at (5.1,1.35)
+            {urto\\[-2pt] $\Delta t \to 0$};
+
+        % ---------------- DOPO ----------------
+        \begin{scope}[xshift=6.9cm]
+            \node[font=\small\bfseries, mypen] at (2.1,1.75) {DOPO};
+            \draw[thin, mypen!35] (0.0,0) -- (4.2,0);
+            \filldraw[corpoA] (1.1,0) circle (0.24);
+            \node[font=\small, mypen, below] at (1.1,-0.42) {$m_A$};
+            \draw[->, very thick, boxoss] (0.7,0) -- (-0.2,0)
+                node[midway, above, font=\small, boxoss] {$\vec{v}_{Af}$};
+            \filldraw[corpoB] (3.2,0) circle (0.28);
+            \node[font=\small, mypen, below] at (3.2,-0.46) {$m_B$};
+            \draw[->, very thick, notered] (3.6,0) -- (4.5,0)
+                node[midway, above, font=\small, notered] {$\vec{v}_{Bf}$};
+        \end{scope}
     \end{tikzpicture}
-    \caption{Schema concettuale di un urto: transizione dinamica tra lo stato iniziale (PRIMA) e lo stato finale (DOPO).}
+    \caption{Struttura logica di un urto. L'interazione vera e propria, confinata in un intervallo $\Delta t \to 0$, viene trattata come una scatola nera: si confrontano soltanto lo stato iniziale e lo stato finale. La quantità di moto totale si conserva in ogni caso, $\vec{P}_f = \vec{P}_i$; l'energia cinetica soltanto se l'urto è elastico.}
     \label{fig:schema_urto}
 \end{figure}
 
+\section{Forze Impulsive}
+
+Lo scambio di $K$ e $\vec{P}$ è dovuto all'azione di forze estremamente intense che agiscono per un tempo limitatissimo, dette \textbf{forze impulsive}. Di una forza siffatta non conosciamo quasi mai l'andamento istantaneo $\vec{F}(t)$ --- che dipende dai dettagli microscopici della deformazione dei corpi a contatto --- ma non ne abbiamo bisogno: l'unica informazione dinamicamente rilevante è il suo \textbf{integrale} nel tempo.
+
+\begin{definizione}{Impulso di una Forza}
+Si definisce \textbf{impulso} $\vec{I}$ della forza $\vec{F}$ agente nell'intervallo dell'urto la quantità
 \begin{equation}
     \vec{I} = \int_{0^-}^{0^+} \vec{F}(t) \, dt = \vec{P}_f - \vec{P}_i = \Delta \vec{P}
 \end{equation}
+Geometricamente, $\vec{I}$ è l'\textbf{area sottesa} dalla curva $F(t)$ nell'intervallo di contatto.
+\end{definizione}
+
+L'uguaglianza $\vec{I} = \Delta\vec{P}$ non è altro che il secondo principio della dinamica riscritto in forma integrale, ed è il vero contenuto operativo del concetto di forza impulsiva: due forze molto diverse fra loro, purché sottendano la stessa area, producono sullo stesso corpo la medesima variazione di quantità di moto.
 
 \begin{figure}[ht]
     \centering
-    \begin{tikzpicture}[scale=0.95]
+    \begin{tikzpicture}[>=stealth, scale=1.0]
         % Assi
-        \draw[->, >=stealth, thick, mypen] (0,0) -- (5,0) node[right] {$t$};
-        \draw[->, >=stealth, thick, mypen] (0,0) -- (0,3.5) node[above] {$F(t)$};
-        
-        % Area sottesa (Impulso)
-        \fill[notered!20, domain=0.5:4.5, samples=100] plot (\x, {2.8*exp(-8*(\x-2.5)^2)}) -- (4.5,0) -- (0.5,0) -- cycle;
-        
-        % Curva forza impulsiva
-        \draw[ultra thick, notered, domain=0.5:4.5, samples=100] plot (\x, {2.8*exp(-8*(\x-2.5)^2)});
-        
-        % Etichette
-        \node[notered, font=\bfseries] at (3.8, 2.8) {Forza Impulsiva};
-        \node[font=\bfseries] at (2.5, 1.2) {Area $= \vec{I} = \Delta \vec{P}$};
-        \draw[<->, >=stealth, thick, mypen] (1.3, -0.4) -- (3.7, -0.4) node[midway, below] {$\Delta t \to 0$};
-        \draw[dashed, thin, mypen] (1.3, 0) -- (1.3, -0.5);
-        \draw[dashed, thin, mypen] (3.7, 0) -- (3.7, -0.5);
+        \draw[->, thick, mypen] (-0.3,0) -- (6.6,0) node[right, font=\small] {$t$};
+        \draw[->, thick, mypen] (0,-0.1) -- (0,3.9) node[above, font=\small] {$F(t)$};
+
+        % Area sottesa
+        \fill[notered!18, domain=0.5:5.5, samples=140]
+            plot (\x, {3.1*exp(-2.0*(\x-3)^2)}) -- (5.5,0) -- (0.5,0) -- cycle;
+        % Curva impulsiva
+        \draw[ultra thick, notered, domain=0.5:5.5, samples=140]
+            plot (\x, {3.1*exp(-2.0*(\x-3)^2)});
+
+        % Etichetta della curva
+        \node[font=\small\bfseries, notered, right] at (4.6,3.45) {forza impulsiva};
+        \draw[thin, notered!70] (4.55,3.35) -- (3.55,2.55);
+
+        % Etichetta dell'area
+        \node[font=\small, mypen, left] at (1.55,1.55) {area $= |\vec{I}| = |\Delta \vec{P}|$};
+        \draw[thin, mypen!70] (1.6,1.5) -- (2.55,0.7);
+
+        % Intervallo di contatto
+        \draw[dashed, thin, mypen!55] (2.1,0) -- (2.1,-0.95);
+        \draw[dashed, thin, mypen!55] (3.9,0) -- (3.9,-0.95);
+        \draw[<->, thick, mypen] (2.1,-0.8) -- (3.9,-0.8);
+        \node[font=\small, mypen, below] at (3.0,-0.88) {$\Delta t \to 0$};
+
+        % Forza esterna ordinaria, per confronto
+        \draw[thick, boxese, dashed] (0.3,0.22) -- (5.2,0.22);
+        \node[font=\scriptsize, boxese, above right] at (5.2,0.2) {$F_{\text{ext}}$};
     \end{tikzpicture}
-    \caption{Andamento temporale di una forza impulsiva durante il brevissimo intervallo di contatto dell'urto: l'area sottesa rappresenta l'impulso $\vec{I}$.}
+    \caption{Andamento temporale di una forza impulsiva. L'area sottesa dalla curva è l'impulso $\vec{I} = \Delta\vec{P}$. In tratteggio verde, per confronto, una forza esterna ordinaria: il suo modulo è incomparabilmente più piccolo e, sull'intervallo $\Delta t \to 0$, l'area che essa sottende è trascurabile.}
     \label{fig:forza_impulsiva}
 \end{figure}
 
+Per il bilancio energetico dell'urto useremo invece i due teoremi generali già stabiliti per i sistemi di punti materiali, che qui richiamiamo perché saranno lo strumento con cui distingueremo i vari tipi di urto.
+
 \begin{teorema}{Teorema delle Forze Vive (Sistemi)}
-La variazione di energia cinetica totale di un sistema materiale è pari al lavoro compiuto da tutte le forze agenti: interne, esterne ed eventualmente apparenti:
+La variazione di energia cinetica totale di un sistema materiale è pari al lavoro compiuto da tutte le forze agenti: interne, esterne ed eventualmente apparenti,
 \begin{equation}
-    \Delta K = L_{\text{tot}} = L_{\text{ext}} + L_{\text{int}} (+ L_{\text{app}})
+    \Delta K = L_{\text{tot}} = L_{\text{ext}} + L_{\text{int}} \; (+ \, L_{\text{app}})
 \end{equation}
 \end{teorema}
 
 \begin{teorema}{Conservazione dell'Energia Meccanica}
-Se tutte le forze agenti sul sistema materiale sono conservative, l'energia meccanica totale è costante. In presenza di forze dissipative:
+Se tutte le forze agenti sul sistema materiale sono conservative, l'energia meccanica totale è costante. In presenza di forze dissipative,
 \begin{equation}
     \Delta E_{\text{mecc}} = \Delta (K + U) = L_{\text{diss}}
 \end{equation}
 \end{teorema}
 
-\vspace{0.3cm}
+\begin{osservazione}{Perché l'Energia Cinetica Può Non Conservarsi}
+Nel caso degli urti il termine decisivo è $L_{\text{int}}$, il lavoro delle forze interne. Se le forze di contatto sono \emph{conservative} (deformazione puramente elastica), esse restituiscono integralmente il lavoro assorbito durante la compressione e $L_{\text{int}} = 0$ sull'intero urto: l'energia cinetica si conserva. Se invece una parte del lavoro viene spesa in deformazioni permanenti, calore o vibrazioni, allora $L_{\text{int}} < 0$ e l'energia cinetica finale è minore di quella iniziale. La quantità di moto, al contrario, è \textbf{indifferente} a questa distinzione: le forze interne sono a due a due uguali e opposte per il terzo principio, e il loro contributo a $\Delta\vec{P}$ si annulla sempre.
+\end{osservazione}
+
 \subsection{Approssimazione di Sistema Isolato}
-Durante l'urto possono essere presenti anche forze esterne (gravità, attrito, reazioni vincolari). Tuttavia, il loro modulo è trascurabile rispetto a quello delle forze impulsive ($F_{\text{ext}} \ll F_{\text{imp}}$). Ne consegue che l'impulso delle forze esterne è nullo nel limite $\Delta t \to 0$:
+
+Durante l'urto possono essere presenti anche forze esterne --- gravità, attrito, reazioni vincolari --- e in linea di principio esse violerebbero la conservazione della quantità di moto. Il loro modulo è però trascurabile rispetto a quello delle forze impulsive, $F_{\text{ext}} \ll F_{\text{imp}}$, e soprattutto esse agiscono su un intervallo che stiamo facendo tendere a zero. Ne consegue che il loro impulso è nullo nel limite $\Delta t \to 0$:
 \begin{equation}
-    \vec{I}_{\text{ext}} = \int_{\Delta t} \sum \vec{F}^{\text{ext}} \, dt \approx \vec{0}
-\end{equation}
-Pertanto, il sistema può essere considerato \textbf{isolato} nell'istante dell'urto. Ciò implica la \textbf{conservazione della quantità di moto totale}:
-\begin{equation}
-    \sum \vec{F}^{\text{ext}} \approx \vec{0} \implies \Delta \vec{P}_{\text{tot}} = \vec{0} \implies \vec{P}_{\text{tot}} = \text{costante}
+    \vec{I}_{\text{ext}} = \int_{\Delta t} \sum \vec{F}^{\,\text{ext}} \, dt \approx \vec{0}
 \end{equation}
 
-\vspace{0.3cm}
+\begin{attenzione}{È l'Impulso a Essere Trascurabile, non la Forza}
+La gravità non ``sparisce'' durante l'urto: continua ad agire con il suo valore abituale. Ciò che si annulla è il suo \emph{impulso}, perché una forza di modulo finito integrata su un tempo infinitesimo dà un contributo infinitesimo. Subito prima e subito dopo l'urto le forze esterne tornano invece a governare il moto in modo del tutto ordinario.
+\end{attenzione}
+
+Pertanto il sistema può essere considerato \textbf{isolato} nell'istante dell'urto, e ciò implica la conservazione della quantità di moto totale:
+\begin{equation}
+    \sum \vec{F}^{\,\text{ext}} \approx \vec{0}
+    \implies \Delta \vec{P}_{\text{tot}} = \vec{0}
+    \implies \vec{P}_{\text{tot}} = \text{costante}
+\end{equation}
+
+\begin{formulario}{Le Due Leggi che Governano Ogni Urto}
+\begin{minipage}[t]{0.47\textwidth}
+\centering \textbf{Sempre valida}
+\begin{equation*}
+    \vec{P}_i = \vec{P}_f
+\end{equation*}
+\centering \footnotesize (le forze interne non alterano $\vec{P}_{\text{tot}}$)
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.47\textwidth}
+\centering \textbf{Valida solo se elastico}
+\begin{equation*}
+    K_i = K_f
+\end{equation*}
+\centering \footnotesize (nessuna dissipazione interna)
+\end{minipage}
+\vspace{4pt}
+\end{formulario}
+
 \section{Sistemi di Riferimento per lo Studio degli Urti}
-Per analizzare un urto è utile sfruttare due diversi sistemi di riferimento inerziali:
+
+Per analizzare un urto è utile sfruttare due diversi sistemi di riferimento inerziali, scegliendo di volta in volta quello in cui i conti risultano più semplici.
+
 \begin{itemize}
-    \item \textbf{Sistema del Laboratorio}: sistema inerziale "fermo" in cui osserviamo le velocità iniziali e finali dei corpi nel nostro apparato sperimentale.
-    \item \textbf{Sistema del Centro di Massa (CM)}: sistema solidale con il centro di massa, in moto con velocità $\vec{V}_{CM}$ rispetto al laboratorio. Poiché $\vec{V}_{CM}$ è costante (essendo il sistema isolato), anche questo è un sistema di riferimento inerziale.
+    \item \textbf{Sistema del Laboratorio}: il sistema inerziale ``fermo'' in cui osserviamo le velocità iniziali e finali dei corpi nel nostro apparato sperimentale. È il sistema in cui i dati vengono effettivamente misurati.
+    \item \textbf{Sistema del Centro di Massa (CM)}: il sistema solidale con il centro di massa, in moto con velocità $\vec{V}_{CM}$ rispetto al laboratorio. Poiché il sistema è isolato durante l'urto, $\vec{V}_{CM}$ è costante e anche questo è un sistema di riferimento inerziale.
 \end{itemize}
 
-Nel sistema del CM, la quantità di moto totale è nulla per definizione in ogni istante:
+Nel sistema del CM la quantità di moto totale è nulla per definizione, in ogni istante, e dunque
 \begin{equation}
-    \vec{p}_{Ai}' = -\vec{p}_{Bi}' \quad \text{e} \quad \vec{p}_{Af}' = -\vec{p}_{Bf}'
+    \vec{p}_{Ai}\,' = -\,\vec{p}_{Bi}\,'
+    \qquad \text{e} \qquad
+    \vec{p}_{Af}\,' = -\,\vec{p}_{Bf}\,'
 \end{equation}
-Questo significa che nel riferimento del CM i corpi si muovono sempre con quantità di moto uguali e opposte, semplificando notevolmente i calcoli algebrici.
+I due corpi si muovono cioè sempre con quantità di moto uguali e opposte: il numero di incognite indipendenti si dimezza e il problema, come vedremo, si riduce a una semplice questione di moduli.
 
-\vspace{0.3cm}
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}[>=stealth, scale=1.0,
+        corpoA/.style={fill=boxoss!35, draw=boxoss, thick},
+        corpoB/.style={fill=notered!35, draw=notered, thick}]
+
+        % ---------------- LAB ----------------
+        \begin{scope}
+            \node[font=\small\bfseries, mypen, right] at (0.0,1.35) {LAB};
+            \draw[thin, mypen!35] (0.2,0) -- (6.4,0);
+            \filldraw[corpoA] (1.0,0) circle (0.23);
+            \node[font=\small, mypen, above] at (1.0,0.4) {$m_A$};
+            \draw[->, very thick, boxoss] (1.35,0) -- (2.45,0)
+                node[midway, below, font=\small, boxoss] {$\vec{v}_{Ai}$};
+            \filldraw[corpoB] (4.6,0) circle (0.27);
+            \node[font=\small, mypen, above] at (4.6,0.44) {$m_B$};
+            \draw[->, very thick, notered] (4.95,0) -- (5.65,0)
+                node[midway, below, font=\small, notered] {$\vec{v}_{Bi}$};
+            \draw[->, thick, boxese] (2.9,-1.0) -- (3.9,-1.0);
+            \node[font=\small, boxese, right] at (3.98,-1.0) {$\vec{V}_{CM}$};
+        \end{scope}
+
+        % ---------------- CM ----------------
+        \begin{scope}[yshift=-3.3cm]
+            \node[font=\small\bfseries, mypen, right] at (0.0,1.35) {CM};
+            \draw[thin, mypen!35] (0.2,0) -- (6.4,0);
+            \filldraw[corpoA] (1.6,0) circle (0.23);
+            \node[font=\small, mypen, above] at (1.6,0.4) {$m_A$};
+            \draw[->, very thick, boxoss] (1.95,0) -- (2.85,0)
+                node[midway, below, font=\small, boxoss] {$\vec{p}_A\,'$};
+            \filldraw[corpoB] (5.0,0) circle (0.27);
+            \node[font=\small, mypen, above] at (5.0,0.44) {$m_B$};
+            \draw[->, very thick, notered] (4.65,0) -- (3.75,0)
+                node[midway, below, font=\small, notered] {$\vec{p}_B\,'$};
+            \fill[boxese] (3.3,0) circle (2.6pt);
+            \node[font=\scriptsize, boxese, above] at (3.3,0.14) {CM fermo};
+            \node[font=\small, mypen] at (3.3,-1.0) {$\vec{p}_A\,' + \vec{p}_B\,' = \vec{0}$};
+        \end{scope}
+    \end{tikzpicture}
+    \caption{Lo stesso urto visto dal laboratorio e dal centro di massa. Nel LAB le due quantità di moto sono indipendenti; nel CM sono per costruzione uguali e opposte, e il centro di massa resta immobile prima, durante e dopo l'urto.}
+    \label{fig:lab_vs_cm}
+\end{figure}
+
 \section{Tipologie di Urto e Coefficiente di Restituzione}
-Gli urti si classificano in base alla conservazione dell'energia cinetica interna $K'$ (o energia cinetica nel sistema del CM):
+
+Gli urti si classificano in base alla conservazione dell'\textbf{energia cinetica interna} $K'$, cioè dell'energia cinetica valutata nel sistema del centro di massa. La scelta di $K'$ e non di $K$ non è arbitraria: come mostreremo fra poco, $K'$ è l'unica aliquota di energia che un urto può effettivamente dissipare.
+
 \begin{enumerate}
-    \item \textbf{Urto Elastico}: l'energia cinetica interna $K'$ si conserva perfettamente ($\Delta K' = 0$).
-    \item \textbf{Urto Totalmente Anelastico}: l'energia cinetica interna $K'$ si dissipa completamente (i corpi restano uniti dopo l'urto).
-    \item \textbf{Urto Parzialmente Anelastico}: l'energia cinetica interna $K'$ si dissipa solo in parte ($0 < K_f' < K_i'$).
+    \item \textbf{Urto elastico}: l'energia cinetica interna si conserva perfettamente, $\Delta K' = 0$.
+    \item \textbf{Urto totalmente anelastico}: l'energia cinetica interna si dissipa completamente e i corpi restano uniti dopo l'urto.
+    \item \textbf{Urto parzialmente anelastico}: l'energia cinetica interna si dissipa solo in parte, $0 < K'_f < K'_i$.
 \end{enumerate}
 
 \begin{definizione}{Coefficiente di Restituzione ($e$)}
-Il coefficiente di restituzione $e$ indica il rapporto tra i moduli delle velocità relative dopo e prima dell'urto (o la radice quadrata del rapporto tra le energie cinetiche interne nel CM):
+Il \textbf{coefficiente di restituzione} $e$ è il rapporto fra i moduli della velocità relativa dopo e prima dell'urto, ovvero la radice quadrata del rapporto fra le energie cinetiche interne:
 \begin{equation}
-    e = \frac{|\vec{v}_{rf}|}{|\vec{v}_{ri}|} \iff e^2 = \frac{K_{f}'}{K_{i}'}
+    e = \frac{|\vec{v}_{rf}|}{|\vec{v}_{ri}|}
+    \qquad \Longleftrightarrow \qquad
+    e^2 = \frac{K'_{f}}{K'_{i}}
 \end{equation}
+Esso è un \textbf{parametro sperimentale} che riassume in un solo numero il comportamento dei materiali a contatto, senza richiedere alcuna conoscenza della forza impulsiva.
 \end{definizione}
 
-\medskip
-In base al valore numerico del coefficiente di restituzione $e$, distinguiamo:
+In base al valore numerico di $e$ si distinguono i tre casi:
 \begin{itemize}
-    \item $e = 1$: Urto \textbf{Elastico} ($K_{f}' = K_{i}'$).
-    \item $e = 0$: Urto \textbf{Totalmente Anelastico} ($K_{f}' = 0$).
-    \item $0 < e < 1$: Urto \textbf{Parzialmente Anelastico} ($K_{f}' < K_{i}'$).
+    \item $e = 1$: urto \textbf{elastico}, con $K'_{f} = K'_{i}$;
+    \item $e = 0$: urto \textbf{totalmente anelastico}, con $K'_{f} = 0$;
+    \item $0 < e < 1$: urto \textbf{parzialmente anelastico}, con $K'_{f} < K'_{i}$.
 \end{itemize}
-
-\begin{osservazione}{Frazione di Energia Persa}
-Poiché l'energia cinetica associata al moto del centro di massa ($K_{CM}$) resta rigorosamente costante in un sistema isolato, la variazione di energia cinetica totale coincide con la variazione di energia cinetica interna:
-\begin{equation}
-    \frac{\Delta K}{K_i'} = \frac{K_f' - K_i'}{K_i'} = e^2 - 1
-\end{equation}
-\end{osservazione}
-
-\vspace{0.3cm}
-\section{Urto Elastico ($e=1$)}
-In un urto elastico, i corpi si scontrano e tornano separati conservando rigorosamente sia la quantità di moto totale $\vec{P}_{\text{tot}}$ sia l'energia cinetica totale $K_{\text{tot}}$.
-
-\vspace{0.3cm}
-\subsection{Sistema di Laboratorio - 3 Dimensioni}
-In tre dimensioni spaziali, le leggi di conservazione impongono il seguente sistema di equazioni:
-\begin{equation}
-\begin{cases}
-    \frac{1}{2} m_A v_{Ai}^2 + \frac{1}{2} m_B v_{Bi}^2 = \frac{1}{2} m_A v_{Af}^2 + \frac{1}{2} m_B v_{Bf}^2 \\[0.2cm]
-    \hat{x}: P_{A,xi} + P_{B,xi} = P_{A,xf} + P_{B,xf} \\
-    \hat{y}: P_{A,yi} + P_{B,yi} = P_{A,yf} + P_{B,yf} \\
-    \hat{z}: P_{A,zi} + P_{B,zi} = P_{A,zf} + P_{B,zf} 
-\end{cases}
-\end{equation}
-Abbiamo a disposizione 4 equazioni scalari e 6 incognite (le tre componenti cartesiane del vettore $\vec{v}_{Af}$ e del vettore $\vec{v}_{Bf}$). Per risolvere il sistema dinamico sono necessari dati sperimentali aggiuntivi, come gli angoli di deflessione (\textbf{scattering}).
-
-\vspace{0.3cm}
-\subsection{Sistema di Laboratorio - 2 Dimensioni}
-Se il moto si svolge su un piano:
-\begin{equation}
-\begin{cases}
-    K_f = K_i \\[0.1cm]
-    \hat{x}: P_{xi} = P_{xf} \\
-    \hat{y}: P_{yi} = P_{yf}
-\end{cases}
-\end{equation}
-In questo caso abbiamo 3 equazioni e 4 incognite. Anche qui si applica l'analisi dello \textbf{scattering} per determinare la traiettoria finale dei due corpi.
 
 \begin{figure}[ht]
     \centering
-    \begin{tikzpicture}[scale=1.1]
-        % Asse di riferimento orizzontale
-        \draw[dashed, thin, mypen] (-3.5,0) -- (3.2,0);
-        
-        % Bersaglio m_B fermo all'origine
-        \filldraw[gray!20, draw=mypen, thick] (0,0) circle (0.22) node[below=0.25cm, font=\bfseries] {$m_B$};
-        
-        % Proiettile m_A in arrivo
-        \draw[->, >=stealth, thick, blue] (-3.2,0) -- (-0.4,0) node[midway, above, font=\bfseries] {$\vec{v}_{Ai}$};
-        \filldraw[blue!40, draw=blue, thick] (-3.2,0) circle (0.18) node[above=0.2cm, font=\bfseries] {$m_A$};
-        
-        % Dopo l'urto: deflessione m_A
-        \draw[->, >=stealth, thick, blue] (0,0) -- (2.4,1.3) node[right, font=\bfseries] {$\vec{v}_{Af}$};
-        \draw[->, >=stealth, thin, mypen] (0.8,0) arc (0:28.4:0.8);
-        \node[font=\small, blue] at (1.1,0.3) {$\theta_A$};
-        
-        % Dopo l'urto: deflessione m_B
-        \draw[->, >=stealth, thick, notered] (0,0) -- (2.4,-1.3) node[right, font=\bfseries] {$\vec{v}_{Bf}$};
-        \draw[->, >=stealth, thin, mypen] (0.8,0) arc (0:-28.4:0.8);
-        \node[font=\small, notered] at (1.1,-0.3) {$\theta_B$};
+    \begin{tikzpicture}[>=stealth, scale=1.0,
+        pallina/.style={fill=boxoss!35, draw=boxoss, thick}]
+
+        % ---------------- (a) elastico ----------------
+        \begin{scope}
+            \node[font=\small\bfseries, boxese] at (2.0,3.15) {elastico};
+            \node[font=\small, boxese] at (2.0,2.75) {$e = 1$};
+            \draw[line width=1.1pt, mypen!70] (0.35,0) -- (3.65,0);
+            \fill[pattern=north east lines, pattern color=mypen!35]
+                (0.35,-0.24) rectangle (3.65,0);
+            \draw[dashed, thin, mypen!50] (1.25,2.05) -- (1.25,0.22);
+            \filldraw[pallina] (1.25,2.05) circle (0.2);
+            \draw[->, very thick, boxoss] (0.85,1.85) -- (0.85,0.3)
+                node[midway, left, font=\scriptsize] {$v_{ri}$};
+            \draw[->, very thick, boxese] (2.75,0.3) -- (2.75,1.85)
+                node[midway, right, font=\scriptsize] {$v_{rf} = v_{ri}$};
+        \end{scope}
+
+        % ---------------- (b) parzialmente anelastico ----------------
+        \begin{scope}[xshift=4.9cm]
+            \node[font=\small\bfseries, boxatt] at (2.0,3.15) {parz. anelastico};
+            \node[font=\small, boxatt] at (2.0,2.75) {$0 < e < 1$};
+            \draw[line width=1.1pt, mypen!70] (0.35,0) -- (3.65,0);
+            \fill[pattern=north east lines, pattern color=mypen!35]
+                (0.35,-0.24) rectangle (3.65,0);
+            \draw[dashed, thin, mypen!50] (1.25,2.05) -- (1.25,0.22);
+            \filldraw[pallina] (1.25,2.05) circle (0.2);
+            \draw[->, very thick, boxoss] (0.85,1.85) -- (0.85,0.3)
+                node[midway, left, font=\scriptsize] {$v_{ri}$};
+            \draw[->, very thick, boxatt] (2.75,0.3) -- (2.75,1.05)
+                node[midway, right, font=\scriptsize] {$v_{rf} < v_{ri}$};
+        \end{scope}
+
+        % ---------------- (c) totalmente anelastico ----------------
+        \begin{scope}[xshift=9.8cm]
+            \node[font=\small\bfseries, boxdef] at (2.0,3.15) {tot. anelastico};
+            \node[font=\small, boxdef] at (2.0,2.75) {$e = 0$};
+            \draw[line width=1.1pt, mypen!70] (0.35,0) -- (3.65,0);
+            \fill[pattern=north east lines, pattern color=mypen!35]
+                (0.35,-0.24) rectangle (3.65,0);
+            \draw[dashed, thin, mypen!50] (1.25,2.05) -- (1.25,0.22);
+            \filldraw[pallina] (1.25,2.05) circle (0.2);
+            \draw[->, very thick, boxoss] (0.85,1.85) -- (0.85,0.3)
+                node[midway, left, font=\scriptsize] {$v_{ri}$};
+            \filldraw[pallina] (2.75,0.2) circle (0.2);
+            \node[font=\scriptsize, boxdef, right] at (3.0,0.42) {$v_{rf} = 0$};
+        \end{scope}
     \end{tikzpicture}
-    \caption{Rappresentazione geometrica dello scattering in due dimensioni nel sistema di riferimento del laboratorio ($m_B$ inizialmente fermo).}
+    \caption{Lettura sperimentale del coefficiente di restituzione tramite il rimbalzo di un corpo su un piano fisso. Il rapporto fra la velocità relativa di allontanamento e quella di avvicinamento vale $1$ nell'urto elastico, è compreso fra $0$ e $1$ in quello parzialmente anelastico e si annulla in quello totalmente anelastico, in cui il corpo resta aderente al piano.}
+    \label{fig:tipi_urto}
+\end{figure}
+
+\begin{osservazione}{Frazione di Energia Persa}
+Poiché l'energia cinetica associata al moto del centro di massa, $K_{CM}$, resta rigorosamente costante in un sistema isolato, la variazione di energia cinetica \emph{totale} coincide con la variazione della sola energia cinetica \emph{interna}:
+\begin{equation}
+    \frac{\Delta K}{K'_i} = \frac{K'_f - K'_i}{K'_i} = e^2 - 1
+\end{equation}
+La frazione di energia persa dipende dunque soltanto da $e$, e non dalle masse né dalla velocità con cui i corpi si avvicinano.
+\end{osservazione}
+
+\section{Urto Elastico ($e=1$)}
+
+In un urto elastico i corpi si scontrano e tornano separati conservando rigorosamente sia la quantità di moto totale $\vec{P}_{\text{tot}}$ sia l'energia cinetica totale $K_{\text{tot}}$. Il problema consiste allora nel determinare le velocità finali a partire da quelle iniziali, e la sua risolubilità dipende in modo essenziale dal numero di dimensioni spaziali coinvolte.
+
+\subsection{Sistema di Laboratorio --- 3 Dimensioni}
+
+In tre dimensioni le leggi di conservazione impongono il sistema
+\begin{equation}
+\begin{cases}
+    \tfrac{1}{2} m_A v_{Ai}^2 + \tfrac{1}{2} m_B v_{Bi}^2
+        = \tfrac{1}{2} m_A v_{Af}^2 + \tfrac{1}{2} m_B v_{Bf}^2 \\[4pt]
+    \hat{x}: \; p_{A,xi} + p_{B,xi} = p_{A,xf} + p_{B,xf} \\[2pt]
+    \hat{y}: \; p_{A,yi} + p_{B,yi} = p_{A,yf} + p_{B,yf} \\[2pt]
+    \hat{z}: \; p_{A,zi} + p_{B,zi} = p_{A,zf} + p_{B,zf}
+\end{cases}
+\end{equation}
+
+Disponiamo di \textbf{4 equazioni scalari} e di \textbf{6 incognite}: le tre componenti cartesiane di $\vec{v}_{Af}$ e le tre di $\vec{v}_{Bf}$. Il sistema è dunque indeterminato, e nessuna legge di conservazione può colmare il divario: le due informazioni mancanti riguardano la \emph{geometria} dell'interazione, cioè quanto i due corpi si siano presentati centrati l'uno sull'altro. Occorrono perciò dati sperimentali aggiuntivi, tipicamente gli angoli di deflessione misurati dai rivelatori (analisi di \textbf{scattering}).
+
+\subsection{Sistema di Laboratorio --- 2 Dimensioni}
+
+Se il moto si svolge su un piano, una delle equazioni della quantità di moto cade e restano
+\begin{equation}
+\begin{cases}
+    K_f = K_i \\[3pt]
+    \hat{x}: \; p_{xi} = p_{xf} \\[2pt]
+    \hat{y}: \; p_{yi} = p_{yf}
+\end{cases}
+\end{equation}
+cioè \textbf{3 equazioni} e \textbf{4 incognite}. L'indeterminazione si riduce a uno solo parametro: è sufficiente misurare \emph{un} angolo di deflessione perché tutto il resto della cinematica finale risulti determinato.
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}[>=stealth, scale=1.15]
+        % Asse di riferimento
+        \draw[dashed, thin, mypen!55] (-3.4,0) -- (3.3,0);
+
+        % Proiettile in arrivo
+        \draw[->, very thick, boxoss] (-3.0,0) -- (-0.55,0)
+            node[midway, above, font=\small] {$\vec{v}_{Ai}$};
+        \filldraw[boxoss!40, draw=boxoss, thick] (-3.0,0) circle (0.19)
+            node[above=0.26cm, font=\small, mypen] {$m_A$};
+
+        % Bersaglio fermo
+        \filldraw[mypen!18, draw=mypen, thick] (0,0) circle (0.24);
+        \node[font=\small, mypen] at (-0.05,-0.62) {$m_B$ (fermo)};
+
+        % Deflessione di A
+        \draw[->, very thick, boxoss] (0.18,0.12) -- (2.5,1.42)
+            node[right, font=\small] {$\vec{v}_{Af}$};
+        \draw[->, thin, mypen] (1.25,0) arc (0:29.3:1.25);
+        \node[font=\small, boxoss] at (1.15,0.42) {$\theta_A$};
+
+        % Rinculo di B
+        \draw[->, very thick, notered] (0.18,-0.12) -- (2.5,-1.28)
+            node[right, font=\small] {$\vec{v}_{Bf}$};
+        \draw[->, thin, mypen] (1.55,0) arc (0:-26.8:1.55);
+        \node[font=\small, notered] at (1.48,-0.45) {$\theta_B$};
+    \end{tikzpicture}
+    \caption{Scattering elastico in due dimensioni nel sistema del laboratorio, con il bersaglio $m_B$ inizialmente fermo. Misurato uno dei due angoli di deflessione, le leggi di conservazione determinano univocamente l'altro angolo e i moduli delle due velocità finali.}
     \label{fig:scattering_2d}
 \end{figure}
 
-\vspace{0.3cm}
-\subsection{Sistema di Laboratorio - 1 Dimensione}
-In una dimensione spaziale abbiamo 2 equazioni e esattamente 2 incognite:
+\subsection{Sistema di Laboratorio --- 1 Dimensione}
+
+In una sola dimensione spaziale il conteggio torna finalmente in pareggio: \textbf{2 equazioni} e \textbf{2 incognite}.
 \begin{equation}
 \begin{cases}
-    \frac{1}{2} m_A v_{Ai}^2 + \frac{1}{2} m_B v_{Bi}^2 = \frac{1}{2} m_A v_{Af}^2 + \frac{1}{2} m_B v_{Bf}^2 \\[0.2cm]
+    \tfrac{1}{2} m_A v_{Ai}^2 + \tfrac{1}{2} m_B v_{Bi}^2
+        = \tfrac{1}{2} m_A v_{Af}^2 + \tfrac{1}{2} m_B v_{Bf}^2 \\[4pt]
     m_A v_{Ai} + m_B v_{Bi} = m_A v_{Af} + m_B v_{Bf}
 \end{cases}
 \end{equation}
-Qui le condizioni iniziali sono sufficienti per determinare univocamente lo stato finale del moto.
-La soluzione analitica generale per le velocità finali è:
+Le sole condizioni iniziali bastano quindi a determinare univocamente lo stato finale del moto, e la soluzione analitica generale è
 \begin{equation}
-    v_{Af} = \frac{(m_A - m_B)v_{Ai} + 2m_B v_{Bi}}{m_A + m_B}, \qquad v_{Bf} = \frac{(m_B - m_A)v_{Bi} + 2m_A v_{Ai}}{m_A + m_B}
+    v_{Af} = \frac{(m_A - m_B)\,v_{Ai} + 2m_B \,v_{Bi}}{m_A + m_B}
+    \, , \qquad
+    v_{Bf} = \frac{(m_B - m_A)\,v_{Bi} + 2m_A \,v_{Ai}}{m_A + m_B}
 \end{equation}
+Si noti la simmetria delle due espressioni: l'una si ottiene dall'altra scambiando fra loro le etichette $A$ e $B$, come dev'essere, dato che nessuno dei due corpi gioca un ruolo privilegiato.
 
-\vspace{0.3cm}
 \subsection{Casi Particolari Notevoli}
+
+Le formule generali diventano molto più espressive in tre situazioni limite, che conviene tenere a mente perché ricorrono continuamente nei problemi.
+
 \begin{itemize}
-    \item \textbf{Masse Uguali ($m_A = m_B$)}: \\
-    Le velocità dei due corpi vengono semplicemente scambiate tra loro: 
+    \item \textbf{Masse uguali} ($m_A = m_B$). Le velocità dei due corpi si \textbf{scambiano} semplicemente:
     \begin{equation*}
         v_{Af} = v_{Bi} \qquad \text{e} \qquad v_{Bf} = v_{Ai}
     \end{equation*}
-    \item \textbf{Bersaglio Molto Pesante ($m_B \gg m_A$) e inizialmente fermo ($v_{Bi}=0$)}: \\
-    Il proiettile leggero $A$ rimbalza indietro con velocità praticamente opposta, mentre il bersaglio $B$ rimane quasi immobile:
+    È il comportamento delle biglie da biliardo: la prima si arresta di colpo e la seconda riparte con la velocità che aveva la prima.
+
+    \item \textbf{Bersaglio molto pesante} ($m_B \gg m_A$, con $v_{Bi} = 0$). Il proiettile leggero rimbalza indietro con velocità praticamente opposta, mentre il bersaglio resta quasi immobile:
     \begin{equation*}
-        v_{Af} \approx -v_{Ai} \qquad \text{e} \qquad v_{Bf} \approx 0
+        v_{Af} \approx -\,v_{Ai} \qquad \text{e} \qquad v_{Bf} \approx 0
     \end{equation*}
-    \item \textbf{Proiettile Molto Pesante ($m_A \gg m_B$) e bersaglio inizialmente fermo}: \\
-    Il proiettile $A$ prosegue il suo moto quasi indisturbato ($v_{Af} \approx v_{Ai}$), mentre il bersaglio leggero $B$ viene "sparato" ad una velocità circa doppia:
+    È il caso di una pallina che rimbalza su un muro: il muro riceve quantità di moto $2m_Av_{Ai}$, ma essendo enormemente più massivo ne ricava una velocità trascurabile.
+
+    \item \textbf{Proiettile molto pesante} ($m_A \gg m_B$, con il bersaglio fermo). Il proiettile prosegue quasi indisturbato, $v_{Af} \approx v_{Ai}$, mentre il bersaglio leggero viene ``sparato'' a velocità circa doppia:
     \begin{equation*}
-        v_{Bf} \approx 2v_{Ai}
+        v_{Bf} \approx 2\,v_{Ai}
     \end{equation*}
 \end{itemize}
 
-\vspace{0.3cm}
+\begin{osservazione}{Il Fattore 2 nell'Ultimo Caso}
+Il risultato $v_{Bf} \approx 2 v_{Ai}$ si comprende immediatamente passando al sistema del centro di massa. Se $m_A \gg m_B$, il centro di massa praticamente coincide con $A$ e viaggia con $V_{CM} \approx v_{Ai}$. Nel CM il bersaglio arriva con velocità $-v_{Ai}$ e, per quanto vedremo nel prossimo paragrafo, riparte con $+v_{Ai}$. Tornando al laboratorio si somma $V_{CM}$ e si ottiene $v_{Ai} + v_{Ai} = 2v_{Ai}$.
+\end{osservazione}
+
 \subsection{Analisi nel Sistema del CM (1D)}
-Nel sistema di riferimento solidale al centro di massa, la quantità di moto totale è identicamente nulla in ogni istante: $\vec{p}_{\text{tot}}' = \vec{p}_A' + \vec{p}_B' = \vec{0}$.
-Quindi: $m_A v_{Ai}' = -m_B v_{Bi}'$ e $m_A v_{Af}' = -m_B v_{Bf}'$.
-Dalla conservazione dell'energia cinetica si ha:
+
+Il vantaggio del sistema del centro di massa è che una delle due leggi di conservazione diventa un'identità, e il problema si risolve quasi senza calcoli. Nel CM la quantità di moto totale è identicamente nulla in ogni istante, $\vec{p}_{\text{tot}}\,' = \vec{p}_A\,' + \vec{p}_B\,' = \vec{0}$, cioè
 \begin{equation}
-    \frac{1}{2} m_A (v_{Ai}')^2 + \frac{1}{2} m_B (v_{Bi}')^2 = \frac{1}{2} m_A (v_{Af}')^2 + \frac{1}{2} m_B (v_{Bf}')^2
+    m_A v_{Ai}\,' = -\,m_B v_{Bi}\,'
+    \qquad \text{e} \qquad
+    m_A v_{Af}\,' = -\,m_B v_{Bf}\,'
 \end{equation}
-Raggruppando i termini per ciascuna massa:
+
+Imponiamo ora anche la conservazione dell'energia cinetica:
 \begin{equation}
-    m_A \left[ (v_{Ai}')^2 - (v_{Af}')^2 \right] = m_B \left[ (v_{Bf}')^2 - (v_{Bi}')^2 \right]
+    \tfrac{1}{2} m_A (v_{Ai}\,')^2 + \tfrac{1}{2} m_B (v_{Bi}\,')^2
+    = \tfrac{1}{2} m_A (v_{Af}\,')^2 + \tfrac{1}{2} m_B (v_{Bf}\,')^2
 \end{equation}
-Utilizzando il prodotto notevole $a^2 - b^2 = (a-b)(a+b)$:
+e raggruppiamo i termini relativi a ciascuna massa:
 \begin{equation}
-    m_A (v_{Ai}' - v_{Af}')(v_{Ai}' + v_{Af}') = m_B (v_{Bf}' - v_{Bi}')(v_{Bf}' + v_{Bi}')
+    m_A \left[ (v_{Ai}\,')^2 - (v_{Af}\,')^2 \right]
+    = m_B \left[ (v_{Bf}\,')^2 - (v_{Bi}\,')^2 \right]
 \end{equation}
-Dividendo membro a membro per la relazione di conservazione della quantità di moto ($m_A (v_{Ai}' - v_{Af}') = m_B (v_{Bf}' - v_{Bi}')$), otteniamo la relazione lineare:
+Applicando il prodotto notevole $a^2 - b^2 = (a-b)(a+b)$:
 \begin{equation}
-    v_{Ai}' + v_{Af}' = v_{Bf}' + v_{Bi}'
+    m_A (v_{Ai}\,' - v_{Af}\,')(v_{Ai}\,' + v_{Af}\,')
+    = m_B (v_{Bf}\,' - v_{Bi}\,')(v_{Bf}\,' + v_{Bi}\,')
 \end{equation}
-Sostituendo $v_{Bi}' = -\frac{m_A}{m_B}v_{Ai}'$ e $v_{Bf}' = -\frac{m_A}{m_B}v_{Af}'$:
+Dividiamo infine membro a membro per la conservazione della quantità di moto nella forma $m_A (v_{Ai}\,' - v_{Af}\,') = m_B (v_{Bf}\,' - v_{Bi}\,')$, ottenendo la relazione puramente lineare
 \begin{equation}
-    (v_{Ai}' + v_{Af}') = -\frac{m_A}{m_B} (v_{Ai}' + v_{Af}') \implies \left(1 + \frac{m_A}{m_B}\right) (v_{Ai}' + v_{Af}') = 0
+    v_{Ai}\,' + v_{Af}\,' = v_{Bf}\,' + v_{Bi}\,'
 \end{equation}
-Poiché $1 + \frac{m_A}{m_B} \neq 0$, l'unica soluzione fisica non banale è:
+
+Sostituendo $v_{Bi}\,' = -\frac{m_A}{m_B}v_{Ai}\,'$ e $v_{Bf}\,' = -\frac{m_A}{m_B}v_{Af}\,'$:
 \begin{equation}
-    \boxed{ v_{Af}' = -v_{Ai}' } \qquad \text{e} \qquad \boxed{ v_{Bf}' = -v_{Bi}' }
+    (v_{Ai}\,' + v_{Af}\,') = -\frac{m_A}{m_B}\,(v_{Ai}\,' + v_{Af}\,')
+    \implies \left(1 + \frac{m_A}{m_B}\right)(v_{Ai}\,' + v_{Af}\,') = 0
 \end{equation}
-Nel sistema del CM, un urto elastico unidimensionale consiste semplicemente nell'\textbf{inversione del verso delle velocità}, mantenendone inalterato il modulo.
+Poiché $1 + m_A/m_B \neq 0$, l'unica soluzione fisicamente accettabile è
+
+\begin{formulario}{Urto Elastico 1D nel Centro di Massa}
+\begin{equation}
+    v_{Af}\,' = -\,v_{Ai}\,'
+    \qquad\qquad
+    v_{Bf}\,' = -\,v_{Bi}\,'
+\end{equation}
+Nel sistema del CM un urto elastico unidimensionale consiste semplicemente nell'\textbf{inversione del verso delle velocità}, con i moduli inalterati.
+\end{formulario}
 
 \begin{figure}[ht]
     \centering
-    \begin{tikzpicture}[scale=0.95]
-        % Origine CM
-        \filldraw[mypen] (0,0) circle (2.5pt) node[below=0.2cm, font=\bfseries] {CM};
-        
-        % Velocità iniziali in avvicinamento al CM
-        \draw[->, >=stealth, blue, thick] (-2.8,0.4) -- (-0.6,0.4) node[midway, above, font=\bfseries] {$\vec{v}_{Ai}'$};
-        \draw[->, >=stealth, notered, thick] (2.8,0.4) -- (0.6,0.4) node[midway, above, font=\bfseries] {$\vec{v}_{Bi}'$};
-        
-        % Velocità finali in allontanamento dal CM (tratttggiate)
-        \draw[->, >=stealth, blue, thick, dashed] (-0.6,-0.4) -- (-2.8,-0.4) node[midway, below, font=\bfseries] {$\vec{v}_{Af}' = -\vec{v}_{Ai}'$};
-        \draw[->, >=stealth, notered, thick, dashed] (0.6,-0.4) -- (2.8,-0.4) node[midway, below, font=\bfseries] {$\vec{v}_{Bf}' = -\vec{v}_{Bi}'$};
-        
-        % Masse illustrative
-        \filldraw[blue!40, draw=blue, thick] (-2.8,0) circle (0.18) node[left=0.2cm, font=\bfseries] {$m_A$};
-        \filldraw[notered!40, draw=notered, thick] (2.8,0) circle (0.18) node[right=0.2cm, font=\bfseries] {$m_B$};
+    \begin{tikzpicture}[>=stealth, scale=1.0,
+        corpoA/.style={fill=boxoss!35, draw=boxoss, thick},
+        corpoB/.style={fill=notered!35, draw=notered, thick}]
+
+        % Asse e centro di massa
+        \draw[thin, mypen!35] (-3.9,0) -- (3.9,0);
+        \filldraw[boxese] (0,0) circle (2.6pt);
+        \node[font=\small\bfseries, boxese, above] at (0,0.10) {CM};
+
+        % ----- PRIMA: in avvicinamento, sopra l'asse
+        \node[font=\small\bfseries, mypen, left] at (-4.15,1.0) {prima};
+        \filldraw[corpoA] (-3.0,1.0) circle (0.2);
+        \node[font=\small, mypen, above] at (-3.0,1.22) {$m_A$};
+        \draw[->, very thick, boxoss] (-2.65,1.0) -- (-1.1,1.0)
+            node[midway, above, font=\small, boxoss] {$\vec{v}_{Ai}\,'$};
+        \filldraw[corpoB] (3.0,1.0) circle (0.24);
+        \node[font=\small, mypen, above] at (3.0,1.26) {$m_B$};
+        \draw[->, very thick, notered] (2.65,1.0) -- (1.1,1.0)
+            node[midway, above, font=\small, notered] {$\vec{v}_{Bi}\,'$};
+
+        % ----- DOPO: in allontanamento, sotto l'asse
+        \node[font=\small\bfseries, mypen, left] at (-4.15,-1.1) {dopo};
+        \draw[->, very thick, boxoss, dashed] (-1.1,-1.1) -- (-2.65,-1.1);
+        \node[font=\small, boxoss, below] at (-1.9,-1.22) {$\vec{v}_{Af}\,' = -\vec{v}_{Ai}\,'$};
+        \draw[->, very thick, notered, dashed] (1.1,-1.1) -- (2.65,-1.1);
+        \node[font=\small, notered, below] at (1.9,-1.22) {$\vec{v}_{Bf}\,' = -\vec{v}_{Bi}\,'$};
     \end{tikzpicture}
-    \caption{Inversione dei vettori velocità nel sistema di riferimento del centro di massa (CM) per un urto elastico unidimensionale.}
+    \caption{Urto elastico unidimensionale nel sistema del centro di massa. I due corpi si avvicinano con quantità di moto uguali e opposte e si riallontanano con le stesse quantità di moto invertite: l'urto si riduce a un cambio di segno.}
     \label{fig:inversione_velocita_cm}
 \end{figure}
 
-\vspace{0.3cm}
 \subsection{Passaggio dal CM al Laboratorio}
-Per riottenere le velocità finali nel sistema del laboratorio, applichiamo le trasformazioni galileiane di velocità:
+
+Il risultato appena ottenuto è tanto semplice quanto poco utile di per sé, perché le misure si eseguono nel laboratorio. Per tornarvi basta però applicare le trasformazioni galileiane delle velocità, $v = v' + V_{CM}$:
 \begin{equation}
 \begin{split}
-    v_{Af} &= v_{Af}' + V_{CM} = -v_{Ai}' + V_{CM} \\
-           &= -(v_{Ai} - V_{CM}) + V_{CM} = 2V_{CM} - v_{Ai}
+    v_{Af} &= v_{Af}\,' + V_{CM} = -\,v_{Ai}\,' + V_{CM} \\
+           &= -\,(v_{Ai} - V_{CM}) + V_{CM} = 2V_{CM} - v_{Ai}
 \end{split}
 \end{equation}
-Sostituendo la definizione $V_{CM} = \frac{m_A v_{Ai} + m_B v_{Bi}}{m_A + m_B} = \frac{m_A v_{Ai} + m_B v_{Bi}}{M}$:
+
+Sostituendo la definizione del centro di massa, $V_{CM} = \dfrac{m_A v_{Ai} + m_B v_{Bi}}{m_A + m_B} = \dfrac{m_A v_{Ai} + m_B v_{Bi}}{M}$:
 \begin{equation}
 \begin{split}
     v_{Af} &= 2 \left( \frac{m_A v_{Ai} + m_B v_{Bi}}{M} \right) - v_{Ai} \\
            &= \frac{2m_A v_{Ai} + 2m_B v_{Bi} - (m_A + m_B)v_{Ai}}{M} \\
-           &= \frac{(m_A - m_B)v_{Ai} + 2m_B v_{Bi}}{m_A + m_B}
+           &= \frac{(m_A - m_B)\,v_{Ai} + 2m_B \,v_{Bi}}{m_A + m_B}
 \end{split}
 \end{equation}
-Le formule generali definitive per le velocità finali nel laboratorio risultano:
+
+Ritroviamo così, per una via molto più breve, le formule generali già scritte per il laboratorio:
 \begin{equation}
-    v_{Af} = \frac{(m_A - m_B)v_{Ai} + 2m_B v_{Bi}}{m_A + m_B}, \qquad v_{Bf} = \frac{(m_B - m_A)v_{Bi} + 2m_A v_{Ai}}{m_A + m_B}
+    v_{Af} = \frac{(m_A - m_B)\,v_{Ai} + 2m_B \,v_{Bi}}{m_A + m_B}
+    \, , \qquad
+    v_{Bf} = \frac{(m_B - m_A)\,v_{Bi} + 2m_A \,v_{Ai}}{m_A + m_B}
 \end{equation}
 
-\vspace{0.3cm}
+\begin{osservazione}{La Strategia Generale}
+Lo schema appena seguito --- \textbf{passare al CM, risolvere, tornare al laboratorio} --- è il metodo standard per ogni problema d'urto, e verrà riutilizzato tale e quale nella dinamica degli urti relativistici. Il motivo è sempre lo stesso: nel CM una delle due leggi di conservazione si riduce a $\vec{p}_{\text{tot}}\,' = \vec{0}$, e il problema perde metà delle sue incognite.
+\end{osservazione}
+
 \section{Urto Totalmente Anelastico ($e=0$)}
-In un urto totalmente anelastico i corpi rimangono perfettamente uniti dopo l'urto, muovendosi come un unico sistema di massa totale $M = m_A + m_B$.
-Applicando la conservazione della quantità di moto nel \textbf{sistema del laboratorio (1D)}:
-\begin{equation}
-    P_i = m_A v_{Ai} + m_B v_{Bi} = (m_A + m_B)V_f \implies V_f = \frac{m_A v_{Ai} + m_B v_{Bi}}{m_A + m_B} = V_{CM}
-\end{equation}
-La velocità finale dell'aggregato coincide esattamente con la velocità del centro di massa del sistema.
 
-\vspace{0.3cm}
+In un urto totalmente anelastico i corpi rimangono uniti dopo l'impatto e proseguono come un unico corpo di massa $M = m_A + m_B$. Questa volta l'energia cinetica non si conserva e la sua legge ci è ignota; disponiamo però della sola conservazione della quantità di moto, che per fortuna basta, perché anche le incognite si sono ridotte a una (l'unica velocità finale $V_f$):
+\begin{equation}
+    P_i = m_A v_{Ai} + m_B v_{Bi} = (m_A + m_B)\,V_f
+    \implies V_f = \frac{m_A v_{Ai} + m_B v_{Bi}}{m_A + m_B} = V_{CM}
+\end{equation}
+
+La velocità finale dell'aggregato coincide esattamente con la velocità del centro di massa del sistema --- risultato prevedibile, dato che dopo l'urto i due corpi \emph{sono} il loro centro di massa.
+
 \subsection{Energia Dissipata e Teorema di Koenig}
-Per calcolare analiticamente l'energia meccanica persa, sfruttiamo la scomposizione del Teorema di Koenig: $K = K_{CM} + K'$.
-Poiché nell'urto totalmente anelastico i corpi restano uniti, la loro velocità relativa e la loro velocità rispetto al CM dopo l'urto sono identicamente nulle ($\vec{v}_f' = \vec{0}$), il che implica $K_f' = 0$.
-\begin{itemize}
-    \item $K_i = K_{CM} + K_i'$
-    \item $K_f = K_{CM} + K_f' = K_{CM}$ \quad (poiché $V_f = V_{CM}$)
-\end{itemize}
-La variazione di energia cinetica totale del sistema risulta:
-\begin{equation}
-    \Delta K = K_f - K_i = K_{CM} - (K_{CM} + K_i') = -K_i' = -\frac{1}{2}\mu v_{ri}^2
-\end{equation}
-dove $\mu = \frac{m_A m_B}{m_A + m_B}$ è la massa ridotta del sistema e $v_{ri} = |v_{Ai} - v_{Bi}|$ è la velocità relativa iniziale. L'energia interna del sistema nel CM ($K_i'$) viene completamente dissipata sotto forma di calore o lavoro di deformazione anelastica.
 
-\vspace{0.3cm}
+Per calcolare l'energia meccanica persa sfruttiamo la scomposizione fornita dal teorema di Koenig, $K = K_{CM} + K'$, che separa il moto globale di traslazione dal moto interno. Poiché nell'urto totalmente anelastico i corpi restano uniti, la loro velocità relativa e la loro velocità rispetto al CM dopo l'urto sono identicamente nulle, $\vec{v}_f\,' = \vec{0}$, il che implica $K'_f = 0$. Quindi
+\begin{align*}
+    K_i &= K_{CM} + K'_i \\
+    K_f &= K_{CM} + \cancelto{0}{K'_f} = K_{CM}
+    \qquad \text{(poiché } V_f = V_{CM}\text{)}
+\end{align*}
+e la variazione di energia cinetica totale risulta
+\begin{equation}
+    \Delta K = K_f - K_i = K_{CM} - (K_{CM} + K'_i)
+             = -\,K'_i = -\,\frac{1}{2}\mu \, v_{ri}^2
+\end{equation}
+dove $\mu = \dfrac{m_A m_B}{m_A + m_B}$ è la massa ridotta del sistema e $v_{ri} = |v_{Ai} - v_{Bi}|$ la velocità relativa iniziale. L'intera energia interna viene dissipata in calore e lavoro di deformazione permanente.
+
+\begin{attenzione}{Non Tutta l'Energia Cinetica Può Essere Dissipata}
+Anche nel caso più violento possibile --- quello totalmente anelastico --- il sistema \textbf{non} si ferma e non perde tutta la sua energia cinetica: sopravvive sempre l'aliquota $K_{CM}$ legata al moto del centro di massa. Dissiparla significherebbe portare a zero $\vec{P}_{\text{tot}}$, il che è vietato dalla conservazione della quantità di moto. L'urto totalmente anelastico è quindi il \emph{limite superiore} della dissipazione possibile, non una dissipazione totale.
+\end{attenzione}
+
 \section{Urto Parzialmente Anelastico ($0 < e < 1$)}
-In un urto parzialmente anelastico i corpi si separano dopo il contatto, ma solo una frazione dell'energia cinetica interna viene conservata. Le velocità finali nel sistema del laboratorio si ricavano integrando il coefficiente di restituzione $e$ nelle formule generali di conservazione:
-\begin{equation}
-    v_{Af} = \frac{(m_A - e m_B)v_{Ai} + m_B(1+e)v_{Bi}}{m_A + m_B}, \qquad v_{Bf} = \frac{(m_B - e m_A)v_{Bi} + m_A(1+e)v_{Ai}}{m_A + m_B}
-\end{equation}
 
-\begin{esercizio}{Analisi Energetica via Teorema di Koenig}
-Il Teorema di Koenig ($K = K_{CM} + K'$) consente di separare in modo cristallino l'energia legata al moto traslatorio globale del sistema ($K_{CM}$, che non varia in assenza di forze esterne) dall'energia interna al centro di massa ($K'$, che rappresenta l'unica aliquota di energia cinetica effettivamente trasformabile o dissipabile negli urti).
+È il caso generale e realistico: i corpi si separano dopo il contatto, ma solo una frazione dell'energia cinetica interna viene restituita. Le due leggi a disposizione sono la conservazione della quantità di moto e la definizione stessa del coefficiente di restituzione, che riscriviamo in forma algebrica come
+\begin{equation}
+    v_{Bf} - v_{Af} = e\,(v_{Ai} - v_{Bi})
+\end{equation}
+cioè: la velocità di allontanamento è pari a $e$ volte la velocità di avvicinamento. Mettendo a sistema le due relazioni,
+\begin{equation}
+\begin{cases}
+    m_A v_{Ai} + m_B v_{Bi} = m_A v_{Af} + m_B v_{Bf} \\[3pt]
+    v_{Bf} - v_{Af} = e\,(v_{Ai} - v_{Bi})
+\end{cases}
+\end{equation}
+e risolvendo rispetto alle due incognite si ottengono le formule generali
+
+\begin{formulario}{Velocità Finali per un Urto di Restituzione $e$}
+\begin{equation}
+    v_{Af} = \frac{(m_A - e\,m_B)\,v_{Ai} + m_B(1+e)\,v_{Bi}}{m_A + m_B}
+    \, , \qquad
+    v_{Bf} = \frac{(m_B - e\,m_A)\,v_{Bi} + m_A(1+e)\,v_{Ai}}{m_A + m_B}
+\end{equation}
+Esse contengono come casi particolari tutti quelli visti finora: ponendo $e = 1$ si riottengono le formule dell'urto elastico, ponendo $e = 0$ si ottiene $v_{Af} = v_{Bf} = V_{CM}$, cioè l'urto totalmente anelastico.
+\end{formulario}
+
+\begin{esempio}{Analisi Energetica tramite il Teorema di Koenig}
+Il teorema di Koenig, $K = K_{CM} + K'$, consente di separare in modo netto l'energia legata al moto traslatorio globale del sistema --- $K_{CM}$, che non varia in assenza di forze esterne --- dall'energia interna al centro di massa --- $K'$, che rappresenta l'unica aliquota effettivamente trasformabile o dissipabile negli urti.
 
 \medskip
-\textbf{Caso 1: Masse Entrambe Mobili ($m_A = m_B = m$)} \\
-Dalla scomposizione di Koenig si ha che l'energia cinetica interna è $K' = K - K_{CM}$. Calcoliamo lo stato iniziale:
+\textbf{Caso 1: masse uguali, entrambe mobili ($m_A = m_B = m$).}
+Dalla scomposizione di Koenig si ha $K' = K - K_{CM}$. Per lo stato iniziale, essendo $V_{CM} = \frac{1}{2}(v_{Ai} + v_{Bi})$ e dunque $v_{Ai}\,' = \frac{1}{2}(v_{Ai} - v_{Bi})$:
 \begin{equation}
-    K_i' = \frac{1}{2}m \left[(v_{Ai}')^2 + (v_{Bi}')^2\right] = \frac{m}{4} (v_{Ai} - v_{Bi})^2 = \frac{m}{4} v_{ri}^2
+    K'_i = \frac{1}{2}m \left[(v_{Ai}\,')^2 + (v_{Bi}\,')^2\right]
+         = \frac{m}{4}\,(v_{Ai} - v_{Bi})^2 = \frac{m}{4}\,v_{ri}^2
 \end{equation}
-In modo analogo, per lo stato finale dopo l'urto si ottiene:
+In modo del tutto analogo, per lo stato finale dopo l'urto si ottiene
 \begin{equation}
-    \boxed{ K_f' = \frac{m}{4} v_{rf}^2 }
+    K'_f = \frac{m}{4}\,v_{rf}^2
 \end{equation}
-Dalla definizione di coefficiente di restituzione: $e^2 = \frac{K_f'}{K_i'} \implies e = \frac{v_{rf}}{v_{ri}}$.
+e dalla definizione di coefficiente di restituzione segue immediatamente la coerenza delle due scritture:
+\begin{equation*}
+    e^2 = \frac{K'_f}{K'_i} = \frac{v_{rf}^2}{v_{ri}^2}
+    \implies e = \frac{v_{rf}}{v_{ri}}
+\end{equation*}
 
 \medskip
-\textbf{Caso 2: Proiettile Contro Bersaglio Fermo ($v_{Bi} = 0$)} \\
-Le componenti dell'energia iniziale si ripartiscono come:
+\textbf{Caso 2: proiettile contro bersaglio fermo ($v_{Bi} = 0$).}
+Le due componenti dell'energia iniziale si ripartiscono come
 \begin{equation}
-    K_{CM} = \frac{1}{2} \frac{m_A^2 v_{Ai}^2}{M}, \qquad K_i' = \frac{1}{2} \mu v_{ri}^2 = \frac{1}{2} \frac{m_A m_B}{M} v_{Ai}^2
+    K_{CM} = \frac{1}{2}\,\frac{m_A^2 \,v_{Ai}^2}{M}
+    \, , \qquad
+    K'_i = \frac{1}{2}\mu \, v_{ri}^2 = \frac{1}{2}\,\frac{m_A m_B}{M}\,v_{Ai}^2
 \end{equation}
-\textbf{Evidenza Fisica fondamentale}: in un urto contro un bersaglio fermo, la frazione di energia cinetica associata al centro di massa ($K_{CM}$) \textbf{non può mai essere dissipata}, in virtù dell'inviolabile principio di conservazione della quantità di moto totale $\vec{P}_{\text{tot}}$. La massima energia dissipabile in un urto anelastico (quando i corpi restano uniti, $e=0$) è esclusivamente l'aliquota interna $K_i'$.
-\end{esercizio}
+In un urto contro un bersaglio fermo, la frazione di energia cinetica associata al centro di massa \textbf{non può mai essere dissipata}, in virtù della conservazione della quantità di moto totale. La massima energia dissipabile è esclusivamente l'aliquota interna $K'_i$, e la si dissipa tutta quando $e = 0$.
+
+\medskip
+Si osservi il rapporto fra le due aliquote:
+\begin{equation*}
+    \frac{K'_i}{K_{CM}} = \frac{m_B}{m_A}
+\end{equation*}
+Un proiettile leggero contro un bersaglio pesante ($m_B \gg m_A$) mette a disposizione dell'urto quasi tutta la propria energia; viceversa, un proiettile pesante contro un bersaglio leggero ($m_A \gg m_B$) ne conserva quasi tutta nel moto del centro di massa e ne può dissipare pochissima. È la ragione per cui, negli acceleratori, i fasci collidenti sono molto più efficienti dei bersagli fissi.
+\end{esempio}
