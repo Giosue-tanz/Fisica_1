@@ -6,15 +6,16 @@ Nella dinamica le grandezze fisiche fondamentali che entrano in gioco sono:
     \item Tempo $[T]$
     \item Massa $[M]$
 \end{enumerate}
+Rispetto alla cinematica del capitolo precedente, la novità è la massa $[M]$: è essa a stabilire quanto un corpo resista al cambiamento del proprio stato di moto, e sarà questo il filo conduttore dei principi che seguono.
 
 \section{La Forza (Definizione Generale)}
 In generale, la \textbf{Forza} è definita come un'\textbf{INTERAZIONE} fra corpi.
 Tutti i tipi di forze condividono alcune proprietà fondamentali:
 \begin{enumerate}
     \item \textbf{Grandezze Vettoriali}: sono descritte da un modulo, una direzione e un verso.
-    \item \textbf{Principio di Sovrapposizione}: vige l'indipendenza delle azioni simultanee. Se più forze agiscono su un corpo, la forza totale è la somma vettoriale delle singole forze: $\vec{F}_{tot} = \sum \vec{F}_i$.
+    \item \textbf{Principio di Sovrapposizione}: vige l'indipendenza delle azioni simultanee. Se più forze agiscono su un corpo, la forza totale è la somma vettoriale delle singole forze: $\vec{F}_{\text{tot}} = \sum \vec{F}_i$.
     \item \textbf{Dipendenza dalla Distanza}: tendenzialmente il modulo della forza $|\vec{F}|$ diminuisce all'aumentare della distanza $d$ tra i corpi (spesso $|\vec{F}| \propto d^{-2}$).
-    \item \textbf{Indipendenza dal Sistema di Riferimento}: la forza $\vec{F}$ è invariante per trasformazioni di Galileo (non cambia al variare del riferimento inerziale), così come non cambiano la distanza, il modulo della velocità relativa $|\vec{v}_{rel}|$, la massa e la carica.
+    \item \textbf{Indipendenza dal Sistema di Riferimento}: la forza $\vec{F}$ è invariante per trasformazioni di Galileo (non cambia al variare del riferimento inerziale), così come non cambiano la distanza, il modulo della velocità relativa $|\vec{v}_{\text{rel}}|$, la massa e la carica.
 \end{enumerate}
 
 \section{Tipologie di Forze}
@@ -40,21 +41,21 @@ Sono manifestazioni macroscopiche delle forze fondamentali (principalmente elett
         edge from parent/.style={draw, thick, -stealth},
         every node/.style={font=\small},
         box/.style={draw, rounded corners, minimum height=0.9cm, minimum width=2.2cm, align=center, font=\small},
-        leaf/.style={draw, rounded corners=3pt, fill=gray!8, minimum height=0.8cm, align=center, font=\small}
+        leaf/.style={draw, rounded corners=3pt, fill=mypen!8, minimum height=0.8cm, align=center, font=\small}
     ]
     \node[box, fill=mypen!15, font=\bfseries] {Forze di Contatto}
         child { 
-            node[box, fill=green!15] {Rigido--Fluido}
+            node[box, fill=boxese!15] {Rigido--Fluido}
             child { node[leaf] {\textbf{Attrito Viscoso}} }
             child { node[leaf] {\textbf{Pressione}} }
         }
         child { 
-            node[box, fill=orange!15] {Deformabile--Def.}
+            node[box, fill=boxteo!15] {Deformabile--Def.}
             child { node[leaf] {\textbf{Anelastiche}} }
             child { node[leaf] {\textbf{Elastiche}} }
         }
         child { 
-            node[box, fill=red!15] {Rigido--Rigido}
+            node[box, fill=notered!15] {Rigido--Rigido}
             child { node[leaf] {\textbf{Attrito} \\ \scriptsize{Statico, Dinamico}} }
             child { node[leaf] {\textbf{Vincolari} \\ \scriptsize{Tensioni, Reazioni}} }
         };
@@ -68,7 +69,9 @@ La misurazione delle forze può avvenire in due modi principali:
 \begin{enumerate}[label=\alph*)]
     \item \textbf{Misura Dinamica}:
     È una misura indiretta. Conoscendo la massa $m$ del corpo e potendo misurare la sua accelerazione $\vec{a}$, si sfrutta la seconda legge della dinamica:
-    \[ \vec{F} = m \cdot \vec{a} \]
+    \begin{equation}
+    \vec{F} = m \cdot \vec{a}
+\end{equation}
     
     \item \textbf{Misura Statica}:
     È una misura diretta basata sull'equilibrio. Si bilancia una forza nota $F_n$ con la forza incognita $F_i$, oppure si rapportano le deformazioni (lunghezze) causate dalle forze.
@@ -108,22 +111,25 @@ La misurazione delle forze può avvenire in due modi principali:
 \end{enumerate}
 
 \section{Principi della Dinamica}
-I principi della dinamica furono enunciati formalmente da \textbf{Isaac Newton} nella sua opera monumentale \textit{"Philosophiae Naturalis Principia Mathematica"} (1687), riprendendo e sistematizzando gli studi precedenti di \textbf{Galileo Galilei}.
+I principi della dinamica furono enunciati formalmente da \textbf{Isaac Newton} nella sua opera monumentale \textit{``Philosophiae Naturalis Principia Mathematica''} (1687), riprendendo e sistematizzando gli studi precedenti di \textbf{Galileo Galilei}.
+Presi singolarmente, i tre principi rispondono a domande diverse — quando un corpo si muove di moto naturale, di quanto una forza lo accelera, come due corpi si scambiano l'azione — ma è solo nel loro insieme che costituiscono un sistema completo per prevedere il moto di qualunque corpo.
 
 \subsection{Primo Principio: Principio di Inerzia}
 \begin{definizione}{Primo Principio: Principio di Inerzia}
 Un corpo permane nel suo stato di quiete o di moto rettilineo uniforme finché non interviene una forza esterna a variarne lo stato.
-\[ \sum \vec{F} = 0 \implies \vec{v} = \text{cost} \]
+\begin{equation}
+    \sum \vec{F} = 0 \implies \vec{v} = \text{cost}
+\end{equation}
 Questa proprietà intrinseca della materia è detta \textbf{Inerzia}.
 \end{definizione}
 
-Pertanto, se la risultante delle forze è nulla ($\vec{F}_{tot} = 0$), il corpo si trova in uno degli \textbf{Stati di Equilibrio}:
+Pertanto, se la risultante delle forze è nulla ($\vec{F}_{\text{tot}} = 0$), il corpo si trova in uno degli \textbf{Stati di Equilibrio}:
 \begin{itemize}
     \item \textbf{Quiete} ($v=0$).
     \item \textbf{Moto Rettilineo Uniforme} ($v = \text{cost} \neq 0$).
 \end{itemize}
 
-La condizione $\vec{F}_{tot} = 0$ si verifica in due casi esclusivi:
+La condizione $\vec{F}_{\text{tot}} = 0$ si verifica in due casi esclusivi:
 \begin{enumerate}[label=\alph*)]
     \item Il corpo non è soggetto ad alcuna forza ($F=0$).
     \item Il corpo è soggetto a più forze la cui somma vettoriale è nulla ($\sum \vec{F} = 0$).
@@ -142,17 +148,17 @@ Per risolvere questo paradosso, Galileo ideò un celebre \textbf{Esperimento Int
             \coordinate (Bottom) at (0, 0);
             \coordinate (TopRight) at (2, 2);
             \draw[thick, rounded corners=15pt] (TopLeft) -- (Bottom) -- (TopRight);
-            \draw[dashed, gray] (TopLeft) -- (TopRight);
+            \draw[dashed, mypen!55] (TopLeft) -- (TopRight);
             \draw[thick] (-2,0) -- (2,0);
             \draw[thick] (-2,2) -- (-2,0);
             \draw[thick] (2,2) -- (2,0);
             \node[left] at (-2.2, 1) {\textbf{A}};
-            \node[right, gray] at (TopRight) {$h$};
+            \node[right, mypen!55] at (TopRight) {$h$};
             \coordinate (BallDown) at (-1.2, 1.2);
-            \filldraw[fill=gray!30, draw=black] (BallDown) circle (0.18);
+            \filldraw[fill=mypen!30, draw=black] (BallDown) circle (0.18);
             \draw[->, thick] (BallDown) -- ++(-45:0.8);
             \coordinate (BallUp) at (1.2, 1.2);
-            \filldraw[fill=gray!30, draw=black] (BallUp) circle (0.18);
+            \filldraw[fill=mypen!30, draw=black] (BallUp) circle (0.18);
             \draw[->, thick] (BallUp) -- ++(45:0.8);
         \end{scope}
         
@@ -162,17 +168,17 @@ Per risolvere questo paradosso, Galileo ideò un celebre \textbf{Esperimento Int
             \coordinate (BottomB) at (0, 0);
             \coordinate (TopRightB) at (3.5, 2);
             \draw[thick, rounded corners=20pt] (TopLeftB) -- (BottomB) -- (TopRightB);
-            \draw[dashed, gray] (TopLeftB) -- (TopRightB);
+            \draw[dashed, mypen!55] (TopLeftB) -- (TopRightB);
             \draw[thick] (-3.5,0) -- (3.5,0);
             \draw[thick] (-3.5,2) -- (-3.5,0);
             \draw[thick] (3.5,2) -- (3.5,0);
             \node[left] at (-3.7, 1) {\textbf{B}};
-            \node[right, gray] at (TopRightB) {$h$};
+            \node[right, mypen!55] at (TopRightB) {$h$};
             \coordinate (BallDownB) at (-2, 1.14);
-            \filldraw[fill=gray!30, draw=black] (BallDownB) circle (0.18);
+            \filldraw[fill=mypen!30, draw=black] (BallDownB) circle (0.18);
             \draw[->, thick] (BallDownB) -- ++(-29.7:0.8);
             \coordinate (BallUpB) at (2, 1.14);
-            \filldraw[fill=gray!30, draw=black] (BallUpB) circle (0.18);
+            \filldraw[fill=mypen!30, draw=black] (BallUpB) circle (0.18);
             \draw[->, thick] (BallUpB) -- ++(29.7:0.8);
         \end{scope}
         
@@ -181,7 +187,7 @@ Per risolvere questo paradosso, Galileo ideò un celebre \textbf{Esperimento Int
             \draw[thick] (-4, 0) -- (4, 0);
             \draw[->, thick, dashed] (4, 0) -- (5.5, 0); 
             \node[left] at (-4.2, 0.5) {\textbf{C}};
-            \filldraw[fill=gray!30, draw=black] (0, 0.18) circle (0.18);
+            \filldraw[fill=mypen!30, draw=black] (0, 0.18) circle (0.18);
             \draw[->, thick, mygreen] (0.3, 0.18) -- (1.8, 0.18) node[above] {$\vec{v} = \text{cost}$};
             \node[below, mygreen] at (1.5, -0.2) {MRU};
         \end{scope}
@@ -213,7 +219,7 @@ Si definisce \textbf{Inerziale} un sistema di riferimento in cui vale il Primo P
 \begin{enumerate}
     \item \textbf{Classe di Equivalenza}: Sono inerziali tutti e soli i sistemi che si muovono di \textbf{MRU} rispetto ad un sistema inerziale $S$.
     \item \textbf{Transitivitá}: Se $S$ è inerziale e $S'$ è in MRU rispetto a $S \Rightarrow S'$ è inerziale.
-    \item \textbf{Le Stelle Fisse}: Un sistema di riferimento solidale con le "stelle fisse" (stelle enormemente lontane, percepite come "ferme") è un'ottima approssimazione di sistema inerziale.
+    \item \textbf{Le Stelle Fisse}: Un sistema di riferimento solidale con le ``stelle fisse'' (stelle enormemente lontane, percepite come ``ferme'') è un'ottima approssimazione di sistema inerziale.
     \item \textbf{Relatività di Galileo}: Le leggi della meccanica sono le stesse in \textbf{tutti} i sistemi di riferimento inerziali. Non esiste un sistema inerziale privilegiato.
 \end{enumerate}
 
@@ -221,7 +227,9 @@ Si definisce \textbf{Inerziale} un sistema di riferimento in cui vale il Primo P
 Rigorosamente \textbf{NO}, a causa dei moti di rotazione e rivoluzione. Tuttavia, per la maggior parte delle applicazioni locali, può essere approssimata come tale poiché queste accelerazioni sono trascurabili rispetto a $g$.
 \end{osservazione}
 Tuttavia, può essere considerata \textbf{approssimativamente inerziale} per la maggior parte degli esperimenti di laboratorio, poiché tali accelerazioni sono molto piccole rispetto alla gravità:
-\[ a_{rot} \approx 2.5 \cdot 10^{-3} g, \quad a_{riv} \approx 10^{-4} g \]
+\begin{equation}
+    a_{\text{rot}} \approx 2.5 \cdot 10^{-3} g, \quad a_{\text{riv}} \approx 10^{-4} g
+\end{equation}
 Questi effetti diventano rilevanti solo per moti su grande scala (es. correnti atmosferiche) o misure di altissima precisione.
 
 \section{Secondo Principio: Legge Fondamentale (Legge di Newton)}
@@ -245,7 +253,9 @@ $\vec{a}$; la costante di proporzionalità è la massa $m$:
 \vspace{4pt}
 \begin{osservazione}{Unità di misura della Forza}
 Nel Sistema Internazionale, la forza si misura in \textbf{Newton} [N]:
-\[ 1 \, N = 1 \, kg \cdot m/s^2 \]
+\begin{equation}
+    1 \, N = 1 \, kg \cdot m/s^2
+\end{equation}
 \end{osservazione}
 \end{minipage}
 
@@ -258,24 +268,24 @@ Affinché valga il 2° principio è necessario definire un sistema di riferiment
 In un sistema di riferimento \textbf{inerziale}, l'accelerazione di
 un punto materiale è \emph{direttamente proporzionale} alla forza
 risultante e \emph{inversamente proporzionale} alla sua massa:
-\[
+\begin{equation}
     \vec{a} = \vec{R} \;\Longrightarrow\;
     \vec{a} = \frac{\sum\vec{F}}{m} \;\Longrightarrow\;
     \underbrace{\frac{\sum\vec{F}(\vec{r},\dot{\vec{r}})}{m}
                = \ddot{\vec{r}}}_{\text{equazione del moto}}
-\]
+\end{equation}
 \end{definizione}
 
 \paragraph{Equazioni Scalari.}
 Essendo un'equazione vettoriale, equivale a tre equazioni scalari:
-\[
-\begin{cases}
+\begin{equation}
+    \begin{cases}
     \sum F_x = m\, a_x \\
     \sum F_y = m\, a_y \\
     \sum F_z = m\, a_z
 \end{cases}
 \qquad\text{con }\; a_i = \dfrac{d^2 x_i}{dt^2}
-\]
+\end{equation}
 
 \paragraph{Problemi della Dinamica.}
 \begin{itemize}
@@ -291,11 +301,11 @@ Essendo un'equazione vettoriale, equivale a tre equazioni scalari:
 Newton fornì una definizione più generale introducendo la
 \textbf{quantità di moto} $\vec{p} = m\vec{v}$.
 Per $m = \text{costante}$:
-\[
+\begin{equation}
     \sum \vec{F} = \frac{d\vec{p}}{dt}
     \qquad\text{poiché}\qquad
     \frac{d\vec{p}}{dt} = m\frac{d\vec{v}}{dt} = m\vec{a}
-\]
+\end{equation}
 
 \begin{teorema}{Secondo Principio — Forma Generale}
 In un sistema inerziale, per un punto materiale con
@@ -356,26 +366,26 @@ Analizziamo gli stati immediatamente prima ($t=0^-$) e dopo ($t=0^+$) dell'urto:
     \begin{tikzpicture}[scale=1.05, >=stealth]
         % Muro verticale con tratteggio
         \draw[line width=3pt, color=darkgray] (0,-1.8) -- (0,1.8);
-        \fill[pattern=north east lines, pattern color=gray!70]
+        \fill[pattern=north east lines, pattern color=mypen!70]
             (-0.35,-1.8) rectangle (0,1.8);
         \node[above, color=darkgray, font=\small\itshape] at (0,1.85)
             {Parete Rigida};
 
         % --- PRIMA DELL'URTO (t = 0-) ---
         \begin{scope}[yshift=0.9cm]
-            \node[circle, draw=gray!70, dashed, minimum size=1.1cm,
-                  thick, fill=gray!8] (ball_in) at (2.2, 0) {};
-            \node[gray, font=\small] at (2.2, 0) {$m$};
-            \draw[->, thick, gray] (ball_in.west) -- ++(-1.2,0)
-                node[midway, above, font=\small] {$\vec{v}_{in}$};
-            \node[right, gray!80, font=\footnotesize] at (2.9,0) {$t=0^-$};
+            \node[circle, draw=mypen!70, dashed, minimum size=1.1cm,
+                  thick, fill=mypen!8] (ball_in) at (2.2, 0) {};
+            \node[mypen!55, font=\small] at (2.2, 0) {$m$};
+            \draw[->, thick, mypen!55] (ball_in.west) -- ++(-1.2,0)
+                node[midway, above, font=\small] {$\vec{v}_{\text{in}}$};
+            \node[right, mypen!80, font=\footnotesize] at (2.9,0) {$t=0^-$};
         \end{scope}
 
         % --- DURANTE L'URTO (t = 0): forza impulsiva ---
-        \fill[red!80] (0,0) circle (2.5pt);
-        \draw[->, ultra thick, red!80] (0,0) -- (1.8,0)
-            node[midway, below, font=\small] {$\vec{F}_{imp}$};
-        \node[left, red!80, font=\footnotesize] at (-0.05,0) {$t=0$};
+        \fill[notered!80] (0,0) circle (2.5pt);
+        \draw[->, ultra thick, notered!80] (0,0) -- (1.8,0)
+            node[midway, below, font=\small] {$\vec{F}_{\text{imp}}$};
+        \node[left, notered!80, font=\footnotesize] at (-0.05,0) {$t=0$};
 
         % --- DOPO L'URTO (t = 0+) ---
         \begin{scope}[yshift=-0.9cm]
@@ -383,12 +393,12 @@ Analizziamo gli stati immediatamente prima ($t=0^-$) e dopo ($t=0^+$) dell'urto:
                   thick] (ball_out) at (2.2, 0) {};
             \node[font=\small] at (2.2, 0) {$m$};
             \draw[->, thick, black] (ball_out.east) -- ++(1.2,0)
-                node[midway, above, font=\small] {$\vec{v}_{out}$};
+                node[midway, above, font=\small] {$\vec{v}_{\text{out}}$};
             \node[right, black, font=\footnotesize] at (2.9,-0.4) {$t=0^+$};
         \end{scope}
     \end{tikzpicture}
     \caption{Urto elastico contro una parete rigida. La forza impulsiva
-        $\vec{F}_{imp}$ agisce per $\Delta t\to 0$, causando la variazione
+        $\vec{F}_{\text{imp}}$ agisce per $\Delta t\to 0$, causando la variazione
         di quantità di moto $\Delta\vec{p} = \vec{p}(0^+)-\vec{p}(0^-)$.}
     \label{fig:impulso}
 \end{figure}
@@ -401,7 +411,7 @@ Se un corpo $A$ esercita una forza $\vec{F}_{AB}$ su un corpo $B$, il corpo $B$ 
 \end{equation}
 Le due forze hanno stessa retta d'azione, stesso modulo, ma versi opposti. Si applicano a \textbf{punti materiali diversi}.
 \end{definizione}
-Questo significa che le forze di interazione ("Azione" e "Reazione") compaiono sempre in \textbf{coppia} e condividono le seguenti caratteristiche:
+Questo significa che le forze di interazione (``Azione'' e ``Reazione'') compaiono sempre in \textbf{coppia} e condividono le seguenti caratteristiche:
 \begin{itemize}
     \item Hanno lo stesso \textbf{modulo}: $|\vec{F}_{AB}| = |\vec{F}_{BA}|$.
     \item Hanno la stessa \textbf{direzione} (la retta congiungente i due corpi).
@@ -424,7 +434,7 @@ Questo significa che le forze di interazione ("Azione" e "Reazione") compaiono s
         \node[circle, draw=black, fill=mypen!10, minimum size=1.2cm, thick] (B) at (4,0) {\textbf{B}};
         
         % Linea tratteggiata di interazione
-        \draw[dashed, gray] (A) -- (B);
+        \draw[dashed, mypen!55] (A) -- (B);
         
         % Forza F_BA (Su A dovuta a B) <-- verso sinistra
         \draw[->, ultra thick, mypen] (A.west) -- ++(-1.5, 0) node[above] {$\vec{F}_{BA}$};
@@ -451,12 +461,17 @@ Dalla seconda legge della dinamica, possiamo definirla operativamente come:
 \end{equation}
 
 La massa gode della \textbf{proprietà di additività} (tranne a livello subnucleare, dove la massa può trasformarsi in energia $E=mc^2$). Ovvero, considerando due corpi con masse $m_1$ e $m_2$:
-\[ m_{(1+2)} = m_1 + m_2 = m_{tot} \]
+\begin{equation}
+    m_{(1+2)} = m_1 + m_2 = m_{\text{tot}}
+\end{equation}
 
 \subsection{Misurazione della Massa}
 La massa si misura attraverso la \textbf{bilancia}, sfruttando la forza peso. Se la bilancia si trova in una situazione di \textbf{equilibrio}, significa che la risultante delle forze è nulla ($\sum \vec{F} = 0$).
 Se ci troviamo sullo stesso punto della Terra (dove $\vec{g}$ è costante):
-\[ \vec{P}_1 = \vec{P}_2 \implies m_1 \vec{g} = m_2 \vec{g} \implies m_1 = m_2 \]
+\begin{equation}
+    \vec{P}_1 = \vec{P}_2 \implies m_1 \vec{g} = m_2 \vec{g} \implies m_1 = m_2
+\end{equation}
+Il punto cruciale è che $\vec{g}$ compare in entrambi i membri e si semplifica: la bilancia \emph{confronta} due pesi, non li misura in valore assoluto, e per questo il risultato del confronto non dipende dal valore locale di $g$ né richiede di conoscerlo. È la ragione per cui una bilancia a bracci uguali dà lo stesso risultato sulla Terra come sulla Luna, mentre un dinamometro tarato in Newton andrebbe ricalibrato ogni volta che cambia $g$.
 
 Conoscendo le forze, misuriamo le accelerazioni e di conseguenza le masse (usando strumenti come la bilancia o lo spettrometro di massa).
 
@@ -464,7 +479,7 @@ Conoscendo le forze, misuriamo le accelerazioni e di conseguenza le masse (usand
     \centering
     \begin{tikzpicture}[scale=0.8]
         % Base
-        \fill[gray!30] (-0.5,0) rectangle (0.5,-0.2);
+        \fill[mypen!30] (-0.5,0) rectangle (0.5,-0.2);
         \draw[thick] (0,0) -- (0,2); % Asta verticale
         \filldraw (0,2) circle (2pt); % Fulcro
         
@@ -496,18 +511,22 @@ In realtà, la massa può essere distinta in due diverse tipologie concettuali:
 
 \begin{teorema}{Equivalenza Massa Inerziale e Gravitazionale}
 Sebbene concettualmente diverse (\textbf{$m_i$}: resistenza al moto; \textbf{$m_g$}: capacità di attrarre/essere attratti), gli esperimenti di \textbf{Eötvös} hanno dimostrato con altissima precisione che il loro rapporto è costante per tutti i corpi. Nel SI si assume:
-\[ m_i = m_g = m \]
+\begin{equation}
+    m_i = m_g = m
+\end{equation}
 \end{teorema}
 
 \begin{osservazione}{Principio di Equivalenza Debole}
 Pertanto si può costatare l'uguaglianza numerica tra le due grandezze:
-\[ m_i = m_g = m \]
+\begin{equation}
+    m_i = m_g = m
+\end{equation}
 \end{osservazione}
 
 \subsection{La Forza Peso}
 La \textbf{Forza Peso} è la forza esercitata dalla Terra su un corpo.
 \begin{equation}
-    \vec{P} = m \vec{g} \quad \text{con } |\vec{g}| \approx \SI{9.81}{m/s^2}
+    \vec{P} = m \vec{g} \quad \text{con } |\vec{g}| \approx 9{,}81 \, \mathrm{m/s^2}
 \end{equation}
 
 L'accelerazione di gravità $\vec{g}$ \textbf{non è costante} su tutta la superficie terrestre. In effetti, essa è una grandezza puntuale e locale che varia in base a:
@@ -533,7 +552,7 @@ La misurazione precisa di $\vec{g}$ avviene attraverso particolari pendoli con u
         arrow/.style={->, >=stealth, thick}
     ]
         % Nodo radice
-        \node (diff) [box, fill=gray!10] {\textbf{Differenza Massa $\neq$ Peso}};
+        \node (diff) [box, fill=mypen!10] {\textbf{Differenza Massa $\neq$ Peso}};
         
         % Nodi figli
         \node (massa) [box, below left=1cm and 0.2cm of diff, fill=mypen!10] {\textbf{Massa}};
@@ -561,7 +580,7 @@ La misurazione precisa di $\vec{g}$ avviene attraverso particolari pendoli con u
 \end{figure}
 
 \begin{esercizio}{L'Ascensore e il Peso Apparente}
-Un corpo di massa $m$, posto su una bilancia all'interno di un ascensore, è soggetto alla forza peso $\vec{P} = m\vec{g}$ e alla reazione vincolare $\vec{N}$ della bilancia. La bilancia misura la reazione vincolare $\vec{N}$ (il "peso apparente").
+Un corpo di massa $m$, posto su una bilancia all'interno di un ascensore, è soggetto alla forza peso $\vec{P} = m\vec{g}$ e alla reazione vincolare $\vec{N}$ della bilancia. La bilancia misura la reazione vincolare $\vec{N}$ (il ``peso apparente'').
 
 Dalla seconda legge della dinamica: $N = m(g + a)$. Analizziamo i casi:
 \begin{enumerate}
@@ -574,10 +593,10 @@ Dalla seconda legge della dinamica: $N = m(g + a)$. Analizziamo i casi:
     \begin{center}
     \begin{tikzpicture}[scale=1.0, >=stealth]
         \tikzset{
-            cabin/.style={draw=black!70, thick, rounded corners=3pt, fill=gray!6, minimum width=3.2cm, minimum height=3.8cm},
+            cabin/.style={draw=black!70, thick, rounded corners=3pt, fill=mypen!6, minimum width=3.2cm, minimum height=3.8cm},
             person/.style={circle, draw=mypen!60, fill=mypen!25, minimum size=0.7cm, thick},
             fvec/.style={->, line width=1.6pt},
-            avec/.style={->, line width=2.2pt, violet}
+            avec/.style={->, line width=2.2pt, boxnota}
         }
         % Caso a=0
         \begin{scope}[xshift=0cm]
@@ -593,7 +612,7 @@ Dalla seconda legge della dinamica: $N = m(g + a)$. Analizziamo i casi:
             \node[person] (Hd2) at (0, 1.9) {\scriptsize $m$};
             \draw[fvec, mygreen!80]  (Hd2.south) -- ++(0,-1.1) node[right=3pt] {$\vec{P}$};
             \draw[fvec, line width=2.4pt, mypen!80] (Hd2.north) -- ++(0,+1.55) node[right=3pt] {$\vec{N}$};
-            \draw[avec] (-2.2, 1.2) -- (-2.2, 2.8) node[above, violet] {$\vec{a}$};
+            \draw[avec] (-2.2, 1.2) -- (-2.2, 2.8) node[above, boxnota] {$\vec{a}$};
             \node[below=6pt] at (0,0) {\textbf{$a > 0$}};
         \end{scope}
         % Caso a < 0
@@ -602,7 +621,7 @@ Dalla seconda legge della dinamica: $N = m(g + a)$. Analizziamo i casi:
             \node[person] (Hd3) at (0, 1.9) {\scriptsize $m$};
             \draw[fvec, mygreen!80]  (Hd3.south) -- ++(0,-1.1) node[right=3pt] {$\vec{P}$};
             \draw[fvec, mypen!80] (Hd3.north) -- ++(0,+0.45) node[right=3pt] {$\vec{N}$};
-            \draw[avec] (-2.2, 2.8) -- (-2.2, 1.2) node[below, violet] {$\vec{a}$};
+            \draw[avec] (-2.2, 2.8) -- (-2.2, 1.2) node[below, boxnota] {$\vec{a}$};
             \node[below=6pt] at (0,0) {\textbf{$a < 0$}};
         \end{scope}
     \end{tikzpicture}
@@ -624,42 +643,37 @@ Un vincolo impone delle condizioni geometriche alle coordinate del corpo. Ecco i
     \begin{minipage}{0.31\textwidth}
         \centering
         \textbf{Piano (Tavolo)}
-        \vspace{0.2cm}
         \begin{tikzpicture}[scale=0.55, x={(-0.4cm,-0.3cm)}, y={(1cm,0cm)}, z={(0cm,1cm)}]
             % Assi
             \draw[->] (0,0,0) -- (3,0,0) node[left] {\tiny $x$};
             \draw[->] (0,0,0) -- (0,3,0) node[right] {\tiny $y$};
             \draw[->] (0,0,0) -- (0,0,3) node[above] {\tiny $z$};
             % Piano
-            \fill[blue!10, opacity=0.7] (0,0,0) -- (2.5,0,0) -- (2.5,2.5,0) -- (0,2.5,0) -- cycle;
+            \fill[boxoss!10, opacity=0.7] (0,0,0) -- (2.5,0,0) -- (2.5,2.5,0) -- (0,2.5,0) -- cycle;
             \draw[dashed] (0,0,0) -- (2.5,0,0) -- (2.5,2.5,0) -- (0,2.5,0) -- cycle;
         \end{tikzpicture}
-        \vspace{0.1cm}
         {\scriptsize $z(t) = 0$}
     \end{minipage}
     \hfill
     \begin{minipage}{0.31\textwidth}
         \centering
         \textbf{Circolare}
-        \vspace{0.2cm}
         \begin{tikzpicture}[scale=0.55, x={(-0.4cm,-0.3cm)}, y={(1cm,0cm)}, z={(0cm,1cm)}]
             % Assi
             \draw[->] (0,0,0) -- (3,0,0);
             \draw[->] (0,0,0) -- (0,3,0);
             \draw[->] (0,0,0) -- (0,0,3);
             % Cerchio
-            \draw[thick, red] (2,0,0) arc (0:90:2);
-            \draw[dashed, red] (2,0,0) -- (0,0,0) -- (0,2,0);
-            \node[red, right] at (1,0,0) {\tiny $R$};
+            \draw[thick, notered] (2,0,0) arc (0:90:2);
+            \draw[dashed, notered] (2,0,0) -- (0,0,0) -- (0,2,0);
+            \node[notered, right] at (1,0,0) {\tiny $R$};
         \end{tikzpicture}
-        \vspace{0.1cm}
         {\scriptsize $x^2 + y^2 = R^2$}
     \end{minipage}
     \hfill
     \begin{minipage}{0.31\textwidth}
         \centering
         \textbf{Piano Inclinato}
-        \vspace{0.2cm}
         \begin{tikzpicture}[scale=0.7]
             % Cuneo
             \draw[thick] (0,0) -- (2.5,0) -- (2.5,1.2) -- cycle;
@@ -667,11 +681,10 @@ Un vincolo impone delle condizioni geometriche alle coordinate del corpo. Ecco i
             \node at (0.8,0.2) {\tiny $\theta$};
             % Sistema ruotato
             \begin{scope}[shift={(1.2, 0.6)}, rotate=26.56]
-                \draw[->, blue] (0,0) -- (0.8,0) node[right] {\tiny $x'$};
-                \draw[->, blue] (0,0) -- (0,0.8) node[above] {\tiny $y'$};
+                \draw[->, boxoss] (0,0) -- (0.8,0) node[right] {\tiny $x'$};
+                \draw[->, boxoss] (0,0) -- (0,0.8) node[above] {\tiny $y'$};
             \end{scope}
         \end{tikzpicture}
-        \vspace{0.1cm}
         {\scriptsize $y'(t) = 0$}
     \end{minipage}
     
@@ -697,7 +710,7 @@ $\vec{P} = m\vec{g}$ esiste anche se non ci fosse la $\vec{N}$ del tavolo. Quest
         \begin{scope}[xshift=-4cm]
             \node[align=center, anchor=south, font=\bfseries] at (0, 2.3) {CERNIERE};
             % Cilindro/Cerniera
-            \fill[gray!20] (-0.2,0) rectangle (0.2,2);
+            \fill[mypen!20] (-0.2,0) rectangle (0.2,2);
             \draw[thick] (-0.2,0) -- (-0.2,2); \draw[thick] (0.2,0) -- (0.2,2);
             \draw (0,2) ellipse (0.2 and 0.05); \draw (0,0) ellipse (0.2 and 0.05);
             % Staffa
@@ -709,12 +722,12 @@ $\vec{P} = m\vec{g}$ esiste anche se non ci fosse la $\vec{N}$ del tavolo. Quest
         % 2. TENSIONE (BLOCCHI)
         \begin{scope}[xshift=2cm, yshift=1cm]
             \node[anchor=west, font=\bfseries] at (-1.5, 1.2) {FILI INESTENSIBILI};
-            \draw[thick, fill=gray!30] (-1.5, -0.3) rectangle (-0.5, 0.3); % Blocco 1
-            \draw[thick, fill=gray!30] (1.5, -0.3) rectangle (2.5, 0.3); % Blocco 2
+            \draw[thick, fill=mypen!30] (-1.5, -0.3) rectangle (-0.5, 0.3); % Blocco 1
+            \draw[thick, fill=mypen!30] (1.5, -0.3) rectangle (2.5, 0.3); % Blocco 2
             \draw[thick] (-0.5, 0) -- (1.5, 0); % Filo
             % Vettori Tensione
-            \draw[->, thick, red] (-0.5, 0) -- (0, 0) node[above, font=\tiny] {$\vec{T}$};
-            \draw[->, thick, red] (1.5, 0) -- (1, 0) node[above, font=\tiny] {$\vec{T}$};
+            \draw[->, thick, notered] (-0.5, 0) -- (0, 0) node[above, font=\tiny] {$\vec{T}$};
+            \draw[->, thick, notered] (1.5, 0) -- (1, 0) node[above, font=\tiny] {$\vec{T}$};
             \node[below, font=\scriptsize] at (0.5, -0.3) {Tensione Costante};
         \end{scope}
 
@@ -726,7 +739,7 @@ $\vec{P} = m\vec{g}$ esiste anche se non ci fosse la $\vec{N}$ del tavolo. Quest
             % Rottura
             \draw[decorate, decoration={zigzag, segment length=3mm, amplitude=1mm}] (0.5,0.2) -- (0.5,-0.2);
             
-            \draw[->, thick] (0.5, 0) -- (1.5, 0) node[above] {$\vec{F}_{max}$};
+            \draw[->, thick] (0.5, 0) -- (1.5, 0) node[above] {$\vec{F}_{\text{max}}$};
             \node[right, font=\scriptsize, align=left] at (1.5, -0.2) {Carico di\\Rottura};
         \end{scope}
 
@@ -742,7 +755,7 @@ $\vec{P} = m\vec{g}$ esiste anche se non ci fosse la $\vec{N}$ del tavolo. Quest
     \item \textbf{VINCOLO SCABRO}: Esercita una reazione vincolare $\vec{R}$ che ha due componenti:
     \begin{enumerate}
         \item \textbf{Normale} ($\vec{N}$): perpendicolare alla superficie.
-        \item \textbf{Attrito} ($\vec{F}_{att}$): parallela alla superficie e opposta al verso del moto (o dell'imminente moto).
+        \item \textbf{Attrito} ($\vec{F}_{\text{att}}$): parallela alla superficie e opposta al verso del moto (o dell'imminente moto).
     \end{enumerate}
 \end{itemize}
 
@@ -752,10 +765,10 @@ $\vec{P} = m\vec{g}$ esiste anche se non ci fosse la $\vec{N}$ del tavolo. Quest
         % --- Liscio ---
         \begin{scope}[xshift=-3.5cm]
             \draw[thick] (-1.5,0) -- (1.5,0);
-            \draw[thick, fill=blue!5] (-0.5,0) rectangle (0.5,0.8);
+            \draw[thick, fill=boxoss!5] (-0.5,0) rectangle (0.5,0.8);
             
-            \draw[->, thick, blue] (0,0.8) -- (0,1.8) node[above] {$\vec{N}$};
-            \draw[->, thick, red] (0,0.4) -- (0,-0.6) node[right] {$\vec{P}$};
+            \draw[->, thick, boxoss] (0,0.8) -- (0,1.8) node[above] {$\vec{N}$};
+            \draw[->, thick, notered] (0,0.4) -- (0,-0.6) node[right] {$\vec{P}$};
             \draw[->, dashed, black] (0.6,0.4) -- (1.4,0.4) node[right] {$\vec{v}$};
             
             \node[below, font=\bfseries] at (0,-0.8) {LISCIO};
@@ -766,20 +779,20 @@ $\vec{P} = m\vec{g}$ esiste anche se non ci fosse la $\vec{N}$ del tavolo. Quest
         \begin{scope}[xshift=3.5cm]
             \draw[thick] (-1.5,0) -- (1.5,0);
             \foreach \x in {-1.5,-1.3,...,1.5} \draw (\x,0) -- (\x-0.1,-0.15); % Tratteggio terreno
-            \draw[thick, fill=orange!5] (-0.5,0) rectangle (0.5,0.8);
+            \draw[thick, fill=boxteo!5] (-0.5,0) rectangle (0.5,0.8);
             
             % Reazione Totale R
-            \draw[->, thick, violet, dashed] (0,0) -- (-0.8, 1.5) node[left] {$\vec{R}$};
+            \draw[->, thick, boxnota, dashed] (0,0) -- (-0.8, 1.5) node[left] {$\vec{R}$};
             
             % Componenti
-            \draw[->, thick, blue] (0,0.8) -- (0,1.8) node[above] {$\vec{N}$};
-            \draw[->, thick, red] (0,0.4) -- (0,-0.6) node[right] {$\vec{P}$};
-            \draw[->, thick, violet] (0,0) -- (-1.2,0) node[below] {$\vec{F}_{att}$};
+            \draw[->, thick, boxoss] (0,0.8) -- (0,1.8) node[above] {$\vec{N}$};
+            \draw[->, thick, notered] (0,0.4) -- (0,-0.6) node[right] {$\vec{P}$};
+            \draw[->, thick, boxnota] (0,0) -- (-1.2,0) node[below] {$\vec{F}_{\text{att}}$};
             
             \draw[->, dashed, black] (0.6,0.4) -- (1.4,0.4) node[right] {$\vec{v}$};
             
             \node[below, font=\bfseries] at (0,-0.8) {SCABRO};
-            \node[below, font=\scriptsize] at (0,-1.2) {$\vec{R} = \vec{N} + \vec{F}_{att}$};
+            \node[below, font=\scriptsize] at (0,-1.2) {$\vec{R} = \vec{N} + \vec{F}_{\text{att}}$};
         \end{scope}
     \end{tikzpicture}
     \caption{Differenza tra vincolo liscio e scabro. Nel vincolo scabro la reazione vincolare $\vec{R}$ non è perpendicolare alla superficie.}
@@ -796,17 +809,17 @@ Dove $\mu_s$ è il \textbf{Coefficiente di Attrito Statico} (adimensionale), che
         \foreach \x in {-2,-1.8,...,2} \draw (\x,0) -- (\x-0.1,-0.15);
         
         % Corpo
-        \draw[thick, fill=gray!10] (-0.75,0) rectangle (0.75,1);
+        \draw[thick, fill=mypen!10] (-0.75,0) rectangle (0.75,1);
         \node at (0,0.5) {$m$};
         
         % Forze
-        \draw[->, thick, blue] (0,1) -- (0,1.8) node[above] {$\vec{N}$};
-        \draw[->, thick, red] (0,0.5) -- (0,-0.8) node[right] {$\vec{P}$};
+        \draw[->, thick, boxoss] (0,1) -- (0,1.8) node[above] {$\vec{N}$};
+        \draw[->, thick, notered] (0,0.5) -- (0,-0.8) node[right] {$\vec{P}$};
         
-        \draw[->, thick, black] (0.75,0.5) -- (1.8,0.5) node[right] {$\vec{F}_{ext}$};
-        \draw[->, thick, violet] (-0.75,0.5) -- (-1.8,0.5) node[left] {$\vec{F}_s$};
+        \draw[->, thick, black] (0.75,0.5) -- (1.8,0.5) node[right] {$\vec{F}_{\text{ext}}$};
+        \draw[->, thick, boxnota] (-0.75,0.5) -- (-1.8,0.5) node[left] {$\vec{F}_s$};
         
-        \node[below, align=center, font=\small] at (0,-1) {$\vec{v} = 0$\\Equilibrio: $\vec{F}_s = - \vec{F}_{ext}$};
+        \node[below, align=center, font=\small] at (0,-1) {$\vec{v} = 0$\\Equilibrio: $\vec{F}_s = - \vec{F}_{\text{ext}}$};
     \end{tikzpicture}
     \caption{Attrito Statico: si oppone alla forza motrice finché il corpo è fermo.}
 \end{figure}
@@ -841,17 +854,17 @@ Dove:
         \foreach \x in {-2,-1.8,...,2} \draw (\x,0) -- (\x-0.1,-0.15);
         
         % Corpo
-        \draw[thick, fill=gray!10] (-0.75,0) rectangle (0.75,1);
+        \draw[thick, fill=mypen!10] (-0.75,0) rectangle (0.75,1);
         \node at (0,0.5) {$m$};
         
         % Velocità
         \draw[->, dashed, thick, black] (0.8, 1.2) -- (1.8, 1.2) node[above] {$\vec{v}$};
         
         % Forze
-        \draw[->, thick, blue] (0,1) -- (0,1.8) node[above] {$\vec{N}$};
-        \draw[->, thick, red] (0,0.5) -- (0,-0.8) node[right] {$\vec{P}$};
+        \draw[->, thick, boxoss] (0,1) -- (0,1.8) node[above] {$\vec{N}$};
+        \draw[->, thick, notered] (0,0.5) -- (0,-0.8) node[right] {$\vec{P}$};
         
-        \draw[->, thick, violet] (-0.75,0.5) -- (-1.8,0.5) node[left] {$\vec{F}_d$};
+        \draw[->, thick, boxnota] (-0.75,0.5) -- (-1.8,0.5) node[left] {$\vec{F}_d$};
         
         \node[below, align=center, font=\small] at (0,-1) {Moto in corso ($v \neq 0$)\\$F_d = \text{costante}$};
     \end{tikzpicture}
@@ -884,23 +897,27 @@ Il sistema all'equilibrio limite diventa:
 \end{equation}
 
 Sostituendo la seconda equazione nella prima:
-\[ \mu_s (mg \cos\theta) = mg \sin\theta \]
+\begin{equation}
+    \mu_s (mg \cos\theta) = mg \sin\theta
+\end{equation}
 
 Semplificando la massa $m$ e l'accelerazione $g$, otteniamo una relazione fondamentale:
 \begin{equation}
     \mu_s = \frac{\sin\theta}{\cos\theta} = \tan\theta
 \end{equation}
 
-\paragraph{Angolo Critico ($\theta_{max}$)}
-Ragionando all'opposto, possiamo calcolare l'angolo massimo di inclinazione $\theta_{max}$ per cui il corpo rimane fermo:
-\[ \theta_{max} = \arctan(\mu_s) \]
+\paragraph{Angolo Critico ($\theta_{\text{max}}$)}
+Ragionando all'opposto, possiamo calcolare l'angolo massimo di inclinazione $\theta_{\text{max}}$ per cui il corpo rimane fermo:
+\begin{equation}
+    \theta_{\text{max}} = \arctan(\mu_s)
+\end{equation}
 
 \begin{itemize}
-    \item Finché $\theta < \theta_{max}$: il corpo resta \textbf{fermo} ($F_s < F_{s,max}$).
-    \item Quando $\theta > \theta_{max}$: la componente parallela del peso supera l'attrito massimo e il corpo \textbf{scivola}.
+    \item Finché $\theta < \theta_{\text{max}}$: il corpo resta \textbf{fermo} ($F_s < F_{s,max}$).
+    \item Quando $\theta > \theta_{\text{max}}$: la componente parallela del peso supera l'attrito massimo e il corpo \textbf{scivola}.
 \end{itemize}
 
-Geometricamente, questo definisce il cosiddetto \textbf{Cono di Attrito Statico}: se la risultante delle forze di contatto cade all'interno di questo cono di apertura $2\theta_{max}$, il corpo rimane in equilibrio.
+Geometricamente, questo definisce il cosiddetto \textbf{Cono di Attrito Statico}: se la risultante delle forze di contatto cade all'interno di questo cono di apertura $2\theta_{\text{max}}$, il corpo rimane in equilibrio.
 
 \begin{figure}[h!]
     \centering
@@ -917,20 +934,20 @@ Geometricamente, questo definisce il cosiddetto \textbf{Cono di Attrito Statico}
 
             % Corpo
             \begin{scope}[shift={(1.5, 0.75)}, rotate=26.56]
-                \draw[thick, fill=gray!10] (-0.4, 0) rectangle (0.4, 0.5);
+                \draw[thick, fill=mypen!10] (-0.4, 0) rectangle (0.4, 0.5);
                 \fill (0, 0.25) circle (1.5pt); % Centro di massa
 
                 % Sistema di riferimento locale
-                \draw[gray, dashed] (-1,0) -- (1,0) node[right] {$x$};
-                \draw[gray, dashed] (0,-1) -- (0,1) node[above] {$y$};
+                \draw[mypen!55, dashed] (-1,0) -- (1,0) node[right] {$x$};
+                \draw[mypen!55, dashed] (0,-1) -- (0,1) node[above] {$y$};
 
                 % Forze
-                \draw[->, thick, blue] (0, 0) -- (0, 1) node[right] {$\vec{N}$};
-                \draw[->, thick, violet] (0, 0) -- (-0.8, 0) node[above] {$\vec{F}_{s}$};
+                \draw[->, thick, boxoss] (0, 0) -- (0, 1) node[right] {$\vec{N}$};
+                \draw[->, thick, boxnota] (0, 0) -- (-0.8, 0) node[above] {$\vec{F}_{s}$};
                 
                 % Peso (non ruotato rispetto alla terra, SCOMPOSTO)
-                \draw[->, thick, red] (0, 0) -- (0.8, 0) node[above, xshift=2pt] {$P_{\parallel}$};
-                \draw[->, thick, red] (0, 0) -- (0, -0.8) node[right] {$P_{\perp}$};
+                \draw[->, thick, notered] (0, 0) -- (0.8, 0) node[above, xshift=2pt] {$P_{\parallel}$};
+                \draw[->, thick, notered] (0, 0) -- (0, -0.8) node[right] {$P_{\perp}$};
                 
             \end{scope}
             
@@ -945,7 +962,7 @@ Geometricamente, questo definisce il cosiddetto \textbf{Cono di Attrito Statico}
             % Piano
             \draw[thick] (-2,0) -- (2,0);
             % Cono
-            \fill[gray!10] (0,0) -- (1.5, 2.5) -- (-1.5, 2.5) -- cycle;
+            \fill[mypen!10] (0,0) -- (1.5, 2.5) -- (-1.5, 2.5) -- cycle;
             \draw[dashed] (0,0) -- (0,3);
             
             \draw[thick] (0,0) -- (1.5, 2.5);
@@ -953,7 +970,7 @@ Geometricamente, questo definisce il cosiddetto \textbf{Cono di Attrito Statico}
             
             % Angolo
             \draw (0,0.8) arc (90:59:0.8);
-            \node at (0.4, 1.1) {$\theta_{max}$};
+            \node at (0.4, 1.1) {$\theta_{\text{max}}$};
             
             \node[align=center, below] at (0,0) {\textbf{CONO DI}\\\textbf{ATTRITO STATICO}};
         \end{tikzpicture}
@@ -964,10 +981,14 @@ Geometricamente, questo definisce il cosiddetto \textbf{Cono di Attrito Statico}
 
 \paragraph{Nota sul piano orizzontale ($\theta = 0$):}
 Su un piano orizzontale, in assenza di altre forze esterne, $P_{\parallel} = m g \sin(0) = 0$, quindi la forza di attrito necessaria per l'equilibrio è nulla.
-Per misurare $\mu_s$ su un piano orizzontale, bisogna applicare una forza esterna $F_{min}$ finché il corpo non si stacca:
-\[ F_{min} = |F_{s,max}| = \mu_s m g \implies \mu_s = \frac{F_{min}}{m g} \]
+Per misurare $\mu_s$ su un piano orizzontale, bisogna applicare una forza esterna $F_{\text{min}}$ finché il corpo non si stacca:
+\begin{equation}
+    F_{\text{min}} = |F_{s,max}| = \mu_s m g \implies \mu_s = \frac{F_{\text{min}}}{m g}
+\end{equation}
 Dopo lo stacco, se vogliamo mantenere il corpo a velocità costante ($a=0$), dovremo applicare una forza pari all'attrito dinamico: 
-\[ F_{motrice} = F_d = \mu_d m g \]
+\begin{equation}
+    F_{motrice} = F_d = \mu_d m g
+\end{equation}
 Essendo solitamente $\mu_d < \mu_s$, la forza necessaria per mantenere il moto uniforme è minore di quella necessaria per avviarlo (forza di primo distacco).
 
 \begin{esercizio}{Dinamica del Moto sul Piano Inclinato con Attrito}
@@ -982,23 +1003,23 @@ Analizziamo il moto di un corpo di massa $m$ su un piano inclinato di un angolo 
         
         % Assi ruotati
         \begin{scope}[rotate=30, shift={(2.5, 0.5)}]
-             \draw[->, gray] (0,0) -- (1.5,0) node[below] {$x$};
-             \draw[->, gray] (0,0) -- (0,1.5) node[left] {$y$};
+             \draw[->, mypen!55] (0,0) -- (1.5,0) node[below] {$x$};
+             \draw[->, mypen!55] (0,0) -- (0,1.5) node[left] {$y$};
              
              % Corpo
-             \draw[thick, fill=gray!10] (-0.4,0) rectangle (0.4,0.6);
+             \draw[thick, fill=mypen!10] (-0.4,0) rectangle (0.4,0.6);
              \coordinate (C) at (0,0.3);
              
              % Forze
-             \draw[->, thick, blue] (C) -- (0, 1.2) node[above] {$\vec{N}$};
-             \draw[->, thick, violet] (C) -- (-1.2, 0) node[left] {$\vec{F}_{att}$};
+             \draw[->, thick, boxoss] (C) -- (0, 1.2) node[above] {$\vec{N}$};
+             \draw[->, thick, boxnota] (C) -- (-1.2, 0) node[left] {$\vec{F}_{\text{att}}$};
              
              % Peso
-             \draw[->, thick, red] (C) -- ++(0.5, -0.866) node[below right] {$\vec{P} = m\vec{g}$};
+             \draw[->, thick, notered] (C) -- ++(0.5, -0.866) node[below right] {$\vec{P} = m\vec{g}$};
              
              % Scomposizione Peso
-             \draw[->, dashed, red!60] (C) -- (0.5, 0.3) node[right] {$P_{\parallel}$};
-             \draw[->, dashed, red!60] (C) -- (0, -0.866) node[left] {$P_{\perp}$};
+             \draw[->, dashed, notered!60] (C) -- (0.5, 0.3) node[right] {$P_{\parallel}$};
+             \draw[->, dashed, notered!60] (C) -- (0, -0.866) node[left] {$P_{\perp}$};
         \end{scope}
     \end{tikzpicture}
     \end{center}
@@ -1012,14 +1033,22 @@ Proiettando le forze sugli assi $x$ (parallelo al piano) e $y$ (normale):
 \end{itemize}
 
 \textbf{Accelerazione in discesa}:
-\[ a = g(\sin\theta - \mu_D \cos\theta) \]
+\begin{equation}
+    a = g(\sin\theta - \mu_D \cos\theta)
+\end{equation}
 Velocità finale dopo aver percorso una distanza $L$ partendo da fermo:
-\[ v_f = \sqrt{2 L g (\sin\theta - \mu_D \cos\theta)} \]
+\begin{equation}
+    v_f = \sqrt{2 L g (\sin\theta - \mu_D \cos\theta)}
+\end{equation}
 
 \textbf{Accelerazione in salita}:
-\[ a = g(\sin\theta + \mu_D \cos\theta) \]
+\begin{equation}
+    a = g(\sin\theta + \mu_D \cos\theta)
+\end{equation}
 Se lanciato con velocità $v_0$, lo spazio $S$ percorso prima di fermarsi è:
-\[ S = \frac{v_0^2}{2g(\sin\theta + \mu_D \cos\theta)} \]
+\begin{equation}
+    S = \frac{v_0^2}{2g(\sin\theta + \mu_D \cos\theta)}
+\end{equation}
 \end{esercizio}
 
 \section{Sistemi con Forze di Tensione}
@@ -1033,20 +1062,24 @@ Si definisce \textbf{densità lineare di massa} $\mu = \frac{M}{L} [kg/m]$.
     
     \begin{center}
     \begin{tikzpicture}
-        \draw[thick, fill=gray!10] (0,-0.2) rectangle (3,0.2);
-        \draw[->, thick, blue] (3,0) -- (4,0) node[right] {$\vec{T}_P$};
-        \draw[->, thick, blue] (0,0) -- (-1,0) node[left] {$\vec{T}_Q$};
+        \draw[thick, fill=mypen!10] (0,-0.2) rectangle (3,0.2);
+        \draw[->, thick, boxoss] (3,0) -- (4,0) node[right] {$\vec{T}_P$};
+        \draw[->, thick, boxoss] (0,0) -- (-1,0) node[left] {$\vec{T}_Q$};
         \draw[<->] (0,-0.4) -- (3,-0.4) node[midway, below] {$\Delta l$};
         \node at (1.5, 0) {\small $\Delta m$};
     \end{tikzpicture}
     \end{center}
     
     Se il sistema si muove con accelerazione $\vec{a}$, per il II principio:
-    \[ \vec{T}_P - \vec{T}_Q = \Delta m \cdot \vec{a} = (\mu \Delta l) \vec{a} \]
+    \begin{equation}
+    \vec{T}_P - \vec{T}_Q = \Delta m \cdot \vec{a} = (\mu \Delta l) \vec{a}
+\end{equation}
     La tensione non è costante lungo la fune.
     
     \item \textbf{FILI (Ideali)}: Se la massa della fune è trascurabile ($M \approx 0 \implies \mu \approx 0$), allora:
-    \[ \vec{T}_P - \vec{T}_Q \approx \vec{0} \implies T_P = T_Q = T \]
+    \begin{equation}
+    \vec{T}_P - \vec{T}_Q \approx \vec{0} \implies T_P = T_Q = T
+\end{equation}
     In un filo ideale la tensione è \textbf{costante} in ogni punto.
 \end{itemize}
 
@@ -1056,7 +1089,7 @@ Consideriamo un uomo che tira una cassa tramite una fune di massa $M$.
     \item Eq. moto fune: $M \vec{a} = \vec{T}_D - \vec{T}_P$
     \item Eq. moto cassa: $m \vec{a} = -\vec{T}_P$
 \end{itemize}
-Se la fune è un filo ideale ($M=0$), allora $|\vec{F}_{uomo}| = |\vec{T}_P|$, ovvero l'uomo applica la forza direttamente alla cassa.
+Se la fune è un filo ideale ($M=0$), allora $|\vec{F}_{\text{uomo}}| = |\vec{T}_P|$, ovvero l'uomo applica la forza direttamente alla cassa.
 
 \subsection{Macchina di Atwood}
 La macchina di Atwood consiste in due masse $m_1$ e $m_2$ collegate da un filo ideale che passa sopra una carrucola liscia di massa trascurabile.
@@ -1075,41 +1108,56 @@ La macchina di Atwood consiste in due masse $m_1$ e $m_2$ collegate da un filo i
         \draw[thick] (-0.5,0) -- (-0.5,-2);
         \draw[thick] (0.5,0) -- (0.5,-3);
         
-        \draw[fill=gray!20] (-0.9,-2) rectangle (-0.1,-2.8) node[midway] {$m_1$};
-        \draw[fill=gray!20] (0.1,-3) rectangle (0.9,-3.8) node[midway] {$m_2$};
+        \draw[fill=mypen!20] (-0.9,-2) rectangle (-0.1,-2.8) node[midway] {$m_1$};
+        \draw[fill=mypen!20] (0.1,-3) rectangle (0.9,-3.8) node[midway] {$m_2$};
         
         % Forze su m1
-        \draw[->, thick, blue] (-0.5,-2) -- (-0.5,-1) node[left] {$\vec{T}$};
-        \draw[->, thick, red] (-0.5,-2.4) -- (-0.5,-3.4) node[left] {$m_1\vec{g}$};
+        \draw[->, thick, boxoss] (-0.5,-2) -- (-0.5,-1) node[left] {$\vec{T}$};
+        \draw[->, thick, notered] (-0.5,-2.4) -- (-0.5,-3.4) node[left] {$m_1\vec{g}$};
         
         % Forze su m2
-        \draw[->, thick, blue] (0.5,-3) -- (0.5,-2) node[right] {$\vec{T}$};
-        \draw[->, thick, red] (0.5,-3.4) -- (0.5,-4.4) node[right] {$m_2\vec{g}$};
+        \draw[->, thick, boxoss] (0.5,-3) -- (0.5,-2) node[right] {$\vec{T}$};
+        \draw[->, thick, notered] (0.5,-3.4) -- (0.5,-4.4) node[right] {$m_2\vec{g}$};
         
         % Assi
-        \draw[->, dashed, gray] (1.5, -4) -- (1.5, 0) node[above] {$y$};
+        \draw[->, dashed, mypen!55] (1.5, -4) -- (1.5, 0) node[above] {$y$};
     \end{tikzpicture}
     \caption{Schema della Macchina di Atwood.}
 \end{figure}
 
 Assumendo $m_1 > m_2$, impostiamo il sistema delle equazioni del moto:
-\[
-\begin{cases}
+\begin{equation}
+    \begin{cases}
     m_1 g - T = m_1 a \\
     T - m_2 g = m_2 a
 \end{cases}
-\]
+\end{equation}
 Sommando le due equazioni eliminiamo la tensione $T$:
-\[ (m_1 - m_2)g = (m_1 + m_2)a \implies \boxed{a = g \frac{m_1 - m_2}{m_1 + m_2}} \]
+\begin{equation}
+    (m_1 - m_2)g = (m_1 + m_2)a \implies \boxed{a = g \frac{m_1 - m_2}{m_1 + m_2}}
+\end{equation}
 Sostituendo $a$ in una delle equazioni, troviamo la tensione del filo:
-\[ \boxed{T = \frac{2 m_1 m_2}{m_1 + m_2} g} \]
+\begin{equation}
+    \boxed{T = \frac{2 m_1 m_2}{m_1 + m_2} g}
+\end{equation}
+
+\begin{osservazione}{Casi Limite della Macchina di Atwood}
+Una buona pratica, dopo aver risolto un problema di dinamica, è verificarne la soluzione nei casi limite più semplici:
+\begin{itemize}
+    \item Se $m_1 = m_2$, si ottiene $a = 0$: il sistema resta in quiete, come atteso per simmetria.
+    \item Se $m_2 \to 0$ (nessuna massa dall'altro capo del filo), si ottiene $a \to g$ e $T \to 0$: $m_1$ cade semplicemente in caduta libera, poiché non c'è più nulla a trattenerla.
+\end{itemize}
+Un risultato che non si riduce correttamente ai casi noti nasconde quasi sempre un errore algebrico: è per questo che vale la pena controllare sempre questi limiti prima di fidarsi di una formula.
+\end{osservazione}
 
 \section{Forze di Attrito Viscoso}
-L'attrito viscoso si manifesta quando un corpo solido si muove all'interno di un \textbf{fluido} (liquido o gas). Si tratta di forze frenanti che dipendono dalla velocità del corpo.
+L'attrito viscoso si manifesta quando un corpo solido si muove all'interno di un \textbf{fluido} (liquido o gas). Si tratta di forze frenanti che dipendono dalla velocità del corpo: è lo stesso fenomeno già incontrato, in forma puramente cinematica, nella sezione sul moto smorzato esponenzialmente del capitolo precedente. Vedremo ora da dove nasce dinamicamente quella legge.
 
 \subsection{Legge Empirica e Regimi di Velocità}
 In generale, la forza di attrito viscoso può essere espressa come:
-\[ \vec{F}_v = -\vec{v} \cdot f(v) \]
+\begin{equation}
+    \vec{F}_v = -\vec{v} \cdot f(v)
+\end{equation}
 Espandendo $f(v)$ in serie di potenze: $f(v) = \alpha + \beta v + \gamma v^2 + \dots$
 \begin{itemize}
     \item \textbf{Regime di basse velocità}: $f(v) \approx \alpha$ (costante). La forza è proporzionale alla velocità: $\vec{F}_v = -\alpha \vec{v}$.
@@ -1117,14 +1165,20 @@ Espandendo $f(v)$ in serie di potenze: $f(v) = \alpha + \beta v + \gamma v^2 + \
 \end{itemize}
 
 Per una sfera di raggio $r$, il coefficiente $\alpha$ è dato dalla \textbf{Legge di Stokes}:
-\[ \alpha = 6 \pi \eta r \]
+\begin{equation}
+    \alpha = 6 \pi \eta r
+\end{equation}
 dove $\eta$ è la viscosità del mezzo.
 
 \subsection{Equazione del Moto e Velocità Limite}
 Se applichiamo una forza costante $\vec{F}$ (es. la gravità) a un corpo in un mezzo viscoso:
-\[ m \frac{dv}{dt} = F - \alpha v \implies \frac{dv}{dt} = \frac{F}{m} - \frac{\alpha}{m} v \]
+\begin{equation}
+    m \frac{dv}{dt} = F - \alpha v \implies \frac{dv}{dt} = \frac{F}{m} - \frac{\alpha}{m} v
+\end{equation}
 Questa è un'equazione differenziale del I ordine non omogenea. La soluzione è:
-\[ v(t) = \frac{F}{\alpha} + \left( v_0 - \frac{F}{\alpha} \right) e^{-t/\tau} \]
+\begin{equation}
+    v(t) = \frac{F}{\alpha} + \left( v_0 - \frac{F}{\alpha} \right) e^{-t/\tau}
+\end{equation}
 dove $\tau = \frac{m}{\alpha}$ è la \textbf{costante di tempo} del sistema.
 
 \paragraph{Velocità di Saturazione (Limite):}
@@ -1140,15 +1194,15 @@ In questo stato la forza viscosa bilancia esattamente la forza applicata ($a=0$)
         \draw[->] (0,0) -- (5,0) node[right] {$t$};
         \draw[->] (0,0) -- (0,3) node[above] {$v(t)$};
         
-        \draw[dashed, gray] (0,2) -- (5,2) node[right] {$v_L = F/\alpha$};
+        \draw[dashed, mypen!55] (0,2) -- (5,2) node[right] {$v_L = F/\alpha$};
         
         % Caso v0 < vL
-        \draw[thick, blue] plot[domain=0:4.5, samples=100] (\x, {2*(1 - exp(-\x))});
-        \node[blue] at (1.5,1) {\small $v_0 < v_L$};
+        \draw[thick, boxoss] plot[domain=0:4.5, samples=100] (\x, {2*(1 - exp(-\x))});
+        \node[boxoss] at (1.5,1) {\small $v_0 < v_L$};
         
         % Caso v0 > vL
-        \draw[thick, red] plot[domain=0:4.5, samples=100] (\x, {2 + 0.8*exp(-\x)});
-        \node[red] at (1.5,2.6) {\small $v_0 > v_L$};
+        \draw[thick, notered] plot[domain=0:4.5, samples=100] (\x, {2 + 0.8*exp(-\x)});
+        \node[notered] at (1.5,2.6) {\small $v_0 > v_L$};
         
         \node[below left] at (0,0) {$0$};
     \end{tikzpicture}
@@ -1157,34 +1211,65 @@ In questo stato la forza viscosa bilancia esattamente la forza applicata ($a=0$)
 
 \subsection{Calcolo dello Spazio Percorso}
 Consideriamo il caso in cui $F=0$ (corpo lanciato con $v_0$ che viene frenato solo dal fluido):
-\[ v(t) = v_0 e^{-t/\tau} \]
+\begin{equation}
+    v(t) = v_0 e^{-t/\tau}
+\end{equation}
 Integrando per trovare la posizione $x(t)$:
-\[ x(t) = \int_0^t v(t') dt' = \int_0^t v_0 e^{-t'/\tau} dt' = v_0 \tau \left( 1 - e^{-t/\tau} \right) \]
+\begin{equation}
+    x(t) = \int_0^t v(t') dt' = \int_0^t v_0 e^{-t'/\tau} dt' = v_0 \tau \left( 1 - e^{-t/\tau} \right)
+\end{equation}
 Il corpo percorre una distanza finita prima di fermarsi idealmente (per $t \to \infty$):
 \begin{equation}
-    \Delta x_{total} = v_0 \tau = \frac{m v_0}{\alpha}
+    \Delta x_{\text{total}} = v_0 \tau = \frac{m v_0}{\alpha}
 \end{equation}
 \subsection{Analisi per Tempi Brevi (\texorpdfstring{$t \ll \tau$}{t << tau})}
 Per tempi molto piccoli rispetto alla costante di tempo, possiamo approssimare l'esponenziale con lo sviluppo di Taylor al primo ordine: $e^{-t/\tau} \approx 1 - \frac{t}{\tau}$.
 Sostituendo nella legge oraria della velocità:
-\[ v(t) = \frac{F}{\alpha} + \left( v_0 - \frac{F}{\alpha} \right) \left( 1 - \frac{t}{\tau} \right) = \frac{F}{\alpha} + v_0 - \frac{F}{\alpha} - v_0\frac{t}{\tau} + \frac{F}{\alpha}\frac{t}{\tau} \]
+\begin{equation}
+    v(t) = \frac{F}{\alpha} + \left( v_0 - \frac{F}{\alpha} \right) \left( 1 - \frac{t}{\tau} \right) = \frac{F}{\alpha} + v_0 - \frac{F}{\alpha} - v_0\frac{t}{\tau} + \frac{F}{\alpha}\frac{t}{\tau}
+\end{equation}
 Dunque:
 \begin{equation}
     v(t) \approx v_0 + \left( \frac{F}{\alpha} - v_0 \right) \frac{t}{\tau}
 \end{equation}
 Questa espressione mostra che per tempi brevi la velocità varia linearmente, come in un moto uniformemente accelerato con accelerazione $a = \frac{F - \alpha v_0}{m}$.
 
-\begin{tcolorbox}[colback=blue!5!white,colframe=blue!75!black,title=\textbf{Effetti della Forza sulla Velocità}]
+Chiudiamo il capitolo con un'osservazione di validità generale, che vale per qualunque forza e non solo per quella viscosa appena studiata.
+
+\begin{osservazione}{Effetti della Forza sulla Velocità}
 Le modalità con cui una forza modifica il moto dipendono dalla sua orientazione rispetto al vettore velocità $\vec{v}_0$ istantaneo:
 \begin{enumerate}
     \item \textbf{Forza Parallela} ($\vec{F} \parallel \vec{v}_0$): La forza modifica solo il \textbf{modulo} della velocità, non la sua direzione (moto unidimensionale).
     \item \textbf{Forza Perpendicolare} ($\vec{F} \perp \vec{v}_0$): La forza modifica solo la \textbf{direzione} della velocità, mantenendo il modulo costante (es. moto circolare uniforme).
 \end{enumerate}
-\end{tcolorbox}
+\end{osservazione}
+
+\begin{formulario}{Le Forze Notevoli}
+\centering
+\renewcommand{\arraystretch}{1.55}
+\begin{tabular}{@{}l l l@{}}
+\toprule
+\textbf{Forza} & \textbf{Espressione} & \textbf{Note} \\
+\midrule
+Peso                & $\vec{P} = m\vec{g}$                       & $|\vec{g}| \approx 9{,}81\,\mathrm{m/s^2}$ \\
+Normale             & $\vec{N} \perp$ superficie                 & reazione vincolare, non nota a priori \\
+Attrito statico     & $F_s \leq \mu_s N$                         & si oppone alla \emph{tendenza} al moto \\
+Attrito dinamico    & $F_d = \mu_d N$                            & verso opposto a $\vec{v}$, con $\mu_d < \mu_s$ \\
+Attrito viscoso     & $\vec{F} = -b\vec{v}$ \, o \, $-b v^2 \hat{v}$ & a basse o alte velocità \\
+Elastica            & $\vec{F} = -k(x - l_0)\hat{x}$             & legge di Hooke \\
+Tensione            & $\vec{T}$ lungo il filo                    & uguale agli estremi se il filo è ideale \\
+\bottomrule
+\end{tabular}
+\vspace{4pt}
+
+\raggedright
+I tre principi: \; $\vec{v} = \text{cost.}$ se $\sum\vec{F} = \vec{0}$; \quad
+$\sum\vec{F} = m\vec{a}$; \quad $\vec{F}_{AB} = -\vec{F}_{BA}$.
+\end{formulario}
 
 \chapter{Lavoro ed Energia}
 \section{Definizione di Lavoro}
-L'attrito statico è essenziale affinché un veicolo o un uomo/animale possa spostarsi, poiché permette di sfruttare l'aderenza del piano. Tuttavia, da solo non basta; senza una "forza interna" da parte dell'uomo (muscoli) il movimento non potrebbe avvenire.
+L'attrito statico è essenziale affinché un veicolo o un uomo/animale possa spostarsi, poiché permette di sfruttare l'aderenza del piano. Tuttavia, da solo non basta; senza una ``forza interna'' da parte dell'uomo (muscoli) il movimento non potrebbe avvenire.
 
 \textbf{LAVORO ($L$)}: Quando un punto materiale subisce uno spostamento sotto l'azione di una forza, si dice che quest'ultima compie un lavoro sul punto. 
 Il lavoro può essere prodotto da una forza:
@@ -1213,28 +1298,28 @@ Per una forza che varia lungo la traiettoria $\gamma$, definiamo il lavoro infin
 \end{equation}
 Il lavoro totale è dato dall'integrale di linea lungo la curva $\gamma$:
 \begin{equation}
-    L^{(\gamma)} = \int_{R_{in}}^{R_F} \vec{F} \cdot d\vec{s} = \sum_{i=1}^n \Delta L_i \quad \text{per } n \to \infty
+    L^{(\gamma)} = \int_{R_{\text{in}}}^{R_F} \vec{F} \cdot d\vec{s} = \sum_{i=1}^n \Delta L_i \quad \text{per } n \to \infty
 \end{equation}
 
 In coordinate cartesiane:
 \begin{equation}
-    L^{(\gamma)} = \int_{R_{in}}^{R_F} (F_x dx + F_y dy + F_z dz) = L_x + L_y + L_z
+    L^{(\gamma)} = \int_{R_{\text{in}}}^{R_F} (F_x dx + F_y dy + F_z dz) = L_x + L_y + L_z
 \end{equation}
-In caso unidimensionale lungo $x$: $L = \int_{x_{in}}^{x_F} F_x dx$, dove $F_x = F \cos\theta$.
+In caso unidimensionale lungo $x$: $L = \int_{x_{\text{in}}}^{x_F} F_x dx$, dove $F_x = F \cos\theta$.
 
 \textbf{Unità di misura}: $[L] = [F] \cdot [s] = \text{Newton} \cdot \text{metro} = \text{Joule (J)}$.
 $1\text{ J} = 1\text{ kg} \cdot \text{m}^2/\text{s}^2 = 1\text{ N} \cdot \text{m}$.
 
 \section{Lavoro della Forza Peso}
-La forza peso è $\vec{P} = m\vec{g} = mg(-\hat{y})$. Il lavoro compiuto dalla forza peso per uno spostamento da $\vec{R}_{in}$ a $\vec{R}_F$ su una traiettoria $\gamma$ è:
+La forza peso è $\vec{P} = m\vec{g} = mg(-\hat{y})$. Il lavoro compiuto dalla forza peso per uno spostamento da $\vec{R}_{\text{in}}$ a $\vec{R}_F$ su una traiettoria $\gamma$ è:
 \begin{equation}
-    L_P^{(\gamma)} = \int_{R_{in}}^{R_F} m\vec{g} \cdot d\vec{s} = m\vec{g} \cdot (\vec{R}_F - \vec{R}_{in}) = m g (y_{in} - y_F) = -mg\Delta h
+    L_P^{(\gamma)} = \int_{R_{\text{in}}}^{R_F} m\vec{g} \cdot d\vec{s} = m\vec{g} \cdot (\vec{R}_F - \vec{R}_{\text{in}}) = m g (y_{\text{in}} - y_F) = -mg\Delta h
 \end{equation}
-Notiamo che $\Delta h = y_F - y_{in}$ deve essere considerato con il suo segno. 
+Notiamo che $\Delta h = y_F - y_{\text{in}}$ deve essere considerato con il suo segno. 
 $L_P$ dipende solo da $\Delta h$, poiché $m$ e $g$ (vicino al suolo) rimangono costanti. In particolare:
 \begin{itemize}
-    \item $L_P > 0$ se $\Delta h < 0$: il corpo scende, $y_F < y_{in}$.
-    \item $L_P < 0$ se $\Delta h > 0$: il corpo sale, $y_F > y_{in}$.
+    \item $L_P > 0$ se $\Delta h < 0$: il corpo scende, $y_F < y_{\text{in}}$.
+    \item $L_P < 0$ se $\Delta h > 0$: il corpo sale, $y_F > y_{\text{in}}$.
 \end{itemize}
 $\Delta h$ identifica lo \textbf{spostamento globale} lungo la verticale, non lo spazio effettivo percorso seguendo $\gamma$. Infatti $L_P$ non dipende dal percorso seguito ($L_{Pa} = L_{Pb}$).
 
@@ -1245,9 +1330,9 @@ $\Delta h$ identifica lo \textbf{spostamento globale} lungo la verticale, non lo
         \draw[->] (0,0) -- (2.5,0) node[right] {$\hat{x}$};
         \node at (0.5,2) (A) [circle, fill, inner sep=1.5pt] {};
         \node at (2,0.5) (B) [circle, fill, inner sep=1.5pt] {};
-        \draw[->, thick, blue] (A) .. controls (1,1.5) and (0.5,0.5) .. (B) node[midway, right] {$\gamma_a$};
-        \draw[->, thick, red] (A) .. controls (1.5,2) and (2.5,1.5) .. (B) node[midway, right] {$\gamma_b$};
-        \node[above] at (A) {$\vec{R}_{in}$};
+        \draw[->, thick, boxoss] (A) .. controls (1,1.5) and (0.5,0.5) .. (B) node[midway, right] {$\gamma_a$};
+        \draw[->, thick, notered] (A) .. controls (1.5,2) and (2.5,1.5) .. (B) node[midway, right] {$\gamma_b$};
+        \node[above] at (A) {$\vec{R}_{\text{in}}$};
         \node[right] at (B) {$\vec{R}_F$};
     \end{tikzpicture}
     \caption{Indipendenza del lavoro della forza peso dal cammino.}
@@ -1256,7 +1341,7 @@ $\Delta h$ identifica lo \textbf{spostamento globale} lungo la verticale, non lo
 \subsection{Esempi di calcolo della velocità finale}
 Vediamo come calcolare $v_f$ o $v_0$ in vari scenari:
 \begin{enumerate}
-    \item \textbf{Caduta libera}: Partendo da fermo ($v_{in}=0$), $v_f = \sqrt{2gh}$.
+    \item \textbf{Caduta libera}: Partendo da fermo ($v_{\text{in}}=0$), $v_f = \sqrt{2gh}$.
     \item \textbf{Lancio verso l'alto}: Per raggiungere quota $h$ con $v_f=0$, serve $v_0 = \sqrt{2gh}$.
     \item \textbf{Relazione tra $v^2$ ed $h$}: Come visto dagli esempi, $h = \frac{v^2}{2g}$ e $v^2 = 2gh$. Moltiplicando per $m/2$:
     \begin{equation}
@@ -1275,12 +1360,14 @@ Relazione fondamentale: $mgh = \frac{1}{2} m v^2 \implies v = \sqrt{2gh}$.
 \begin{teorema}{Teorema delle Forze Vive}
 Il lavoro compiuto dalla risultante delle forze agenti su un punto materiale è pari alla variazione della sua energia cinetica:
 \begin{equation}
-    L = \Delta K = K_F - K_{in}
+    L = \Delta K = K_F - K_{\text{in}}
 \end{equation}
 \end{teorema}
 
 \textit{Dimostrazione}:
-\[ L = \int \vec{F} \cdot d\vec{s} = \int m \frac{d\vec{v}}{dt} \cdot \vec{v} dt = \int m \left( \frac{1}{2} \frac{d v^2}{dt} \right) dt = \left[ \frac{1}{2} m v^2 \right]_{in}^F \]
+\begin{equation}
+    L = \int \vec{F} \cdot d\vec{s} = \int m \frac{d\vec{v}}{dt} \cdot \vec{v} dt = \int m \left( \frac{1}{2} \frac{d v^2}{dt} \right) dt = \left[ \frac{1}{2} m v^2 \right]_{\text{in}}^F
+\end{equation}
 
 \section{Caso del Pendolo Semplice}
 Consideriamo una massa $m$ appesa a un filo di lunghezza $R$. Indicando con $\phi$ l'angolo tra il filo e la verticale (positivo a destra):
@@ -1314,21 +1401,21 @@ I punti $\phi = \pm \phi_0$ sono i \textbf{punti di inversione} del moto, dove l
     \centering
     \begin{tikzpicture}[scale=1.2]
         \draw[thick] (-1.5,0) -- (1.5,0);
-        \draw[dashed, gray] (0,0) -- (0,-2.5);
+        \draw[dashed, mypen!55] (0,0) -- (0,-2.5);
         \draw[thick] (0,0) -- (-0.8,-2.2) node[midway, left] {$R$};
         \filldraw (-0.8,-2.2) circle (2.5pt) node[below left] {$m$};
         \draw[thick] (0,0) -- (0.8,-2.2);
-        \filldraw[gray!30] (0.8,-2.2) circle (2pt);
+        \filldraw[mypen!30] (0.8,-2.2) circle (2pt);
         \draw (0,-0.6) arc (-90:-110:0.6);
         \node at (-0.2,-0.8) {$\phi$};
-        \draw[->, brown] (-0.8,-2.2) -- (-0.8,-3.2) node[below] {$m\vec{g}$};
-        \draw[->, purple] (-0.8,-2.2) -- (-0.4,-1.1) node[right] {$\vec{T}$};
+        \draw[->, boxatt] (-0.8,-2.2) -- (-0.8,-3.2) node[below] {$m\vec{g}$};
+        \draw[->, boxnota] (-0.8,-2.2) -- (-0.4,-1.1) node[right] {$\vec{T}$};
     \end{tikzpicture}
     \caption{Diagramma del pendolo semplice e forze agenti.}
 \end{figure}
 
 \section{Forze Elastiche}
-L'elasticità è la capacità di tornare allo stato di equilibrio dopo una deformazione. La \textbf{Legge di Hooke} recita: $\vec{F}_{el} = -k \Delta \vec{R}$.
+L'elasticità è la capacità di tornare allo stato di equilibrio dopo una deformazione. La \textbf{Legge di Hooke} recita: $\vec{F}_{\text{el}} = -k \Delta \vec{R}$.
 In un piano senza attrito, il moto è descritto da $m \ddot{x} = -k(x - x_0)$, da cui $\ddot{x} + \frac{k}{m}(x - x_0) = 0$.
 Questa è un'equazione differenziale di II ordine lineare a coefficienti costanti non omogenea (ma riconducibile a omogenea spostando l'origine). La soluzione è:
 \begin{equation}
@@ -1338,11 +1425,11 @@ Questa è un'equazione differenziale di II ordine lineare a coefficienti costant
 \subsection{Caso della Molla con Forza Costante}
 Se la molla è verticale (soggetta a gravità), l'equazione del moto è $m \ddot{x} = mg - k (x - x_0)$.
 Ricidendo l'equilibrio ($\ddot{x}=0$), troviamo il punto di equilibrio statico:
-$x_{eq} = x_0 + \frac{mg}{k}$.
-L'equazione diventa $\ddot{x} = -\frac{k}{m} (x - x_{eq})$.
+$x_{\text{eq}} = x_0 + \frac{mg}{k}$.
+L'equazione diventa $\ddot{x} = -\frac{k}{m} (x - x_{\text{eq}})$.
 La soluzione generale per il problema di Cauchy con condizioni iniziali a $t=0$ è:
 \begin{equation}
-    x(t) = x_{eq} + (x(0) - x_{eq}) \cos(\omega_0 t) + \frac{v(0)}{\omega_0} \sin(\omega_0 t)
+    x(t) = x_{\text{eq}} + (x(0) - x_{\text{eq}}) \cos(\omega_0 t) + \frac{v(0)}{\omega_0} \sin(\omega_0 t)
 \end{equation}
 Per risolvere la situazione particolare dobbiamo considerare una situazione specifica (come quella di equilibrio) mentre per l'intera soluzione dobbiamo sfruttare le condizioni iniziali (\textbf{Teorema di Cauchy}).
 
@@ -1382,14 +1469,14 @@ Poiché su tale superficie $\Delta U = 0$, il lavoro compiuto dalla forza per sp
 \begin{center}
 \begin{tikzpicture}
     % Surface lines
-    \draw[thick, blue!50] (0,0) ellipse (2cm and 1cm);
-    \draw[thick, blue!50] (0,0) ellipse (2.5cm and 1.25cm);
-    \draw[thick, blue!10] (0,0) ellipse (3cm and 1.5cm);
-    \node[blue] at (2.2,0.8) {\small $U_1$};
-    \node[blue] at (2.7,1.1) {\small $U_2$};
+    \draw[thick, boxoss!50] (0,0) ellipse (2cm and 1cm);
+    \draw[thick, boxoss!50] (0,0) ellipse (2.5cm and 1.25cm);
+    \draw[thick, boxoss!10] (0,0) ellipse (3cm and 1.5cm);
+    \node[boxoss] at (2.2,0.8) {\small $U_1$};
+    \node[boxoss] at (2.7,1.1) {\small $U_2$};
     
     % Force vector
-    \draw[->, thick, red] (1.8,0.44) -- (1.2,0.3) node[left] {$\vec{F}$};
+    \draw[->, thick, notered] (1.8,0.44) -- (1.2,0.3) node[left] {$\vec{F}$};
     \node at (2,0.2) {\small $U = \text{const}$};
 \end{tikzpicture}
 \end{center}
@@ -1406,7 +1493,7 @@ L'analisi dell'andamento di $U(x)$ permette di identificare i punti di equilibri
 \begin{tikzpicture}[scale=0.8]
     \draw[->] (0,0) -- (6,0) node[right] {$x$};
     \draw[->] (0,0) -- (0,4) node[above] {$U(x)$};
-    \draw[thick, teal] plot [smooth, tension=1] coordinates { (0.5,3.5) (2,1) (4,3) (5.5,1.5)};
+    \draw[thick, boxform] plot [smooth, tension=1] coordinates { (0.5,3.5) (2,1) (4,3) (5.5,1.5)};
     
     \node at (2,1) [circle, fill, inner sep=1.5pt] {};
     \node[below] at (2,1) {\small Stabile (Min)};
@@ -1429,29 +1516,31 @@ Unendo i punti di applicazione delle forze si ottiene un \textbf{inviluppo} che 
 \end{enumerate}
 
 \subsection{Energia Meccanica}
-L'unione dell'energia cinetica $K$ e potenziale $U$ definisce l'\textbf{Energia Meccanica} ($E_{mecc}$):
+L'unione dell'energia cinetica $K$ e potenziale $U$ definisce l'\textbf{Energia Meccanica} ($E_{\text{mecc}}$):
 \begin{equation}
-    E_{mecc} = K + U = \frac{1}{2}mv^2 + U(\vec{r}) = \frac{p^2}{2m} + U(\vec{r})
+    E_{\text{mecc}} = K + U = \frac{1}{2}mv^2 + U(\vec{r}) = \frac{p^2}{2m} + U(\vec{r})
 \end{equation}
 
-Dato che in presenza di sole forze conservative ($F_{con}$) l'energia non viene persa, mentre in presenza di forze non conservative ($F_{diss}$) sì, capiamo che la variazione $\Delta E_{mecc}$ è dovuta esclusivamente alle forze dissipative.
+Dato che in presenza di sole forze conservative ($F_{\text{con}}$) l'energia non viene persa, mentre in presenza di forze non conservative ($F_{\text{diss}}$) sì, capiamo che la variazione $\Delta E_{\text{mecc}}$ è dovuta esclusivamente alle forze dissipative.
 
 \begin{teorema}{Teorema delle Forze Vive (Energia Meccanica)}
-Il lavoro totale è la somma del lavoro delle forze conservative e dissipative. $\Delta K + \Delta U = L_{diss}$, ovvero:
-\[ \Delta E_{mecc} = L_{diss} \]
+Il lavoro totale è la somma del lavoro delle forze conservative e dissipative. $\Delta K + \Delta U = L_{\text{diss}}$, ovvero:
+\begin{equation}
+    \Delta E_{\text{mecc}} = L_{\text{diss}}
+\end{equation}
 \end{teorema}
 
 \subsection{Principio di Conservazione dell'Energia}
-"L'energia non si crea né si distrugge, ma si trasforma da una forma all'altra":
+``L'energia non si crea né si distrugge, ma si trasforma da una forma all'altra'':
 \begin{itemize}
     \item Le forze conservative trasformano $K$ in $U$ e viceversa.
-    \item Le forze dissipative trasformano $E_{mecc}$ in calore, luce, ecc.
+    \item Le forze dissipative trasformano $E_{\text{mecc}}$ in calore, luce, ecc.
 \end{itemize}
 
 \subsection{Teorema della Conservazione dell'Energia Meccanica}
 In presenza di sole forze conservative, l'energia meccanica del sistema resta costante durante il moto:
 \begin{equation}
-    \Delta E_{mecc} = 0 \implies K_i + U_i = K_f + U_f \implies \Delta K = -\Delta U
+    \Delta E_{\text{mecc}} = 0 \implies K_i + U_i = K_f + U_f \implies \Delta K = -\Delta U
 \end{equation}
 
 \subsection{Regioni Accessibili al Moto (1-D)}
@@ -1466,15 +1555,15 @@ Nei moti 1-D lungo $x$, la conservazione dell'energia implica $E_0 = \frac{1}{2}
 \begin{tikzpicture}[scale=0.9]
     \draw[->] (0,0) -- (6,0) node[right] {$x$};
     \draw[->] (0,0) -- (0,4) node[above] {$U(x)$};
-    \draw[thick, teal] plot [smooth, tension=1] coordinates { (0.5,3.5) (2,1) (4,3) (5.5,1.5)};
+    \draw[thick, boxform] plot [smooth, tension=1] coordinates { (0.5,3.5) (2,1) (4,3) (5.5,1.5)};
     
     % Energy level
-    \draw[dashed, red, thick] (0,2.2) -- (6,2.2) node[right] {$E_0$};
+    \draw[dashed, notered, thick] (0,2.2) -- (6,2.2) node[right] {$E_0$};
     
     % Intersection points
-    \filldraw[red] (1,2.2) circle (2pt) node[above left] {$x_{inv}$};
-    \filldraw[red] (2.9,2.2) circle (2pt);
-    \filldraw[red] (5.1,2.2) circle (2pt);
+    \filldraw[notered] (1,2.2) circle (2pt) node[above left] {$x_{inv}$};
+    \filldraw[notered] (2.9,2.2) circle (2pt);
+    \filldraw[notered] (5.1,2.2) circle (2pt);
     
     \node at (2,0.5) {\small Moto permesso};
     \node at (4,3.5) {\small Proibita};
@@ -1510,7 +1599,7 @@ Rispetto a questo sistema, le coordinate del CM sono banalmente $(0,0,0)$. Una p
 Seguendo la stessa logica di trasformazione delle coordinate, definiamo le grandezze derivate:
 \begin{itemize}
     \item \textbf{Velocità}: $\vec{V}_{CM} = \frac{d\vec{R}_{CM}}{dt} = \frac{1}{M} \sum m_i \vec{v}_i$
-    \item \textbf{Quantità di Moto}: $\vec{P}_{tot} = M \vec{V}_{CM} = \sum m_i \vec{v}_i$
+    \item \textbf{Quantità di Moto}: $\vec{P}_{\text{tot}} = M \vec{V}_{CM} = \sum m_i \vec{v}_i$
     \item \textbf{Accelerazione}: $\vec{A}_{CM} = \frac{d\vec{V}_{CM}}{dt} = \frac{1}{M} \sum m_i \vec{a}_i$
 \end{itemize}
 Si noti che $\vec{v}_i = \vec{v}_i' + \vec{V}_{CM}$ e $\vec{a}_i = \vec{a}_i' + \vec{A}_{CM}$.
@@ -1522,7 +1611,7 @@ Per ogni punto del sistema vale $\vec{F}_i^{ext} + \vec{F}_i^{int} = m_i \vec{a}
 \end{equation}
 Risulta quindi: 
 \begin{equation}
-    \vec{F}_{tot}^{ext} = \frac{d\vec{P}_{tot}}{dt} = M \vec{A}_{CM}
+    \vec{F}_{\text{tot}}^{ext} = \frac{d\vec{P}_{\text{tot}}}{dt} = M \vec{A}_{CM}
 \end{equation}
 \end{teorema}
 \textbf{Conseguenza}: Se $\sum \vec{F}^{ext} = \vec{0}$, allora $\vec{V}_{CM} = \text{costante}$. Il CM si muove di moto rettilineo uniforme o è in quiete.
@@ -1548,7 +1637,9 @@ Le coordinate del CM sono:
 
 \subsection{Sistema di Due Punti}
 Consideriamo un sistema composto da due punti $A$ e $B$ con masse $m_A, m_B$. Definiamo la \textbf{coordinata relativa} $\vec{r}_r = \vec{r}_A - \vec{r}_B$. Possiamo ricavare le posizioni assolute partendo dalla definizione di centro di massa:
-\[ \vec{R}_{CM} = \frac{m_A \vec{r}_A + m_B \vec{r}_B}{m_A + m_B} = \frac{m_A (\vec{r}_r + \vec{r}_B) + m_B \vec{r}_B}{M} = \frac{m_A \vec{r}_r + M \vec{r}_B}{M} \]
+\begin{equation}
+    \vec{R}_{CM} = \frac{m_A \vec{r}_A + m_B \vec{r}_B}{m_A + m_B} = \frac{m_A (\vec{r}_r + \vec{r}_B) + m_B \vec{r}_B}{M} = \frac{m_A \vec{r}_r + M \vec{r}_B}{M}
+\end{equation}
 Da cui otteniamo le relazioni fondamentali:
 \begin{equation}
     \vec{r}_B = \vec{R}_{CM} - \frac{m_A}{M} \vec{r}_r, \quad \vec{r}_A = \vec{R}_{CM} + \frac{m_B}{M} \vec{r}_r
@@ -1598,14 +1689,42 @@ Sostituendo tutto nel teorema di Koenig:
 \end{equation}
 
 \section{Teorema delle Forze Vive (Sistemi)}
-"La variazione di energia cinetica totale di un sistema materiale è pari al lavoro compiuto da tutte le forze agenti: interne, esterne ed eventualmente apparenti."
+``La variazione di energia cinetica totale di un sistema materiale è pari al lavoro compiuto da tutte le forze agenti: interne, esterne ed eventualmente apparenti.''
 \begin{equation}
-    \Delta K = L_{tot} = L_{con} + L_{diss}
+    \Delta K = L_{\text{tot}} = L_{\text{con}} + L_{\text{diss}}
 \end{equation}
 
 \section{Teorema della Conservazione dell'Energia Meccanica}
-"Se tutte le forze agenti sul sistema materiale sono conservative, l'energia meccanica totale è costante."
+``Se tutte le forze agenti sul sistema materiale sono conservative, l'energia meccanica totale è costante.''
 In presenza di forze dissipative:
 \begin{equation}
-    \Delta K + \Delta U = \Delta E_{mecc} = L_{diss}
+    \Delta K + \Delta U = \Delta E_{\text{mecc}} = L_{\text{diss}}
 \end{equation}
+
+\begin{formulario}{Lavoro, Energia e Conservazione}
+\begin{equation*}
+    \mathcal{L} = \int_A^B \vec{F} \cdot d\vec{l}
+    \qquad\qquad
+    K = \tfrac{1}{2} m v^2
+    \qquad\qquad
+    P = \frac{d\mathcal{L}}{dt} = \vec{F} \cdot \vec{v}
+\end{equation*}
+
+\textbf{Teorema delle forze vive:} \; $\Delta K = \mathcal{L}_{\text{tot}}$
+\qquad
+\textbf{Forza conservativa:} \; $\vec{F} = -\nabla U$
+\begin{equation*}
+    U_{\text{peso}} = mgh
+    \qquad
+    U_{\text{elastica}} = \tfrac{1}{2} k x^2
+    \qquad
+    U_{\text{grav.}} = -\frac{GmM}{r}
+\end{equation*}
+
+\textbf{Conservazione dell'energia meccanica:} se tutte le forze sono conservative
+\begin{equation*}
+    E = K + U = \text{costante}
+    \qquad\qquad
+    \text{altrimenti} \quad \Delta E = \mathcal{L}_{\text{diss}}
+\end{equation*}
+\end{formulario}

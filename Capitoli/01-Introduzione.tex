@@ -1,6 +1,6 @@
 \chapter{Introduzione}
 
-Alla fine del 1700, quella che veniva chiamata "Filosofia naturale" iniziò a scindersi in due grandi ambiti di studio:
+Alla fine del 1700, quella che veniva chiamata ``Filosofia naturale'' iniziò a scindersi in due grandi ambiti di studio:
 \begin{itemize}
     \item \textbf{Scienze Biologiche}: dedicate allo studio degli esseri viventi.
     \item \textbf{Scienze Fisiche}: dedicate allo studio della materia inanimata.
@@ -9,12 +9,12 @@ All'interno delle scienze fisiche, si consolidò ulteriormente la distinzione tr
 \begin{itemize}
     \item \textbf{Chimica}: che studia la formazione e la trasformazione delle molecole.
 \end{itemize}
+L'altra branca, la Fisica vera e propria, è l'oggetto di questo libro: la definiamo dunque con precisione prima di proseguire.
 
 \begin{definizione}{Fisica}
-La Fisica (dal greco \emph{physis}, "natura") è una \textbf{scienza sperimentale} in continua evoluzione che indaga i costituenti fondamentali della materia e le loro interazioni attraverso il \textbf{Metodo Scientifico}. Si occupa dei fenomeni naturali, sia quelli "reali" (osservati in natura) che quelli "riprodotti" (in laboratorio).
+La Fisica (dal greco \emph{physis}, ``natura'') è una \textbf{scienza sperimentale} in continua evoluzione che indaga i costituenti fondamentali della materia e le loro interazioni attraverso il \textbf{Metodo Scientifico}. Si occupa dei fenomeni naturali, sia quelli ``reali'' (osservati in natura) che quelli ``riprodotti'' (in laboratorio).
 \end{definizione}
 
-\vspace{0.5cm}
 
 \begin{figure}[ht]
 \centering
@@ -22,9 +22,9 @@ La Fisica (dal greco \emph{physis}, "natura") è una \textbf{scienza sperimental
     node distance=1.5cm,
     auto,
     block/.style={rectangle, draw=mypen, fill=mypen!10, text width=10em, text centered, rounded corners=3pt, minimum height=4em, thick},
-    decision/.style={diamond, aspect=2, draw=mypen, fill=yellow!15, text width=5em, text centered, inner sep=2pt, thick},
+    decision/.style={diamond, aspect=2, draw=mypen, fill=boxteo!15, text width=5em, text centered, inner sep=2pt, thick},
     outcome/.style={rectangle, draw=mypen, thick, text width=9em, text centered, rounded corners=3pt, minimum height=3.5em},
-    arrow/.style={->, >=stealth, thick, draw=gray!80}
+    arrow/.style={->, >=stealth, thick, draw=mypen!80}
 ]
     % Nodes aligned vertically
     \node [block] (osserv) {Osservazione};
@@ -35,8 +35,8 @@ La Fisica (dal greco \emph{physis}, "natura") è una \textbf{scienza sperimental
     \node [decision, below=1.8cm of interp] (verifica) {Conferma?};
 
     % Outcomes (closer to diamond as requested)
-    \node [outcome, right=1.5cm of verifica, fill=green!15] (tesi) {Tesi Confermata};
-    \node [outcome, left=1.5cm of verifica, fill=red!15] (crisi) {Crisi\\(Correzioni)};
+    \node [outcome, right=1.5cm of verifica, fill=boxese!15] (tesi) {Tesi Confermata};
+    \node [outcome, left=1.5cm of verifica, fill=notered!15] (crisi) {Crisi\\(Correzioni)};
 
     % Edges
     \draw [arrow] (osserv) -- (riprod);
@@ -71,12 +71,12 @@ La Fisica si è evoluta storicamente passando dalla visione classica a quella mo
 \begin{figure}[ht]
 \centering
 \begin{tikzpicture}[scale=0.85, transform shape,
-    box_classica/.style={rectangle, draw=black, thick, fill=orange!15, text width=3.8cm, text centered, rounded corners=3pt, minimum height=1.2cm},
-    box_moderna/.style={rectangle, draw=black, thick, fill=cyan!15, text width=3.8cm, text centered, rounded corners=3pt, minimum height=1.2cm},
-    box_ponte/.style={rectangle, draw=black, thick, fill=yellow!25, text width=4cm, text centered, rounded corners=3pt, minimum height=1.8cm},
+    box_classica/.style={rectangle, draw=black, thick, fill=boxteo!15, text width=3.8cm, text centered, rounded corners=3pt, minimum height=1.2cm},
+    box_moderna/.style={rectangle, draw=black, thick, fill=boxoss!15, text width=3.8cm, text centered, rounded corners=3pt, minimum height=1.2cm},
+    box_ponte/.style={rectangle, draw=black, thick, fill=boxteo!25, text width=4cm, text centered, rounded corners=3pt, minimum height=1.8cm},
     header/.style={font=\bfseries\large},
     label_style/.style={font=\itshape\small},
-    arrow/.style={->, >=stealth, line width=2pt, draw=gray!60}
+    arrow/.style={->, >=stealth, line width=2pt, draw=mypen!60}
 ]
 
     % Column Headers
@@ -123,9 +123,13 @@ Dalla \textbf{Meccanica Newtoniana} (o Classica), valida per velocità basse ris
 Inoltre, esiste un legame circolare tra \textbf{Fisica e Tecnologia}: la fisica ispira nuove tecnologie, e le nuove tecnologie forniscono strumenti più precisi per fare nuova fisica (es. acceleratori di particelle, laser, semiconduttori).
 
 \section{La Misurazione}
+Poiché la Fisica è, come detto, una scienza sperimentale, il suo strumento primario di indagine è la misurazione: ogni legge fisica nasce dal confronto quantitativo fra una previsione teorica e i dati raccolti sul campo o in laboratorio.
+
 \begin{definizione}{Misurazione}
-La misurazione è il processo di confronto di una grandezza fisica con un'unità di misura predefinita. Poiché è impossibile ottenere un valore "esatto", il risultato si esprime come:
-\[ x \pm \delta x \]
+La misurazione è il processo di confronto di una grandezza fisica con un'unità di misura predefinita. Poiché è impossibile ottenere un valore ``esatto'', il risultato si esprime come:
+\begin{equation}
+    x \pm \delta x
+\end{equation}
 \end{definizione}
 
 Le cause di incertezza possono essere:
@@ -146,15 +150,15 @@ Consideriamo l'esempio semplice dell'area di un rettangolo misurato.
         \node at (1.5,1) {\Large $Area = a \cdot b$};
         
         % Striscia errore altezza (a * delta b)
-        \draw[thick, dashed, fill=red!10] (0,2) rectangle (3,2.5);
+        \draw[thick, dashed, fill=notered!10] (0,2) rectangle (3,2.5);
         \node at (1.5, 2.25) {\small $a \cdot \delta b$};
         
         % Striscia errore base (b * delta a)
-        \draw[thick, dashed, fill=red!10] (3,0) rectangle (3.5,2);
+        \draw[thick, dashed, fill=notered!10] (3,0) rectangle (3.5,2);
         \node[rotate=90] at (3.25, 1) {\small $b \cdot \delta a$};
         
         % Angolo trascurabile (delta a * delta b)
-        \draw[thick, dashed, fill=gray!20] (3,2) rectangle (3.5,2.5);
+        \draw[thick, dashed, fill=mypen!20] (3,2) rectangle (3.5,2.5);
         \node[scale=0.7, align=center] at (4.2, 2.25) {$\delta a \cdot \delta b$\\trascurabile};
         
         % Quote
@@ -169,17 +173,19 @@ Consideriamo l'esempio semplice dell'area di un rettangolo misurato.
     \end{center}
 
 Se misuriamo i lati come $a \pm \delta a$ e $b \pm \delta b$, l'area calcolata sarà:
-\[
-A_{mis} = (a \pm \delta a)(b \pm \delta b) = \underbrace{ab}_{A} \pm \underbrace{a\delta b \pm b\delta a}_{\delta A} + \underbrace{\delta a \delta b}_{\approx 0}
-\]
+\begin{equation}
+    A_{mis} = (a \pm \delta a)(b \pm \delta b) = \underbrace{ab}_{A} \pm \underbrace{a\delta b \pm b\delta a}_{\delta A} + \underbrace{\delta a \delta b}_{\approx 0}
+\end{equation}
 Poiché $\delta a \ll a$ e $\delta b \ll b$, il termine quadratico $\delta a \delta b$ è trascurabile. L'errore assoluto sull'area è quindi:
-\[ \delta A \approx a\delta b + b\delta a \]
+\begin{equation}
+    \delta A \approx a\delta b + b\delta a
+\end{equation}
 \end{esercizio}
 
 \subsection{Rappresentazione dei Dati ed Errori}
 A questo proposito introduciamo i concetti di:
 \begin{itemize}
-    \item \textbf{Cifra Significativa (CF)}: Indica la precisione della misura (es. misurare $3,0$ è diverso da misurare $3$, in quanto indica una precisione decimale).
+    \item \textbf{Cifra Significativa (CF)}: Indica la precisione della misura (es. misurare $3,0$ è diverso da misurare $3$, in quanto indica una precisione decimale): la prima sottintende un'incertezza dell'ordine di $\pm 0,05$, la seconda di $\pm 0,5$, pur riportando lo ``stesso'' numero.
     \item \textbf{Notazione Scientifica (NS)}: Si usa la forma $x \cdot 10^n$ per scrivere numeri molto grandi o piccoli mantenendo chiare le cifre significative.
 \end{itemize}
 
@@ -192,6 +198,7 @@ L'errore può essere classificato come:
 \begin{definizione}{Grandezza Fisica}
 La definizione di una grandezza fisica si dice \textbf{operativa}, poiché elenca le procedure da compiere per misurarne la quantità attraverso il confronto con un'\textbf{Unità di Misura} (UdM). Se le grandezze a confronto non sono della stessa specie (\textbf{non omogenee}), si opera una equivalenza tramite un \textbf{fattore di ragguaglio}.
 \end{definizione}
+In altre parole, non si definisce una grandezza dicendo cos'è in astratto, ma spiegando come si misura: è proprio questo che rende una definizione fisica verificabile e condivisibile fra osservatori diversi, indipendentemente dallo strumento o dal laboratorio usato.
 
 Discende quindi la distinzione tra:
 \begin{itemize}
@@ -226,65 +233,114 @@ Dal 2019, i campioni fisici materiali (come il cilindro di platino-iridio per il
 
 \section{Analisi Dimensionale}
 L'analisi dimensionale permette di studiare le dimensioni fisiche di una grandezza e verificare la correttezza delle equazioni. Ogni grandezza $X$ può essere espressa come prodotto di potenze delle grandezze fondamentali:
-\[ [X] = [L]^\alpha \cdot [M]^\beta \cdot [T]^\gamma \quad \text{con } \alpha, \beta, \gamma \in \mathbb{Q} \]
+\begin{equation}
+    [X] = [L]^\alpha \cdot [M]^\beta \cdot [T]^\gamma \quad \text{con } \alpha, \beta, \gamma \in \mathbb{Q}
+\end{equation}
 
 \paragraph{Principio di Omogeneità:} In un'equazione fisica $A = B + C$, tutti i termini devono avere le stesse dimensioni ($[A] = [B] = [C]$).
 Se $\alpha=\beta=\gamma=0$, la grandezza si dice \textbf{adimensionale} (numero puro).
 
 \begin{esercizio}{Il Pendolo Semplice}
-Vogliamo determinare da quali grandezze fisiche dipende il **Periodo di oscillazione ($T$)** di un pendolo semplice.
+Vogliamo determinare da quali grandezze fisiche dipende il \textbf{periodo di oscillazione} $T$ di un pendolo semplice, usando esclusivamente l'analisi dimensionale appena introdotta — cioè senza conoscere né risolvere l'equazione del moto, che troveremo soltanto più avanti nel libro, quando affronteremo le oscillazioni.
 
     \begin{center}
     \begin{tikzpicture}
         % Ceiling
         \draw[thick] (-2,0) -- (2,0);
         \fill[pattern=north east lines] (-2,0) rectangle (2,0.2);
-        
+
         % Vertical dashed line
         \draw[dashed] (0,0) -- (0,-3);
-        
+
         % Pendulum string
         \draw[thick] (0,0) -- (1.5,-2.5) node[midway, right] {$l$};
-        
+
         % Mass
-        \draw[thick, fill=gray!30] (1.5,-2.5) circle (0.3cm) node[right=0.4cm] {$m$};
-        
+        \draw[thick, fill=mypen!30] (1.5,-2.5) circle (0.3cm) node[right=0.4cm] {$m$};
+
         % Arc angle
         \draw[->] (0,-1) arc (270:300:1);
         \node at (0.3,-1.2) {$\theta$};
-        
+
         % Gravity vector
         \draw[->, thick] (-1.5, -1) -- (-1.5, -2) node[right] {$\vec{g}$};
     \end{tikzpicture}
     \captionof{figure}{Pendolo semplice di lunghezza $l$ e massa $m$.}
     \end{center}
 
-Ipotizziamo che il periodo $T$ dipenda dalla massa $m$, dalla lunghezza del filo $l$ e dall'accelerazione di gravità $g$. Scriviamo una relazione di proporzionalità generica:
-\[ T = k \cdot m^\alpha \cdot l^\beta \cdot g^\gamma \]
-dove $k$ è una costante adimensionale. Analizziamo le dimensioni di ogni termine:
+\paragraph{Passo 1 --- L'ipotesi di partenza.}
+La prima cosa da fare è chiedersi da quali grandezze fisiche possa ragionevolmente dipendere il periodo $T$. Guardando la figura, i candidati naturali sono tre: la massa $m$ del corpo appeso, la lunghezza $l$ del filo, e l'accelerazione di gravità $g$, che è la causa stessa del richiamo verso il basso. (L'angolo iniziale $\theta$ non compare fra le variabili: essendo un rapporto fra lunghezze è una grandezza \emph{adimensionale}, e la sola analisi dimensionale non può dirci se, né quanto, esso influenzi $T$.)
+
+Ipotizziamo dunque che $T$ sia proporzionale a un prodotto di potenze di queste tre grandezze:
+\begin{equation}
+    T = k \cdot m^\alpha \cdot l^\beta \cdot g^\gamma
+\end{equation}
+dove $k$ è una costante numerica adimensionale (il cui valore l'analisi dimensionale, da sola, non potrà mai determinare), mentre $\alpha$, $\beta$ e $\gamma$ sono tre esponenti incogniti: è proprio questi tre numeri che vogliamo trovare.
+
+\paragraph{Passo 2 --- Le dimensioni di ogni grandezza.}
+Scriviamo la dimensione fisica di ciascuna grandezza coinvolta, in funzione delle tre grandezze fondamentali di lunghezza $[L]$, massa $[M]$ e tempo $[T]$:
 \begin{itemize}
-    \item Periodo: $[T] = [T]^1$
-    \item Massa: $[m] = [M]$
-    \item Lunghezza: $[l] = [L]$
-    \item Gravità ($m/s^2$): $[g] = [L][T]^{-2}$
+    \item Periodo: $[T] = [T]^1$ (è un tempo, per definizione).
+    \item Massa: $[m] = [M]^1$.
+    \item Lunghezza del filo: $[l] = [L]^1$.
+    \item Accelerazione di gravità: essendo $g$ misurata in $m/s^2$, la sua dimensione è $[g] = [L] \cdot [T]^{-2}$.
 \end{itemize}
 
-Sostituiamo nell'equazione dimensionale:
-\[ [M]^0 [L]^0 [T]^1 = [M]^\alpha \cdot [L]^{\beta+\gamma} \cdot [T]^{-2\gamma} \]
+\paragraph{Passo 3 --- Sostituzione nell'equazione.}
+Sostituiamo ora queste dimensioni nell'ipotesi del Passo 1, membro a membro:
+\begin{equation}
+    [T]^1 = [M]^\alpha \cdot [L]^\beta \cdot \left([L][T]^{-2}\right)^\gamma
+\end{equation}
+Applichiamo la proprietà delle potenze $(a\,b)^\gamma = a^\gamma \, b^\gamma$ al termine dovuto a $g$, e poi raccogliamo tutte le potenze di $[L]$:
+\begin{equation}
+    [T]^1 = [M]^\alpha \cdot [L]^\beta \cdot [L]^\gamma \cdot [T]^{-2\gamma}
+         = [M]^\alpha \cdot [L]^{\beta+\gamma} \cdot [T]^{-2\gamma}
+\end{equation}
 
-Per il principio di omogeneità, impostiamo il sistema:
-\[
-\begin{cases}
-    \alpha = 0 \\
-    \beta + \gamma = 0 \\
-    -2\gamma = 1
+\paragraph{Passo 4 --- Il confronto degli esponenti.}
+Le tre dimensioni $[M]$, $[L]$ e $[T]$ sono fra loro \textbf{indipendenti}: nessuna combinazione di lunghezze e di tempi può mai produrre una massa, e così via per le altre. Per il principio di omogeneità visto poco sopra, l'esponente di ciascuna dimensione a sinistra dell'uguale deve allora coincidere con l'esponente della medesima dimensione a destra. Riscrivendo il membro di sinistra come $[M]^0 [L]^0 [T]^1$ e confrontandolo con quello di destra, otteniamo tre equazioni indipendenti, una per ciascuna dimensione:
+\begin{equation}
+    \begin{cases}
+    \alpha = 0 & \text{(esponente di } [M] \text{)} \\
+    \beta + \gamma = 0 & \text{(esponente di } [L] \text{)} \\
+    -2\gamma = 1 & \text{(esponente di } [T] \text{)}
 \end{cases}
-\implies \alpha = 0, \beta = 1/2, \gamma = -1/2
-\]
+\end{equation}
 
-Otteniamo così la legge del periodo:
-\[ \boxed{T = k \sqrt{\frac{l}{g}}} \]
-\textbf{Conclusione}: Il periodo è indipendente dalla massa e dipende solo dalla lunghezza del filo e dalla gravità locale.
+\paragraph{Passo 5 --- Risoluzione del sistema.}
+Conviene risolvere il sistema partendo dall'ultima equazione, l'unica che coinvolge una sola incognita, e procedendo a ritroso:
+\begin{itemize}
+    \item dalla terza equazione si ricava subito $\gamma = -\dfrac{1}{2}$;
+    \item sostituendo questo valore nella seconda equazione, $\beta + \gamma = 0$, si ottiene $\beta = -\gamma = \dfrac{1}{2}$;
+    \item la prima equazione, infine, dà direttamente $\alpha = 0$.
+\end{itemize}
+
+\paragraph{Passo 6 --- Il risultato.}
+Sostituiamo i tre esponenti appena trovati nell'ipotesi di partenza del Passo 1:
+\begin{equation}
+    T = k \cdot m^0 \cdot l^{1/2} \cdot g^{-1/2}
+\end{equation}
+
+Semplifichiamo quest'espressione un pezzo alla volta. Il primo fattore, $m^0$, vale $1$ qualunque sia il valore di $m$: per definizione, infatti, qualsiasi numero diverso da zero elevato alla potenza $0$ dà $1$. È così, molto concretamente, che la massa scompare dalla formula:
+\begin{equation}
+    T = k \cdot \underbrace{m^0}_{=\,1} \cdot l^{1/2} \cdot g^{-1/2} = k \cdot l^{1/2} \cdot g^{-1/2}
+\end{equation}
+
+Riscriviamo ora i due esponenti rimasti, $1/2$ e $-1/2$, come radici quadrate, ricordando che $a^{1/2} = \sqrt{a}$ e che un esponente negativo indica un reciproco, $a^{-1/2} = \dfrac{1}{a^{1/2}} = \dfrac{1}{\sqrt{a}}$:
+\begin{equation}
+    T = k \cdot \sqrt{l} \cdot \frac{1}{\sqrt{g}} = k \cdot \frac{\sqrt{l}}{\sqrt{g}}
+\end{equation}
+
+Infine, sfruttando la proprietà delle radici $\dfrac{\sqrt{a}}{\sqrt{b}} = \sqrt{\dfrac{a}{b}}$, raccogliamo le due radici separate in un'unica radice:
+\begin{equation}
+    T = k \cdot \sqrt{\frac{l}{g}}
+\end{equation}
+cioè, in forma definitiva:
+\begin{equation}
+    \boxed{T = k \sqrt{\frac{l}{g}}}
+\end{equation}
+
+\textbf{Conclusione}: il periodo non dipende dalla massa $m$ del pendolo, poiché il suo esponente è risultato $\alpha = 0$: un pendolo pesante e uno leggero, a parità di lunghezza, oscillano esattamente con lo stesso periodo. Il periodo cresce invece con la radice della lunghezza (un pendolo più lungo oscilla più lentamente) e diminuisce con la radice di $g$ (dove la gravità è più intensa, il pendolo viene richiamato più rapidamente verso il basso, e oscilla quindi più in fretta). Si noti infine che l'analisi dimensionale, per sua natura, non può mai determinare il valore della costante numerica $k$: la soluzione completa dell'equazione del moto, che ricaveremo più avanti, mostrerà che $k = 2\pi$.
 \end{esercizio}
 
 \section{Multipli e Sottomultipli}
@@ -333,7 +389,9 @@ Possiamo schematizzare i legami tra posizione $\vec{x}(t)$, velocità $\vec{v}(t
 \end{center}
 
 Possiamo suddividere un intervallo di tempo $\Delta t$ in molti intervalli $\delta t = t_{i+1} - t_i$. Inoltre, la velocità media nell'intervallo può essere approssimata come la media aritmetica delle velocità agli estremi:
-\[ v_m(t_i, t_{i+1}) = \frac{x(t_{i+1}) - x(t_i)}{t_{i+1} - t_i} \approx \frac{v(t_{i+1}) + v(t_i)}{2} \]
+\begin{equation}
+    v_m(t_i, t_{i+1}) = \frac{x(t_{i+1}) - x(t_i)}{t_{i+1} - t_i} \approx \frac{v(t_{i+1}) + v(t_i)}{2}
+\end{equation}
 
 Lo spazio percorso tra un istante $t_0$ e un istante $t_n$ è dato dalla somma degli spostamenti nei singoli intervallini:
 \begin{align*}
@@ -343,10 +401,14 @@ x_n - x_0 &= x(t_n) - x(t_0) = [x(t_n) - x(t_{n-1})] + \dots + [x(t_1) - x(t_0)]
 \end{align*}
 Geometricamente, notiamo che il termine $\frac{v(t_i) + v(t_{i+1})}{2} \delta t$ corrisponde all'\textbf{Area del trapezio} sotteso dalla curva $v(t)$ nell'intervallo $[t_i, t_{i+1}]$.
 Pertanto:
-\[ x_n - x_0 \approx \sum \text{Aree trapezi} \]
+\begin{equation}
+    x_n - x_0 \approx \sum \text{Aree trapezi}
+\end{equation}
 
 Passando al limite per $\delta t \to 0$:
-\[ x_n - x_0 = \lim_{\delta t \to 0} \sum_{i=0}^{n-1} \left( \frac{v(t_i) + v(t_{i+1})}{2} \right) \delta t = \int_{t_0}^{t_n} v(t) \, dt \]
+\begin{equation}
+    x_n - x_0 = \lim_{\delta t \to 0} \sum_{i=0}^{n-1} \left( \frac{v(t_i) + v(t_{i+1})}{2} \right) \delta t = \int_{t_0}^{t_n} v(t) \, dt
+\end{equation}
 
 \begin{figure}[h]
     \centering
@@ -366,7 +428,7 @@ Passando al limite per $\delta t \to 0$:
         \draw[dashed] (5.5,0) -- (5.5, 3.5);
         
         % Pattern area
-        \fill[pattern=north east lines, pattern color=gray!40] (1.5,0) -- (1.5,2.5) -- (3,2.8) -- (3,0) -- cycle;
+        \fill[pattern=north east lines, pattern color=mypen!40] (1.5,0) -- (1.5,2.5) -- (3,2.8) -- (3,0) -- cycle;
         \draw (1.5,2.5) -- (3,2.8); % Top segment of trapezoid
         
         \node at (2.25, 1) {Area};
@@ -380,17 +442,25 @@ In sintesi, le relazioni integrali fondamentali sono:
 
 \begin{itemize}
     \item \textbf{Spostamento vettoriale}:
-    \[ \Delta \vec{x} = \vec{x}(t_n) - \vec{x}(t_0) = \int_{t_0}^{t_n} \vec{v}(t) \, dt \]
+    \begin{equation}
+    \Delta \vec{x} = \vec{x}(t_n) - \vec{x}(t_0) = \int_{t_0}^{t_n} \vec{v}(t) \, dt
+\end{equation}
     
     \item \textbf{Variazione di velocità vettoriale}:
-    \[ \Delta \vec{v} = \vec{v}(t_n) - \vec{v}(t_0) = \int_{t_0}^{t_n} \vec{a}(t) \, dt \]
+    \begin{equation}
+    \Delta \vec{v} = \vec{v}(t_n) - \vec{v}(t_0) = \int_{t_0}^{t_n} \vec{a}(t) \, dt
+\end{equation}
     
     \item \textbf{Spazio percorso (Ascissa Curvilinea)}:
-    \[ \Delta S = S(t_n) - S(t_0) = \int_{t_0}^{t_n} |\vec{v}(t)| \, dt \]
+    \begin{equation}
+    \Delta S = S(t_n) - S(t_0) = \int_{t_0}^{t_n} |\vec{v}(t)| \, dt
+\end{equation}
     \textit{Nota: qui si integra il modulo della velocità (la velocità scalare istantanea).}
     
     \item \textbf{Variazione di velocità scalare}:
-    \[ \Delta v = v(t_n) - v(t_0) = \int_{t_0}^{t_n} |\vec{a}(t)| \, dt \]
+    \begin{equation}
+    \Delta v = v(t_n) - v(t_0) = \int_{t_0}^{t_n} |\vec{a}(t)| \, dt
+\end{equation}
     \textit{Nota: analogamente, si considera il contributo del modulo dell'accelerazione.}
 \end{itemize}
 
@@ -399,13 +469,17 @@ In sintesi, le relazioni integrali fondamentali sono:
 Prima di analizzare moti più complessi, definiamo i due pilastri della cinematica unidimensionale.
 
 \subsection{Moto Rettilineo Uniforme (MRU)}
-È il moto di un punto che percorre una traiettoria rettilinea con velocità $\vec{v}$ costante in modulo, direzione e verso.
-\[ a = 0 \implies v(t) = \text{costante} \]
+È il moto di un punto che percorre una traiettoria rettilinea con velocità $\vec{v}$ costante in modulo, direzione e verso. È il caso più semplice possibile: come vedremo nel capitolo sulla dinamica, si realizza quando la risultante delle forze applicate al corpo è nulla.
+\begin{equation}
+    a = 0 \implies v(t) = \text{costante}
+\end{equation}
 La sua legge oraria è rappresentata da una retta:
-\[ x(t) = x_0 + v(t - t_0) \]
+\begin{equation}
+    x(t) = x_0 + v(t - t_0)
+\end{equation}
 
 \subsection{Moto Rettilineo Uniformemente Accelerato (MRUA)}
-È il moto di un punto che si muove lungo una retta con accelerazione $\vec{a}$ costante.
+È il moto di un punto che si muove lungo una retta con accelerazione $\vec{a}$ costante. È la situazione dinamica immediatamente successiva alla precedente: si verifica ogniqualvolta il corpo è soggetto a una forza risultante costante, come accade, ad esempio, nella caduta libera che tratteremo più avanti in questo stesso capitolo.
 Le leggi del moto sono:
 \begin{align}
     v(t) &= v_0 + a(t - t_0) \\
@@ -420,10 +494,16 @@ Ponendo $\Delta t = (t - t_0)$ e $\Delta x = (x - x_0)$:
     \item Sostituiamo in (2): $\Delta x = v_0 \left( \frac{v - v_0}{a} \right) + \frac{1}{2} a \left( \frac{v - v_0}{a} \right)^2$
 \end{enumerate}
 Sviluppando i calcoli:
-\[ \Delta x = \frac{v_0 v - v_0^2}{a} + \frac{1}{2} a \frac{(v - v_0)^2}{a^2} = \frac{v_0 v - v_0^2}{a} + \frac{v^2 - 2v v_0 + v_0^2}{2a} \]
+\begin{equation}
+    \Delta x = \frac{v_0 v - v_0^2}{a} + \frac{1}{2} a \frac{(v - v_0)^2}{a^2} = \frac{v_0 v - v_0^2}{a} + \frac{v^2 - 2v v_0 + v_0^2}{2a}
+\end{equation}
 Moltiplicando tutto per $2a$:
-\[ 2a \Delta x = 2v_0 v - 2v_0^2 + v^2 - 2v v_0 + v_0^2 \]
-\[ 2a \Delta x = v^2 - v_0^2 \implies \boxed{v^2 = v_0^2 + 2a \Delta x} \]
+\begin{equation}
+    2a \Delta x = 2v_0 v - 2v_0^2 + v^2 - 2v v_0 + v_0^2
+\end{equation}
+\begin{equation}
+    2a \Delta x = v^2 - v_0^2 \implies \boxed{v^2 = v_0^2 + 2a \Delta x}
+\end{equation}
 \end{osservazione}
 
 \section{Altri Moti della Cinematica}
@@ -447,8 +527,8 @@ Il moto armonico descrive i sistemi che oscillano attorno a una posizione di equ
     \begin{minipage}{0.48\textwidth}
         \centering
         \begin{tikzpicture}[scale=0.6]
-            \draw[->] (0,0) -- (4.5,0) node[right] {$t$};
-            \draw[->] (0,-1.5) -- (0,1.5) node[above] {$f(t)$};
+            \draw[->, thick, mypen] (0,0) -- (4.5,0) node[right] {$t$};
+            \draw[->, thick, mypen] (0,-1.5) -- (0,1.5) node[above] {$f(t)$};
             \draw[thick, mypen] (0,1) -- (1,1) -- (1,-1) -- (2,-1) -- (2,1) -- (3,1) -- (3,-1) -- (4,-1) -- (4,1);
             \node[below, font=\small] at (2.25,-1.6) {Funzione Periodica};
         \end{tikzpicture}
@@ -457,12 +537,14 @@ Il moto armonico descrive i sistemi che oscillano attorno a una posizione di equ
     \begin{minipage}{0.48\textwidth}
         \centering
         \begin{tikzpicture}[scale=0.6]
-            \draw[->] (0,0) -- (4.5,0) node[right] {$t$};
-            \draw[->] (0,-1.5) -- (0,1.5) node[above] {$x(t)$};
+            \draw[->, thick, mypen] (0,0) -- (4.5,0) node[right] {$t$};
+            \draw[->, thick, mypen] (0,-1.5) -- (0,1.5) node[above] {$x(t)$};
             \draw[thick, mygreen, smooth, domain=0:4.2, samples=100] plot (\x, {sin(\x*180/1)});
             \node[below, font=\small] at (2.25,-1.6) {Funzione Armonica};
         \end{tikzpicture}
     \end{minipage}
+    \caption{Confronto fra una funzione \emph{periodica} generica (onda quadra, a sinistra) e una funzione \emph{armonica} (sinusoide, a destra). Ogni funzione armonica è periodica, ma non vale il viceversa: l'armonicità impone anche la forma sinusoidale.}
+    \label{fig:periodica_vs_armonica}
 \end{figure}
 
 \begin{itemize}
@@ -498,9 +580,13 @@ Dove:
 Poiché il moto è periodico, definiamo:
 \begin{itemize}
     \item \textbf{Periodo} $[T]$: Il tempo impiegato per compiere un'oscillazione completa $[s]$.
-    \[ T = \frac{2\pi}{\omega} \]
+    \begin{equation}
+    T = \frac{2\pi}{\omega}
+\end{equation}
     \item \textbf{Frequenza} $[f]$: Numero di oscillazioni compiute nell'unità di tempo $[Hz]$ ($s^{-1}$).
-    \[ f = \frac{1}{T} = \frac{\omega}{2\pi} \]
+    \begin{equation}
+    f = \frac{1}{T} = \frac{\omega}{2\pi}
+\end{equation}
 \end{itemize}
 
 \subsection{Velocità e Accelerazione}
@@ -510,7 +596,9 @@ Derivando la legge oraria otteniamo:
     a(t) &= \frac{dv}{dt} = -A\omega^2 \sin(\omega t + \phi)
 \end{align}
 Osserviamo che:
-\[ a(t) = -\omega^2 [A \sin(\omega t + \phi)] = -\omega^2 x(t) \]
+\begin{equation}
+    a(t) = -\omega^2 [A \sin(\omega t + \phi)] = -\omega^2 x(t)
+\end{equation}
 Ritroviamo così la caratteristica fondamentale: l'accelerazione è proporzionale a $-x(t)$.
 
 \subsection{Forme Alternative}
@@ -520,16 +608,21 @@ Le leggi orarie si possono trovare scritte anche in modi equivalenti, sfruttando
     \item Combinazione lineare: $x(t) = \alpha \sin(\omega t) + \beta \cos(\omega t)$
 \end{itemize}
 Esistono correlazioni tra i coefficienti per passare da una forma all'altra:
-\[ A = \sqrt{\alpha^2 + \beta^2}, \quad \tan(\phi) = \frac{\beta}{\alpha} \]
+\begin{equation}
+    A = \sqrt{\alpha^2 + \beta^2}, \quad \tan(\phi) = \frac{\beta}{\alpha}
+\end{equation}
 
 \paragraph{Nota Geometrica:}
 Si può vedere il moto armonico semplice come la \textbf{proiezione di un moto circolare uniforme} su un diametro (una retta).
 
 \section{Moto Smorzato Esponenzialmente}
-È un moto la cui velocità decresce esponenzialmente nel tempo.
+È un moto la cui velocità decresce esponenzialmente nel tempo. Un esempio fisico tipico è quello di un corpo che si muove in un fluido viscoso in assenza di altre forze: la resistenza del mezzo frena il moto tanto più efficacemente quanto maggiore è la velocità istantanea, producendo proprio questo andamento esponenziale. Ne vedremo la giustificazione dinamica completa nel prossimo capitolo, insieme al significato preciso della costante $\tau$.
+
 Le leggi orarie sono:
-\[ x(t) = A \left(1 - e^{-\frac{t}{\tau}}\right), \quad v(t) = \frac{A}{\tau} e^{-\frac{t}{\tau}}, \quad a(t) = -\frac{A}{\tau^2} e^{-\frac{t}{\tau}} \]
-Dove $\tau$ è la costante di tempo e $A$ è il valore asintotico della posizione (la quota a cui tende).
+\begin{equation}
+    x(t) = A \left(1 - e^{-\frac{t}{\tau}}\right), \quad v(t) = \frac{A}{\tau} e^{-\frac{t}{\tau}}, \quad a(t) = -\frac{A}{\tau^2} e^{-\frac{t}{\tau}}
+\end{equation}
+Dove $\tau$ è la costante di tempo (il tempo caratteristico entro cui il moto esaurisce gran parte della propria evoluzione: dopo un tempo pari a circa $3\tau$, la posizione ha già raggiunto oltre il $95\%$ del suo valore asintotico) e $A$ è il valore asintotico della posizione (la quota a cui tende).
 
 \begin{figure}[h]
     \centering
@@ -556,21 +649,25 @@ Le equazioni sono:
 \end{align*}
 
 Possiamo calcolare il \textbf{tempo di caduta} $t_f$ imponendo $y(t_f) = 0$:
-\[ t_f = t_0 + \sqrt{\frac{2y_0}{g}} \]
+\begin{equation}
+    t_f = t_0 + \sqrt{\frac{2y_0}{g}}
+\end{equation}
 
 La \textbf{velocità finale} (di impatto) sarà:
-\[ v_f = - \sqrt{2y_0 g} \]
+\begin{equation}
+    v_f = - \sqrt{2y_0 g}
+\end{equation}
 (negativa perché il vettore velocità è diretto verso il basso, concorde a $\vec{g}$).
 
 \begin{center}
     \begin{tikzpicture}[scale=0.8]
         \draw[->] (0,0) -- (3,0) node[right] {$t$};
         \draw[->] (0,0) -- (0,3) node[above] {$y(t)$};
-        \draw[thick, red] plot[domain=0:2.2, samples=50] (\x, {2.5 - 0.5*\x*\x});
+        \draw[thick, notered] plot[domain=0:2.2, samples=50] (\x, {2.5 - 0.5*\x*\x});
         \node[left] at (0,2.5) {$y_0$};
         \draw[dashed] (2.23,0) -- (2.23, 2.5); % impact time
         \node[below] at (2.23,0) {$t_f$};
-        \draw[->, gray] (2.7, 2.5) -- (2.7, 1.5) node[midway, right] {$\vec{g}$};
+        \draw[->, mypen!55] (2.7, 2.5) -- (2.7, 1.5) node[midway, right] {$\vec{g}$};
     \end{tikzpicture}
 \end{center}
 
@@ -588,20 +685,26 @@ Le equazioni sono:
     \item $v(t) > 0$ nella fase di ascesa.
     \item $v(t) < 0$ nella fase di discesa.
     \item Quando $v(t) = 0$, il corpo raggiunge la \textbf{quota massima} $y_m$. Questo avviene all'istante:
-    \[ t_{\text{apice}} = \frac{v(t_0)}{g} \]
+    \begin{equation}
+    t_{\text{apice}} = \frac{v(t_0)}{g}
+\end{equation}
 \end{itemize}
 Sostituendo il tempo nell'equazione della posizione, otteniamo la quota massima:
-\[ y_m = \frac{v(t_0)^2}{2g} \]
+\begin{equation}
+    y_m = \frac{v(t_0)^2}{2g}
+\end{equation}
 
 Il tempo totale di volo $t_f$ (per tornare a terra) è il doppio del tempo di salita:
-\[ t_f = t_0 + \frac{2v(t_0)}{g} \]
+\begin{equation}
+    t_f = t_0 + \frac{2v(t_0)}{g}
+\end{equation}
 
 \begin{center}
     \begin{tikzpicture}[scale=0.8]
         \draw[->] (0,0) -- (4,0) node[right] {$t$};
         \draw[->] (0,0) -- (0,3) node[above] {$y(t)$};
         % Parabola starting at 0, peak at x=2, y=2, landing at x=4
-        \draw[thick, green!60!black] plot[domain=0:4, samples=50] (\x, {2*\x - 0.5*\x*\x});
+        \draw[thick, boxese!60!black] plot[domain=0:4, samples=50] (\x, {2*\x - 0.5*\x*\x});
         
         \draw[dashed] (0,2) -- (2,2);
         \node[left] at (0,2) {$y_m$};
@@ -623,31 +726,37 @@ Il moto parabolico è un moto in due dimensioni, composto dalla sovrapposizione 
 \subsection{Lancio con $\theta = 0^\circ$ (Lancio Orizzontale)}
 Consideriamo un corpo lanciato orizzontalmente da un'altezza $y_0$ con velocità $v_0$.
 In questo caso, l'angolo iniziale è nullo, quindi:
-\[ v_{0x} = v_0 \cos(0^\circ) = v_0, \quad v_{0y} = v_0 \sin(0^\circ) = 0 \]
+\begin{equation}
+    v_{0x} = v_0 \cos(0^\circ) = v_0, \quad v_{0y} = v_0 \sin(0^\circ) = 0
+\end{equation}
 
 \textbf{Equazioni della velocità:}
-\[
-\begin{cases}
+\begin{equation}
+    \begin{cases}
     v_x(t) = v_0 \\
     v_y(t) = -gt
 \end{cases}
-\]
+\end{equation}
 
 \textbf{Leggi orarie:}
-\[
-\begin{cases}
+\begin{equation}
+    \begin{cases}
     x(t) = v_0 t \\
     y(t) = y_0 - \frac{1}{2} g t^2
 \end{cases}
-\]
+\end{equation}
 
 Il corpo atterra quando $y(t_f) = 0$.
 \begin{itemize}
     \item \textbf{Tempo di caduta}: $t_f = \sqrt{\frac{2y_0}{g}}$
     \item \textbf{Gittata} ($x_f$): Sostituendo $t_f$ in $x(t)$:
-    \[ x_f = v_0 \sqrt{\frac{2y_0}{g}} \]
+    \begin{equation}
+    x_f = v_0 \sqrt{\frac{2y_0}{g}}
+\end{equation}
     \item \textbf{Angolo finale d'impatto} $\theta_f$:
-    \[ \tan \theta_f = \frac{v_y(t_f)}{v_x(t_f)} = \frac{-g t_f}{v_0} = \frac{-\sqrt{2y_0 g}}{v_0} \]
+    \begin{equation}
+    \tan \theta_f = \frac{v_y(t_f)}{v_x(t_f)} = \frac{-g t_f}{v_0} = \frac{-\sqrt{2y_0 g}}{v_0}
+\end{equation}
     \item \textbf{Velocità d'impatto verticale}: $v_{yf} = - \sqrt{2y_0 g}$
 \end{itemize}
 
@@ -669,32 +778,38 @@ Il corpo atterra quando $y(t_f) = 0$.
 
 \subsection{Lancio con \texorpdfstring{$\theta \neq 0^\circ$}{theta != 0} (Lancio Obliquo)}
 Il corpo viene lanciato con una velocità iniziale $v_0$ che forma un angolo $\theta$ con l'orizzontale.
-\[ v_{0x} = v_0 \cos\theta, \quad v_{0y} = v_0 \sin\theta \]
+\begin{equation}
+    v_{0x} = v_0 \cos\theta, \quad v_{0y} = v_0 \sin\theta
+\end{equation}
 
 \textbf{Equazioni della velocità:}
-\[
-\begin{cases}
+\begin{equation}
+    \begin{cases}
     v_x(t) = v_{0x} \quad (\text{costante}) \\
     v_y(t) = v_{0y} - gt
 \end{cases}
-\]
+\end{equation}
 
 \textbf{Leggi orarie:}
-\[
-\begin{cases}
+\begin{equation}
+    \begin{cases}
     x(t) = x_0 + v_{0x} t \\
     y(t) = y_0 + v_{0y} t - \frac{1}{2} g t^2
 \end{cases}
-\]
+\end{equation}
 
 \textbf{Proprietà del moto:}
 \begin{itemize}
     \item \textbf{Direzione istantanea}: $\tan \theta(t) = \frac{v_y(t)}{v_x(t)}$.
     \item \textbf{Quota Massima} ($y_m$): Si raggiunge quando $v_y = 0$, ovvero a $t = \frac{v_{0y}}{g}$.
-    \[ y_m = y_0 + \frac{v_{0y}^2}{2g} = y_0 + \frac{(v_0 \sin\theta)^2}{2g} \]
+    \begin{equation}
+    y_m = y_0 + \frac{v_{0y}^2}{2g} = y_0 + \frac{(v_0 \sin\theta)^2}{2g}
+\end{equation}
     \item \textbf{Tempo di volo} (atterraggio alla stessa quota $y_0$): $t_f = \frac{2v_{0y}}{g}$.
     \item \textbf{Gittata} ($x_m$): Distanza orizzontale percorsa.
-    \[ x_m = v_{0x} t_f = \frac{v_0^2 \sin(2\theta)}{g} \]
+    \begin{equation}
+    x_m = v_{0x} t_f = \frac{v_0^2 \sin(2\theta)}{g}
+\end{equation}
     Nota: La gittata è massima per $\theta = 45^\circ$ ($\sin 90^\circ = 1$) ed è uguale per angoli complementari ($\theta$ e $90^\circ - \theta$).
 \end{itemize}
 
@@ -719,13 +834,17 @@ Il corpo viene lanciato con una velocità iniziale $v_0$ che forma un angolo $\t
 
 \subsubsection{Equazione della Traiettoria}
 Eliminando il tempo $t = x/v_{0x}$ dalle leggi orarie (ponendo $x_0=y_0=0$), otteniamo la relazione tra $y$ e $x$:
-\[ y(x) = x \tan\theta - \frac{g}{2v_0^2 \cos^2\theta} x^2 \]
+\begin{equation}
+    y(x) = x \tan\theta - \frac{g}{2v_0^2 \cos^2\theta} x^2
+\end{equation}
 Questa è l'equazione di una parabola con concavità verso il basso.
 
 \subsubsection{Geometria della Sicurezza}
 \begin{itemize}
     \item \textbf{Luogo dei vertici}: Le coordinate dei vertici delle parabole al variare di $\theta$ descrivono un'ellisse:
-    \[ x_v^2 + 4y_v^2 = \frac{2v_0^2}{g} y_v \]
+    \begin{equation}
+    x_v^2 + 4y_v^2 = \frac{2v_0^2}{g} y_v
+\end{equation}
     \item \textbf{Parabola di Sicurezza}: L'inviluppo di tutte le possibili traiettorie (al variare di $\theta$ con $v_0$ fissato) definisce la regione di spazio raggiungibile dal proiettile. Questa regione è delimitata dalla \textbf{parabola di sicurezza}.
 \end{itemize}
 
@@ -756,17 +875,17 @@ Il moto circolare è caratterizzato da alcune nuove grandezze vettoriali:
         
         % Vectors
         \draw[->, thick, mypen] (1.414, 1.414) -- (-0.5, 3.3) node[above] {$\vec{v}$ (tangente)};
-        \draw[->, thick, red] (1.414, 1.414) -- (0.5, 0.5) node[midway, right] {$\vec{a}_n \perp \vec{v}$};
+        \draw[->, thick, notered] (1.414, 1.414) -- (0.5, 0.5) node[midway, right] {$\vec{a}_n \perp \vec{v}$};
         
         % Tangential acceleration (dashed imaginary for MCU)
-        \draw[->, thick, orange, dashed] (1.414, 1.414) -- (0.4, 2.4) node[left] {$\vec{a}_t$};
+        \draw[->, thick, boxteo, dashed] (1.414, 1.414) -- (0.4, 2.4) node[left] {$\vec{a}_t$};
         
         \node at (0,-2.5) {Scomposizione dell'accelerazione};
         
         % Angular velocity 3D illusion
         \begin{scope}[xshift=5cm]
             \draw (0,0) ellipse (1.5cm and 0.5cm);
-            \draw[->, thick, purple] (0,0) -- (0, 2) node[right] {$\vec{\omega}$};
+            \draw[->, thick, boxnota] (0,0) -- (0, 2) node[right] {$\vec{\omega}$};
             \draw[->] (0.5, 0.2) arc (0:330:0.3 and 0.1);
             \node at (0,-1) {Direzione di $\vec{\omega}$};
         \end{scope}
@@ -785,6 +904,56 @@ Nel moto circolare uniforme ($|v|=$ cost, $\alpha=0$), le grandezze sono così r
 \end{itemize}
 
 \clearpage
+\begin{formulario}{Cinematica dei Moti Fondamentali}
+\textbf{Moto rettilineo} \quad (legami: $v = \dot{x}$, \; $a = \dot{v} = \ddot{x}$)
+\begin{equation*}
+    \text{MRU:} \quad x(t) = x_0 + v\,(t - t_0)
+    \qquad\qquad
+    \text{MRUA:} \quad
+    \begin{cases}
+        v(t) = v_0 + a\,(t-t_0) \\[2pt]
+        x(t) = x_0 + v_0 (t-t_0) + \tfrac{1}{2} a (t-t_0)^2
+    \end{cases}
+\end{equation*}
+
+\medskip
+\textbf{Moto armonico semplice}
+\begin{equation*}
+    x(t) = A\sin(\omega t + \phi)
+    \qquad
+    v(t) = \omega A\cos(\omega t + \phi)
+    \qquad
+    a(t) = -\omega^2 x(t)
+\end{equation*}
+
+\medskip
+\textbf{Moto parabolico} \quad (con $v_{0x} = v_0\cos\theta$, \; $v_{0y} = v_0\sin\theta$)
+\begin{equation*}
+    \begin{cases}
+        x(t) = x_0 + v_{0x} t \\[2pt]
+        y(t) = y_0 + v_{0y} t - \tfrac{1}{2} g t^2
+    \end{cases}
+    \qquad
+    y_m = y_0 + \frac{v_{0y}^2}{2g}
+    \qquad
+    t_f = \frac{2 v_{0y}}{g}
+    \qquad
+    x_m = \frac{v_0^2 \sin(2\theta)}{g}
+\end{equation*}
+
+\medskip
+\textbf{Moto circolare uniforme}
+\begin{equation*}
+    |v| = \omega r
+    \qquad
+    T = \frac{2\pi}{\omega} = \frac{2\pi r}{v}
+    \qquad
+    |\omega| = \frac{2\pi}{T} = 2\pi f
+    \qquad
+    a_c = \omega^2 r = \frac{v^2}{r}
+\end{equation*}
+\end{formulario}
+
 \section{Approfondimento: Sistemi di Riferimento e Algebra dei Versori}
 Prima di analizzare nel dettaglio la dinamica del moto circolare, è fondamentale definire formalmente i sistemi di coordinate e le proprietà dei versori (vettori unitari) associati.
 
@@ -798,7 +967,9 @@ La base è costituita dai versori $\{\hat{x}, \hat{y}\}$:
     \item Hanno \textbf{direzione e verso fissi} nello spazio.
 \end{itemize}
 Pertanto, la loro derivata rispetto al tempo è nulla:
-\[ \frac{d\hat{x}}{dt} = \vec{0}, \quad \frac{d\hat{y}}{dt} = \vec{0} \]
+\begin{equation}
+    \frac{d\hat{x}}{dt} = \vec{0}, \quad \frac{d\hat{y}}{dt} = \vec{0}
+\end{equation}
 Il vettore posizione si scrive come: $\vec{r}(t) = x(t)\hat{x} + y(t)\hat{y}$.
 
 \begin{center}
@@ -808,18 +979,18 @@ Il vettore posizione si scrive come: $\vec{r}(t) = x(t)\hat{x} + y(t)\hat{y}$.
     \draw[->] (0,-2.5) -- (0,2.5) node[above] {$y$};
     
     % Traiettoria Circolare (MCU)
-    \draw[thick, gray, dashed] (0,0) circle (2cm);
+    \draw[thick, mypen!55, dashed] (0,0) circle (2cm);
     
     % Versori fissi origin
-    \draw[->, thick, red] (0,0) -- (1,0) node[below] {$\hat{x}$};
-    \draw[->, thick, red] (0,0) -- (0,1) node[left] {$\hat{y}$};
+    \draw[->, thick, notered] (0,0) -- (1,0) node[below] {$\hat{x}$};
+    \draw[->, thick, notered] (0,0) -- (0,1) node[left] {$\hat{y}$};
     
     % Punto P a 45 gradi su r=2 -> P(1.414, 1.414)
     \filldraw (1.414, 1.414) circle (1.5pt) node[above right] {$P(x,y)$};
     \draw[dashed] (1.414,0) node[below] {$x$} -- (1.414,1.414) -- (0,1.414) node[left] {$y$};
     
     % Vettore posizione
-    \draw[->, thick, blue] (0,0) -- (1.414, 1.414) node[midway, above left] {$\vec{r}(t)$};
+    \draw[->, thick, boxoss] (0,0) -- (1.414, 1.414) node[midway, above left] {$\vec{r}(t)$};
 \end{tikzpicture}
 \end{center}
 
@@ -833,26 +1004,26 @@ La base è costituita dai versori $\{\hat{\rho}, \hat{\theta}\}$:
 \begin{center}
 \begin{tikzpicture}[scale=1.5]
     % Assi riferimento
-    \draw[->, gray] (-2.5,0) -- (2.5,0) node[right] {$x$};
-    \draw[->, gray] (0,-2.5) -- (0,2.5) node[above] {$y$};
+    \draw[->, mypen!55] (-2.5,0) -- (2.5,0) node[right] {$x$};
+    \draw[->, mypen!55] (0,-2.5) -- (0,2.5) node[above] {$y$};
     
     % Traiettoria Circolare (MCU)
-    \draw[thick, gray, dashed] (0,0) circle (2cm);
+    \draw[thick, mypen!55, dashed] (0,0) circle (2cm);
     
     % Punto P
     \filldraw (1.414, 1.414) circle (1.5pt) node[above left] {$P(\rho,\theta)$};
     
     % Vettore rho (coincide con il raggio)
-    \draw[->, thick, blue] (0,0) -- (1.414, 1.414) node[midway, below right] {$\vec{\rho}$};
-    \draw[dashed, gray] (1.414,1.414) -- (2.121, 2.121); % Prolungamento
+    \draw[->, thick, boxoss] (0,0) -- (1.414, 1.414) node[midway, below right] {$\vec{\rho}$};
+    \draw[dashed, mypen!55] (1.414,1.414) -- (2.121, 2.121); % Prolungamento
     
     % Angolo theta
     \draw (0.8,0) arc (0:45:0.8);
     \node at (1, 0.4) {$\theta$};
     
     % Versori mobili in P
-    \draw[->, thick, red] (1.414, 1.414) -- (2.121, 2.121) node[right] {$\hat{\rho}$};
-    \draw[->, thick, red] (1.414, 1.414) -- (0.707, 2.121) node[above] {$\hat{\theta}$};
+    \draw[->, thick, notered] (1.414, 1.414) -- (2.121, 2.121) node[right] {$\hat{\rho}$};
+    \draw[->, thick, notered] (1.414, 1.414) -- (0.707, 2.121) node[above] {$\hat{\theta}$};
     
     % Angolo retto tra i versori
     \draw (1.556, 1.556) -- (1.414, 1.697) -- (1.273, 1.556);
@@ -860,8 +1031,12 @@ La base è costituita dai versori $\{\hat{\rho}, \hat{\theta}\}$:
 \end{center}
 
 Possiamo esprimerli in funzione della base cartesiana (fissa):
-\[ \hat{\rho} = \cos\theta \, \hat{x} + \sin\theta \, \hat{y} \]
-\[ \hat{\theta} = -\sin\theta \, \hat{x} + \cos\theta \, \hat{y} \]
+\begin{equation}
+    \hat{\rho} = \cos\theta \, \hat{x} + \sin\theta \, \hat{y}
+\end{equation}
+\begin{equation}
+    \hat{\theta} = -\sin\theta \, \hat{x} + \cos\theta \, \hat{y}
+\end{equation}
 
 \begin{teorema}{Formule di Poisson nel Piano}
 Le derivate temporali dei versori polari mobili $\{\hat{\rho}, \hat{\theta}\}$ si esprimono in funzione della velocità angolare $\dot{\theta}$:
@@ -881,7 +1056,7 @@ La base è locale alla traiettoria, definita dai versori $\{\hat{\tau}, \hat{n}\
 \begin{center}
 \begin{tikzpicture}[scale=1.5]
     % Traiettoria (Circolare per MCU)
-    \draw[thick, gray, dashed] (0,0) circle (2cm);
+    \draw[thick, mypen!55, dashed] (0,0) circle (2cm);
     
     % Centro di curvatura (origine)
     \filldraw (0, 0) circle (1pt) node[below] {$C$};
@@ -894,16 +1069,18 @@ La base è locale alla traiettoria, definita dai versori $\{\hat{\tau}, \hat{n}\
     
     % Versori mobili in P
     % n punta verso il centro C (origine), theta/tau è radente
-    \draw[->, thick, red] (1.414, 1.414) -- (0.707, 2.121) node[above left] {$\hat{\tau}$};
-    \draw[->, thick, red] (1.414, 1.414) -- (0.707, 0.707) node[below right] {$\hat{n}$};
+    \draw[->, thick, notered] (1.414, 1.414) -- (0.707, 2.121) node[above left] {$\hat{\tau}$};
+    \draw[->, thick, notered] (1.414, 1.414) -- (0.707, 0.707) node[below right] {$\hat{n}$};
     
     % Vettore velocità (parallelo a tau)
-    \draw[->, thick, blue] (1.414, 1.414) -- (0, 2.828) node[left] {$\vec{v}$};
+    \draw[->, thick, boxoss] (1.414, 1.414) -- (0, 2.828) node[left] {$\vec{v}$};
 \end{tikzpicture}
 \end{center}
 
 Nel caso del moto circolare, valgono le seguenti identificazioni geometriche con i versori polari:
-\[ \hat{\tau} \equiv \hat{\theta}, \quad \hat{n} \equiv -\hat{\rho} \]
+\begin{equation}
+    \hat{\tau} \equiv \hat{\theta}, \quad \hat{n} \equiv -\hat{\rho}
+\end{equation}
 La relazione fondamentale è $\frac{d\hat{\tau}}{dt} = \frac{v}{R} \hat{n}$ (dove $R$ è il raggio di curvatura).
 
 \section{Analisi del Moto Circolare nei vari Sistemi}
@@ -912,47 +1089,57 @@ Applichiamo ora l'algebra dei versori appena definita al caso specifico del moto
 \subsection{Caso 1: Coordinate Cartesiane}
 Descriviamo il punto $P$ tramite la proiezione sugli assi $x$ e $y$.
 Sia $\theta(t) = \omega t + \phi_0$ la legge oraria angolare.
-\[
-\begin{cases}
+\begin{equation}
+    \begin{cases}
     x(t) = R \cos(\omega t + \phi_0) \\
     y(t) = R \sin(\omega t + \phi_0)
 \end{cases}
-\]
+\end{equation}
 
 \textbf{Velocità}: Deriviamo le componenti rispetto al tempo ($\dot{x}, \dot{y}$):
-\[
-\begin{cases}
+\begin{equation}
+    \begin{cases}
     v_x = \dot{x} = -R\omega \sin(\omega t + \phi_0) = -\omega y \\
     v_y = \dot{y} = R\omega \cos(\omega t + \phi_0) = \omega x
 \end{cases}
-\]
+\end{equation}
 
 \textbf{Accelerazione}: Deriviamo nuovamente ($\ddot{x}, \ddot{y}$):
-\[
-\begin{cases}
+\begin{equation}
+    \begin{cases}
     a_x = \ddot{x} = -R\omega^2 \cos(\omega t + \phi_0) = -\omega^2 x \\
     a_y = \ddot{y} = -R\omega^2 \sin(\omega t + \phi_0) = -\omega^2 y
 \end{cases}
-\]
+\end{equation}
 Notiamo che $\vec{a} = a_x \hat{x} + a_y \hat{y} = -\omega^2 (x\hat{x} + y\hat{y}) = -\omega^2 \vec{r}$.
 Questo conferma che l'accelerazione è \textbf{centripeta} (opposta al raggio vettore) e proporzionale al quadrato della velocità angolare. Inoltre, le proiezioni sugli assi sono \textbf{moti armonici} di pulsazione $\omega$.
 
 \subsection{Caso 2: Coordinate Polari}
 Il vettore posizione è definito semplicemente da:
-\[ \vec{r}(t) = \rho(t) \hat{\rho} \]
+\begin{equation}
+    \vec{r}(t) = \rho(t) \hat{\rho}
+\end{equation}
 Nel moto circolare, il raggio è costante $\rho(t) = R$, quindi $\dot{\rho} = 0, \ddot{\rho} = 0$.
 L'angolo varia come $\theta(t)$, con velocità angolare $\dot{\theta} = \omega$ e accelerazione angolare $\ddot{\theta} = \alpha$.
 
 \textbf{Velocità}: Deriviamo $\vec{r}$ usando la regola del prodotto:
-\[ \vec{v} = \frac{d}{dt}(R \hat{\rho}) = \dot{R}\hat{\rho} + R\frac{d\hat{\rho}}{dt} \]
+\begin{equation}
+    \vec{v} = \frac{d}{dt}(R \hat{\rho}) = \dot{R}\hat{\rho} + R\frac{d\hat{\rho}}{dt}
+\end{equation}
 Poiché $\dot{R}=0$ e $\frac{d\hat{\rho}}{dt} = \dot{\theta}\hat{\theta} = \omega \hat{\theta}$:
-\[ \vec{v} = R\omega \hat{\theta} \]
+\begin{equation}
+    \vec{v} = R\omega \hat{\theta}
+\end{equation}
 (La velocità è puramente tangenziale, diretta lungo $\hat{\theta}$).
 
 \textbf{Accelerazione}: Deriviamo $\vec{v}$:
-\[ \vec{a} = \frac{d}{dt}(R\omega \hat{\theta}) = R\dot{\omega}\hat{\theta} + R\omega\frac{d\hat{\theta}}{dt} \]
+\begin{equation}
+    \vec{a} = \frac{d}{dt}(R\omega \hat{\theta}) = R\dot{\omega}\hat{\theta} + R\omega\frac{d\hat{\theta}}{dt}
+\end{equation}
 Ricordando che $\dot{\omega} = \alpha$ e $\frac{d\hat{\theta}}{dt} = -\omega \hat{\rho}$:
-\[ \vec{a} = R\alpha \hat{\theta} - R\omega^2 \hat{\rho} \]
+\begin{equation}
+    \vec{a} = R\alpha \hat{\theta} - R\omega^2 \hat{\rho}
+\end{equation}
 Abbiamo ottenuto le due componenti vettoriali in modo formale:
 \begin{itemize}
     \item \textbf{Componente Tangenziale} ($\vec{a}_t = R\alpha \hat{\theta}$): Dipende da $\alpha$. Se il moto è uniforme ($\alpha=0$), questa componente è nulla.
@@ -961,17 +1148,27 @@ Abbiamo ottenuto le due componenti vettoriali in modo formale:
 
 \subsection{Caso 3: Coordinate Intrinseche}
 In questo sistema, i versori sono definiti localmente sulla curva. Per il moto circolare valgono le identità:
-\[ \hat{\tau} \equiv \hat{\theta}, \quad \hat{n} \equiv -\hat{\rho} \]
+\begin{equation}
+    \hat{\tau} \equiv \hat{\theta}, \quad \hat{n} \equiv -\hat{\rho}
+\end{equation}
 
 Sappiamo che:
-\[ \vec{v} = v \hat{\tau} \]
+\begin{equation}
+    \vec{v} = v \hat{\tau}
+\end{equation}
 Deriviamo rispetto al tempo:
-\[ \vec{a} = \frac{dv}{dt}\hat{\tau} + v\frac{d\hat{\tau}}{dt} \]
+\begin{equation}
+    \vec{a} = \frac{dv}{dt}\hat{\tau} + v\frac{d\hat{\tau}}{dt}
+\end{equation}
 Usando la relazione geometrica $\frac{d\hat{\tau}}{dt} = \frac{v}{R}\hat{n}$:
-\[ \vec{a} = \frac{dv}{dt}\hat{\tau} + \frac{v^2}{R}\hat{n} \]
+\begin{equation}
+    \vec{a} = \frac{dv}{dt}\hat{\tau} + \frac{v^2}{R}\hat{n}
+\end{equation}
 
 Sostituendo i versori intrinseci con quelli polari:
-\[ \vec{a} = (R\alpha)\hat{\theta} + \frac{(R\omega)^2}{R}(-\hat{\rho}) = R\alpha \hat{\theta} - R\omega^2 \hat{\rho} \]
+\begin{equation}
+    \vec{a} = (R\alpha)\hat{\theta} + \frac{(R\omega)^2}{R}(-\hat{\rho}) = R\alpha \hat{\theta} - R\omega^2 \hat{\rho}
+\end{equation}
 
 \clearpage
 \section{Moti Curvilinei Generali in Coordinate Polari}
@@ -979,11 +1176,17 @@ Estendiamo l'analisi al caso più generale di un \textbf{moto curvilineo}, dove 
 
 \subsection{Posizione e Velocità}
 Il vettore posizione è:
-\[ \vec{r}(t) = \rho(t) \hat{\rho}(t) \]
+\begin{equation}
+    \vec{r}(t) = \rho(t) \hat{\rho}(t)
+\end{equation}
 Derivandolo rispetto al tempo per ottenere la velocità, dobbiamo applicare la regola del prodotto (poiché sia il modulo $\rho$ che il versore $\hat{\rho}$ variano):
-\[ \vec{v} = \frac{d\vec{r}}{dt} = \frac{d\rho}{dt}\hat{\rho} + \rho\frac{d\hat{\rho}}{dt} \]
+\begin{equation}
+    \vec{v} = \frac{d\vec{r}}{dt} = \frac{d\rho}{dt}\hat{\rho} + \rho\frac{d\hat{\rho}}{dt}
+\end{equation}
 Ricordando la formula di Poisson $\frac{d\hat{\rho}}{dt} = \dot{\theta}\hat{\theta}$:
-\[ \vec{v} = \dot{\rho}\hat{\rho} + \rho\dot{\theta}\hat{\theta} \]
+\begin{equation}
+    \vec{v} = \dot{\rho}\hat{\rho} + \rho\dot{\theta}\hat{\theta}
+\end{equation}
 Possiamo identificare i due termini (anche quelli nascosti dal foglio verde nella figura originale):
 \begin{itemize}
     \item $v_\rho = \dot{\rho}$: \textbf{Velocità Radiale} (dovuta alla variazione della distanza dall'origine).
@@ -992,19 +1195,29 @@ Possiamo identificare i due termini (anche quelli nascosti dal foglio verde nell
 
 \subsection{Accelerazione: Derivazione Completa}
 Per ottenere l'accelerazione, deriviamo nuovamente la velocità:
-\[ \vec{a} = \frac{d}{dt}(\dot{\rho}\hat{\rho} + \rho\dot{\theta}\hat{\theta}) \]
+\begin{equation}
+    \vec{a} = \frac{d}{dt}(\dot{\rho}\hat{\rho} + \rho\dot{\theta}\hat{\theta})
+\end{equation}
 Applichiamo la derivata ai due termini separatamente:
 \begin{enumerate}
     \item Primo termine ($\dot{\rho}\hat{\rho}$):
-    \[ \frac{d}{dt}(\dot{\rho}\hat{\rho}) = \ddot{\rho}\hat{\rho} + \dot{\rho}\frac{d\hat{\rho}}{dt} = \ddot{\rho}\hat{\rho} + \dot{\rho}\dot{\theta}\hat{\theta} \]
+    \begin{equation}
+    \frac{d}{dt}(\dot{\rho}\hat{\rho}) = \ddot{\rho}\hat{\rho} + \dot{\rho}\frac{d\hat{\rho}}{dt} = \ddot{\rho}\hat{\rho} + \dot{\rho}\dot{\theta}\hat{\theta}
+\end{equation}
     \item Secondo termine ($\rho\dot{\theta}\hat{\theta}$), regola del prodotto a tre fattori ($fgh \to f'gh + fg'h + fgh'$):
-    \[ \frac{d}{dt}(\rho\dot{\theta}\hat{\theta}) = \dot{\rho}\dot{\theta}\hat{\theta} + \rho\ddot{\theta}\hat{\theta} + \rho\dot{\theta}\frac{d\hat{\theta}}{dt} \]
+    \begin{equation}
+    \frac{d}{dt}(\rho\dot{\theta}\hat{\theta}) = \dot{\rho}\dot{\theta}\hat{\theta} + \rho\ddot{\theta}\hat{\theta} + \rho\dot{\theta}\frac{d\hat{\theta}}{dt}
+\end{equation}
     Ricordando che $\frac{d\hat{\theta}}{dt} = -\dot{\theta}\hat{\rho}$, diventa:
-    \[ = \dot{\rho}\dot{\theta}\hat{\theta} + \rho\ddot{\theta}\hat{\theta} - \rho\dot{\theta}^2\hat{\rho} \]
+    \begin{equation}
+    = \dot{\rho}\dot{\theta}\hat{\theta} + \rho\ddot{\theta}\hat{\theta} - \rho\dot{\theta}^2\hat{\rho}
+\end{equation}
 \end{enumerate}
 
 Sommando tutti i contributi e raggruppando per versori:
-\[ \vec{a} = (\ddot{\rho}\hat{\rho} + \dot{\rho}\dot{\theta}\hat{\theta}) + (\dot{\rho}\dot{\theta}\hat{\theta} + \rho\ddot{\theta}\hat{\theta} - \rho\dot{\theta}^2\hat{\rho}) \]
+\begin{equation}
+    \vec{a} = (\ddot{\rho}\hat{\rho} + \dot{\rho}\dot{\theta}\hat{\theta}) + (\dot{\rho}\dot{\theta}\hat{\theta} + \rho\ddot{\theta}\hat{\theta} - \rho\dot{\theta}^2\hat{\rho})
+\end{equation}
 
 \begin{teorema}{Accelerazione in Coordinate Polari}
 L'espressione completa dell'accelerazione per un moto curvilineo generale $\vec{r} = \rho \hat{\rho}$ è:

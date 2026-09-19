@@ -1,0 +1,435 @@
+\chapter{Sistemi a Massa Variabile e Sistemi Non Inerziali}
+
+\section{Sistemi a Massa Variabile}
+
+Sappiamo che la formulazione più generale del secondo principio della dinamica è $\vec{F} = \dfrac{d\vec{p}}{dt}$, ma il risultato cambia a seconda che la massa si mantenga costante o no:
+\begin{itemize}
+    \item \textbf{massa costante:} $\displaystyle \vec{F} = m\,\frac{d\vec{v}}{dt} = m\vec{a}$;
+    \item \textbf{massa variabile:} $\displaystyle \vec{F} = \frac{dm}{dt}\,\vec{v} + m\,\frac{d\vec{v}}{dt} = \frac{dm}{dt}\vec{v} + m\vec{a}$.
+\end{itemize}
+
+\begin{definizione}{Tasso di Variazione della Massa}
+Si definisce \textbf{tasso di variazione della massa} la quantità
+\begin{equation}
+    \alpha = \frac{dm}{dt}
+\end{equation}
+e la seconda legge della dinamica assume la forma generale
+\begin{equation}
+    \vec{F} = \alpha \vec{v} + m\vec{a}
+\end{equation}
+\end{definizione}
+
+\subsection{Il Nastro Trasportatore}
+
+\begin{esempio}{Nastro Trasportatore con Carico Continuo}
+Su un nastro trasportatore viene versata materia a ritmo costante:
+\begin{equation}
+    \frac{dm}{dt} = \alpha = \text{cost}
+    \qquad \implies \qquad
+    m(t) = m_0 + \alpha t
+\end{equation}
+dove $m_0$ è la massa iniziale del nastro.
+\end{esempio}
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}[>=stealth, scale=1.0]
+        % Tramoggia
+        \draw[very thick, mypen] (-0.9,2.8) -- (-0.25,1.6) -- (0.25,1.6) -- (0.9,2.8);
+        \foreach \x/\y in {-0.45/2.35, 0.1/2.5, 0.4/2.15, -0.15/2.05} {
+            \fill[mygreen!70!black] (\x,\y) circle (1.1pt);
+        }
+        % Flusso dm
+        \foreach \y in {1.35, 1.05, 0.75} {
+            \fill[mygreen!70!black] (0,\y) circle (1.2pt);
+        }
+        \node[right, font=\small, mygreen!50!black] at (0.18,1.05) {$dm$};
+        % Nastro
+        \draw[very thick, mypen] (-2.6,0) rectangle (2.6,0.45);
+        \foreach \x in {-2.0,-1.2,-0.4,0.4,1.2,2.0} {
+            \draw[thick, mypen!55] (\x,0) -- (\x,0.45);
+        }
+        \fill[mygreen!70!black] (-1.6,0.6) circle (2.2pt);
+        \fill[mygreen!70!black] (-0.8,0.62) circle (2.6pt);
+        \fill[mygreen!70!black] (0.0,0.6) circle (2.0pt);
+        % Velocità
+        \draw[->, very thick, notered] (0.9,-0.55) -- (2.3,-0.55)
+            node[midway, below, font=\small\bfseries] {$\vec{v}(t)$};
+        % Motore
+        \draw[->, very thick, boxese] (-2.9,0.22) -- (-3.9,0.22);
+        \node[left, font=\small, boxese, align=center] at (-3.95,0.22) {motore\\$\vec{F}$};
+    \end{tikzpicture}
+    \caption{Il nastro trasportatore: la materia versata dalla tramoggia si aggiunge al nastro con tasso costante $\alpha = dm/dt$, facendone crescere la massa e, in assenza di forze esterne, rallentandone il moto.}
+\end{figure}
+
+\paragraph{Caso $\vec{F} = 0$ (motore spento).}
+La quantità di moto si conserva: $\vec{p}_f = \vec{p}_i = \vec{p}_0$, ovvero $m(t)\,\vec{v}(t) = m_0\vec{v}_0$, da cui
+\begin{equation}
+    \boxed{\;\vec{v}(t) = \frac{m_0}{m(t)}\,\vec{v}_0 < \vec{v}_0\;}
+\end{equation}
+poiché $m(t) > m_0$. \textbf{Il nastro rallenta}: la materia che cade deve essere accelerata fino alla velocità del nastro, e l'unica riserva disponibile è la quantità di moto del nastro stesso.
+
+\paragraph{Caso $\vec{F} \neq 0$ (motore acceso).}
+Ora $\vec{p}$ varia secondo $d\vec{p} = m\vec{a} + \alpha\vec{v}$. Se vogliamo mantenere $\vec{a} = 0$, cioè $v(t) = v_0$ costante, allora
+\begin{equation}
+    d\vec{p} = \alpha\vec{v}_0
+\end{equation}
+prodotta dalla forza $\vec{F}$ del motore.
+
+\begin{formulario}{Nastro Trasportatore a Velocità Costante}
+\textbf{Impulso del motore:}
+\begin{equation}
+    I = \int_0^t \vec{F}(t')\,dt' = \vec{p}_f - \vec{p}_i = m(t)\,v_0 - m_0 v_0
+      = \cancel{m_0v_0} + \alpha v_0 t - \cancel{m_0v_0} = \alpha v_0 t
+\end{equation}
+
+\textbf{Variazione di energia cinetica:}
+\begin{align}
+    \frac{dK}{dt} &= \frac{d}{dt}\left(\frac{\vec{p}^{\;2}}{2m}\right)
+      = \frac{1}{2m}\frac{d\vec{p}^{\;2}}{dt} + \frac{\vec{p}^{\;2}}{2}\frac{d}{dt}\left(\frac{1}{m}\right)
+      = \frac{2\vec{p}}{2m}\frac{d\vec{p}}{dt} + \frac{\vec{p}^{\;2}}{2}\left(-\frac{1}{m^2}\frac{dm}{dt}\right) \notag \\
+      &= \frac{\cancel{m}\vec{v}_0}{\cancel{m}}\cdot\vec{F} - \frac{\cancel{m^2}\vec{v}_0^{\;2}}{2}\cdot\frac{\alpha}{\cancel{m^2}}
+      = \vec{v}_0 \vec{F} - \frac{1}{2}\alpha \vec{v}_0^{\;2}
+\end{align}
+
+\textbf{Potenza del motore:}
+\begin{equation}
+    P = \frac{dK}{dt} + \frac{1}{2}\alpha \vec{v}_0^{\;2}
+\end{equation}
+
+\textbf{Lavoro del motore:}
+\begin{align}
+    \mathcal{L} &= \int_0^t P(t')\,dt'
+      = \int_0^t \frac{dK}{dt'}\,dt' + \int_0^t \frac{1}{2}\alpha \vec{v}_0^{\;2}\,dt'
+      = K(t) - K_0 + \frac{1}{2}\alpha t \,\vec{v}_0^{\;2} \notag \\
+      &= \frac{(m_0 + \alpha t)\vec{v}_0^{\;2}}{2} - \frac{m_0\vec{v}_0^{\;2}}{2} + \frac{\alpha \vec{v}_0^{\;2} t}{2}
+      = \alpha \vec{v}_0^{\;2}\, t
+\end{align}
+\end{formulario}
+
+\begin{osservazione}{Dove Finisce Metà del Lavoro}
+Confrontando il lavoro totale $\mathcal{L} = \alpha v_0^2 t$ con la variazione di energia cinetica $\Delta K = \frac{1}{2}\alpha v_0^2 t$, si vede che \textbf{solo metà} del lavoro compiuto dal motore si ritrova come energia cinetica del sistema. L'altra metà viene dissipata nell'accelerare per attrito la materia versata, che arriva ferma sul nastro e deve essere portata alla velocità $v_0$: è la stessa perdita, irriducibile, che si incontra in un urto totalmente anelastico.
+\end{osservazione}
+
+\section{Sistemi Non Inerziali Rotanti}
+
+\subsection{I Moti della Terra}
+
+Rotazione e rivoluzione non hanno molta influenza su fenomeni situati in uno spazio-tempo relativamente piccolo (in cui la Terra può considerarsi \textbf{inerziale}), bensì su fenomeni di durata e distanze maggiori, dove l'effetto risulta più evidente (regime \textbf{non inerziale}).
+
+\begin{esempio}{Le Accelerazioni dei Moti Terrestri}
+\textbf{Rotazione} (periodo $T = 24\,\mathrm{h}$, raggio terrestre $r_T = 6{,}3 \cdot 10^6\,\mathrm{m}$):
+\begin{equation}
+    a_{\omega} = \omega^2 r_T = \left(\frac{2\pi}{24\,\mathrm{h}}\right)^{\!2} \cdot 6{,}3 \cdot 10^6\,\mathrm{m}
+    = 0{,}033\,\frac{\mathrm{m}}{\mathrm{s}^2} = 0{,}0034\,g
+\end{equation}
+
+\textbf{Rivoluzione} (periodo $T = 365\,\mathrm{d}$, raggio orbitale $r_o = 1{,}5 \cdot 10^{11}\,\mathrm{m}$):
+\begin{equation}
+    a_{\Omega} = \Omega^2 r_o = \left(\frac{2\pi}{365\,\mathrm{d}}\right)^{\!2} \cdot 1{,}5 \cdot 10^{11}\,\mathrm{m}
+    = 0{,}0059\,\frac{\mathrm{m}}{\mathrm{s}^2} = 0{,}0006\,g
+\end{equation}
+
+Entrambe sono piccole frazioni di $g$: per questo, nella maggior parte dei problemi di meccanica, il laboratorio terrestre può essere trattato come inerziale.
+\end{esempio}
+
+\subsection{Il Fenomeno dei Cicloni}
+
+La rotazione terrestre è in senso \textbf{antiorario} nell'emisfero boreale e \textbf{orario} nell'emisfero australe. In base all'emisfero in cui ci si trova, le correnti d'aria seguono lo stesso moto e si spostano verso il centro del moto, ``convergendo'' ai poli.
+
+I cicloni sono dovuti a differenze di pressione atmosferica elevate: dove essa sarebbe normalmente di $\sim 1000\,\mathrm{mbar}$, nell'occhio del ciclone arriva a $\sim 860\,\mathrm{mbar}$.
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}[>=stealth, scale=1.0]
+        % --- Emisfero Nord
+        \begin{scope}
+            \draw[->, thin, mypen!70] (-1.7,0) -- (1.7,0) node[right, font=\scriptsize] {E};
+            \node[left, font=\scriptsize, mypen!70] at (-1.75,0) {W};
+            \draw[->, thin, mypen!70] (0,-1.7) -- (0,1.7) node[above, font=\scriptsize] {N};
+            \node[below, font=\scriptsize, mypen!70] at (0,-1.75) {S};
+            \foreach \a in {0,60,120,180,240,300} {
+                \draw[->, very thick, boxoss]
+                    (\a:1.45) arc (\a:\a+50:1.45);
+            }
+            \foreach \a in {30,150,270} {
+                \draw[->, thick, boxoss!70] (\a:0.85) arc (\a:\a+55:0.85);
+            }
+            \node[font=\small\bfseries, align=center] at (0,-2.55) {emisfero NORD\\(antiorario)};
+        \end{scope}
+        % --- Emisfero Sud
+        \begin{scope}[xshift=5.6cm]
+            \draw[->, thin, mypen!70] (-1.7,0) -- (1.7,0) node[right, font=\scriptsize] {E};
+            \node[left, font=\scriptsize, mypen!70] at (-1.75,0) {W};
+            \draw[->, thin, mypen!70] (0,-1.7) -- (0,1.7) node[above, font=\scriptsize] {N};
+            \node[below, font=\scriptsize, mypen!70] at (0,-1.75) {S};
+            \foreach \a in {0,60,120,180,240,300} {
+                \draw[->, very thick, boxatt]
+                    (\a:1.45) arc (\a:\a-50:1.45);
+            }
+            \foreach \a in {30,150,270} {
+                \draw[->, thick, boxatt!70] (\a:0.85) arc (\a:\a-55:0.85);
+            }
+            \node[font=\small\bfseries, align=center] at (0,-2.55) {emisfero SUD\\(orario)};
+        \end{scope}
+    \end{tikzpicture}
+    \caption{Il verso di rotazione dei cicloni nei due emisferi. La deflessione è prodotta dalla forza di Coriolis, che agisce in verso opposto a nord e a sud dell'equatore.}
+\end{figure}
+
+\subsection{Trasformazioni per Sistemi Rototraslanti}
+
+Sia $S$ il sistema inerziale e $S'$ il sistema non inerziale, che ruota con velocità angolare $\vec{\omega}$ rispetto a $S$.
+
+\paragraph{Posizione di $P$.}
+Dalla somma vettoriale $\overline{OP} = \overline{OO'} + \overline{O'P}$ si ottiene
+\begin{equation}
+    \vec{r} = \vec{r}\,' + \vec{R}
+    \qquad \text{(da $S'$ a $S$)}
+    \qquad\qquad
+    \vec{r}\,' = \vec{r} - \vec{R}
+    \qquad \text{(da $S$ a $S'$)}
+\end{equation}
+dove $\vec{R}$ è la posizione congiungente relativa fra le due origini $(O, O')$.
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}[>=stealth, scale=1.05]
+        % Sistema S
+        \draw[->, thick, mypen] (0,0) -- (3.4,0) node[right, font=\small] {$y$};
+        \draw[->, thick, mypen] (0,0) -- (0,2.9) node[above, font=\small] {$z$};
+        \draw[->, thick, mypen] (0,0) -- (-1.5,-1.5) node[below left, font=\small] {$x$};
+        \node[below left, font=\small\bfseries, mypen] at (-0.05,-0.05) {$S$};
+        % Origine O'
+        \coordinate (Op) at (2.5,1.5);
+        \draw[->, very thick, notered] (0,0) -- (Op) node[midway, below right, font=\small] {$\vec{R}$};
+        \node[below right, font=\small\bfseries, boxese] at (2.55,1.42) {$O'$};
+        % Assi S'
+        \draw[->, thick, boxese] (Op) -- ++(1.5,0) node[right, font=\scriptsize] {$y'$};
+        \draw[->, thick, boxese] (Op) -- ++(0,1.4) node[above, font=\scriptsize] {$z'$};
+        \draw[->, thick, boxese] (Op) -- ++(-0.8,-0.8) node[below left, font=\scriptsize] {$x'$};
+        % omega
+        \draw[->, very thick, boxatt] (Op) ++(0.35,1.15) arc (200:-20:0.42);
+        \node[right, font=\small\bfseries, boxatt] at (3.45,2.75) {$\vec{\omega}$};
+        % Punto P
+        \coordinate (P) at (3.6,2.5);
+        \fill[notered] (P) circle (2.2pt) node[above right, font=\small\bfseries] {$P$};
+        \draw[->, thick, mypen, dashed] (0,0) -- (P) node[pos=0.55, above left, font=\small] {$\vec{r}$};
+        \draw[->, thick, boxese, dashed] (Op) -- (P) node[pos=0.5, right, font=\small] {$\vec{r}\,'$};
+    \end{tikzpicture}
+    \caption{Composizione delle posizioni fra il sistema inerziale $S$ e il sistema rototraslante $S'$, quest'ultimo animato dalla velocità angolare $\vec{\omega}$.}
+\end{figure}
+
+\paragraph{Velocità di $P$.}
+Derivando rispetto al tempo nel sistema $O$:
+\begin{align}
+    \vec{v} = \left.\frac{d\vec{r}}{dt}\right|_{O}
+      &= \left.\frac{d\vec{r}\,'}{dt}\right|_{O} + \left.\frac{d\vec{R}}{dt}\right|_{O} \notag \\
+      &= \left.\frac{d\vec{r}\,'}{dt}\right|_{O'} + \vec{\omega}\times\vec{r}\,' + \left.\frac{d\vec{R}}{dt}\right|_{O} \notag \\
+      &= \vec{v}\,' + \underbrace{\vec{\omega}\times\vec{r}\,' + \vec{V}}_{\text{velocità di trascinamento}}
+\end{align}
+
+\begin{definizione}{Velocità di Trascinamento Locale}
+La velocità di trascinamento \textbf{dipende dal punto} $P$ considerato ed è composta da due contributi:
+\begin{itemize}[leftmargin=1.4em]
+    \item $\vec{V}$: la velocità relativa fra le origini $(O, O')$;
+    \item $\vec{\omega}\times\vec{r}\,'$: la velocità dovuta alla rotazione.
+\end{itemize}
+Invertendo si ottiene la legge di trasformazione da $S$ a $S'$:
+\begin{equation}
+    \vec{v}\,' = \vec{v} - \vec{\omega}\times\vec{r}\,' - \vec{V}
+\end{equation}
+\end{definizione}
+
+\paragraph{Accelerazione di $P$.}
+Derivando ancora una volta:
+\begin{align}
+    \vec{a} = \left.\frac{d\vec{v}}{dt}\right|_{O}
+      &= \left.\frac{d\vec{v}\,'}{dt}\right|_{O} + \left.\frac{d(\vec{\omega}\times\vec{r}\,')}{dt}\right|_{O} + \left.\frac{d\vec{V}}{dt}\right|_{O} \notag \\
+      &= \left.\frac{d\vec{v}\,'}{dt}\right|_{O'} + \vec{\omega}\times\vec{v}\,' + \vec{\omega}\times\left.\frac{d\vec{r}\,'}{dt}\right|_{O} + \left.\frac{d\vec{V}}{dt}\right|_{O} \notag \\
+      &= \vec{a}\,' + \vec{\omega}\times\vec{v}\,' + \vec{\omega}\times\left(\vec{v}\,' + \vec{\omega}\times\vec{r}\,'\right) + \vec{A} \notag \\
+      &= \vec{a}\,' + \underbrace{2\,\vec{\omega}\times\vec{v}\,'}_{\text{Coriolis}} + \underbrace{\vec{\omega}\times(\vec{\omega}\times\vec{r}\,') + \vec{A}}_{\text{trascinamento}}
+\end{align}
+
+\begin{definizione}{Accelerazione di Coriolis e di Trascinamento}
+\begin{itemize}[leftmargin=1.4em]
+    \item L'\textbf{accelerazione di Coriolis} $2\,\vec{\omega}\times\vec{v}\,'$ compare solo se il corpo \emph{si muove} nel sistema rotante ($\vec{v}\,' \neq 0$).
+    \item L'\textbf{accelerazione di trascinamento locale} dipende dal punto $P$ ed è composta da $\vec{A}$ (accelerazione relativa fra le origini) e da $\vec{\omega}\times(\vec{\omega}\times\vec{r}\,')$ (accelerazione dovuta alla rotazione).
+\end{itemize}
+Invertendo:
+\begin{equation}
+    \vec{a}\,' = \vec{a} - 2\,\vec{\omega}\times\vec{v}\,' - \vec{\omega}\times(\vec{\omega}\times\vec{r}\,') - \vec{A}
+\end{equation}
+\end{definizione}
+
+\subsection{Correlazione fra $\vec{g}$ e la Latitudine}
+
+Sia $S(O,x,y,z)$ il sistema inerziale e $S'(O',x',y',z')$ quello rotante solidale con la Terra, con le origini coincidenti ($O \equiv O'$, dunque $\vec{r} = \vec{r}\,'$ e $\vec{V}, \vec{A} = 0$). Per un punto $P$ \textbf{fermo} in $S'$ si ha $\vec{v}\,' = 0$ e $\vec{a}\,' = 0$, per cui i termini di Coriolis si annullano e resta
+\begin{equation*}
+    \vec{v} = \cancelto{0}{\vec{v}\,'} + \vec{\omega}\times\vec{r}\,'
+    \qquad\qquad
+    \vec{a} = \cancelto{0}{\vec{a}\,'} + \cancelto{0}{2\vec{\omega}\times\vec{v}\,'} + \vec{\omega}\times(\vec{\omega}\times\vec{r}\,')
+\end{equation*}
+
+Supponendo la Terra una sfera perfetta, $|\vec{g}_0| = \text{cost}$, mentre $|\vec{g}\,|$ è l'accelerazione \textbf{locale}, diversa in ogni punto:
+\begin{equation}
+    \vec{g} = \vec{g}_0 - \vec{\omega}\times(\vec{\omega}\times\vec{r}\,')
+\end{equation}
+Detta $\theta$ la latitudine, si ha $\vec{\omega} = \omega\hat{z}$ e $\vec{r} = R\,(\cos\theta\,\hat{x} + \sin\theta\,\hat{z})$. Sviluppando il doppio prodotto vettoriale con l'identità $\vec{a}\times(\vec{b}\times\vec{c}) = \vec{b}\,(\vec{a}\cdot\vec{c}) - \vec{c}\,(\vec{a}\cdot\vec{b})$:
+\begin{align*}
+    \vec{\omega}\times(\vec{\omega}\times\vec{r}\,) &= \vec{\omega}\,(\vec{\omega}\cdot\vec{r}\,) - \vec{r}\,(\vec{\omega}\cdot\vec{\omega})
+      = (\omega R \sin\theta)(\omega\hat{z}) - \omega^2\left(R\cos\theta\,\hat{x} + R\sin\theta\,\hat{z}\right) \\
+      &= \cancel{\omega^2 R \sin\theta\,\hat{z}} - \omega^2 R\cos\theta\,\hat{x} - \cancel{\omega^2 R\sin\theta\,\hat{z}}
+      = -\omega^2 R \cos\theta\,\hat{x}
+\end{align*}
+da cui
+\begin{equation}
+    \boxed{\;\vec{g} = \vec{g}_0 + \hat{x}\,\omega^2 R \cos\theta\;}
+\end{equation}
+
+\begin{osservazione}{La Deviazione della Verticale}
+$\vec{g}$ non ha la stessa direzione di $\vec{g}_0$: è deviata dall'accelerazione ``centrifuga'' dovuta alla rotazione. Più ci si avvicina ai poli (dove il raggio di rotazione si annulla), più $|\vec{g}\,|$ aumenta:
+\begin{equation*}
+    g = g_0 - \omega^2 R\cos\theta
+\end{equation*}
+\begin{itemize}[leftmargin=1.4em]
+    \item ai \textbf{poli} ($\theta = 90^{\circ}$): $g = g_0$, valore \textbf{massimo};
+    \item all'\textbf{equatore} ($\theta = 0^{\circ}$): $g = g_0 - \omega^2 R$, valore \textbf{minimo}.
+\end{itemize}
+\end{osservazione}
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}[>=stealth, scale=1.0]
+        \foreach \i/\lat/\lab in {0/90/{(a) polo}, 1/45/{(b) latitudine media}, 2/0/{(c) equatore}} {
+            \begin{scope}[xshift=\i*4.6cm]
+                \draw[thick, mypen] (0,0) circle (1.25);
+                \draw[dashed, mypen!45] (-1.45,0) -- (1.45,0);
+                \draw[->, thick, mypen!60] (0,-1.55) -- (0,1.8) node[above, font=\scriptsize] {$\vec{\omega}$};
+                \coordinate (P) at (\lat:1.25);
+                \fill[notered] (P) circle (2.2pt);
+                % g0: diretta verso il centro
+                \draw[->, line width=1.3pt, mypen] (P) -- ($(P)!0.68!(0,0)$);
+                \node[font=\scriptsize, mypen] at ($(P)!0.45!(0,0)$) [xshift=-10pt, yshift=-3pt] {$\vec{g}_0$};
+                % a_c: orizzontale uscente, modulo proporzionale a cos(latitudine)
+                \ifnum\lat=90
+                    \node[font=\scriptsize, boxatt, right] at ($(P)+(0.18,0.28)$) {$\vec{a}_c = \vec{0}$};
+                \else
+                    \draw[->, line width=1.3pt, boxatt] (P) -- ++({1.05*cos(\lat)},0);
+                    \node[font=\scriptsize, boxatt] at ($(P)+({1.05*cos(\lat)+0.28},0.22)$) {$\vec{a}_c$};
+                \fi
+                \node[font=\scriptsize, align=center] at (0,-2.15) {\lab};
+            \end{scope}
+        }
+    \end{tikzpicture}
+    \caption{L'accelerazione centrifuga $\vec{a}_c = \omega^2 R\cos\theta$ in funzione della latitudine: nulla ai poli, massima e interamente opposta a $\vec{g}_0$ all'equatore. La somma vettoriale $\vec{g} = \vec{g}_0 + \vec{a}_c$ è la gravità effettivamente misurata.}
+\end{figure}
+
+\subsection{La Dinamica in un Riferimento Rotante}
+
+Scrivendo il secondo principio nel sistema inerziale e sostituendo la composizione delle accelerazioni:
+\begin{equation}
+    \sum\vec{F} = m\vec{a} = m\left(\vec{a}\,' + 2\,\vec{\omega}\times\vec{v}\,' + \vec{\omega}\times(\vec{\omega}\times\vec{r}\,') + \vec{A}\right)
+\end{equation}
+dove si riconoscono
+\begin{align*}
+    m\vec{a}\,' &= \textstyle\sum\vec{F}\,' \\
+    2m\,\vec{\omega}\times\vec{v}\,' &= \vec{F}_{Co} \quad \to \quad \textbf{forza di Coriolis} \\
+    m\,\vec{\omega}\times(\vec{\omega}\times\vec{r}\,') &= \vec{F}_{ce} \quad \to \quad \textbf{forza centrifuga} \\
+    m\vec{A} &= \vec{F}_{tr} \quad \to \quad \textbf{forza di trascinamento}
+\end{align*}
+
+\begin{formulario}{Secondo Principio in un Riferimento Rotante}
+\begin{equation}
+    \sum\vec{F}\,' = \sum\vec{F} + \sum\vec{F}_{\text{app}}
+    = \sum\vec{F} - \left(2m\,\vec{\omega}\times\vec{v}\,' + m\,\vec{\omega}\times(\vec{\omega}\times\vec{r}\,') + m\vec{A}\right)
+\end{equation}
+\end{formulario}
+
+\begin{attenzione}{Le Forze Apparenti Esistono Solo nel Sistema Non Inerziale}
+Coriolis, centrifuga e trascinamento compaiono \textbf{soltanto} nella descrizione fatta dal sistema non inerziale. Per l'osservatore inerziale esse non esistono: ciò che egli vede è semplicemente un corpo che si muove di moto accelerato.
+\end{attenzione}
+
+\subsection{Il Caso della Stazione Spaziale Internazionale}
+
+\begin{esempio}{Assenza di Peso sulla ISS}
+La \textbf{ISS} (\emph{International Space Station}) orbita a una quota $d_T = 450\,\mathrm{km}$ con periodo $T = 93\,\mathrm{min}$, cioè
+\begin{equation*}
+    \frac{1\,\text{giorno}}{93\,\mathrm{min}} = \frac{1440}{93} = 15{,}5 \text{ giri in un giorno}
+\end{equation*}
+Il suo raggio orbitale è $r_I = r_T + d_T = 6370 + 450 = 6820\,\mathrm{km}$, per cui il campo gravitazionale alla sua quota vale
+\begin{equation}
+    \frac{g_I}{g} = \frac{r_T^2}{r_I^2} = \frac{r_T^2}{(r_T + d_T)^2}
+    = \frac{r_T^2}{r_T^2 + d_T^2 + 2r_Td_T}
+    = \frac{1}{1 + \left(\dfrac{d_T}{r_T}\right)^{\!2} + 2\dfrac{d_T}{r_T}}
+    \approx 1 - \frac{2d_T}{r_T} \cong 0{,}86
+\end{equation}
+avendo sviluppato in serie di Taylor e trascurato $(d_T/r_T)^2$ rispetto a $2\,d_T/r_T$.
+
+\textbf{Alla quota della ISS la gravità è ancora l'$86\%$ di quella al suolo}: l'assenza di peso non è dunque dovuta alla lontananza dalla Terra.
+\end{esempio}
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}[>=stealth, scale=1.0]
+        % Terra
+        \shade[ball color=boxoss!25] (0,0) circle (1.5);
+        \draw[thick, mypen] (0,0) circle (1.5);
+        \node[font=\scriptsize, mypen] at (0,0) {Terra};
+        % Orbita
+        \draw[dashed, thick, mypen!60] (0,0) circle (2.35);
+        % ISS
+        \coordinate (I) at (38:2.35);
+        \fill[notered] (I) circle (2.6pt);
+        \node[right, font=\scriptsize\bfseries, notered] at ($(I)+(0.12,0.1)$) {ISS};
+        % raggi
+        \draw[->, thick, mypen] (0,0) -- (38:1.5) node[midway, below right, font=\scriptsize] {$r_T$};
+        \draw[->, thick, boxatt] (38:1.5) -- (I) node[midway, above left, font=\scriptsize] {$d_T$};
+        \draw[->, thick, boxese] (0,0) -- (-160:2.35) node[midway, below, font=\scriptsize] {$r_I$};
+        % g_I
+        \draw[->, very thick, boxoss] (I) -- ($(I)!0.55!(0,0)$);
+        \node[font=\scriptsize, boxoss] at ($(I)!0.42!(0,0)$) [xshift=11pt, yshift=6pt] {$\vec{g}_I$};
+    \end{tikzpicture}
+    \caption{Geometria orbitale della Stazione Spaziale Internazionale. Alla quota $d_T = 450\,\mathrm{km}$ il campo gravitazionale terrestre vale ancora circa l'$86\%$ del valore al suolo.}
+\end{figure}
+
+\paragraph{Un oggetto fermo sulla ISS.}
+Consideriamo un oggetto fermo rispetto alla stazione ($\vec{v}\,' = \vec{a}\,' = 0$). Nel \textbf{sistema rotante} solidale con la ISS:
+\begin{equation*}
+    \sum\vec{F}\,' = \sum\vec{F} + \sum\vec{F}_{\text{app}} = \vec{P}_I + \vec{N} + \vec{F}_{\text{app}}
+\end{equation*}
+con $\sum\vec{F}\,' = m\vec{a}\,' = 0$, e quindi $\vec{P}_I + \vec{N} = m\vec{g}_I + \vec{N}$. Le forze apparenti valgono
+\begin{equation*}
+    \vec{F}_{\text{app}} = \cancelto{0}{2m\,\vec{\omega}\times\vec{v}\,'} - m\,\vec{\omega}\times(\vec{\omega}\times\vec{r}\,') - \cancelto{0}{m\vec{A}}
+    = m\,\omega^2\vec{r}_I
+\end{equation*}
+(il termine $\vec{\omega}\times(\vec{\omega}\times\vec{r}\,')$ è trascurabile per il corpo rispetto a $S'$, restando la sola accelerazione centripeta $\omega^2 \vec{r}_I$), da cui
+\begin{equation}
+    0 = \vec{N} + m\left(\vec{g}_I + \omega^2\vec{r}_I\right)
+    \implies \vec{N} = -m\left(\vec{g}_I + \omega^2\vec{r}_I\right)
+    \qquad \text{con } \vec{g}_I \parallel -\hat{r}_I \, , \; \vec{r}_I \parallel \hat{r}_I
+\end{equation}
+
+\paragraph{L'equazione del moto della stazione.}
+Scrivendo il secondo principio per la ISS stessa:
+\begin{equation*}
+    \sum\vec{F}_I = m_I\,\vec{g}_I = \text{``peso'' della ISS}
+    \implies m_I\vec{a}_I = m_I\vec{g}_I \implies \vec{a}_I = \vec{g}_I
+\end{equation*}
+ovvero, sviluppando l'accelerazione nel sistema rotante,
+\begin{equation*}
+    \cancelto{0}{\vec{a}\,'_I} + \cancelto{0}{\vec{\omega}\times\vec{v}\,'_I} + \vec{\omega}\times(\vec{\omega}\times\vec{r}\,'_I) + \vec{A} = \vec{g}_I
+\end{equation*}
+poiché $\vec{a}\,'_I, \vec{v}\,'_I, \vec{r}\,'_I = 0$ (la stazione è ferma rispetto a sé stessa), per cui
+\begin{equation}
+    \vec{g}_I = \vec{a}_I = \vec{A} = -\omega^2 \vec{r}_I
+\end{equation}
+
+\begin{teorema}{L'Assenza di Peso in Orbita}
+Siccome $\vec{g}_I = \vec{a}_I = -\omega^2\vec{r}_I$, sostituendo nell'espressione della reazione vincolare si ottiene
+\begin{equation}
+    \vec{N} = -m\left(-\omega^2\vec{r}_I + \omega^2\vec{r}_I\right) = \vec{0}
+\end{equation}
+La reazione vincolare è \textbf{nulla} quando la ISS è in orbita: si sperimenta l'\textbf{assenza di gravità}.
+
+Il peso non scompare --- $g_I$ vale ancora l'$86\%$ di $g$ --- ma è interamente ``consumato'' per fornire l'accelerazione centripeta dell'orbita. Stazione e occupanti sono in \textbf{caduta libera} attorno alla Terra: ciò che si annulla non è la gravità, bensì la forza di contatto che, al suolo, ci dà la sensazione di avere un peso.
+\end{teorema}

@@ -12,17 +12,8 @@
 \usepackage[nottoc]{tocbibind}
 %--------------------------------------------------------------
 % Inputs for the title page 
-%--------------------------------------------------------------
-\newcommand{\myItalianTitle}{Teoria di Fisica 1\xspace}
 
-% use the right myDegree option
-\newcommand{\myDegree}{Corso di Laurea in Fisica\xspace}
-%\newcommand{\myDegree}{Corso di Laurea Magistrale in Informatica\xspace}
 \newcommand{\myName}{Giosuè Aiello\xspace}
-\newcommand{\mySupervisorTitle}{Relatore/Relatrice\xspace} %%% remove one of the two
-\newcommand{\mySupervisorName}{\textit{Nome Cognome Relatore}\xspace} 
-\newcommand{\myCoSupervisorTitle}{Correlatore/Correlatrice\xspace} %%% optional: remove this command if the thesis has no Co-Supervisor
-\newcommand{\myCoSupervisorName}{\textit{Nome Cognome Correlatore}\xspace} %%% optional: remove this command if the thesis has no Co-Supervisor
 \newcommand{\myTime}{2026\xspace}
 %--------------------------------------------------------------
 
@@ -33,17 +24,13 @@
 % this will change the chapter titles
 \usepackage[italian]{babel}
 %\usepackage[english]{babel}
-\usepackage{csquotes}
 
 \usepackage[fleqn]{amsmath}
-\usepackage{amssymb}  
+\usepackage{amssymb}
+\usepackage{array}       % \extrarowheight e colonne personalizzate  
 \usepackage{ellipsis}
-\usepackage{listings}
-\usepackage{subfig}
 \usepackage{float}
 \usepackage{caption}
-\usepackage{appendix}
-\usepackage{siunitx}
 \usepackage{cancel}
 
 \usepackage[pdftex]{graphicx} 
@@ -65,52 +52,64 @@
 \usepackage{ccicons}
 
 % --- Custom Styling Definitions ---
-\newtcolorbox{teorema}[1]{
-    colback=orange!5!white,
-    colframe=orange!10!white,
-    fonttitle=\bfseries\color{orange!75!black},
-    title=TEOREMA: #1,
-    breakable,
-    enhanced,
-    frame hidden,
-    borderline west={2pt}{0pt}{orange!75!black}
+% Palette semantica dei riquadri didattici
+\definecolor{boxdef}{RGB}{168,38,38}    % Definizioni      (rosso mattone)
+\definecolor{boxteo}{RGB}{186,112,12}   % Teoremi          (ocra)
+\definecolor{boxoss}{RGB}{28,82,158}    % Osservazioni     (blu)
+\definecolor{boxese}{RGB}{24,112,84}    % Esempi/Esercizi  (verde bosco)
+\definecolor{boxatt}{RGB}{158,48,20}    % Avvertenze       (terra di Siena)
+\definecolor{boxnota}{RGB}{102,72,142}  % Note storiche    (viola)
+\definecolor{boxform}{RGB}{16,102,112}  % Formulari        (teal)
+
+% Stile base condiviso: un'unica geometria per tutti i riquadri,
+% differenziati soltanto dal colore semantico passato come argomento.
+\tcbset{
+    fisicabox/.style={
+        enhanced,
+        breakable,
+        sharp corners,
+        frame hidden,
+        boxrule=0pt,
+        colback=#1!4!white,
+        borderline west={2.2pt}{0pt}{#1},
+        left=9pt, right=9pt, top=6pt, bottom=6pt,
+        before skip=9pt, after skip=9pt,
+        fonttitle=\bfseries,
+        coltitle=#1!82!black,
+        colbacktitle=#1!11!white,
+        toptitle=3.5pt, bottomtitle=3.5pt,
+        titlerule=0pt
+    },
+    % Variante senza titolo (riquadro "muto")
+    fisicaboxplain/.style={
+        enhanced,
+        breakable,
+        sharp corners,
+        frame hidden,
+        boxrule=0pt,
+        colback=#1!4!white,
+        borderline west={2.2pt}{0pt}{#1},
+        left=9pt, right=9pt, top=7pt, bottom=7pt,
+        before skip=9pt, after skip=9pt
+    }
 }
 
-\newtcolorbox{definizione}[1]{
-    colback=red!5!white,
-    colframe=red!10!white,
-    fonttitle=\bfseries\color{red!75!black},
-    title={DEFINIZIONE: #1},
-    breakable,
-    enhanced,
-    frame hidden,
-    borderline west={2pt}{0pt}{red!75!black}
-}
+% Etichetta del titolo: maiuscoletto per la categoria, tondo per il nome
+\newcommand{\boxlabel}[2]{{\scshape #1}\ \textemdash\ #2}
 
-\newtcolorbox{osservazione}[1]{
-    colback=blue!5!white,
-    colframe=blue!10!white,
-    fonttitle=\bfseries\color{blue!75!black},
-    title={OSSERVAZIONE: #1},
-    breakable,
-    enhanced,
-    frame hidden,
-    borderline west={2pt}{0pt}{blue!75!black}
-}
+\newtcolorbox{definizione}[1]{fisicabox=boxdef,  title={\boxlabel{Definizione}{#1}}}
+\newtcolorbox{teorema}[1]{fisicabox=boxteo,      title={\boxlabel{Teorema}{#1}}}
+\newtcolorbox{osservazione}[1]{fisicabox=boxoss, title={\boxlabel{Osservazione}{#1}}}
+\newtcolorbox{esercizio}[1]{fisicabox=boxese,    title={\boxlabel{Esercizio}{#1}}}
+\newtcolorbox{esempio}[1]{fisicabox=boxese,      title={\boxlabel{Esempio}{#1}}}
+\newtcolorbox{attenzione}[1]{fisicabox=boxatt,   title={\boxlabel{Attenzione}{#1}}}
+\newtcolorbox{notastorica}[1]{fisicabox=boxnota, title={\boxlabel{Nota storica}{#1}}}
+\newtcolorbox{formulario}[1]{fisicabox=boxform,  title={\boxlabel{Formulario}{#1}}}
 
-\newtcolorbox{esercizio}[1]{
-    colback=orange!5!white,
-    colframe=orange!10!white,
-    fonttitle=\bfseries\color{orange!75!black},
-    title=ESERCIZIO: #1,
-    breakable,
-    enhanced,
-    frame hidden,
-    borderline west={2pt}{0pt}{orange!75!black}
-}
+% Riquadro di sintesi senza intestazione, per i risultati chiave
+\newtcolorbox{risultato}{fisicaboxplain=boxform}
 
 \usepackage{scrlayer-scrpage}
-\usepackage{ifthen}
 
 % Clear default headers/footers
 \clearpairofpagestyles
@@ -146,8 +145,6 @@
 %--------------------------------------------------------------
 % Layout setting
 %--------------------------------------------------------------
-\newlength{\abcd} 
-\newcommand{\myfloatalign}{\centering} 
 \setlength{\extrarowheight}{3pt} 
 \captionsetup{format=hang,font=small}
 
@@ -162,19 +159,6 @@
 	headheight=15pt
 }
 
-\lstset{
-  	frame=tb,
-	language=Matlab,
-  	aboveskip=3mm,
-  	belowskip=3mm,
-  	showstringspaces=false,
-  	columns=flexible,
-  	basicstyle={\small\ttfamily},
-  	numbers=none,
-  	breaklines=true,
-  	breakatwhitespace=true,
-  	tabsize=3
-}
 
 %--------------------------------------------------------------
 
@@ -219,8 +203,34 @@ To view a copy of this license, visit \url{https://creativecommons.org/licenses/
 \clearpage
 \thispagestyle{empty}
 \vspace*{\fill}
-\noindent
-{\small \textit{Queste note sono state realizzate sulla base degli appunti manoscritti di Chiara Rustici, con la rivisitazione formale dell'autore.}}\par
+\begin{center}
+    {\Large\scshape\color{notedarkred} Nota di merito \par}
+    \vspace{0.7cm}
+    {\color{notered}\rule{6cm}{1pt}\par}
+    \vspace{1.4cm}
+
+    \begin{minipage}{0.78\textwidth}
+        \setlength{\parskip}{0.7em}
+        \noindent
+        Questo testo non nasce dal nulla. Alla sua origine ci sono gli
+        \textbf{appunti manoscritti di Chiara Rustici}, studentessa
+        dell'Università di Pisa.
+
+        \noindent
+        A partire da quelle pagine mi sono divertito a costruire una versione
+        più curata: ho riformulato diversi passaggi di teoremi e definizioni,
+        ampliato le spiegazioni e arricchito il testo di figure oltre quanto
+        presente nelle note originarie, il tutto per offrire al lettore
+        un'esperienza di studio più comoda.
+
+        \noindent
+        Grazie, Chiara, per la base.
+    \end{minipage}
+
+    \vspace{1.8cm}
+    {\color{notered}\rule{3cm}{0.6pt}\par}
+\end{center}
+\vspace*{\fill}
 
 \clearpage
 \addtocontents{toc}{\protect\thispagestyle{empty}} % Double check TOC is empty
@@ -249,6 +259,8 @@ To view a copy of this license, visit \url{https://creativecommons.org/licenses/
 \include{Capitoli/05-Gravitazione}
 \include{Capitoli/Corpo_rigido_e_oscillazioni}
 \include{Capitoli/06-Termodinamica}
+\include{Capitoli/07-Relativita}
+\include{Capitoli/08-Sistemi_Non_Inerziali}
 % \include{Chapters/02-StateOfTheArt}
 % \include{Chapters/03-Proposal}
 % \include{Chapters/04-Evaluation}
