@@ -1,6 +1,6 @@
-# Teoria di Fisica 1
+# Fisica 1
 
-Benvenuti nel repository ufficiale degli appunti di **Teoria di Fisica 1**. 
+Benvenuti nel repository ufficiale degli appunti di **Fisica 1**. 
 
 Questo progetto nasce con l'obiettivo di fornire un testo organico, chiaro e rigoroso per lo studio della Fisica Generale, unendo gli sforzi nella rielaborazione concettuale e nella cura editoriale tipografica.
 
