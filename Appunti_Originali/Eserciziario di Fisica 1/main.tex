@@ -1,0 +1,90 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{amsmath,amssymb}
+\usepackage{pdfpages} % Per includere il PDF del compito
+\usepackage{hyperref}
+\usepackage{geometry}
+\geometry{a4paper, margin=2cm}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Eserciziario di fisica 1},
+}
+
+\begin{document}
+
+% --- Copertina / Frontespizio ---
+\begin{titlepage}
+    \centering
+    \vspace*{4cm}
+    {\Huge \bfseries Eserciziario di fisica 1 \par}
+    \vspace{2cm}
+    {\Large Giosuè Aiello \par}
+    \vfill
+    {\large \today \par}
+\end{titlepage}
+
+% --- Pagina dei Ringraziamenti ---
+\newpage
+\thispagestyle{empty}
+\vspace*{5cm}
+\begin{center}
+\Large \textbf{Ringraziamenti}
+\end{center}
+\vspace{1cm}
+\noindent (Le pagine dei ringraziamenti verranno inserite qui...)
+\clearpage
+
+% --- Indice ---
+\pagenumbering{roman}
+\tableofcontents
+\clearpage
+
+% --- Inizio Documento ---
+\pagenumbering{arabic}
+
+% Inclusione del PDF del compito con aggiunta automatica all'indice
+\includepdf[pages=-, scale=0.85, pagecommand={\thispagestyle{plain}}, addtotoc={1,section,1,Appello del 29 Maggio 2019,sec:2019-05-29}]{"Appunti originali/2016-2025/AA 2018-2019/2019-05-29_primo_appello.pdf"}
+
+\newpage
+\subsection{Risoluzione}
+% Spazio prenotato per la risoluzione
+(Spazio riservato per la risoluzione del compito che verrà aggiunta successivamente).
+
+
+\newpage
+% Secondo Appello
+\includepdf[pages=-, scale=0.85, pagecommand={\thispagestyle{plain}}, addtotoc={1,section,1,Appello del 24 Giugno 2019,sec:2019-06-24}]{"Appunti originali/2016-2025/AA 2018-2019/2019-06-24_secondo_appello.pdf"}
+
+\newpage
+\subsection{Risoluzione}
+% Spazio prenotato per la risoluzione
+(Spazio riservato per la risoluzione del compito che verrà aggiunta successivamente).
+
+\newpage
+% Terzo Appello
+\includepdf[pages=-, scale=0.85, pagecommand={\thispagestyle{plain}}, addtotoc={1,section,1,Appello del 22 Luglio 2019,sec:2019-07-22}]{"Appunti originali/2016-2025/AA 2018-2019/2019-07-22_terzo_appello.pdf"}
+
+\newpage
+\subsection{Risoluzione}
+% Spazio prenotato per la risoluzione
+(Spazio riservato per la risoluzione del compito che verrà aggiunta successivamente).
+
+\newpage
+% Appello Autunnale
+\includepdf[pages=-, scale=0.85, pagecommand={\thispagestyle{plain}}, addtotoc={1,section,1,Appello del 13 Settembre 2019,sec:2019-09-13}]{"Appunti originali/2016-2025/AA 2018-2019/2019-09-13_appello_autunnale.pdf"}
+
+\newpage
+\subsection{Risoluzione}
+% Spazio prenotato per la risoluzione
+(Spazio riservato per la risoluzione del compito che verrà aggiunta successivamente).
+
+\end{document}
