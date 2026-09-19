@@ -24,7 +24,7 @@ Il progetto è interamente scritto in $\LaTeX$. Per generare o aggiornare il fil
    ```
 3. Compilare il file principale:
    ```bash
-   pdflatex Teoria_di_Fisica_1.tex
+   pdflatex Fisica_1.tex
    ```
 *(Potrebbero essere necessarie più compilazioni consecutive per generare correttamente l'indice e i riferimenti incrociati).*
 
