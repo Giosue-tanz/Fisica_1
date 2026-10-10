@@ -113,6 +113,9 @@
 
 % Clear default headers/footers
 \clearpairofpagestyles
+% Keep \leftmark updated with the current chapter title (needed for the
+% running header below, since scrlayer-scrpage otherwise leaves it stale)
+\automark[section]{chapter}
 
 % Define a new layer for our TikZ page number
 \DeclareNewLayer[
@@ -134,11 +137,26 @@
 \AddLayersToPageStyle{scrheadings}{pagenumberlayer}
 \AddLayersToPageStyle{plain.scrheadings}{pagenumberlayer}
 
+% Define a new layer for the running chapter header (current chapter name,
+% omitted on chapter-opening pages where the big \chapter title already
+% makes it redundant)
+\DeclareNewLayer[
+    background,
+    contents={%
+        \begin{tikzpicture}[remember picture, overlay]
+            \node[anchor=north, font=\small\scshape, text=notedarkred] at ($(current page.north)+(0,-1.3cm)$) {\leftmark};
+            \draw[notered, line width=0.4pt] ($(current page.north west)+(1.8cm,-1.6cm)$) -- ($(current page.north east)+(-1.8cm,-1.6cm)$);
+        \end{tikzpicture}%
+    }
+]{chapterheaderlayer}
+\AddLayersToPageStyle{scrheadings}{chapterheaderlayer}
+
 % Define a custom command to toggle page numbering visibility
 \newcommand{\suppresspagenumber}{\clearpairofpagestyles}
 \newcommand{\activatepagenumber}{%
     \clearpairofpagestyles%
     \AddLayersToPageStyle{scrheadings}{pagenumberlayer}%
+    \AddLayersToPageStyle{scrheadings}{chapterheaderlayer}%
     \AddLayersToPageStyle{plain.scrheadings}{pagenumberlayer}%
 }
 
@@ -233,6 +251,9 @@ To view a copy of this license, visit \url{https://creativecommons.org/licenses/
 \vspace*{\fill}
 
 \clearpage
+\include{Frontespizio/Legenda}
+
+\clearpage
 \addtocontents{toc}{\protect\thispagestyle{empty}} % Double check TOC is empty
 {\hypersetup{linkcolor=black}
 \pdfbookmark[0]{Indice}{indice}
@@ -269,8 +290,9 @@ To view a copy of this license, visit \url{https://creativecommons.org/licenses/
 %--------------------------------------------------------------
 % Bibliography
 %--------------------------------------------------------------
-% \bibliographystyle{plain} 
-% \bibliography{Bibliography} % Entries are in the Bibliography.bib file
+\nocite{*} % List all entries: this book has no inline \cite, it's a reading list
+\bibliographystyle{plain}
+\bibliography{Bibliography} % Entries are in the Bibliography.bib file
 
 %--------------------------------------------------------------
 \end{document}
